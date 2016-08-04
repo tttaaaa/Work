@@ -1,0 +1,177 @@
+%===============
+%一行目に必ず必要
+%文章の形式を定義
+%===============
+\documentclass{ujarticle}
+%===============
+%パッケージの定義、必要か不明
+%===============
+%この下4つを加えることで、mathbbが機能した
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+%可換図式用パッケージ
+\usepackage{amscd}
+\usepackage[all]{xy}
+\usepackage{tikz-cd}
+%リンク用パッケージ
+\usepackage[dvipdfmx]{hyperref}
+%複数行コメント
+%\usepackage{comment}
+
+%タイトルデータ
+\title{Modular Formとその周辺}
+\author{ta}
+\date{2016/August}
+
+
+%===============
+%定理環境の設定
+%セクション毎
+%===============
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem{prop}[thm]{Propostion}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{ex}[thm]{Example}
+\newtheorem*{prob}{Problem}
+\newtheorem*{rem}{Remark}
+\newtheorem{prf}{Proof}
+
+\begin{document}
+
+% タイトルを出力
+\maketitle
+\section{Introduction}
+\label{sec:Introduction}
+
+保型形式について概説する。
+今回の説明は以下を理解することを目的に行う。
+\begin{itemize}
+  \setlength{\parskip}{0cm} % 段落間
+  \setlength{\itemsep}{0cm} % 項目間
+
+
+  \item 保型形式の定義
+  \item 保型形式を考える背景
+  \item 数学における興味深い対象
+  \item 数学における自然な疑問
+  \item 最低限の理論の厳密さ
+\end{itemize}
+
+本サーベイにおいては、保型形式は解析的に定義されるため、まず、解析的な内容の準備を用意した。
+これらの準備を適宜みならがら、保型形式の定義から基本領域、フーリエ級数展開とL関数等、代数を使わずとも定義できる
+内容を論じる。その後、保型形式全体のなす空間がベクトル空間となることを確認し、内積、固有値、次元などについて議論する。
+以降は概略のみであるが、保型形式の広がりの深さをみせるため、
+保型形式と楕円関数、楕円曲線との関係、また保型形式のL関数と代数体のL関数などの関係にふれる。
+最後にフェルマーの最終定理とつながる、Eichler-Shimura理論について触れる。
+なお、今回は、Langlands Problemや岩澤理論は高度すぎると判断し、特に触れなかった。
+詳しいことは参考文献を参考にせよ。
+
+後半は詳しいことを私も理解していないため、誤りがある可能性が高いことを最初に触れておく。
+もし、誤りが発見された場合は通知願う。
+
+
+
+\begin{rem}
+  一般的に解析的、代数的、幾何的に定まった意味はない。特に理論が進歩していくと、何が代数的で、何が幾何的で、
+  何が解析的なのかがよくわからなくなることがある。しかし、ここでは、そのような特殊な状況は考慮せず、以下の意味で使い分ける。
+　\begin{description}
+    \item[代数的定義] 群、環、体、ベクトル空間などの代数的構造によって定まる定義
+    \item[幾何的定義] 多様体、ホモロジー等、空間や空間の不変量により定まる定義
+    \item[解析的定義] 関数や微積分などにより定まる定義
+　\end{description}
+\end{rem}
+
+\section{Basic Knowlede of this survey}
+\label{sec:Basic Knowlede of this survey}
+
+
+\section{Definition of Modular Form and Basic Propety}
+\label{sec:Modular Form}
+
+\subsection{$SL(2.\mathbb{Z})$ and congurenc gruop}
+\label{sub:$SL(2.Z and congurenc gruop}
+
+
+\subsection{definition of modular form}
+\label{sub:definition of modular form}
+保型形式は名前の通り、なんらかの形を保つものである。
+形を保つというのは、数学ではよく、群の作用で不変という形で定義される。
+群の作用が何かをここでは定義しないが、"何か"を"かけた"場合に元とほとんど同じということを指すと思ってもらいたい。
+
+\noindent では実際に保型形式をみていこう。まず、"かけられる対象"が何で、"かける対象"が何かを定義する。
+
+\noindent \bf{かける対象:}
+\begin{equation*}
+  \Gamma(N) := \{
+  \begin{pmatrix}
+    a & b \\
+    c & d \\
+  \end{pmatrix}
+  \in \mathrm{SL}_2(\mathbb{Z}) | a \equiv 1,b \equiv 0,c \equiv 0, d \equiv 1 \mathrm{mod} N
+  \}
+\end{equation*}
+\begin{center}
+  $N$は1以上の整数を指す。$N$が1の場合、$\Gamma(N) = \mathrm{SL_2(\mathbb{Z})}$となる。
+\end{center}
+
+\noindent \bf{かけられる対象:}
+$\mathcal{H}$から$\mathcal{H}$への解析的関数$f$全体
+(もしかしたら有理型でいいかもしれない。)
+\begin{rem}
+  かける対象、かけられる対象は実際はそれらの元と書くべきかもしれない。ただ、数学で対象を考えるというとき、
+  少なくとも自分は、対象を性質や条件で決めることが多い。そのため一つの特定の元ではなく、全体をさした方が自然に感じる。
+\end{rem}
+
+\noindent かける対象とかけられる対象が決まったので、"かける"を以下で定義する。
+
+\begin{eqnarray*}
+  \cdot :  \Gamma(N) \times \mathrm{Hom}_{Rat}\{\mathcal{H},\mathcal{H}\} & \to & \mathrm{Hom}_{Rat}\{\mathcal{H},\mathcal{H}\} \\
+  (\gamma,f) &\mapsto &\gamma \cdot f(z) = f(\frac{az + b}{cz + d})　\\
+\mbox{ただし、} \gamma =
+\begin{pmatrix}
+  a & b \\
+  c & d \\
+\end{pmatrix}
+\end{eqnarray*}
+かけることまで定義できたので、保型形式を定義しよう。
+以下では保型形式と言わずにmodular form,cusp formなどの用語を使う。
+
+\begin{dfn}
+  $f$がunrestricted weight $k$のmodular formとは、以下が成り立つことをいう。 \\
+  $\forall  \gamma \in \Gamma(N),  \gamma \cdot f(z) = (cz + d)^{k}f(z)$
+\end{dfn}
+\begin{rem}
+  定義を見たときは、まずこの定義が意味することを考えたい。
+  真剣に数学書を読むなら、定義に対する疑問3個、定義が成り立つ例2個、定義が成り立たない例1個ぐらいは考えたい。
+\end{rem}
+この定義をみて、私が気になることをいくつかあげる。
+\begin{itemize}
+  \setlength{\parskip}{0cm} % 段落間
+  \setlength{\itemsep}{0cm} % 項目間
+  \item $a,b$によらず$c,d$によるのは不自然に感じる。なぜ、そのようなものを考えるのか。
+  \item $f$は有理型関数に限っているが、他の場合はどうか。
+  \item $\mathrm{H}$を割った空間の関数として考えられないのか。
+  \item $\gamma \cdot f (z) = f(z)$となる$f$はあるのか。
+\end{itemize}
+
+
+\begin{thm}{[k],[11.74 Eichler-Shimura]} \\
+  $f(\tau)=\sum_{n=1}^{\infty}c_ne^{2 \pi i n \tau}$を$S_2(\Gamma_0(N))$のnew formであって、
+  $c_1=1$となるものとする。 $c_n \in \mathbb{Z}$とすると、以下を満たすpair $(E, \nu)$が存在する
+  \begin{enumerate}
+    \item $E$ は $\mathbb{Q}$上の楕円曲線であり、$(E, \nu)$は$\mathbb{Q}$上のアーベル多様体$J$を部分多様体で割ったものとなる。
+  \end{enumerate}
+
+\end{thm}
+
+
+\begin{thebibliography}{数字}
+  \bibitem{K} Elliptic Curves.・Anthony W. Knapp
+  \bibitem{M} Modular Functions and Modular Forms・J. S. Milne
+  \bibitem{キーN} 参考文献の名前・著者N
+\end{thebibliography}
+
+\end{document}
