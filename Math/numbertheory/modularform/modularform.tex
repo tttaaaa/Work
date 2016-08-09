@@ -22,7 +22,7 @@
 
 %タイトルデータ
 \title{Modular Formとその周辺}
-\author{ta}
+\author{take}
 \date{2016/August}
 
 
@@ -43,6 +43,10 @@
 
 % タイトルを出力
 \maketitle
+% 目次の表示
+\tableofcontents
+
+
 \section{Introduction}
 \label{sec:Introduction}
 
@@ -87,16 +91,23 @@
 \section{Basic Knowlede of this survey}
 \label{sec:Basic Knowlede of this survey}
 
+\begin{thm}[フーリエ展開の収束]
+\label{thm:fourier}
+ 連続関数$f:\mathbb{R} \to \mathbb{C}$が$f(x + 1) = f(x)$を満たすとする。
+ すると、$f= \displaystyle  \sum_{n= - \infty }^{\infty}a_ne^{2 \pi i x n}$となる。\\
+ ただし、$a_n e^{2 \pi i x n}= \int_{-\frac{1}{2}}^{\frac{1}{2}}f(x)e^{-2 \pi i x n}dx$
+また、この等式が成り立つとき、$f$はフーリエ展開可能という。
+\end{thm}
 
 \section{Definition of Modular Form and Basic Propety}
 \label{sec:Modular Form}
 
-\subsection{$SL(2.\mathbb{Z})$ and congurenc gruop}
+\subsection{$SL(2.\mathbb{Z})$ and congruenc gruop}
 \label{sub:$SL(2.Z and congurenc gruop}
 
 
-\subsection{definition of modular form}
-\label{sub:definition of modular form}
+\subsection{Definition of modular form}
+\label{sub:Definition of modular form}
 保型形式は名前の通り、なんらかの形を保つものである。
 形を保つというのは、数学ではよく、群の作用で不変という形で定義される。
 群の作用が何かをここでは定義しないが、"何か"を"かけた"場合に元とほとんど同じということを指すと思ってもらいたい。
@@ -118,8 +129,8 @@
 \end{center}
 
 \noindent \bf{かけられる対象:}
-$\mathcal{H}$から$\mathcal{H}$への解析的関数$f$全体
-(もしかしたら有理型でいいかもしれない。)
+$\mathcal{H}$から$\mathbb{C}$への有理型関数$f$全体
+
 \begin{rem}
   かける対象、かけられる対象は実際はそれらの元と書くべきかもしれない。ただ、数学で対象を考えるというとき、
   少なくとも自分は、対象を性質や条件で決めることが多い。そのため一つの特定の元ではなく、全体をさした方が自然に感じる。
@@ -137,25 +148,84 @@ $\mathcal{H}$から$\mathcal{H}$への解析的関数$f$全体
 \end{pmatrix}
 \end{eqnarray*}
 かけることまで定義できたので、保型形式を定義しよう。
-以下では保型形式と言わずにmodular form,cusp formなどの用語を使う。
+以降では保型形式はすべて英語のmodular form,cusp formなどの用語を使う。
+modular form,automorphic formがともに保型形式と訳されていること、
+cusp formを日本語で書いているものをほとんどとみたことがないためである。
 
 \begin{dfn}
-  $f$がunrestricted weight $k$のmodular formとは、以下が成り立つことをいう。 \\
+  有理型関数$f:\mathcal{H} \to \mathbb{C}$がunrestrictedなweight $k$のmodular formとは、以下が成り立つことをいう。 \\
   $\forall  \gamma \in \Gamma(N),  \gamma \cdot f(z) = (cz + d)^{k}f(z)$
 \end{dfn}
 \begin{rem}
   定義を見たときは、まずこの定義が意味することを考えたい。
-  真剣に数学書を読むなら、定義に対する疑問3個、定義が成り立つ例2個、定義が成り立たない例1個ぐらいは考えたい。
+  真剣に数学書を読むなら、定義に対する疑問3個、定義が成り立つ例1個、定義が成り立たない例1個ぐらいは考えたい。
 \end{rem}
 この定義をみて、私が気になることをいくつかあげる。
 \begin{itemize}
   \setlength{\parskip}{0cm} % 段落間
   \setlength{\itemsep}{0cm} % 項目間
   \item $a,b$によらず$c,d$によるのは不自然に感じる。なぜ、そのようなものを考えるのか。
-  \item $f$は有理型関数に限っているが、他の場合はどうか。
-  \item $\mathrm{H}$を割った空間の関数として考えられないのか。
+  ⇒楕円関数など自然な例が多数あるため
+  \item $\mathcal{H}$を割った空間の関数として考えられないのか。
+  ⇒簡単。
   \item $\gamma \cdot f (z) = f(z)$となる$f$はあるのか。
+  ⇒ある。
 \end{itemize}
+
+\subsection{fourier expansion of modular form}
+\label{sub:fourier expansion of modular form}
+上で定義したunrestricted modular formがフーリエ展開可能であることを示そう。
+以下の方針で示す。
+\begin{enumerate}
+  \setlength{\parskip}{0cm} % 段落間
+  \setlength{\itemsep}{0cm} % 項目間
+  \item 周期的であること。
+  \item ある点の近傍でフーリエ展開できること
+  \item 任意の点でフーリエ展開で近似できること
+\end{enumerate}
+\begin{proof}[\bf{周期的であること}]
+
+$\gamma = \begin{pmatrix}
+  1 & 1 \\
+  0 & 1 \\
+\end{pmatrix} \in \mathrm{SL}_2(\mathbb{Z})$
+をとる。この時、$\gamma \cdot z = z +1, cz+d =1$となるため、
+unrestricted modular form$f$に対し、$\gamma \cdot f(z)= f(z +1)=f(z)$となる。
+よって、実軸にそって周期関数となることがわかる。
+\end{proof}
+\begin{proof}{\bf{ある点の近傍でフーリエ展開できること}}
+周期的であることはわかったが、上の関数は有理型であるため、特異点が存在する場合がある。
+しかし、ある$y \in \mathbb{R}$をとると、$f(x +iy) \neq \infty$となることを示す。
+それが言えれば、その$y$に対し、\ref{thm:fourier}を展開することで、ある点の近傍でフーリエ展開できることが示せる。
+実際に、示そう。もし$ \forall y \in \mathbb{R}$に対し、ある$x$が存在し、$f(x +iy)=\infty$となったとする。
+適当な$r \in \mathbb{R_{\ge 0}}$をとり、$[x,x+1] \times [y,y +r]$を考える。
+$f(z + 1)=f(z)$より、$[x,x+1] \times [y,y +r]$上に無限個の特異点が存在する。
+これはコンパクト性から集積点が存在することになる。
+これは、有理型関数の特異点が真性特異点でないことに矛盾する。
+よって、ある点の近傍でフーリエ展開できることがわかった。
+\end{proof}
+\begin{proof}{\bf{任意の点でフーリエ展開で近似できること}}
+  任意の点$z \in \mathcal{H}$に対し、十分小さい近傍Uをとると、$z' \in U s.t \mathrm{Im}z' \neq \mathrm{Im}z$
+  で、フーリエ展開できる。これはフーリエ展開できないとすると、近傍(を含むあるコンパクト集合)に無限個の特異点が存在することになり、わかる。
+  また、$z$を除き正則であるように取れる。
+  $z$が特異点でない場合は$z$の近傍で正則となり、わからん。
+
+\end{proof}
+
+ただし、特異点があることに注意せよ。
+今、$f(z)$は有理型関数のため、真性特異点が存在しないことに注意すると、
+
+\ref{thm:fourier}
+
+
+\begin{rem}
+  筆者は解析全般に詳しくないため、ここまで議論した。確認したすべてのmdfmの教科書でここの証明がなかったので、
+  わかっている人からすると明らかなこと、あるいは明らかにできる定理があるのかもしれない。
+\end{rem}
+
+unrestricted modular formの定義
+modular form/cusp formの定義
+tu
 
 
 \begin{thm}{[k],[11.74 Eichler-Shimura]} \\
