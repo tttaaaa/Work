@@ -21,7 +21,7 @@
 %\usepackage{comment}
 
 %タイトルデータ
-\title{Modular Formとその周辺}
+\title{Basic Theory of Modular Form}
 \author{take}
 \date{2016/August}
 
@@ -108,6 +108,9 @@
 
 \subsection{Definition of modular form}
 \label{sub:Definition of modular form}
+\subsubsection{Definition of unrestricted modular from}
+\label{subs:Definition of unrestricted modular from}
+
 保型形式は名前の通り、なんらかの形を保つものである。
 形を保つというのは、数学ではよく、群の作用で不変という形で定義される。
 群の作用が何かをここでは定義しないが、"何か"を"かけた"場合に元とほとんど同じということを指すと思ってもらいたい。
@@ -129,7 +132,7 @@
 \end{center}
 
 \noindent \bf{かけられる対象:}
-$\mathcal{H}$から$\mathbb{C}$への有理型関数$f$全体
+$\mathcal{H}$から$\mathbb{C}$への正則関数$f$全体
 
 \begin{rem}
   かける対象、かけられる対象は実際はそれらの元と書くべきかもしれない。ただ、数学で対象を考えるというとき、
@@ -153,7 +156,7 @@ modular form,automorphic formがともに保型形式と訳されていること
 cusp formを日本語で書いているものをほとんどとみたことがないためである。
 
 \begin{dfn}
-  有理型関数$f:\mathcal{H} \to \mathbb{C}$がunrestrictedなweight $k$のmodular formとは、以下が成り立つことをいう。 \\
+  正則関数$f:\mathcal{H} \to \mathbb{C}$がunrestrictedなweight $k$のmodular formとは、以下が成り立つことをいう。 \\
   $\forall  \gamma \in \Gamma(N),  \gamma \cdot f(z) = (cz + d)^{k}f(z)$
 \end{dfn}
 \begin{rem}
@@ -172,18 +175,18 @@ cusp formを日本語で書いているものをほとんどとみたことが�
   ⇒ある。
 \end{itemize}
 
-\subsection{fourier expansion of modular form}
+\subsubsection{fourier expansion of modular form}
 \label{sub:fourier expansion of modular form}
 上で定義したunrestricted modular formがフーリエ展開可能であることを示そう。
 以下の方針で示す。
 \begin{enumerate}
   \setlength{\parskip}{0cm} % 段落間
   \setlength{\itemsep}{0cm} % 項目間
-  \item 周期的であること。
-  \item ある点の近傍でフーリエ展開できること
-  \item 任意の点でフーリエ展開で近似できること
+  \item x方向に周期的であること。
+  \item フーリエ係数が$y$方向に不変なこと
 \end{enumerate}
 \begin{proof}[\bf{周期的であること}]
+
 
 $\gamma = \begin{pmatrix}
   1 & 1 \\
@@ -191,49 +194,219 @@ $\gamma = \begin{pmatrix}
 \end{pmatrix} \in \mathrm{SL}_2(\mathbb{Z})$
 をとる。この時、$\gamma \cdot z = z +1, cz+d =1$となるため、
 unrestricted modular form$f$に対し、$\gamma \cdot f(z)= f(z +1)=f(z)$となる。
-よって、実軸にそって周期関数となることがわかる。
-\end{proof}
-\begin{proof}{\bf{ある点の近傍でフーリエ展開できること}}
-周期的であることはわかったが、上の関数は有理型であるため、特異点が存在する場合がある。
-しかし、ある$y \in \mathbb{R}$をとると、$f(x +iy) \neq \infty$となることを示す。
-それが言えれば、その$y$に対し、\ref{thm:fourier}を展開することで、ある点の近傍でフーリエ展開できることが示せる。
-実際に、示そう。もし$ \forall y \in \mathbb{R}$に対し、ある$x$が存在し、$f(x +iy)=\infty$となったとする。
-適当な$r \in \mathbb{R_{\ge 0}}$をとり、$[x,x+1] \times [y,y +r]$を考える。
-$f(z + 1)=f(z)$より、$[x,x+1] \times [y,y +r]$上に無限個の特異点が存在する。
-これはコンパクト性から集積点が存在することになる。
-これは、有理型関数の特異点が真性特異点でないことに矛盾する。
-よって、ある点の近傍でフーリエ展開できることがわかった。
-\end{proof}
-\begin{proof}{\bf{任意の点でフーリエ展開で近似できること}}
-  任意の点$z \in \mathcal{H}$に対し、十分小さい近傍Uをとると、$z' \in U s.t \mathrm{Im}z' \neq \mathrm{Im}z$
-  で、フーリエ展開できる。これはフーリエ展開できないとすると、近傍(を含むあるコンパクト集合)に無限個の特異点が存在することになり、わかる。
-  また、$z$を除き正則であるように取れる。
-  $z$が特異点でない場合は$z$の近傍で正則となり、わからん。
-
+よって、実軸に沿って周期関数となることがわかる。
 \end{proof}
 
-ただし、特異点があることに注意せよ。
-今、$f(z)$は有理型関数のため、真性特異点が存在しないことに注意すると、
+\begin{proof}{\bf{フーリエ係数が$y$方向に不変なこと}}
 
-\ref{thm:fourier}
 
+実軸に沿って周期的であり、上の関数は正則であるため、実軸にそってフーリエ展開したものが自身と一致する
+つまり、\ref{thm:fourier}を使うことで、$f(x + iy)= \displaystyle  \sum_{n= - \infty }^{\infty}a_n(y)e^{2 \pi i x n}$となる。\\
+ただし、$a_n(y) e^{2 \pi i x n}= \int_{-\frac{1}{2}}^{\frac{1}{2}}f(x+iy)e^{-2 \pi i (x+iy) n}dx$となる。
+式をいくつか変形することで、
+\begin{equation*}
+ f(x+iy)= \sum_{n= - \infty }^{\infty}a_n(y)e^{2 \pi n y} e^{2 \pi i (x+iy) n}
+\end{equation*}
+とかける。$a_n(y)e^{2 \pi n y}= \int_{-\frac{1}{2}}^{\frac{1}{2}}f(x+iy)e^{-2 \pi in(x+iy)}dx$が$y$に依存しないことを示す。
+
+$y$方向に$\alpha$方向ずらした長方形に対し、
+$f(z)e^{2 \pi in z}$は正則になるので
+$\oint f(x+iy)e^{-2 \pi in(x+iy)}dz = 0$となる。(画力でなく、図形がなく、申し訳ない。)
+
+$f(x + iy ) = f( x + 1 + iy)$となるので、
+$\int_{y}^{y+ \alpha}f(-1/2 + iy)dy =\int_{y}^{y+ \alpha}f(1/2 + iy)dy $となる。
+よって、
+$\int_{-\frac{1}{2}}^{\frac{1}{2}}f(x+iy)e^{-2 \pi in(x+iy)}dx =
+\int_{-\frac{1}{2}}^{\frac{1}{2}}f(x+i(y+\alpha))e^{-2 \pi in(x+i(y+\alpha))}dx$
+となる。任意の$\alpha$に対して、成り立つので、題意は示された。
+\end{proof}
+
+
+\subsubsection{Definition of Modular form}
+\label{subs:Definition of Modular form}
+
+
+$\mathcal{H} \to \mathbb{C}, z \mapsto  e^{2 \pi i z}$を考えると、$z \to \infty$の時、$e^{2 \pi i z} \to 0$となる。
+これから、上のフーリエ展開は、$z = \infty$でのローラン展開と考えられる。
+すると、自然に興味が出てくるのが、$z = \infty$が除去可能特異点かどうかである。
+除去可能特異点である時、つまり、$z = \infty$で微分可能であるときだけをmodular formとよび、調べる。
+正確にmodular formを定義する。
+\begin{dfn}
+  正則関数$f:\mathcal{H} \to \mathbb{C}$は以下を満たすとき、weight $k$のmodular formという。
+  \begin{itemize}
+    \item   $\forall  \gamma=
+      \begin{pmatrix}
+        a & b \\
+        c & d \\
+      \end{pmatrix}
+      \in \Gamma(N),  \gamma \cdot f(z) = (cz + d)^{k}f(z)$
+    \item $f(z) = \displaystyle_{n= 0}^{\infty}c_nq^n$ ただし、$q = e^{2 \pi i z}$
+  \end{itemize}
+  また、$c_0 = 0$の時、$f$はweight $k$ のcusp formという。
+\end{dfn}
+
+modular formが定義できたので、実際に何か例を考えよう。
+
+\begin{ex}[Eisenstein series]
+ \begin{equation*}
+   f(z)=\sum_{n,m=1}^{ \infty}\frac{1}{(n+mz)}^{2k}
+ \end{equation*}
+これはweight $2k$の保型形式になっている。($k \ge 2$)
+\end{ex}
+
+保系形式になることを以下の手順で確認する
+\begin{enumerate}
+  \setlength{\parskip}{0cm} % 段落間
+  \setlength{\itemsep}{0cm} % 項目間
+  \item 任意の$\gamma$について$\gamma \dot f(z) = (cz+d)^{2k}f(z)$となること
+  \item $q$展開の表示
+\end{enumerate}
+証明は略。
+
+% ==================================
+% 保系形式の性質
+% ==================================
+\subsubsection{L 関数}
+\label{sub:L 関数}
+保系形式のの$L$関数を以下で定義する。
+$f= \sum_{n= -\infty}^{\infty}c_n q^n$となる時、
+$L(s,f)= \sum_{n=1}^{ \infty } \frac{c_n}{n^s}$
 
 \begin{rem}
-  筆者は解析全般に詳しくないため、ここまで議論した。確認したすべてのmdfmの教科書でここの証明がなかったので、
-  わかっている人からすると明らかなこと、あるいは明らかにできる定理があるのかもしれない。
+ この保型形式は関数等式を満たすため、解析接続できる。
 \end{rem}
 
-unrestricted modular formの定義
-modular form/cusp formの定義
-tu
+\section{algebra of modular form}
+\label{sec:algebra of modular form}
+
+% ==========================
+% ベクトル空間となること
+% ==========================
+
+
+% ==========================
+% ベクトル空間としての決定
+% ==========================
+
+\section{Peterson innner prodcut and Hecke operator}
+\label{sec:Peterson innner prodcut and Hecke operator}
+
+
+% ==========================
+% Peterson内積
+% ==========================
+
+
+
+% ==========================
+% Hecke作用素
+% ==========================
+
+% ==========================
+% 同時固有関数
+% ==========================
+
+\section{old forrfm/new form}
+\label{sec:old forrfm/new form}
+
+
+
+\section{Definition of Elliptic Curve}
+\label{sec:Definition of Elliptic Curve}
+楕円曲線を定義し、性質について述べる。
+証明は基本的に記述しない。
+
+% =========================
+% 代数多様体の定義
+% =========================
+\subsection{Algebraci Variety}
+\label{sub:Algebraci Variety}
+楕円曲線は代数多様体の一種である。そのため、楕円曲線の定義に触れる前に最低限の代数多様体の定義について述べる。
+$K$を体とし、$\bar{K}$を分離閉包とする。
+$\mathbb{A}^n:=\bar{K}^n$
+
+$I$を$\bar{K}[X_1,\dots,X_n]$のイデアルとする。
+多項式環はネーターなので、$I$は有限生成となる。
+つまり$I$は$f_1,\dots,f_n$を用いて、$I = \{ \sum g_if_i | g_i \in \bar{K}[X_1,\dots,X_n] \}$とかける。
+このとき、$V(I) \subset \bar{K}$を以下で定義する。
+\begin{equation*}
+  V(I) = \{ (x_1 , \dots , x_n) \in \bar{K}^n | f_i(x_1,\dots,x_n)=0 \}
+\end{equation*}
+
+% =========================
+% ワイエルシュトラス多項式
+% =========================
+\subsection{Weirstrass Polynomial}
+\label{sub:Weirstrass Polynomial}
+
+Projevetive Varietyとして楕円曲線を定義する。
+まず、その定義方程式になる、ワイエルシュトラス多項式について説明する。
+F(X,Y,Z)=
+f(x,y)=
+
+% =========================
+% 楕円曲線の定義
+% =========================
+\begin{dfn}
+ $E/K$が$K$上の楕円曲線であるとは、$K$係数ワイエルシュトラス多項式の解全体のなす、一次元非特異代数曲線であること。
+ すなわち、ある$\Delta \neq 0$となる、ワイエルシュトラス多項式$F$に対し、
+ $E = \{(x,y,z) \in P^3(K) |F(x,y,z)=0 \} $となること。
+\end{dfn}
+
+% =========================
+% 楕円曲線の性質
+% =========================
+isogenyを定義する。
+
+% =========================
+% C上の楕円曲線
+% =========================
+
+保型形式をとれば、楕円曲線が定義できる。
+
+
+
+\section{Eichler-Shimura theory}
+\label{sec:Eichler-Shimura theory}
+Eichler-Shimura theoryについて解説する。
+
+\subsubsection{Abelian Variety and Jacobian Variety}
+\label{subs:Abelian Variety and Jacobian Variety}
+Aがabelian varietyとは、nonsigular projective variety/$\mathbb{C}$ with a distinguished point $O$ and with an abelian group $C$ such that for any hom $F'':A \to A''$, ker$F'' \supset C$
 
 
 \begin{thm}{[k],[11.74 Eichler-Shimura]} \\
-  $f(\tau)=\sum_{n=1}^{\infty}c_ne^{2 \pi i n \tau}$を$S_2(\Gamma_0(N))$のnew formであって、
-  $c_1=1$となるものとする。 $c_n \in \mathbb{Z}$とすると、以下を満たすpair $(E, \nu)$が存在する
+  $f(\tau)=\sum_{n=1}^{\infty}c_ne^{2 \pi i n \tau}$を$S_2(\Gamma_0(N))$のnew formとする。
+  $c_1=1$。、$c_n \in \mathbb{Z}$となるように正規化したものとする。
+  この時、以下を満たすpair $(E, \nu)$が存在する
   \begin{enumerate}
-    \item $E$ は $\mathbb{Q}$上の楕円曲線であり、$(E, \nu)$は$\mathbb{Q}$上のアーベル多様体$J$を部分多様体で割ったものとなる。
+    \item $E$ は $\mathbb{Q}$上の楕円曲線であり、$(E, \nu)$は$\mathbb{Q}$上のアーベル多様体$J$を部分多様体$A$で割ったものとなる。
+    \item $t(n) \in  \mathrm{End}(J)$の作用は$A$に対して、stableであるため、$E$への作用が定義され、それは$c_n$倍写像に一致する。
+    \item $\mu(f)$は$\nu^*( \omega)$の指数。ただし、$ \omega$は$E$の不変微分
+    \item $\Lambda_f  = \{ \Phi_f(r) = \int_{\tau_0}^{\gamma(\tau_0)}$が成り立つならば、$\Lambda_f$は$\mathbb{C}$のlatticeであり、$E$は$\mathbb{C}$上$\mathbb{C}/\Lambda_f$と同型。
+    \item $E$の$L$関数は有限個の素点を除いて、オイラー積が$f$と一致する。
   \end{enumerate}
+
+\begin{proof}
+\begin{lem}
+$t(n) \in \mathrm{End}(J)$は$\mathbb{Q}$上定義されている。
+\end{lem}
+上記を一度認めて、議論する。
+$T$を.$\mathrm{End}_{\mathbb{Q}}(J)$のcommutative $\mathbb{Q}$ subalgebraで$t(n)$によって生成されたとする。
+$t(n)$を $g \times g$ matrix pf subalgebra
+と同一視できできるので、$T$は $M(g,\mathbb{Q})$の subalgebraとなり、有限次元であることがわかる。
+Wedburmの構造定理より、
+of $M(g,\mathbb{Q})$なので、
+\end{proof}
+
+
+
+
+
+
+
+
+
 
 \end{thm}
 
@@ -241,7 +414,9 @@ tu
 \begin{thebibliography}{数字}
   \bibitem{K} Elliptic Curves.・Anthony W. Knapp
   \bibitem{M} Modular Functions and Modular Forms・J. S. Milne
-  \bibitem{キーN} 参考文献の名前・著者N
+  \bibitem{S1} Arithmetic of Elliptic Curvers
+  \bibitem{S2}
+  \bibitem{??} http://math.umn.edu/~brubaker/docs/mit/785notes.pdf
 \end{thebibliography}
 
 \end{document}

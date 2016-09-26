@@ -1,0 +1,67 @@
+%===============
+%一行目に必ず必要
+%文章の形式を定義
+%===============
+\documentclass{ujarticle}
+%===============
+%パッケージの定義、必要か不明
+%===============
+%この下4つを加えることで、mathbbが機能した
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+%可換図式用パッケージ
+\usepackage{amscd}
+\usepackage[all]{xy}
+\usepackage{tikz-cd}
+%リンク用パッケージ
+\usepackage[dvipdfmx]{hyperref}
+%複数行コメント
+%\usepackage{comment}
+
+%タイトルデータ
+\title{Complex Multiplication}
+\author{take}
+\date{2016/October}
+
+
+%===============
+%定理環境の設定
+%セクション毎
+%===============
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem{prop}[thm]{Propostion}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{ex}[thm]{Example}
+\newtheorem*{prob}{Problem}
+\newtheorem*{rem}{Remark}
+\newtheorem{prf}{Proof}
+
+\begin{document}
+コホモロジーのころろでの理解をまとめる。
+
+
+\section{コホモロジーはすべて導来関手}
+\label{sec:コホモロジーはすべて導来関手}
+
+コホモロジーと言われるものはすべて、あるアーベル圏から、アーベル圏への導来関手として実現される。
+
+その意味を導来関手を定義し、その性質をみることで確認するのが本章である。具体的には以下を説明する。
+\begin{itemize}
+  \item 導来関手の定義
+  \item 定義から圏論的に存在するならば一意であること
+ \item アーベル圏からアーベル圏への左完全な加法的関手に対し、導来関手がたた一つ存在すること
+\item ホモトピックな射は導来関手は導来関手に対し、同じ射を定めること。
+\item その他用語の定義
+\end{itemize}
+なお、直接的な計算は本章では行わない。
+
+興味が有る場合は群のコホモロジー、あるいはガロアコホモロジーについて調べよ。
+
+
+
+
+
+\end{document}

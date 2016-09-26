@@ -1,0 +1,77 @@
+%===============
+%一行目に必ず必要
+%文章の形式を定義
+%===============
+\documentclass{ujarticle}
+%===============
+%パッケージの定義、必要か不明
+%===============
+%この下4つを加えることで、mathbbが機能した
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+%可換図式用パッケージ
+\usepackage{amscd}
+\usepackage[all]{xy}
+\usepackage{tikz-cd}
+%リンク用パッケージ
+\usepackage[dvipdfmx]{hyperref}
+%複数行コメント
+%\usepackage{comment}
+
+%タイトルデータ
+\title{Complex Multiplication}
+\author{take}
+\date{2016/October}
+
+
+%===============
+%定理環境の設定
+%セクション毎
+%===============
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem{prop}[thm]{Propostion}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{ex}[thm]{Example}
+\newtheorem*{prob}{Problem}
+\newtheorem*{rem}{Remark}
+\newtheorem{prf}{Proof}
+
+\begin{document}
+
+\section{序文}
+\label{sec:序文}
+虚数乗法について論じる。虚数乗法とは、楕円曲線の性質のことである。
+楕円曲線の自己準同型全体のなす整域の商体が虚二次体となるとき、楕円曲線は虚数乗法を持つという。
+虚数乗法を持つ楕円曲線は様々な特殊な性質がわかっており、
+議論ができる。
+
+今回は虚数乗法を持つ楕円曲線を使い、虚二次体の場合に類体が
+
+きちんと書き下されることを示す。
+基本的な議論はSilvermanの虚数乗法を元にする。
+
+
+\section{Complex Mulitiplication over $\mathbb{C}$}
+\label{sec:Complex Mulitiplication over  $\mathbbC$ }
+
+複素解析的な観点から楕円曲線を調べる。
+$E/\mathbb{C}$を　complex multiplicationを持つ楕円曲線とする。 complex multiplicationの定義から、$\\mathrm{End}(E) \otimes \mathbb{Q}$はある虚二次体$K$と同型となる。
+$\mathrm{End}(E) \simeq R \subset \mathbb{C} $の時、$E$は$R$による(あるいは$K$によ) complex multiplicationを持つという。
+$R_K$を$K$の整数環とする。$E$が$R_K$による complex multiplicationを持つときだけに制限すると理論が非常に簡単になる。そのため、基本的には$R$を$R_K$をと仮定して議論する。一般論は志村先生の教科書を参考にせよ。
+
+楕円曲線のuniformation theoremより、任意の楕円曲線$E$はあるLattice $\Lambda \subset \mathbb{C} $が存在し、
+\begin{eqnarry*}
+  f: \mathbb{C}/ \lambda \simeq E(\mathbb{C})   \
+  z \mapsto (\mathfrak{p}(z, \Lambda),\mathfrak{p}^{'}(z, \Lambda))
+\end{eqnarry*}
+となる。
+
+$\Lambda$に対応する楕円曲線を$E_{\Lambda}$と書く。$E_{\Lambda}$は以下で与えられる。
+\begin{equation*}
+E_{\Lambda}: y ^2 = 4x^3 - g_2(\Lambda)x ^g_3(\lambda)
+\end{equation*}
+
+\end{document}

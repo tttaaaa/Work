@@ -1,0 +1,15 @@
+\contentsline {section}{\numberline {1}Introduction}{1}{section.1}
+\contentsline {section}{\numberline {2}Basic Knowlede of this survey}{2}{section.2}
+\contentsline {section}{\numberline {3}Definition of Modular Form and Basic Propety}{3}{section.3}
+\contentsline {subsection}{\numberline {3.1}$SL(2.\mathbb {Z})$ and congruenc gruop}{3}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Definition of modular form}{3}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}Definition of unrestricted modular from}{3}{subsubsection.3.2.1}
+\contentsline {subsubsection}{\numberline {3.2.2}fourier expansion of modular form}{4}{subsubsection.3.2.2}
+\contentsline {subsubsection}{\numberline {3.2.3}Definition of Modular form}{5}{subsubsection.3.2.3}
+\contentsline {subsubsection}{\numberline {3.2.4}L 関数}{5}{subsubsection.3.2.4}
+\contentsline {section}{\numberline {4}algebra of modular form}{5}{section.4}
+\contentsline {section}{\numberline {5}Definition of Elliptic Curve}{5}{section.5}
+\contentsline {subsection}{\numberline {5.1}Algebraci Variety}{6}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}Weirstrass Polynomial}{6}{subsection.5.2}
+\contentsline {section}{\numberline {6}Eichler-Shimura theory}{6}{section.6}
+\contentsline {subsubsection}{\numberline {6.0.1}Abelian Variety and Jacobian Variety}{6}{subsubsection.6.0.1}
