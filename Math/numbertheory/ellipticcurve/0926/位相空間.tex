@@ -111,8 +111,8 @@ $f$が連続であると定義されていた．
  \begin{enumerate}
    \item $\emptyset , X \in O_X$.
    \item $O_1,O_2 \in O_X$に対し，$O_1 \cap O_2 \in O_X$.
-   \item 集合$\Lambda$を，$\lambda \in \Lambda$に対し，$O_{\lambda} \in O_X$となるとする．この時，$\displaystyle \cup_{\lambda \in \Lambda}O_{\lambda} \in O_X$.
- \end{enumerate}
+   \item 集合$\Lambda$の元$\lambda$に対し，$O_{\lambda} \in O_X$とする．この時，$ \bigcup_{\lambda \in \Lambda}O_{\lambda} \in O_X$.
+ \end{enumerate}.
  $O_X$の元を開集合という．
 \end{dfn}
 
@@ -121,7 +121,7 @@ $f$が連続であると定義されていた．
  \begin{enumerate}
    \item $\emptyset , X \in V_X$.
    \item $V_1,V_2 \in V_X$に対し，$V_1 \cup V_2 \in V_X$.
-   \item 集合$\Lambda$を，$\lambda \in \Lambda$に対し，$V_{\lambda} \in V_X$となるとする．この時，$\displaystyle \cap_{\lambda \in \Lambda}V_{\lambda} \in V_X$.
+   \item 集合$\Lambda$の元$\lambda$に対し，$V_{\lambda} \in V_X$とする．この時，$\displaystyle \cap_{\lambda \in \Lambda}V_{\lambda} \in V_X$.
  \end{enumerate}
  $V_X$の元を閉集合という．
 \end{dfn}
@@ -132,14 +132,21 @@ $f$が連続であると定義されていた．
 \begin{rem}
  本当にいらない余談であるが，私は位相空間が最初，わからなくて大変苦労したが，多様体論などで使っているうちに，そんなものかと消化した.そのため位相空間がわからない場合は使いながら理解するのが一番よいかもしれない．
 \end{rem}
-$x$と$y$が近いは多くの$x$を含む開集合から$y$も含むこと．
+
+$x$と$y$が"近い"は"多く"の$x$を含む開集合から$y$も含むこと．
 
 \begin{dfn}
  位相空間$X,Y$に対し，$X \to Y$が連続とは,任意の$Y$の開集合$O$に対し，$f^{-1}(O)$が開集合となること．(閉集合でも同様)
 \end{dfn}
 この定義のメリットを説明する．
 実数のときよりも定義がシンプルである．
-また，元を取らずに定義できており，大域的な定義になっている．
+また，元を取らずに定義できているため，大域的にわかりやすい．
+
+しかし，これではすぐにはわからない部分もあるため，連続を少し言い換えてみる．
+\begin{dfn}
+ $f:X \to Y$と，$X$の元$x$に対し，$f(x) \in Y$を含む任意の開集合$O'$をとる．$x$を含む開集合$O$で$f(O) \subset O'$となるとき，$f$は連続という．
+\end{dfn}
+この連続の定義は上の連続の定義と同値になる．
 
 
 \subsection{例}
@@ -232,4 +239,12 @@ $(0) \in V(I)$はザリスキ位相の定義から，$I \subset (0)$を意味す
 この位相も代数幾何で使いなれてくると自然に感じる．
 しかし，ヴェイユ予想等で出てくる問題を考えるコホモロジー(位相空間上の層を定義し，その層のなす圏の導来関手)がよい性質を持つにはまだ位相が足りない(らしい)．
 そのため，グロタンディークは位相空間ではないものを，位相とみなしグロタンディークトポロジーを定めた．これをスキーム上のエタール被覆に対し適用して，定めたコホモロジーがエタールコホモロジーである．
+
+
+蛇足であるが，環準同型$f:R_1 \to R_2$に対し，
+\begin{equation*}
+  \phi:\mathrm{Spec}R_2 \ to \mathrm{Spec}R_1,　\mathfrak{p}_2 \mapsto f^{-1}(\mathfrak{p})
+\end{equation*}が定義され，これが連続になっている．
+
+
 \end{document}
