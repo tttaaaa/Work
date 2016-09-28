@@ -21,8 +21,7 @@
 %\usepackage{comment}
 
 %タイトルデータ
-\title{Elliptic Curve}
-\author{take}
+\title{Elliptic Curve 第1回セミナー}
 
 
 
@@ -44,23 +43,12 @@
 
 % タイトルを出力
 \maketitle
-% 目次の表示
-\tableofcontents
+
 
 
 \section{Introduction}
 \label{sec:Introduction}
-
-楕円曲線のセミナーの忘備録です.
-\begin{description}
-  \setlength{\parskip}{0cm} % 段落間
-  \setlength{\itemsep}{0cm} % 項目間
-  \item[9/6] 第１章 Algberaic Varieties
-\end{description}
-
-\section{9/6}
-\label{sec:9/6}
-
+楕円曲線のセミナーの忘備録
 \subsection{概要}
 \label{sub:概要}
 \begin{itemize}
@@ -74,6 +62,12 @@
 初めてということもあり，本の１章の前提となる.『環とイデアル』，『体とガロア理論』の知識についても説明をした．
 本論としてはアフィン代数多様体を定義し．アフィン代数多様体の次元を定義するところまで話した．
 だが，次元についてうまく説明できず,次元の幾何的イメージや理論については次回までの宿題となった．
+
+
+\section{内容}
+\label{sec:内容}
+
+
 
 
 
@@ -124,46 +118,32 @@
 \subsubsection{体とガロア理論}
 \label{subs:体とガロア理論}
 
-体のなす圏を考える．実際は,体と体同士の準同型を定義しているにすぎない．しかし，数学においては，対象を定義すると，その対象同士の自然な射も同時に考えることになるので，圏という言葉を使い，対象だけでなく，射も同時に定義する．
-
-体の圏のObjectである，体について定義する.
+体を定義する.
 \begin{dfn}
+
 $K$が体とは以下を満たす時である.
-\begin{enumerate}
-  \setlength{\parskip}{0cm} % 段落間
-  \setlength{\itemsep}{0cm} % 項目間
-  \item $ + :K \times K \to K, \cdot : K \times K \to K$が定義されている.
-  \item $K$は$+$でアーベル群になり、その単位元を$0$と表す.
-  \item $K - \{ 0 \}$は$  \cdot   $について乗法群となり,その単位元を$1$と表す.
-  \item $a \cdot (b + c) = a \cdot b + a \cdot c $となる.
-\end{enumerate}
-\end{dfn}
-
-\begin{dfn}
   \begin{enumerate}
     \setlength{\parskip}{0cm} % 段落間
     \setlength{\itemsep}{0cm} % 項目間
-    \item $+:R \times R \to R$,$\cdot:R \times R \to R $が定義されている.
-    \item 任意の$a,b,c \in R$に対し，$(a + b) +c =a +(b +c)$となる.
-    \item 任意の$a,b \in R$に対し，$a + b = b + a$となる．
-    \item 任意の$a \in R$に対し，$a + 0 =  0 + a = a$を満たす元$0 \in R$が存在する.
-    \item 任意の$a \in R$に対し，$a + b = b + a =0$を満たす元$b \in R $が存在する.
+    \item $+:K \times K \to K$,$\cdot:K \times K \to K $が定義されている.
+    \item 任意の$a,b,c \in K$に対し，$(a + b) +c =a +(b +c)$となる.
+    \item 任意の$a,b \in K$に対し，$a + b = b + a$となる．
+    \item 任意の$a \in K$に対し，$a + 0 =  0 + a = a$を満たす元$0 \in K$が存在する.
+    \item 任意の$a \in K$に対し，$a + b = b + a =0$を満たす元$b \in K $が存在する.
     \item 任意の$a,b$に対し，$a \cdot b = b \cdot a$となる.
-    \item 任意の$a \in R$に対し，$a \cdot 1 = 1 \cdot a =a$を満たす元$1 \in R$が存在する.
-    \item 任意の$a \in R-\{0\}$に対し，$a \codt b = b \cdot a = 1$となる$b \in R$が存在する.
-    \item 任意の$a,b,c \in R$に対し，$(a \cdot b) \cdot c =a \cdot (b \cdot c)$となる.
+    \item 任意の$a \in K$に対し，$a \cdot 1 = 1 \cdot a =a$を満たす元$1 \in K$が存在する.
+    \item 任意の$a \in K-\{0\}$に対し，$a \cdot b = b \cdot a = 1$となる$b \in K$が存在する.
+    \item 任意の$a,b,c \in K$に対し，$(a \cdot b) \cdot c =a \cdot (b \cdot c)$となる.
   \end{enumerate}
 \end{dfn}
 
 ざっくりというなら，足し算，引き算，掛け算，割り算が定義できるもののことである．
-\begin{rem}
- 実は,上の定義には問題がある．問題を指摘せよ．
-\end{rem}
+
 \begin{epl}
  実数全体のなす集合$\mathbb{R}$は体をなす．
 \end{epl}
 
-Objectが定義できたので，Homを定義する．
+体の準同型を定義する．
 体$K,L$に対し，$\mathrm{Hon}(K,L)$の元を$f:K \to L$であって，以下を満たすものとする．
 \begin{enumerate}
   \item $f(x + y)= f(x) + f(y)$
@@ -171,7 +151,8 @@ Objectが定義できたので，Homを定義する．
   \item $f(1)=1$
 \end{enumerate}
 \begin{rem}
- $f(1)=1$を課さないという定義もあってもよい．ちなみに$f(1)=1$を満たさず，残りの２つを満たす射は任意の元を$0$に映す写像のみである.そのような写像に興味がないため，今回は$f(1)=1$を課した．
+ $f(1)=1$を課さないという定義もあってもよい．ちなみに$f(1)=1$を満たさず，残りの２つを満たす射は任意の元を$0$に映す写像のみである.
+ そのような写像に興味がないため，今回は$f(1)=1$を課した．
 \end{rem}
 体同士の準同型には以下の面白い性質がある．
 \begin{prop}
@@ -186,14 +167,7 @@ Objectが定義できたので，Homを定義する．
 体$L$が体$K$の拡大となってい時，拡大$L/K$と書く．
 
 体の拡大を性質でいくつかに分類する．例えば，体の拡大には以下のような種類がある．
-\begin{itemize}
-  \item 有限次拡大
-  \item 代数拡大
-  \item 正規拡大
-  \item 分離拡大
-  \item ガロア拡大
-  \item アーベル拡大
-\end{itemize}
+
 
 
 
@@ -247,49 +221,5 @@ $V$が代数的集合と限らない時は$V_{I(V)} \supset V$にはなるが，
 $\mathrm{Frac}({\bar{K}[X_1,\dots,X_n]/I(V)})/\bar{K}$という拡大に対し，その超越次数$\mathrm{tr.deg}_{\bar{K}}\mathrm{Frac}{\bar{K}[X_1,\dots,X_n]/I(V)}$を$V$の次元という．
 
 
-
-\subsection{次元論}
-\label{subs:次元論}
-
-次元についていくつかの性質をみよう．以下をみて，詳細を記述予定．
-\begin{enumerate}
-  \setlength{\parskip}{0cm} % 段落間
-  \setlength{\itemsep}{0cm} % 項目間
-  \item 体$\bar{K}$が$\mathbb{C}$の時，次元が複素多様体の閉多様体(解析的部分集合)の次元に一致する
-  \item クルル次元の定義と代数多様体の場合に次元がクルル次元と一致すること
-  \item 剰余，局所化による次元の変化
-  \item ネーター局所環の次元定理
-\end{enumerate}
-
-代数多様体$V$に対し，$K[X_1,\dots,x_n]/I(V)$は整域となる.$\mathrm{Frac}(K[X_1,\dots,X_n]/I(V))/K$が$n$次の超越拡大になる時,$V$の次元を$n$と定める．代数拡大となる場合は超越次元を$0$とする．
-
-$\mathbb{A}^n(\bar{K})$の部分多様体としての次元を定めるのは，
-
-
-\subsection{Divisor}
-\label{sub:Divisor}
-curveに対するDivisor Group $\mathrm{Div}(C)$を$C$の全ての点$P$の生成する自由アーベル群とする.
-$D$の次数を以下で定める
-\begin{equation*}
- \mathrm{deg}D = \sum_{P \in C}n_p
-\end{equation*}
-また，次数$0$のものがなす部分群を$\mathrm{Div}^0(C)$と定める．
-
-以降話す予定のもの??
-
-\subsection{射影代数多様体}
-\label{subs:射影代数多様体}
-射影空間
-ハッセ原理
-射影代数多様体の定義
-非斉次化
-次元,smoothの定義
-貼りあわせの補題？
-
-\subsection{代数多様体の間の射}
-\label{subs:代数多様体の間の射}
-rational map
-regular
-morphim?
 
 \end{document}
