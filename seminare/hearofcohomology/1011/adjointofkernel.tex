@@ -1,0 +1,119 @@
+%===============
+%一行目に必ず必要
+%文章の形式を定義
+%===============
+\documentclass{ujarticle}
+%===============
+%パッケージの定義、必要か不明
+%===============
+%この下4つを加えることで、mathbbが機能した
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+%可換図式用パッケージ
+\usepackage{amscd}
+\usepackage[all]{xy}
+\usepackage{tikz-cd}
+%リンク用パッケージ
+\usepackage[dvipdfmx]{hyperref}
+%複数行コメント
+%\usepackage{comment}
+
+%タイトルデータ
+\title{Modular Formとその周辺}
+\author{take}
+\date{2016/August}
+
+
+%===============
+%定理環境の設定
+%セクション毎
+%===============
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem{prop}[thm]{Propostion}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{ex}[thm]{Example}
+\newtheorem*{prob}{Problem}
+\newtheorem*{rem}{Remark}
+\newtheorem{prf}{Proof}
+
+\begin{document}
+\section{abelian categoryにおけるKernelの随伴関手}
+\label{sec:abelian categoryで、Kernelの随伴関手}
+Kernelの随伴関手を定義する。以下の順序にて説明する。
+\begin{enumerate}
+  \item abelian category $ \mathcal{C}$に対し、随伴で移り合うcategory $\mathcal{C}^*$を定義する。
+  \item Kernelとその随伴になる関手を定義する。
+  \item 実際に随伴となっていることを確認する。
+\end{enumerate}
+
+\subsection{$\mathcal{C}^*$の定義}
+
+
+$\mathcal{C}$をabelian categoryとする。
+$ \mathcal{C}^*$を以下で定義する。
+\begin{enumerate}
+  \item $Obj(\mathcal{C}^*)$はある$Y,Z \in \mathcal{C}$が存在し、$f \in Hom_{\mathcal{C}}(Y,Z)$
+  となる$f$全体
+  \item $f:Y \to Z$,$g:Y' \to Z'$に対し、$\tau \in \mathrm{Hom}(f,g)$は
+  $\tau_Y:Y \to Y',\tau_Z:Z \to Z'$であって、$g \circ \tau_Y = \tau_Z \circ f$を満たすもの全体
+\end{enumerate}
+\begin{rem}
+ $ \mathcal{C}^* $はabelian category(のはず)。
+\end{rem}
+
+\subsection{Kernelとその随伴関手の定義}
+\label{sub:Kernelとその随伴関手の定義}
+
+(コホモロジーのこころのKerの定義がよくわからなかったので)$ \mathcal{C} $の射$f:Y \to Z$のKernelを以下で定義する。
+任意の$f \circ g = 0$となる$g:X \to Y$に対し、以下が可換になる射$X \to \mathrm{Ker}f$がただ一つ存在するような$(\mathrm{Ker}f,i)$の組のことを$f$のKernelという。
+
+\xymatrix{ \ar@{}[rd]|{\circlearrowright}
+X   \ar[rr] \ar@{.>}[d]& & Y \ar[r]^{f} & Z \\
+\mathrm{Ker}f  \ar[urr]^{i} && & }
+\begin{rem}
+ TeX力がないので、いい可換図式がかけません。TeXGodがいたら、教えてください。
+\end{rem}
+
+これは、$\mathrm{Hom}_{\mathcal{C}}(X,\mathrm{Ker}f)$と$f$が誘導する準同型
+$f^*:\mathrm{Hom}_{\mathcal{C}}(X,Y) \to \mathrm{Hom}_{\mathcal{C}}(X,Z)$のKernelの間に自然な同型があることを意味している。
+
+functor $\mathrm{Ker}: \mathcal{C}^* \to \mathcal{C}$を以下で定義する。
+$f: Y \to Z$に対し、関手Kerの$f$の像をabelian category$\mathcal{C}$のKer$f$とする。
+$ \mathcal{C}^* $上の$f:Y \to Z$,$g:Y' \to Z'$に対する射$(\tau_Y,\tau_Z)$に対し、Ker$f$からKer$g$への射を以下で定める。
+
+\xymatrix{ \ar@{}[rd]|{\circlearrowright}　
+\mathrm{Ker}f   \ar@{.>}[d] \ar[r]^{i_f} &  Y \ar@{}[rd]|{\circlearrowright} \ar[r]^{f} \ar[d]^{\tau_Y}  & Z \ar[d]^{\tau_Z}  \\
+\mathrm{Ker}g  \ar[r]^{i_g} & Y' \ar[r]^{g} & Z' }
+
+これは$f \circ i_f$が0射になり、図式の可換性から、$g \circ \tau_Y \circ i_f$が0射となる。よって、Kernelのuniversalityから$\mathrm{Ker}f$から$\mathrm{Ker}g$の射がただひとつ定まるので、Well-definedとなる。
+
+
+Kernelの随伴関手$F:\mathcal{C} \to \mathcal{C}^*$を定義する。
+$X \in \mathcal{C}$に対し、$F(X)＝0_X:X \to 0$で定める。
+$f:Y \to Z$に対し、$F(f)= (f,\tau_{0})$と定める。
+
+\xymatrix{ \ar@{}[rd]|{\circlearrowright}　
+Y  \ar[r]^{0} \ar[d]^{f}  & 0 \ar[d]^{\tau_0}  \\
+Z \ar[r]^{0} & 0 }
+
+
+\subsubsection{随伴関手になることの確認}
+\label{subs:随伴関手になることの確認}
+
+$\mathrm{Hom}(X,\mathrm{Ker}f) \sim \mathrm{Hom}(F(X),f)$を示す。
+$g \in \mathrm{Hom}(X,Y)$を、$(g.0) \in \mathrm{Hom}(F(X),f)$となるようにとる。
+すると、Kernelのuniversalityより以下の可換図式が成りたつような射$g':X \to \mathrm{Ker}f$がただひとつ存在する。よって、示された。
+
+\xymatrix{ \ar@{}[rd]|{\circlearrowright}　
+  X \ar@{.>}[d] \ar[r]^{i_X} &  X \ar@{}[rd]|{\circlearrowright} \ar[r]^{0} \ar[d]^{g}  & 0 \ar[d]^{\tau_0}  \\
+\mathrm{Ker}f    \ar[r]^{i_f} & Y \ar[r]^{f} & Z }
+
+\begin{rem}
+ 自然性はエクササイズでお願いします。燃え尽きました。
+\end{rem}
+
+
+\end{document}

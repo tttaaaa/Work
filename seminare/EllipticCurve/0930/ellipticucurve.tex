@@ -1,0 +1,98 @@
+%===============
+%一行目に必ず必要
+%文章の形式を定義
+%===============
+\documentclass{ujarticle}
+%===============
+%パッケージの定義、必要か不明
+%===============
+%この下4つを加えることで、mathbbが機能した
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+%可換図式用パッケージ
+\usepackage{amscd}
+\usepackage[all]{xy}
+\usepackage{tikz-cd}
+%リンク用パッケージ
+\usepackage[dvipdfmx]{hyperref}
+%複数行コメント
+%\usepackage{comment}
+
+%タイトルデータ
+\author{take}
+\title{有限体と局所体}
+
+
+%===============
+%定理環境の設定
+%セクション毎
+%===============
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem{prop}[thm]{Propostion}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{epl}[thm]{Example}
+\newtheorem{exs}[thm]{Excersize}
+\newtheorem*{prob}{Problem}
+\newtheorem*{rem}{Remark}
+\newtheorem{prf}{Proof}
+
+\begin{document}
+
+% タイトルを出力
+\maketitle
+% 目次の表示
+\tableofcontents
+
+
+
+
+
+\section{有限体で遊ぼう}
+\label{sub:有限体で遊ぼう}
+話そうと思っていたネタです．
+有限体は非常にいい性質を多数持つ．
+今回は以下の定理を示し，有限体に慣れ親しむことが目標である．
+\begin{thm}
+ $\mathbb{F}_q$のn次拡大は$x^{q^n}-x$の最小分解体である．
+ また，$\mathrm{Gal}(\bar{\mathbb{F}_q}/\mathbb{F}_q)=\hat{\mathbb{Z}}$となる．
+\end{thm}
+私は有限体以外に位数無限の絶対ガロア群が計算できる例を知らない．
+それほど，珍しい例である．また，上の定理の前半で述べたように，$n$次拡大はある方程式の最小分解体になる．これは拡大次数さえ指定すれば，その条件を満たす体がただひとつ存在することを示している．これは体の拡大がまさに連綿としたタワーのように連なっているように見えて，非常に気持ちがいい．この感動をともに分かち合うことが本合宿第一日目の目標である．
+まず，テーマである有限体の定義を与えよう．
+\begin{dfn}
+  体$K$が有限体とは，$K$の位数が有限かつ，体であること．
+\end{dfn}
+
+さて,位数有限な体にはどういうものがあるだろうか？
+まずはよく高校数学などでも行われるmodが考えやすいのではないだろうか．
+つまり$\mathbb{Z}/(a)$が位数有限な体になる時を考えてみたい．
+
+\begin{lem}
+ $ \mathbb{Z}/(a) $が位数有限の環となることは，$a$が0でないことと同値である．
+\end{lem}
+\begin{proof}
+  $a$が0の時，$ x \equiv y$ mod 0は$x =y $と等しくなる.つまり，$\mathbb{Z}/(0) = \mathbb{Z}$となる．逆に$a$が0がでないとすると,
+  任意の$b \in \mathbb{Z}$に対し,$b = ca +d(0 \leq d < a)$と書けるため,$b \equiv d$となる$a$以下の整数が存在する．そのため位数が有限となる．環となるのは環の一般論より従う．
+\end{proof}
+これで，$\mathbb{Z}/(a)$が有限の環となることがわかった．では実際に体になる例を考えてみよう．
+\begin{lem}
+$p$を素数とする. $\mathbb{Z}/(p)$は体になる．
+$a \neq 0 in \mathbb{Z}/(p)$となったとすると,
+．ある$b \in \mathbb{Z}$が存在し，$b \equiv a$となる．仮定より，$b $と$p$は互いに素となるので，$(b,p)=1$となる．つまり，$bx + py =1$と書けるこれより,$x$の$\mathbb{Z}/(p)$での像と$a$の積は1になる．よって0以外の全ての元は逆元を持つことがわかり，体となる．
+\end{lem}
+逆に素数でない場合は体とならないことを示す．
+\begin{lem}
+ $a$が素数でないとすると$\mathbb{Z}/(a)$は体ではない．$a$が素数でないため，$mn=a$とかける整数$m,n$が存在する．すると，$m \dot n= 0 $ mod $a$より．整域ではなく，特に，体でないことがわかった．
+\end{lem}
+これらより，$\mathbb{Z}/(a)$が体であることと，$a$が素数であることは同値となる．
+
+一般に体$F$に対し，環準同型$f:\mathbb{Z} \to F$はただ一つ存在する．
+環準同型の定義より，$f(1)=1$となり，$f(a)$を$f(1)$を$a$回足した和となるしかないからである．
+
+体$F$を有限とすると，この写像は準同型定理より，$\mathbb{F}_p =\mathbb{Z}/(p) \to F$を定める．
+
+
+\end{document}

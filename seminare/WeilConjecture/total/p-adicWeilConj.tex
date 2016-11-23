@@ -1,0 +1,1243 @@
+%===============
+%一行目に必ず必要
+%文章の形式を定義
+%===============
+\documentclass{ujarticle}
+%===============
+%パッケージの定義、必要か不明
+%===============
+%この下4つを加えることで、mathbbが機能した
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+%可換図式用パッケージ
+\usepackage{amscd}
+\usepackage[all]{xy}
+\usepackage{tikz-cd}
+%リンク用パッケージ
+\usepackage[dvipdfmx]{hyperref}
+%複数行コメント
+%\usepackage{comment}
+%MathFOnt
+\usepackage{mathrsfs}
+
+
+
+%タイトルデータ
+\author{ari}
+\title{p-adic Weil予想入門}
+\date{2016/9/22}
+
+
+%===============
+%定理環境の設定
+%セクション毎
+%===============
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem{prop}[thm]{Propostion}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corllary}
+\newtheorem{epl}[thm]{Example}
+\newtheorem*{prob}{Problem}
+\newtheorem*{rem}{Remark}
+\newtheorem*{yodan}{余談，疑問}
+\newtheorem{prf}{Proof}
+
+%==================
+%p進botスタイル
+%＝＝===============
+\setlength{\topmargin}{0cm}
+\setlength{\oddsidemargin}{0.3cm}
+\setlength{\evensidemargin}{0.3cm}
+\setlength{\textwidth}{14.9cm}
+\setlength{\textheight}{22.0cm}
+\setlength{\headheight}{0.0cm}
+
+\usepackage{amscd}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{ascmac}
+\usepackage[T1]{fontenc}
+\usepackage{here}
+\usepackage{mathrsfs}
+%持っていないためかエラーになった．
+%\usepackage{slashbox}
+\usepackage{txfonts}
+\usepackage[all]{xy}
+
+\allowdisplaybreaks
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\renewcommand{\contentsname}{Contents}
+\renewcommand{\refname}{References}
+\renewcommand{\indexname}{Index}
+\renewcommand{\figurename}{Figure}
+\renewcommand{\tablename}{Table}
+
+%定理環境
+%\theoremstyle{plain}
+%\newtheorem{thm}{Theorem}[section]
+%\newtheorem{lmm}[thm]{Lemma}
+%\newtheorem{prp}[thm]{Proposition}
+%\newtheorem{crl}[thm]{Corollary}
+%\theoremstyle{definition}
+%\newtheorem{dfn}[thm]{Definition}
+%\newtheorem{rmk}[thm]{Remark}
+%\newtheorem{exm}[thm]{Example}
+%\newtheorem{qst}[thm]{Question}
+
+% \setcounter{section}{-1}
+% \renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+%意味がわかっていない．考える必要あり．
+\def\ens#1{\mathchoice{\left\{ #1 \right\}}{\{ #1 \}}{\{ #1 \}}{\{ #1 \}}}
+\def\set#1#2{\mathchoice{\left\{ #1 \middle| #2 \right\}}{\{ #1 \mid #2 \}}{\{ #1 \mid #2 \}}{\{ #1 \mid #2 \}}}
+\def\r#1{\text{\rm #1}}
+\def\t#1{\text{#1}}
+\def\v#1{\mathchoice{\left| #1 \right|}{| #1 |}{| #1 |}{| #1 |}}
+\def\n#1{\mathchoice{\left\| #1 \right\|}{\| #1 \|}{\| #1 \|}{\| #1 \|}}
+\def\rt#1#2{\sqrt[#1]{\mathstrut #2} \ }
+\def\ol#1{\overline{#1}{}}
+\def\tl#1{\tilde{#1}{}}
+\def\ul#1{\underline{#1}{}}
+\def\wh#1{\widehat{#1}{}}
+\def\wt#1{\widetilde{#1}{}}
+\newcommand{\longhookrightarrow}{\lhook\joinrel\longrightarrow}
+\newcommand{\longtwoheadrightarrow}{\relbar\joinrel\twoheadrightarrow}
+\newcommand{\im}{\r{im}}
+\newcommand{\coker}{\r{coker}}
+\newcommand{\coim}{\r{coim}}
+\newcommand{\reprod}{\mathrlap{coprod}\prod}
+
+\makeatletter
+\newcommand{\colim@}[2]{
+  \vtop{\m@th\ialign{##\cr
+    \hfil $#1\operator@font colim$ \hfil\cr
+    \noalign{\nointerlineskip\kern1.5\ex@}#2\cr
+    \noalign{\nointerlineskip\kern-\ex@}\cr}}
+}
+
+\newcommand{\colim}{
+  \mathop{\mathpalette\colim@{\rightarrowfill@\textstyle}}\nmlimits@
+}
+\makeatother
+
+\newcommand{\address}{
+    \footnote{
+      あどれす
+    }
+}
+
+\newcommand{\info}[2]{
+  \footnote[0]{
+    $
+    \begin{array}{l}
+      \r{MSC2010: #1} \\
+      \r{Key words: #2}
+    \end{array}
+    $
+  }
+}
+
+\newcommand{\bA}{\mathbb{A}}
+\newcommand{\bB}{\mathbb{B}}
+\newcommand{\bC}{\mathbb{C}}
+\newcommand{\bD}{\mathbb{D}}
+\newcommand{\bE}{\mathbb{E}}
+\newcommand{\bF}{\mathbb{F}}
+\newcommand{\bG}{\mathbb{G}}
+\newcommand{\bH}{\mathbb{H}}
+\newcommand{\bI}{\mathbb{I}}
+\newcommand{\bJ}{\mathbb{J}}
+\newcommand{\bK}{\mathbb{K}}
+\newcommand{\bL}{\mathbb{L}}
+\newcommand{\bM}{\mathbb{M}}
+\newcommand{\bN}{\mathbb{N}}
+\newcommand{\bO}{\mathbb{O}}
+\newcommand{\bP}{\mathbb{P}}
+\newcommand{\bQ}{\mathbb{Q}}
+\newcommand{\bR}{\mathbb{R}}
+\newcommand{\bS}{\mathbb{S}}
+\newcommand{\bT}{\mathbb{T}}
+\newcommand{\bU}{\mathbb{U}}
+\newcommand{\bV}{\mathbb{V}}
+\newcommand{\bW}{\mathbb{W}}
+\newcommand{\bX}{\mathbb{X}}
+\newcommand{\bY}{\mathbb{Y}}
+\newcommand{\bZ}{\mathbb{Z}}
+
+\newcommand{\cA}{\mathscr{A}}
+\newcommand{\cB}{\mathscr{B}}
+\newcommand{\cC}{\mathscr{C}}
+\newcommand{\cD}{\mathscr{D}}
+\newcommand{\cE}{\mathscr{E}}
+\newcommand{\cF}{\mathscr{F}}
+\newcommand{\cG}{\mathscr{G}}
+\newcommand{\cH}{\mathscr{H}}
+\newcommand{\cI}{\mathscr{I}}
+\newcommand{\cJ}{\mathscr{J}}
+\newcommand{\cK}{\mathscr{K}}
+\newcommand{\cL}{\mathscr{L}}
+\newcommand{\cM}{\mathscr{M}}
+\newcommand{\cN}{\mathscr{N}}
+\newcommand{\cO}{\mathscr{O}}
+\newcommand{\cP}{\mathscr{P}}
+\newcommand{\cQ}{\mathscr{Q}}
+\newcommand{\cR}{\mathscr{R}}
+\newcommand{\cS}{\mathscr{S}}
+\newcommand{\cT}{\mathscr{T}}
+\newcommand{\cU}{\mathscr{U}}
+\newcommand{\cV}{\mathscr{V}}
+\newcommand{\cW}{\mathscr{W}}
+\newcommand{\cX}{\mathscr{X}}
+\newcommand{\cY}{\mathscr{Y}}
+\newcommand{\cZ}{\mathscr{Z}}
+
+\newcommand{\rA}{\r{A}}
+\newcommand{\rB}{\r{B}}
+\newcommand{\rC}{\r{C}}
+\newcommand{\rD}{\r{D}}
+\newcommand{\rE}{\r{E}}
+\newcommand{\rF}{\r{F}}
+\newcommand{\rG}{\r{G}}
+\newcommand{\rH}{\r{H}}
+\newcommand{\rI}{\r{I}}
+\newcommand{\rJ}{\r{J}}
+\newcommand{\rK}{\r{K}}
+\newcommand{\rL}{\r{L}}
+\newcommand{\rM}{\r{M}}
+\newcommand{\rN}{\r{N}}
+\newcommand{\rO}{\r{O}}
+\newcommand{\rP}{\r{P}}
+\newcommand{\rQ}{\r{Q}}
+\newcommand{\rR}{\r{R}}
+\newcommand{\rS}{\r{S}}
+\newcommand{\rT}{\r{T}}
+\newcommand{\rU}{\r{U}}
+\newcommand{\rV}{\r{V}}
+\newcommand{\rW}{\r{W}}
+\newcommand{\rX}{\r{X}}
+\newcommand{\rY}{\r{Y}}
+\newcommand{\rZ}{\r{Z}}
+
+\newcommand{\C}{\bC}
+\newcommand{\F}{\bF}
+\newcommand{\N}{\bN}
+\newcommand{\Q}{\bQ}
+\newcommand{\R}{\bR}
+\newcommand{\Z}{\bZ}
+
+\newcommand{\Bdr}{\mathbb{B}_{\r{dR}}}
+\newcommand{\Cp}{\mathbb{C}_p}
+\newcommand{\Cl}{\mathbb{C}_{\ell}}
+\newcommand{\Fp}{\mathbb{F}_p}
+\newcommand{\Fl}{\mathbb{F}_{\ell}}
+\newcommand{\Ga}{\mathbb{G}_{\r{a}}}
+\newcommand{\Gm}{\mathbb{G}_{\r{m}}}
+\newcommand{\Qp}{\mathbb{Q}_p}
+\newcommand{\Ql}{\mathbb{Q}_{\ell}}
+\newcommand{\Zp}{\mathbb{Z}_p}
+\newcommand{\Zl}{\mathbb{Z}_{\ell}}
+
+\newcommand{\Cpb}{\ol{\mathbb{C}}_p}
+\newcommand{\Clb}{\ol{\mathbb{C}}_{\ell}}
+\newcommand{\Fpb}{\ol{\mathbb{F}}_p}
+\newcommand{\Flb}{\ol{\mathbb{F}}_{\ell}}
+\newcommand{\hatZ}{\widehat{\mathbb{Z}}{}}
+\newcommand{\Qpb}{\ol{\mathbb{Q}}_p}
+\newcommand{\Qb}{\ol{\mathbb{Q}}}
+\newcommand{\Qlb}{\ol{\mathbb{Q}}_{\ell}}
+\newcommand{\Zpb}{\ol{\mathbb{Z}}_p}
+\newcommand{\Zlb}{\ol{\mathbb{Z}}_{\ell}}
+
+\newcommand{\ab}{\r{ab}}
+\newcommand{\Ab}{\r{Ab}}
+\newcommand{\an}{\r{an}}
+\newcommand{\alg}{\r{alg}}
+\newcommand{\Alg}{\r{Alg}}
+\newcommand{\Ann}{\r{Ann}}
+\newcommand{\Aut}{\r{Aut}}
+\newcommand{\Ban}{\r{Ban}}
+\newcommand{\ch}{\r{ch}}
+\newcommand{\Cat}{\r{Cat}}
+\newcommand{\Cod}{\r{Cod}}
+\newcommand{\cont}{\r{cont}}
+\newcommand{\Diag}{\r{Diag}}
+\newcommand{\Div}{\r{Div}}
+\newcommand{\Dom}{\r{Dom}}
+\newcommand{\dR}{\r{dR}}
+\newcommand{\End}{\r{End}}
+\newcommand{\et}{\r{\'et}}
+\newcommand{\Ext}{\r{Ext}}
+\newcommand{\Field}{\r{Field}}
+\newcommand{\Frac}{\r{Frac}}
+\newcommand{\Frob}{\r{Frob}}
+\newcommand{\Gal}{\r{Gal}}
+\newcommand{\GL}{\r{GL}}
+\newcommand{\Grp}{\r{Grp}}
+\newcommand{\Hch}{\check{\r{H}}{}}
+\newcommand{\Hdr}{\r{H}_{\r{dR}}}
+\newcommand{\Het}{\r{H}_{\r{\'et}}}
+\newcommand{\Hfet}{\r{H}_{\r{f\'et}}}
+\newcommand{\Hom}{\r{Hom}}
+\newcommand{\Hopf}{\r{Hopf}}
+\newcommand{\id}{\r{id}}
+\newcommand{\ind}{\r{ind}}
+\newcommand{\Ind}{\r{Ind}}
+\newcommand{\Isom}{\r{Isom}}
+\newcommand{\Max}{\r{Max}}
+\newcommand{\Mod}{\r{Mod}}
+\newcommand{\Mon}{\r{Mon}}
+\newcommand{\Mor}{\r{Mor}}
+\newcommand{\Nr}{\r{Nr}}
+\newcommand{\ob}{\r{ob}}
+\newcommand{\op}{\r{op}}
+\newcommand{\pro}{\r{pro}}
+\newcommand{\Pro}{\r{Pro}}
+\newcommand{\PSh}{\r{PSh}}
+\newcommand{\Rep}{\r{Rep}}
+\newcommand{\Res}{\r{Res}}
+\newcommand{\Ring}{\r{Ring}}
+\newcommand{\Sch}{\r{Sch}}
+\newcommand{\Set}{\r{Set}}
+\newcommand{\Sh}{\r{Sh}}
+\newcommand{\SL}{\r{SL}}
+\newcommand{\Spec}{\r{Spec}}
+\newcommand{\Stab}{\r{Stab}}
+\newcommand{\Sym}{\r{Sym}}
+\newcommand{\Tor}{\r{Tor}}
+\newcommand{\Tpl}{\r{Top}}
+\newcommand{\tr}{\r{tr}}
+
+\newcommand{\Cech}{$\check{\t{C}}$ech }
+\newcommand{\Frechet}{Fr\'echet }
+\newcommand{\Gelfand}{Gel'fand }
+\newcommand{\Poincare}{Poincar\'e }
+\newcommand{\Shnirelman}{Shnirel'man }
+\newcommand{\Teichmuller}{Teichm\"uller }
+
+\newcommand{\adm}{\r{adm}}
+\newcommand{\cov}{\r{cov}}
+\newcommand{\Cov}{\r{Cov}}
+\newcommand{\Et}{\r{\'Et}}
+\newcommand{\Fet}{\r{F\'et}}
+\newcommand{\fet}{\r{f\'et}}
+\newcommand{\fin}{\r{fin}}
+\newcommand{\Ger}{\r{Ger}}
+\newcommand{\PB}{\r{PB}}
+\newcommand{\PLSp}{\r{PLSp}}
+\newcommand{\pr}{\r{pr}}
+\newcommand{\red}{\r{red}}
+\newcommand{\Sub}{\r{Sub}}
+\newcommand{\triv}{\r{triv}}
+\newcommand{\whC}{\wh{\cC}}
+\newcommand{\whH}{\wh{\r{H}}}
+\newcommand{\WSet}{\r{WSet}}
+\newcommand{\wtC}{\wt{\cC}}
+
+\title{たいとる}
+\author{おーさー}
+\date{ひづけ}
+
+
+\begin{document}
+
+% タイトルを出力
+\maketitle
+% 目次の表示
+\tableofcontents
+
+
+
+
+
+\section{Introduction}
+\label{sec:Introduction}
+WeilConjectureに関するDworkの結果と
+それ以降のリジットとクリスタリンについて解説する．
+\begin{enumerate}
+  \item p進数体の基礎
+  \begin{itemize}
+    \item 定義(3通り) or 4(Witt)
+    \item 局所体であること．
+    \item Henselの補題
+    \item log/expの定義
+    \item 乗法群の構造の決定
+  \end{itemize}
+　\item 体の拡大と完備化
+   \begin{itemize}
+     \item TraceとNorm
+     \item 分岐，不分岐
+     \item 整数環の拡大
+     \item 付の延長
+     \item 無限次元拡大と完備化
+   \end{itemize}
+   \item $p$-adicな関数について
+    \begin{itemize}
+      \item $\mathbb{Z}_p$での連続関数
+      \item $\mathbb{Z}_p[[T]]$の既約なべき級数について
+      \item $\mathbb{C}_p[[T]]$の元がいつ$\mathbb{Q}(T)$の元になるか．
+    \end{itemize}
+    \item Weil Conjectureの証明(Dwokの結果)
+    \begin{itemize}
+      \item クリスタリンコホモロジーについて？(notes on crystalline cohomology)
+    \end{itemize}
+\end{enumerate}
+
+\section{Prepartion of Algebra and Set}
+\label{sec:Prepartion of Algebra and Set}
+この本で使う基礎的な集合論や代数について解説する．
+目標は以下の2つである．
+\begin{itemize}
+  \item Trace/Normの定義
+  \item Frobeniusの定義とその性質
+\end{itemize}
+
+\subsection{環論の基本}
+\label{sub:環論の基本}
+環論の基礎を紹介する．
+
+\subsubsection{環の定義と基本的性質}
+\label{sub:環の定義と基本的性質}
+環の定義や，環の基本的性質(直積，単元，イデアル)について説明する．
+
+\subsubsection{素イデアルと極大イデアル}
+\label{sub:素イデアルと極大イデアル}
+
+\subsubsection{多項式環とべき級数環}
+\label{sub:多項式環とべき級数環}
+
+\subsection{体とガロア理論}
+\label{sub:体とガロア理論}
+
+\subsubsection{体の定義と代数拡大}
+\label{sub:体の定義と代数拡大}
+\begin{dfn}
+  \begin{enumerate}
+    \setlength{\parskip}{0cm} % 段落間
+    \setlength{\itemsep}{0cm} % 項目間
+    \item $+:K \times K \to K$,$\cdot:K \times K \to K $が定義されている.
+    \item 任意の$a,b,c \in K$に対し，$(a + b) +c =a +(b +c)$となる.
+    \item 任意の$a,b \in K$に対し，$a + b = b + a$となる．
+    \item 任意の$a \in K$に対し，
+              $a + 0 =  0 + a = a$を満たす元$0 \in K$が存在する.
+    \item 任意の$a \in K$に対し，$a + b = b + a =0$を
+             満たす元$b \in K $が存在する.
+    \item 任意の$a,b$に対し，$a \cdot b = b \cdot a$となる.
+    \item 任意の$a \in K$に対し，$a \cdot 1 = 1 \cdot a =a$
+              を満たす元$1 \in K$が存在する.
+    \item 任意の$a \in K-\{0\}$に対し，$a \cdot b = b \cdot a = 1$
+              となる$b \in K$が存在する.
+    \item 任意の$a,b,c \in K$に対し，
+              $(a \cdot b) \cdot c =a \cdot (b \cdot c)$となる.
+  \end{enumerate}
+\end{dfn}
+
+ざっくりというなら，足し算，引き算，掛け算，割り算が定義できるものが体である．
+
+\begin{epl}
+ 実数全体のなす集合$\mathbb{R}$は体をなす．
+\end{epl}
+
+体同士の写像を定義しよう．
+体$K,L$に対し，$\mathrm{Hon}(K,L)$の元を$f:K \to L$であって，
+以下を満たすものとする．
+\begin{enumerate}
+  \item $f(x + y)= f(x) + f(y)$
+  \item $f(xy)=f(x)f(y)$
+  \item $f(1)=1$
+\end{enumerate}
+\begin{rem}
+ $f(1)=1$を課さない定義であってもよい．($f(1)=1$を満たさず，
+ 残りの２つを満たす射は任意の元を$0$に映す写像のみである.)
+ 体では基本，拡大を考えるため，そのような写像に興味がない．
+ って今回は$f(1)=1$を課した．
+\end{rem}
+体同士の準同型には以下の性質がある．
+\begin{prop}
+ 体の準同型$f:K \to L$は単射である.
+\end{prop}
+\begin{proof}
+  $a \in K$に対し，$f(a)=0$となったとする.
+  $a$が$0$がでないとすると，乗法について逆元$a^{-1}$を持つ．
+  この時，$f(a \cdot a^{-1})=1$となるが，これは$0 \cdot f(a^{-1})=1$となり，
+  矛盾する.よって$a=0$となり，単射が示された．
+\end{proof}
+体同士の射は単射であるため,この射を通して，
+体$K$を体$L$の部分集合とみなすことが多い．
+この時，体$K$を体$L$の部分体といい，$L$を$K$の拡大体という.また
+体$L$が体$K$の拡大となってい時，拡大$L/K$と書く．
+
+体の拡大を詳しくてみていく.
+\begin{dfn}
+拡大$L/K$に対し，$a \in L$が$K$上代数的であるとは，
+ある$K$係数多項式$f(X)$が存在し，$f(a)=0$となることである．
+任意の$a \in L$が$K$上代数的であるとき，$L/K$を代数拡大という．
+また，$a$に対し$f(a)=0$となる．次数が最小のものを$a$の$K$での最小多項式という．
+\end{dfn}
+
+
+\begin{dfn}
+ $K$が代数閉体とは，任意の拡大$L/K$が代数拡大である場合，$L=K$となるものをさす．
+ つまり，$K$係数1変数多項式は必ず$K$上一次式の積でかける．
+\end{dfn}
+
+\begin{prop}
+ 任意の体$K$に対し，代数拡大体$L$で$L$が代数閉体となるものが存在する．
+\end{prop}
+\begin{proof}
+代数拡大に対してツォルンの補題から，極大が取れる．？思った以上に具体的にかけた．
+\end{proof}
+
+上の操作を代数閉包という，
+以降では包含を明確にするため，代数閉体を一つFixして，
+その部分体についてのみ議論する．
+
+拡大$L/K$拡大に対しては$K$-準同型が定義できる．
+$f:L \to M$が$K$-準同型とは，$f$が体の準同型であり，
+かつ，$f|_{K}=id_K$となることである．
+
+\subsubsection{体の超越拡大}
+\label{sub:体の超越拡大}
+
+\subsubsection{体の分離拡大}
+\label{sub:体の分離拡大}
+
+\begin{dfn}
+ $L/K$が分離拡大とは，任意の$a \in L$の最小多項式が分離多項式になること．
+ 分離多項式とは$a$で重根を持たない多項式のことである．
+\end{dfn}
+
+\begin{prop}
+ $K$が標数$0$の体の時，任意の代数拡大$L/K$は分離拡大になる．
+\end{prop}
+\begin{proof}
+  $a \in L$の$K$上の最小多項式を$f(x)$とする．
+  $f(x)$が分離多項式でないとすると，ある$a$が存在し，$f'(a)=0$となること．
+  \begin{equation*}
+   f(x)=\sum_{k=0}^n c_nx^n
+  \end{equation*}
+  とすると,
+  \begin{equation*}
+   f'(x)=\sum_{k=1}^n nc_cx^{n-1}
+  \end{equation*}
+  となり，$f(x)$が最小多項式なので，$f'(a)=0$から，$f'(x)=0$となる．
+  標数$0$の場合は．$f'(x)=0$より，$f(x)$は定数となる．
+  最小多項式は定義から1次以上の多項式なので，定数とはならない．
+  よって，$L/K$は分離拡大になる．
+\end{proof}
+
+\begin{prop}
+  標数$p$の時，既約多項式$q(x) \in K[X]$が重根を持つ必要十分条件は
+  多項式$g(y)$が存在して,$g(y^p)=q(x)$となること．
+\end{prop}
+\begin{proof}
+  必要性は微分が$0$になることより，明らか．十分性を示す．
+  $q(x)=g(x^p)$とかけたとする．今$ \alpha$が$q$の解だとし，
+  $q$の分解体を$L$とする．$g(a^p)=0$より．
+  \begin{equation*}
+   q(x)=g(x^p)=(x-\alpha^p)h(x^p)=(x-\alpha)^ph(x^p)
+  \end{equation*}
+  となるので重根を持つことがわかる．
+\end{proof}
+
+\begin{dfn}
+ $L/K$が純非分離拡大とは，$L\backslash K$の任意の元の最小多項式が
+ 非分離多項式となること．
+\end{dfn}
+
+\begin{dfn}
+ $K$が完全体とは任意の代数拡大$L/K$が分離拡大となること．
+\end{dfn}
+
+\begin{prop}
+ 標数$p$の体$K$が完全体であることは任意の$a \in K$に対し，
+ $b^p=a$となる$b \in K$が存在すること
+\end{prop}
+\begin{proof}
+  $F$が完全体でないとする．すると，既約多項式で分離的でないもの，
+  すなわち，$f(X)=g(x^p)$とかけるものが存在する．そのため，
+  もし，$b^p=a$となる$b \in K$が存在したとすると，
+  \begin{equation*}
+   f(x)=g(x^p)=\sum_{k=0}^na_kx^pk=
+  　\sum_{k=0}^nb_k^px^pk=(\sum_{k=0}^nb_kx^k)^p
+  \end{equation*}
+  とかけ，既約性に反する．
+  $K$が完全体の時に，任意の$a \in K$に対し，$b^p=a$となる$b \in K$が
+  存在することを示す．
+  $X^p-a$の$K$上の分解体を$L$とする．この時，
+  $\alpha \in L$で$\alpha^p=a$となるものが存在する．
+  これより，$x^p-a=(x-\alpha)^p$となるので，
+  $\alpha$の最小多項式は$(x-\alpha)^p$を割る，
+  $K$は完全体なので，$x - \alpha \in K$となる．
+\end{proof}
+
+\begin{prop}
+ $L/K$を有限次分離拡大とすると，$L$は単項生成できる．
+\end{prop}
+
+
+\begin{prop}
+ $L/K$が有限次拡大とすると，$L$上の$K$自己同型の個数は$[L:K]$個以下となる．
+\end{prop}
+
+\begin{prop}
+   $L/K$が有限次分離拡大とすると，$L$上の$K$自己同型の個数は$[L:K]$個となる．
+\end{prop}
+
+\begin{dfn}
+  $L/K$が有限次拡大とすると，
+  $K_s$を$K$上分離な元のなす体とする．$L/K$の分離次数を$[K_s:K]$，非分離次数を$[K:K_s]$とする．
+\end{dfn}
+
+\subsubsection{体の正規拡大}
+\label{sub:体の正規拡大}
+
+\begin{dfn}
+ 任意の$a \in L$の$K$での最小多項式が$L$上1次式の積に分解する体である時$L/K$を正規拡大という．
+\end{dfn}
+
+\begin{dfn}
+ $L/K$がガロア拡大とは，分離かつ正規拡大であること．
+\end{dfn}
+\subsubsection{ガロア理論}
+\label{sub:ガロア理論}
+
+\subsubsection{Frobeniusと有限体}
+\label{sub:Frobeniusと有限体}
+Frobeniusと有限体の性質をみる．
+\begin{dfn}
+  以下で定義される写像をFrobenisu写像という．
+  \begin{equation*}
+    Frob:\mathbb{F}_q　\to \mathbb{F}_q　,a \mapsto a^q
+  \end{equation*}
+\end{dfn}
+Frobeniusは同様に，$\mathbb{F}_q[x] \to \mathbb{F}_q[x]$にも拡張される．
+この時，以下が成り立つ．
+\begin{prop}
+ $f = \sum_{i=0}^n a_iX^i \in \mathbb{F}_q[X]$に対し，
+ $f(X^q)=\sum_{i=0}^n a_iX^{iq} = (\sum_{i=0}^n a_iX^{i})^q=f(X)^q$となる．
+\end{prop}
+\begin{proof}
+ 右辺の拡大次数が$q$で割れないところは必ず$q$が係数に入ること，フェルマーの小定理から$a^q=a$となるので，従う．
+ ******************
+  あとで細かい証明を埋める
+  ******************
+\end{proof}
+
+\subsubsection{TraceとNorm}
+\label{sub:TraceとNorm}
+
+\subsection{ガロアコホモロジー}
+\label{sub:ガロアコホモロジー}
+
+
+\section{Basic Knowledge of p-adic Number}
+\label{sec:p-adic Number}
+これは一冊の本を目指すので，p進と同時に初等的な代数，幾何，解析の知識も
+解説する．
+$p$進数と局所体の基礎について解説する．
+
+$p$を素数とする．
+\begin{dfn}
+$pr_n:\mathbb{Z}/p^n \to \mathbb{Z}/p^{n+1},1 \mapsto 1$とする．
+$\mathbb{Z}_p$を以下で定義する．
+\begin{equation*}
+ \{ (x_1,x_2,\cdots,x_n,\cdots) \in \prod_{n} \mathbb{Z}/p^n | pr_n(x_n)=x_{n+1} \}
+\end{equation*}
+\end{dfn}
+これは，$\mathbb{Z}/(p^n)$が環となっており，$pr_n$が環準同型なので，直積環の部分環になっている．
+\begin{rem}
+ これは逆極限である.
+\end{rem}
+これを$p$進整数環という．この性質を見ていく．
+
+
+************下の部分はちょっといらない*****************
+まず，逆極限を定義する．
+\begin{dfn}
+  $\mathcal{C}$を圏とし，$\mathcal{I}$を友向順序集合とする．すなわち，任意の$i,j$に対し，$i <k,j<k$となる$k$が存在する．
+  $\mathcal{I}$を順序により射をいれることで圏だと思うことできる．この時，関手$F;\mathcal{I} \to \mathcal{C}$を用いて，
+  $\mathcal{C}$の逆極限を定義する．これを
+
+添字の間の圏はどうするか？非常につらい状態になっている．
+\end{dfn}
+$\mathbb{Z}[[T]]$の元$f(T)= \sum_{i=0}^{\infty}a_iT^i$とする．
+ここには自然に加法と乗法が定義される．この$T$を$p$に置き換え，形式的に加法と乗法を定義する．
+
+p進展開を定義する．
+\begin{prop}
+ $S$を$\{ 0,1, \dots,p-1\}$とする．$(x_n)_{n \ge 0} \in \mathbb{Z}_p$に対し，
+ ある$(a_k) \in S^{\mathbb{N}}$がただ一つ存在し，任意に$n$に対し以下が成り立つ．
+\begin{equation}
+  x_n \equiv \sum_{k=0}^n a_kp^k \mathrm{mod} p^{n+1}.
+\end{equation}
+\end{prop}
+\begin{proof}
+ $n$について帰納的に示す．$n=0$の場合は明らかに上の式が成り立つ$a_0$がただ一つ存在する．
+ $0,\dots,n-1$で成り立つとする.$pr_n(x_n) - x_{n-1}=0$より,$a \in S$がただ一つ存在し，
+ \begin{equation*}
+   x_n -p^n\overline{a} - \sum_{k=0}^{n-1} \overline{a_kp^k} \equiv 0 \mathrm{mod} p^{n+1}
+ \end{equation*}
+となる．よって成り立つ．
+\end{proof}
+
+\section{離散付値の一般論}
+\label{sec:離散付値の一般論}
+
+
+\section{代数多様体とヴェイユ予想}
+\label{sec:代数多様体とヴェイユ予想}
+代数多様体を定義し，ヴェイユ予想を述べる．
+
+\section{p-adic解析によるヴェイユ予想の証明}
+\label{sec:p-adicによるヴェイユ予想の証明}
+
+$p$-adic解析を使ってヴェイユ予想を示す.
+\subsection{A formula for the number of
+$\mathbb{F}_q$ points on a hypersuface}
+\label{sub:A formula for the number of F_q points on a hypersuface}
+
+$\mathbb{F}_q$上の代数多様体$X$のゼータ関数の有理性を示す．
+Lecture3(**あとで確認する．**)より，
+$X$が$\mathcal{A}_{\mathbb{F}_q}^d$の
+$f \in \mathbb{F}_  q[x_1,dots,x_d]$で定義されたhypersufaceの時に示せばよい．
+さらに，帰納法に基づく簡単な議論と，inclusion-exclusion principleにより，
+証明すべき問題を以下の関数の有理性を示すことに帰着できる．(帰着の部分は後で示す．)
+
+\begin{equation*}
+ \tilde{Z}(X,t):= \mathrm{exp}(\sum_{n \ge 0}\frac{N_n'}{n}t^n).
+\end{equation*}
+であって，
+\begin{equation*}
+ N_n'=|\{u= (u_1,\dots,u_d) \in \mathbb{F}_{q^n}d | f(u)=0,u_i \neq 0
+ \mbox{for all}i\}
+\end{equation*}
+$N_n'$を$\mathbb{F}_{q^n}$の加法指標(??)を用いて書き直す．
+
+\begin{lem}
+ $ \epsilon \in  \bar{\mathbb{Q}_p}$を1の原始$p$冪根とする．
+ この時，
+ $\xi(u):=\epsilon^{\mathrm{Tr}_{\mathbb{F}_{q^n}/\mathbb{F}_p}(u)}$
+ はnontrivial additive character(constではなく，加法群から乗法群への準同型)
+ になる．
+\end{lem}
+\begin{proof}
+$q^n=p$の時，位数$p$の加法的巡回群を乗法的な巡回群に移すだけである．
+そのため，これは準同型となる．
+\begin{equation*}
+  \mathrm{Tr}_{\mathbb{F}_{q^n}/\mathbb{F}_p}:
+  \mathbb{F}_{q^n} \to \mathbb{F}_p
+\end{equation*}
+は加法的な全射準同型になっているので，Nontrivialな準同型になっている．
+\end{proof}
+
+\begin{rem}
+ 有限体の間の拡大は巡回拡大のため，
+ \begin{equation*}
+   \mathrm{Tr}_{\mathbb{F}_{q^n}/\mathbb{F}_p}(a)=
+   a + a^p + \dots + a^{p^{ne}-1}
+ \end{equation*}
+ ただし$q=p^e$
+\end{rem}
+
+\begin{lem}
+ $\chi$がnontivial additive characterなら， $\sum_{u \in
+ \mathbb{F}_{q^n}}\chi(u)=0$となる．
+\end{lem}
+
+\begin{proof}
+ $\chi(t) \neq 0$とする.
+ \begin{equation*}
+   \sum_{u \in \mathbb{F}_{q^n}}\chi(u)=
+   \sum_{u \in \mathbb{F}_{q^n}}\chi(u+t)=
+   \chi(t)\sum_{u \in \mathbb{F}_{q^n}}\chi(u)
+ \end{equation*}
+ となる．仮定より$\chi(t) \neq 0$となるので，いえた．
+\end{proof}
+
+$f \in \mathbb{F}_q[x_1,dots,x_n], \phi_n: \mathbb{F}_{q^n} \to \bar{\mathbb{Q}_p}$を
+nontrivail additive characterとする．
+$a \in \mathbb{F}_{q^n}$が0でない時，$\sum_{v \in \mathbb{F}_{q^n}\phi_n(va)}=0$となる．
+また，$a=0$の時は$q^n$となる．これより
+\begin{equation*}
+ \sum_{u \in (\mathbb{F}_{q^n}^*)^d} \sum_{v \in \mathbb{F}_{q^n}} \phi_n(vf(u))=
+ N_n'q^n.
+\end{equation*}
+また，$v=0$の時の和が$(q^n-1)^d$となるので，
+\begin{equation}
+  \sum_{u \in (\mathbb{F}_{q^n}^*)^d} \sum_{v \in \mathbb{F}_{q^n}^*} \phi_n(vf(u))=
+  N_n'q^n - (q^n-1)^d.
+\end{equation}
+となる．
+この節では，(1)の左辺を$u_1,\dots,u_n,v$にタイヒミュラーリフトをしたものの解析的関数に代入する．
+$a \in \mathbb{F}_{p^m}$に対し，$\mathbb{Q}_p$の$m$次の不分岐拡大体(剰余体が$\mathbb{F}_{p^m}$)
+の整数環の元$\tilde{a}$でreducitonですると$a$になるものを一つFixする．これをタイヒミュラーリフトという．
+
+$a \in \mathbb{F}_{q^n}$に対し，以下の性質を持つ$\Theta \in \mathbb{Q}_p(\varepsilon)[[T]]$
+を作る．
+
+\begin{description}
+  \item[P1] $\Theta$の収束半径が$1$より大きい．
+  \item[P2] 任意の$n \in \mathbb{Z}_{\ge 0}, a \in \mathbb{F}_{q^n}$に対し，
+  \begin{equation}
+    \varepsilon^{\mathrm{Tr}_{\mathbb{F}_{q^n}/\mathbb{F}_p}(a)}=
+    \Theta(\tilde{a})\Theta(\tilde{a^q})\cdots\Theta(\tilde{a^{q^n-1}})
+  \end{equation}
+\end{description}
+
+$f=\sum c_mx^m \in \mathbb{F}_q[X_1,\dots,X_d]$
+
+******************
+ あとで埋める
+******************
+
+
+\subsection{The constructrion of $\Theta$}
+\label{sub:The constructrion of }
+上で書いた$\Theta$を具体的に構成する．
+$q=p$の時に示せば，以下より一般に示せる．
+$q=p^e$とする$p$の時に上の性質を満たすべき級数を$\Theta_1(X)$とする．
+この時，$\Theta(X)=\Theta_1(X)\Theta_1(X^p)\dots\Theta_1(X^{ep-1})$とすればよい．
+これは収束半径が1以上のものの積なので，明らかに収束半径が1以上になり,
+\begin{equation*}
+ \varepsilon^{\mathrm{Tr}_{\mathbb{F}_{p^ne}/\mathbb{F}_p}(a)}=
+ \prod_{i=0}^{ne-1} \Theta_1(\tilde{a}^{p^i})　 =
+ \prod_{j=0}^{n-1}\Theta(\tilde{a}^{q^i})
+\end{equation*}
+となるので．以降では$q=p$とする．
+べき級数をいくつか定義する．
+まず．
+\begin{equation*}
+ (1+y)^x:=1+\sum_{n=1}^{\infty}\frac{x(x-1)\dots(x-n+1)}{n!}y^n
+\end{equation*}
+とする．これは$\mathbb{Q}[[x,y]]$の元となる．
+\begin{yodan}
+ べき級数を集合的に定義しようとするとどうするんだっけ？多項式環をイデアル(x)で割って完備化する？
+\end{yodan}
+
+\begin{equation*}
+ F(x,y)=(1+y)^x(1+y^p)^{\frac{x^p-x}{p}} \dots ({1+y^{p^n}})^{\frac{x^{p^n}-x^{p^{n-1}}}{p^n}}
+\end{equation*}
+これは$n+1$次のfactor$({1+y^{p^n}})^{\frac{x^{p^n}-x^{p^{n-1}}}{p^n}}$が$1+(y^{p^n})$の元となる．そのため，べき級数$F(x,y)$の各係数は
+有限和なので，well-defined.
+$F(x,y)$には以下が成り立つ．
+\begin{prop}
+ $F(x,y)\in \mathbb{Z}_p[[x,y]]$
+\end{prop}
+これを示すために以下の補題を示す.
+
+\begin{lem}
+ $f \in \mathbb{Q}_p[[x,y]]$が$f(0,0)=1$を満たすとする．この時,$f \in \mathbb{Z}_p[[x,y]]$は以下と同値．
+ \begin{equation*}
+  \frac{f(x^p,y^p)}{f(x,y)^p} \in 1 + p(x,y)\mathbb{Z}_p[[x,y]]
+ \end{equation*}
+\end{lem}
+\begin{rem}
+ これは$n$変数の多項式でも成り立つが記号が複雑になるため，２変数の場合にのみ示す．
+\end{rem}
+
+\begin{yodan}
+ p(x,y)は多項式に見えるがイデアルである．きっと，これはこの2つがほとんど差がないということを示してるのだと思う．
+\end{yodan}
+\begin{proof}
+\begin{description}
+  \item[$Lefrtarrow$を示す]
+\end{description}
+形式的べき級数の定数項$f(0,0)=1$が単元になっているので，$f(x,y) \in \mathbb{Z}_p[[x,y]]^{\times}$となる．
+同様に$f(x,y)^p \in \mathbb{Z}_p[[x,y]]^{\times}$となる．$g(x,y)={f(x,y)^p}^{-1}$とする．
+$g(x,y)f(x,y)^p=1$より,係数を比較すると$g(0,0)f(0,0)=1$となり，$g(0,0)=1$となる．
+よって，$f(x^p.y^p)g(x,y) \in (x,y)\mathbb{Z}_p[[x,y]$となる．
+また，$f(x^p,y^p) \equiv f(x,y)^p \mbox{mod}p$なので,$\mathrm{mod}p$すると1になる．よって．言えた．
+
+\begin{description}
+  \item[$\Rightarrow$を示す]
+\end{description}
+$f(x,y)=\sum a_{nm}x^ny^m$と書く．仮定より，ある$g(x,y)\in 1 + p(x,y)\mathbb{Z}_p[[x,y]]$が存在し
+\begin{equation*}
+ \sum a_{nm}x^{pn}y^{pm} = \Bigl( \sum a_{nm}x^ny^m \Bigr)^p \Bigl( \sum b_{nm}x^ny^m \Bigr)
+\end{equation*}
+となる．上の式の$x^ny^m$次の係数を$c_{nm}$と書く．
+次数に関する帰納法で示す．
+具体的には，$i \le n,j \le m$でどちらか一方は少なくとも真に不等号になっているときに成り立つと仮定して，
+$a_{nm} \in \mathbb{Z}_p$を示す．
+上の等式の左辺に着目すると，$p|n,p|m$以外の時は$c_{nm}=0$となる．
+そのため，$p |n,p|m$とする．
+右辺をみると$c_{nm}=pa_{nm}+Q_1 \dots +Q_r$と書ける．
+ただし$Q_i=Nb_{i'j'}a_{i''j''}$.帰納法の仮定より，$Q_1 + \dots +Q_r \in \mathbb{Z}_p$
+また，右辺に着目すると，$c_{nm}=a_{n/pm/p}$となる．また，$Q_j \notin p\mathbb{Z}_p$の時，
+$i,j$の少なくとも一方が1以上の場合，$b_{ij} \in p\mathbb{Z}_p$となることから$b_{00}$がかかっており，
+また，$p$が素数であることから上以外の場合は$p$で割れることがわかる．これより，
+$Q_j=a_{n/pm/p}^p$となる．
+$a_{n/pm/p} \equiv a_{n/pm/p}^p \mbox{mod}p$より，
+$Q_j \equiv c_{nm} \mathrm{mod}p$となるので，
+$pa_{nm} \in p\mathbb{Z}_p$となることがわかる．
+よって$a_{nm} \in \mathbb{Z}_p$となる．
+\end{proof}
+命題を示そう．
+\begin{proof}
+$F(0,0)=1$より，上のlemmaから$\frac{F(x^p,y^p)}{(F(x,y)^p)} \in 1 +p \mathbb{Z}_p$となることを
+示せばよい．
+\begin{equation*}
+  \frac{F(x^p,y^p)}{F(x,y)^p} = \frac{(1+y^p)^px \cdot (1+{y^p}^2)^{\frac{{x^p}^2 -x^p}{p}}\cdots}
+                                {(1+y)^{px}(1+y^p)^{x^p-x}\cdot (1+{y^p}^2)^{\frac{{x^p}^2-x^p}{p}}\cdots}
+                          = \Bigl( \frac{1+y^p}{(1+y)^p}\Bigr)^x
+\end{equation*}
+となる．$1+y\in \mathbb{Z}_p[[y]]$より，上の式は$(1 +pw)^x$ ただし，
+$w \in \mathbb{Z}_p[[y]]$とかける．
+\begin{equation*}
+ (1+pw)^x = 1 + \sum_{m \ge 1} \frac{x(x-1)\cdots (x-m+1)}{m!}p^mw^m
+\end{equation*}
+とかけ，係数の付値を計算することで言える．
+\end{proof}
+\begin{yodan}
+計算が最後面倒くさくなった
+\end{yodan}
+
+$\varepsilon \in \ol {\mathbb{Q}_p}$を1の$p$乗根とする．
+$\lambda= 1- \varepsilon$とする．
+この時以下が成り立つ．
+\begin{lem}
+ $|\lambda| = \Bigl( \frac{1}{p} \Bigr)^{1/p-1}$
+\end{lem}
+*************後で******************
+
+$\Theta(t)=F(t,\lambda)$とする．まず，これが収束半径が1以上であることを示す．
+\begin{lem}
+$\Theta(t)$の収束半径は少なくとも$p^{1/p-1} \gt 1$となる.
+\end{lem}
+
+\begin{lem}
+ 任意の$n \ge 1,a \in \mathbb{F}_{p^n}$に対し，
+ \begin{equation*}
+  \varepsilon^{\mathrm{Tr}_{\mathbb{F}_{p^n}/\mathbb{F}_p}(a)}=\Theta(\tilde{a})\Theta(\tilde{a}^p)\cdots\Theta(\tilde{a}^{{p}^{n-1}}) .
+ \end{equation*}
+\end{lem}
+**あとで
+**
+**
+
+\subsection{Trace of certaion linear maps on rings of formal power series}
+\label{sub:Trace of certaion linear maps on rings of formal power series}
+
+$\zeta$関数の有理性の証明に向け，以下を示す．
+
+\begin{prop}
+ 任意の$X=V(f)(f \in \mathbb{F}_q[x_1,\dots,x_n]) $に対し，
+ 形式的べき級数$\tilde{Z}(X,t)$は$\frac{g(t)}{h(t)}$と書ける.ただし，
+ $g,h$は$\mathbb{C}[[t]]$の元であって収束半径が∞となるもの．
+\end{prop}
+
+$R=\mathbb{C}_[[x_1,dots,x_N]]$とおき，
+$\mathcal{m}$でその極大イデアルとする．$\alpha=(\alpha_1,\dots,\alpha_N)\in
+\mathbb{Z}_{ge 0}^N$とおき，
+
+
+\subsection{The Rationality of the Zeta function}
+\label{sub:The Rationality of the Zeta function}
+$\zeta$関数の有理性を示す．そのためには以下の命題を使う．
+\begin{prop}
+ $Z(t) = \sum_{n \ge 0}a_nt^n \in \mathbb{Z}[[T]]$が以下を満たすとする．
+ \begin{enumerate}
+   \item 任意の$n \ge 0$に対し，$| a_n|_{\infty} \le Cs^n$となる$C,s \ge 0$が存在する．
+   \item $Z$を自然な埋め込みで$\mathbb{C}_p[[T]]$とみなす．この時，ある収束半径が$ \infty$となる$g,h \in \mathbb{C}_p[[T]]$が存在し，$ Z = \frac{h}{g}$となる．
+ \end{enumerate}
+ この時，$Z(t) \in \mathbb{Q}(T)$の元となる．
+\end{prop}
+
+上の命題を示すために，補題を一つ用意する．
+\begin{lem}
+$K$を体とし，$f　= \sum_{ n \ge 0 }a_nT^n　\in K[[T]]$とし，
+行列$A_{i,N}=(a_{i + \alpha + \beta})_{0 \le \alpha,\beta \le N}$
+とする．$f$がrationalであることは,
+ある$N$が存在し，十分大きい任意の$i$に対し,
+$\mathrm{det}A_{i,N}=0$となること．
+\end{lem}
+
+\begin{proof}
+
+  \begin{description}
+    \item[$\Rightarrow$を示す]
+  \end{description}
+  $f$が有理的であることは，ある0でない多項式$g(T) = \sum b_n T^n \in K[T]$が存在し，
+  $f(T) \dot g(T) \in K[T]$となること．つまり，$f(T) \dot g(T)$の十分大きい時次数の係数が$0$になることと同値である．
+  これは係数を直接計算することで，十分大きい$i$に対して,ある$N$が存在し，
+  \begin{equation*}
+   a_ib_N + a_{i+1}b_{N-1} + \cdots a_{i + N}b_0 = 0
+  \end{equation*}
+  と同値であることがわかる．
+  また，上のような$g(T)$が存在すると，$\beta =(b_i)_{0 \le  i \le N}$とすると
+
+  \begin{equation*}
+    A_{i,N} \beta =
+    \begin{pmatrix}
+      a_{i} &  \dots & a_{i+N} \\
+      \vdots &  \ddots & \vdots \\
+      a_{i+N} & \dots & a_{i + 2N}
+    \end{pmatrix}
+    \begin{pmatrix}
+    b_N \\
+    \vdots \\
+     b_0
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+    \sum_k a_{i+k}b_{N-k} \\
+     \vdots \\
+     \sum_k a_{i+N+k}b_{N-k}
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+      0 \\
+     \ddots \\
+      0
+    \end{pmatrix}
+\end{equation*}
+となる．
+これより，$f$が有理的であるとき，$A_{i,N}x=0$は非自明な解を持つため，
+$\mathrm{det}A_{i,N}=0$となる．
+
+\begin{description}
+  \item[$\Leftarrow$を示す]
+\end{description}
+\begin{equation*}
+  l_i=
+  \begin{pmatrix}
+  a_i  & \dots  &  a_{i+N}
+  \end{pmatrix}
+\end{equation*}
+とする．
+$N$を任意の$i \ge i_0$に対し，条件を満たす最小の$N$とする．
+この時，ある$i'$が存在し，$\mathrm{det}A_{i,N-1} \neq 0$となる．
+もし．任意の$i \ge i_0$に対し,
+$\mathrm{det}A_{i,N-1} \neq 0$とする．
+この時，$l_{i+N} \in \sum_{k=0}^{n-1} Kl_{i+k}$となるので，
+$\mathrm{det}A_{i,N}=0,\mathrm{det}A_{i,N-1} \neq 0$より，
+$l_{i+N} \in \sum_{j=0}^{N-1} Kl_{i+j}$となる．
+これを繰り返すことにより，
+任意の$i$に対し，
+\begin{equation*}
+ l_i \in \sum _{j=0}^{N-1}Kl_{i+j}
+\end{equation*}
+となる．この時，$A_{i,N}x=0$となる非自明な$x$が存在するので，これを$\beta$として取れば，$f$がrationalであることがわかる．
+そのため，任意の$i \ge i_0$に対し,
+$\mathrm{det}A_{i,N-1} \neq 0$となることを示せばよい．
+任意の$i \ge 0$に対し，$\mathrm{det}A_{i-1,N-1} = 0$となると，$N$の最小性に矛盾する．そのため，
+$\mathrm{det}A_{i,N-1} = 0$ならば，
+$\mathrm{det}A_{i+1,N-1} = 0,\mathrm{det}A_{i-1,N-1} = 0$となることを示せばよい．$\mathrm{det}A_{i,N-1} = 0$ならば，$\mathrm{det}A_{i+1,N-1} = 0$のみを示す．-1の場合も同様にすればできる．
+\begin{equation*}
+  l_i'=
+  \begin{pmatrix}
+  a_i  & \dots  &  a_{i+N-1}
+  \end{pmatrix}
+\end{equation*}
+とする.
+仮定より，$l_i' ,\dots ,l_{i+N-1}'$は線形従属となる．
+$l_{i+1}' ,\dots, l_{i+N-1}'$が線形従属である場合は特に示すことはない．
+そのため，$l_{i+1}', \dots ,l_{i+N-1}'$が線形独立とする．
+この時，$A_{i,N-1}=0$より，
+$l_i'= \sum_{j=1}^{N-1}c_jl_{i+j}'$となる.
+よって，$A_{i,N}$の一列目の各成分を$a_{i+} - \sum_{j=1}^{N-1}c_la_{i+l+j}$に置き換えて，行列式を計算すると，１列目が第$N$成分以外全て0になるので，
+$0=\mathrm{det}A_{i,N}=\mathrm{det}A_{i+1,N-1}\delta$.
+ただし，$(-1)^N\delta=a_{i+N} - \sum_{j=1}^{N-1}c_Na_{i+N+j}$となる．
+$\delta$が0とすると，$l_i,\dots, l_{i+N}$が線形従属となり，各$l_k$の第2成分以降をみると，$l_{i+1}', \dots, l_{i+N}'$が線形従属になる．
+これより，どちらが$0$であっても,$l_{i+1}' ,\dots, l_{i+N}'$が線形従属になる．
+よって示された．
+
+\end{proof}
+補題が示されたので命題を証明する．
+
+****あとで************************
+
+実際に定理を示そう
+
+\begin{thm}
+ $X$を有限体$\mathbb{F}_q$上の代数多様体とする．この時$Z(X,T)$は$\mathbb{Q}$上の有理型関数となる．
+\end{thm}
+
+読みにくすさこの上ない．どうしようか．
+
+
+最後にスキームとエタールコホモロジーについて概観する？
+
+
+\section{スキームとスキームによる代数多様体の定義}
+\label{sub:スキームの定義}
+
+\subsection{エタール射}
+\label{sub:エタール射}
+
+\subsection{エタール基本群}
+\label{sub:エタール基本群}
+
+エタール基本群
+
+
+数論幾何入門
+
+数論幾何の基本的な道具に触れる。
+ガロア理論(圏論より)
+
+体の理論で
+Homによる分類をする。
+
+ガロア理論は、体をFixした時にガロア群と拡大の間に圏同値があるよ。
+
+ガロア理論
+数論なので、ガロア群に興味がある。
+ガロア群がどういう場合なら計算できるか？
+数論的には、Qの絶対ガロア群を計算したい。
+じゃあ、どうしよう？
+
+有限体の絶対ガロア群
+局所体のガロア群のアーベル部分
+代数体のガロア群のアーベル部分
+
+ここまでは類体論でわかる。
+しかし、それ以降は計算できない。
+群は計算できない。⇒ならば、表現論だ。
+
+群とは表現である。
+1. 群という非可換な対象を線形代数的に調べる方法
+1. 古典的には群は表現(作用)を考えられていた。
+
+Open Problem 表現が完全に分類されたら、ガロア群は決定されるか？
+数論上、重要な情報は表現に出てくると信じている(Philosophy)
+
+実際に表現を構成しよう。
+
+どうやって？？？有限群の表現論などを考える場合、群の構造がわかっているため、表現を決定できる、
+あるいは表現したいものがわかるために、逆にこれに表現として実現できる群を決定できる。
+
+表現として実現したい群がわからない場合、どうやって表現を作る・・・？
+⇒Etale Cohomology
+l進、p進で理論がぜんぜん違う。
+
+Weil予想の意味はわからない。
+
+楕円曲線の場合のWeil予想の証明はしてもいいけど、それは面白く無いと個人的に思っている。
+なぜなら、ロマンがないから。エタールコホモロジーらしさも圏論らしさもなくて、
+自分できっちり消化したいという人以外にはあまりおすすめできない。
+
+スキームと代数多様体の一般論について
+アフィンスキームが図形に見えるための努力
+
+不分岐とは下と上が同じという話。
+
+エタールコホモロジーが取れることについてなんとかなるのかな
+位相幾何との類似なんてもうほとんど忘れてしまった。
+
+p進が面白いかと言われたら、よくわかんと応える。
+l進が面白いかと言われたらそれもよくわからんと応える。
+
+ただ、緻密な理論とその裏にあるわからない問題たちに興奮する。
+構造をきっちり決定すること自体に興味があるんだから、圏論は本来向いていると思う。
+
+コホモロジーとL関数
+CohomologyとL関数の間にどんなつながりがあるのかが全然わからない。
+
+CohomologyからL関数を構成する？
+
+\section{数論のモチベーション}
+\label{sec:数論のモチベーション}
+
+\subsection{体とガロア理論}
+\label{subs:体とガロア理論}
+数論の前提知識とモチベーション
+\begin{itemize}
+  \setlength{\parskip}{0cm} % 段落間
+  \setlength{\itemsep}{0cm} % 項目間
+  \item ガロア理論
+  \item 有限体の絶対ガロア群
+  \item 代数体の絶対ガロア群について．局所類体論と大域類体論，
+  ガロア表現⇒etale cohomology(l,p進表現)
+\end{itemize}
+
+ガロア理論を簡単に概観しよう．まず，体と，体同士の準同型を定義する．
+
+\begin{dfn}
+$K$が体とは以下を満たす時である.
+\begin{enumerate}
+  \setlength{\parskip}{0cm} % 段落間
+  \setlength{\itemsep}{0cm} % 項目間
+  \item $ + :K \times K \to K, \cdot : K \times K \to K$が定義されている.
+  \item $K$は$+$でアーベル群になり、その単位元を$0$と表す.
+  \item $K - \{ 0 \}$は$  \cdot   $について乗法群となり,その単位元を$1$と表す.
+  \item $a \cdot (b + c) = a \cdot b + a \cdot c $となる.
+\end{enumerate}
+\end{dfn}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{itemize}
+  \item 有限次拡大
+  \item 代数拡大
+  \item 正規拡大
+  \item 分離拡大
+  \item ガロア拡大
+  \item アーベル拡大
+\end{itemize}
+
+\subsection{有限体とその絶対ガロア群}
+\label{sub:有限体とその絶対ガロア群}
+ガロア理論により，ガロア群と体の拡大の関係がわかった．
+しかし，具体的にガロア群がどういうものかはガロア理論では特に記述していない．
+そのため，具体的にガロア群を計算してみよう．特に，絶対ガロア群を求めたい．
+まずは有限体に対して調べてみよう．
+有限体$\mathbb{F}_q$とその代数閉包を一つ固定して議論する．
+\begin{prop}
+  有限体は体の位数のみで一意に決まる．
+\end{prop}
+
+体の準同型であり，位数の議論より，
+有限体はFrobeniusが全射となる．
+そのため，有限体の分離拡大となる．
+
+\appendix
+
+\section{圏論}
+この本で使った圏論的な知識についてまとめておく．
+
+\begin{dfn}
+ 逆極限
+\end{dfn}
+
+
+\section{類体論}
+\label{sub:局所体体}
+有限体では，絶対ガロア群が計算できた．
+この情報を使って代数体を含めた大域体や局所体について情報をどこまで調べられるかを考えたい．
+まず，局所体と大域体を定義しよう．
+
+\begin{dfn}
+ $K$が局所体とは，$\mathbb{Q}_p$，$\mathbb{F}_p((T))$の有限次代数拡大体のことである．
+ $K$が大域体とは，$\mathbb{Q}$，およびｍ$\mathbb{F}_p(T)$の有限次代数拡大体のことである．
+\end{dfn}
+
+
+
+
+\subsection{類体論の主定理の紹介}
+\label{sub:類体論の主定理の紹介}
+局所体、大域体の類体論がどこまで何を記述しているのかについて触れる。
+
+\begin{thebibliography}{最大文献数}
+\bibitem[表示形式]{ラベル} http://foo/foofoo.html
+
+「foo」
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,19 @@
+\contentsline {section}{\numberline {1}Introduction}{1}{section.1}
+\contentsline {section}{\numberline {2}加法手的圏とアーベル圏}{1}{section.2}
+\contentsline {section}{\numberline {3}単射的対象}{1}{section.3}
+\contentsline {subsection}{\numberline {3.1} 単射的対象 }{2}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2} 単射的分解がR-modの場合に存在すること }{2}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3} 導来関手の定義 }{2}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4} 導来関手が一意である条件？ }{2}{subsection.3.4}
+\contentsline {section}{\numberline {4} 導来関手の存在証明 }{2}{section.4}
+\contentsline {subsection}{\numberline {4.1} $f:A\to B$が単射的分解同士の射に拡張できること }{2}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2} 上で拡張した射同士がchain homotopyとなること }{2}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3} $T_0F =F$ }{2}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.4} コホモロジー長完全系列($\delta $functor)の存在の証明}{2}{subsection.4.4}
+\contentsline {subsection}{\numberline {4.5} コホモロジー長完全列同士の射の自然性}{2}{subsection.4.5}
+\contentsline {subsection}{\numberline {4.6} 単射的対象に対するコホモロジーが消滅すること}{2}{subsection.4.6}
+\contentsline {subsection}{\numberline {4.7}subsection name}{2}{subsection.4.7}
+\contentsline {section}{\numberline {5}abelian categoryにおけるKernelの随伴関手}{2}{section.5}
+\contentsline {subsection}{\numberline {5.1}$\mathcal {C}^*$の定義}{3}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}Kernelとその随伴関手の定義}{3}{subsection.5.2}
+\contentsline {subsubsection}{\numberline {5.2.1}随伴関手になることの確認}{4}{subsubsection.5.2.1}

@@ -1,0 +1,109 @@
+%===============
+%一行目に必ず必要
+%文章の形式を定義
+%===============
+\documentclass{ujarticle}
+%===============
+%パッケージの定義、必要か不明
+%===============
+%この下4つを加えることで、mathbbが機能した
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+%可換図式用パッケージ
+\usepackage{amscd}
+\usepackage[all]{xy}
+\usepackage{tikz-cd}
+%リンク用パッケージ
+\usepackage[dvipdfmx]{hyperref}
+%複数行コメント
+%\usepackage{comment}
+
+%タイトルデータ
+\title{導来関手の存在証明}
+\author{ari}
+\date{2016/11/17}
+
+
+%===============
+%定理環境の設定
+%セクション毎
+%===============
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem{prop}[thm]{Propostion}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{ex}[thm]{Example}
+\newtheorem*{prob}{Problem}
+\newtheorem*{rem}{Remark}
+\newtheorem{prf}{Proof}
+
+
+
+\begin{document}
+  \tableofcontents
+\section{Introduction}
+十分単射的対象を持つアーベル圏$\mathcal{A}$からアーベル圏$\mathcal{A}'$への左完全な加法的関手$\mathcal{F}$に対し，導来関手$R^i \mathcal{F}$がただひとつ存在する．
+『コホモロジーのこころ』では，$\mathcal{A}$の対象$A$に対し，$R^i \mathcal{F}A$が定義されたが，射に関する部分が省略された．
+そのため，射に関する部分を証明し，導来関手の存在を確認する．
+つまり，$\mathcal{A}$の射$f:A \to B$に対し，
+$R^iF(f):R^iF(A) \to F^iF(B)$が定まり，
+以下を満たすことである．
+\begin{eqnarray}
+  R^iF(id) & = & id \\
+  R^iF(f) \circ R^iF(g) &=& R^iF(f \circ g)
+\end{eqnarray}
+
+これは$f:A \to B$に対し以下を示せばよい．
+
+\begin{prop}
+ $\mathcal{A}$の射$f:A \to B$と$A,B$の単射的分解$I^i,J^i$に対し，以下を可換にするような射$f^i:I^i \to J^i$が存在する．
+
+ \xymatrix{
+  0 \ar[r] & A \ar[d]^f  \ar[r]^{\alpha^{-1}}  \ar@{}[rd]|{\circlearrowright}  & I^0 \ar[r]^{\alpha^{0}}  \ar[d]^{f^0}  \ar@{}[rd]|{\circlearrowright} & I^1 \ar[d]^{f^1}  \ar@{.>}[r]  & \\
+ 0 \ar[r]  & B               \ar[r]^{\beta^{-1}}   & J^0 \ar[r]^{\beta^{0}} & J^1   \ar@{.>}[r]  &}
+\end{prop}
+
+\begin{prop}
+  $\mathcal{A}$の射$f:A \to B$と$A,B$の単射的分解$I^i,J^i$に対し，上の命題を満たす，$f^i,g^i$はホモトピックとなる．
+\end{prop}
+この2つの命題を示せば関手となることがいえる．軽く確認しておくと，
+ホモトピックであれば，$\mathcal{F}(f^i)=\mathcal{F}(g^i)$となるので，$f$のみで，$f^i$の取り方によらなない．また，そのような$f^i$が必ず存在するので$R^if$がwell-definedである．
+また，$R^i \mathcal{F}(id)=id $と，$R^i\mathcal{F}(f) \circ R^i \mathcal{F}(g) = R^iF(f \circ g)$も射の取り方によらないことと$\mathcal{F}$の関手性から示せる．
+
+\section{Proof of proposition 1}
+\label{sec:Proof of proposition 1}
+1つめの命題を示す．$f^0$と$f^1$の存在を示す．
+$f^2$以降は$f^1$の場合と同じ議論より言える．
+\begin{itemize}
+  \item 0の時
+\end{itemize}
+
+\xymatrix{
+ 0 \ar[r] & A \ar[d]^f  \ar[r]^{\alpha^{-1}}  \ar@{}[rd]|{\circlearrowright}  & I^0  \ar@{.>}[d] \\
+0 \ar[r]  & B               \ar[r]^{\beta^{-1}}   & J^0 }
+
+上の図の斜線の射の存在を示す．これは$\alpha^{-1}:A \to I^0$が単射で，
+$\beta^{-1} \circ f : A \to J^0$となるので，$J^0$が単射的対象であることから，
+斜線の射の存在が従う．
+
+\begin{itemize}
+  \item 1の時
+\end{itemize}
+
+\xymatrix{
+ A \ar[d]^f \ar[r] & I^0 \ar[d]^{f^0}  \ar[r]^{}    &  \mathrm{Im}\alpha^0 \simeq I^0/\mathrm{Ker}{\alpha^0} \simeq I^0/\mathrm{Im}{\alpha^{-1}}
+ \ar[r]   \ar@{.>}[ld]^{\tilde{f^0}}& I^1  \ar@{.>}[d]  \\
+B \ar[r]  & J^0  \ar[r]^{} &    \mathrm{Im}\beta^0 \simeq J^0/\mathrm{Ker}{\beta^0} \simeq J^0/\mathrm{Im}{\beta^{-1}}         \ar[r]^{}   & J^1 }
+
+$\tilde{f^0}$ の存在を示す．$I^0/\mathrm{Im}\alpha^{-1} \to J^0$が定義できれることを示す．それは$\beta^{0} \circ f^{0} \circ \alpha^{-1}(A) $が図式の可換性から，$ \beta^{0} \circ \beta^{-1} \circ f(A)$と等しいことと，
+$ \beta^{0} \circ \beta^{-1} =0$より言える．これから$\mathrm{Im}\alpha^0 \to J^0 \to J^1$という射が定義でき，$\mathrm{Im}\alpha^0 \to I^1$が単射であり，$J^1$が単射的対象であることから，$I^1 \to J^1$で上の図式を可換にするものが存在する．
+
+\section{proof of Propostion 2}
+\label{sec:proof of Propostion 2}
+すいません，時間がなかったので，また今度…．
+証明自体は
+『コホモロジーのこころ』67Pと同様にすればよい．(ここでいう$h^i$として$f^i - g^i$を取れば良い．)
+
+\end{document}

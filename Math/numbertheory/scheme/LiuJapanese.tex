@@ -1,0 +1,177 @@
+%===============
+%一行目に必ず必要
+%文章の形式を定義
+%===============
+\documentclass{ujarticle}
+%===============
+%パッケージの定義、必要か不明
+%===============
+%この下4つを加えることで、mathbbが機能した
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+%可換図式用パッケージ
+\usepackage{amscd}
+\usepackage[all]{xy}
+\usepackage{tikz-cd}
+%リンク用パッケージ
+\usepackage[dvipdfmx]{hyperref}
+%複数行コメント
+%\usepackage{comment}
+
+%タイトルデータ
+\title{p進解析入門}
+\author{ari}
+\date{2016/9/22}
+
+
+%===============
+%定理環境の設定
+%セクション毎
+%===============
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem{prop}[thm]{Propostion}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corllary}
+\newtheorem{epl}[thm]{Example}
+\newtheorem*{prob}{Problem}
+\newtheorem*{rem}{Remark}
+\newtheorem{prf}{Proof}
+
+\begin{document}
+
+% タイトルを出力
+\maketitle
+% 目次の表示
+\tableofcontents
+
+
+スキームの勉強として，Liuを日本語訳しながら，証明を書く．
+
+\section{Some topics in commutative algebra}
+\label{sec:Some topics in commutative algebra}
+
+\section{General Proeperties of Schemes}
+\label{sec:General Proeperties of Schemes}
+この章ではスキームの基礎理論を紹介する．最初の3節を用い，例を交えながら環と環の射を定義する．
+その後,2.4と2.5ではスキームの位相的な性質について議論する．
+
+\subsection{Spectram of a ring}
+\label{sub:Spectram of a ring}
+
+位相多様体や微分多様体は$\mathbb{R}^n$の開集合によるlocalなchartを貼り合わせることで，構成されている．
+スキームも同様で，スキームの場合は貼り合わせるものはアフィンスキームと言われる．この章ではアフィンスキームの下部構造
+である位相構造について定義する．また代数幾何の直感を養うために，algebraic setについても調べる．
+
+\subsubsection{Zariski topology}
+\label{subs:Zariski topology}
+
+********************
+** subsection全体を飛ばす．
+********************
+
+\subsection{Ringed topological spaces}
+\label{sub:Ringed topological spaces}
+スキームを定義する一つの方法として，局所的にアフィンスキームと同型な環付き空間として定義する方法がある．
+環付き空間の議論の前に層の理論を軽く解説する．層は代数幾何で絶対必要な道具であり，
+局所的なデータを集めて，大域的なデータを作ることができる．
+
+\subsubsection{Sheaves}
+\label{subs:Sheaves}
+位相空間上の層について定義と局所的な性質について記載する．
+層の理論の詳細を知りたい人は[40]などを参照せよ．
+
+\begin{dfn}
+ $X$を位相空間とする．abelian groupのpresheaf $\mathcal{F}$を以下のデータで構成される．
+ \begin{enumerate}
+   \item $X$の任意の開集合$U$に対し，アーベル群$\mathcal{F}(U)$
+   \item $V \subset U$に対し，$\rho_{UV}:F(U) \to F(V)$を定める．
+ \end{enumerate}
+ さらに，以下の3条件を満たす．
+ \begin{enumerate}
+   \item $\mathcal{F}(\emptyset)=0$
+   \item $\rho_{UU}=id$
+   \item $W \subset V \subset U$に対し，$\rho_{UW}=\rho_{VW} \circ \rho_{UV}$となる．
+ \end{enumerate}
+ $s \in \mathcal{F}(U)$を$U$のセクションという．$s|_{V}$で$\rho_{UV}(s)$を表す．
+\end{dfn}
+\begin{dfn}
+ $\mathcal{F}$が層であるとは，上記に加え，以下を満たすものである．
+ \begin{enumerate}
+   \item $U$は$X$の開集合で，$s \in \mathcal{F}(U),\{U_i\}$を$U$の被覆とする．
+   任意の$i$に対し，$s|_{U_i}=0$となる場合，$s=0$
+   \item 上と表記は同じで，$s_i \in \mathcal{F}(U_i)$をopen coveringとする．
+   $s_i|_{U_i \cap U_j} = s_j|_{U_i \cap U_j}$が成り立っていたとすると，
+   $s \in \mathcal{F}(U)$の元で$s|_{U_i}=s_i$となるものが取れる．
+ \end{enumerate}
+\end{dfn}
+環の層や代数の層，また，部分層の概念も同様に定義できる．
+
+\begin{epl}
+ $X$を位相空間とする．任意の$X$の開部分集合$U$に対し，$\mathcal{C}(U)=C^0(U,\mathbb{R})$とする．
+ $\rho_{UV}$として実際の関数の制限を取る．この時$\mathcal{C}$が層となる．
+\end{epl}
+
+\begin{epl}
+ $A$をnon-trivialなアーベル群とする．$X$を位相空間とし，$U$を開集合とする．
+ $\mathcal{A}_{X}(U)=A$,$U,V$が空集合でなければ,$\rho_{UV}=id$とする．
+ $\mathcal{A}_X$はpresheafであるが，一般にはsheafではない．
+ 例えばdisjointは開集合$SU,V$が取れたとすると$U \cap V =\emptyset$となる．
+ 異なる$s_1,s_2 \in A$をとると，$s_1|_{U\cap V}=s_2|_{U \cap V}=0$となるので，矛盾する．
+ 層にするには連結成分毎に$A$で連結成分を複数個の場合はその直和になる必要がある．*訳者補足.
+\end{epl}
+
+\begin{rem}
+ **後で
+\end{rem}
+
+\section{Morphisms and base change}
+\label{sec:Morphisms and base change}
+  ================TBD=====================
+
+\section{Some local properties}
+\label{sec:Some local properties}
+
+\subsection{Normal schemes}
+\label{sub:Normal schemes}
+
+  ================TBD=====================
+
+\subsection{Regulara schemers}
+\label{sub:Regulara schemers}
+
+代数幾何において，局所的な構造だけを考えると，最も単純なものがregular scheme $X$である．
+regular schmerはある意味において，affineなものと近い．それは，局所環$O_{X,x}$のformal completin
+の構造(Proposition 2.27)や$O_{X,x}$の代数的な構造(Theorem 2.16)を通して，理解される．
+最初のsubsectionでは，スキームの接空間を定義し，そこから，regularを定義し，Jacobian critetrion
+(Theorem 2.19)を示す．
+
+\subsubsection{Tanget space to a scheme}
+\label{subs:Tanget space to a scheme}
+\begin{dfn}
+$X$をスキームとし，$x \in X$とする．$\mathfrak{m}_x$を$O_{X,x}$の極大イデアルとし$k(x)$
+をその剰余体とする．この時，$\mathfrak{m}_x/{\mathfrak{m}_x}^2=\mathfrak{m}_x$は自然に
+$k(x)$ベクトル空間となる．その双対${\mathfrak{m}_x/{\mathfrak{m}_x}^2}^{\vee}=
+\mathrm{Hom}(\mathfrak{m}_x/{\mathfrak{m}_x}^2,k(x))$を\bf{Zariski tangent space}という
+\end{dfn}
+  ================TBD=====================
+
+\subsection{Flat morphisms and smoot morphism}
+\label{sub:Flat morphisms and smoot morphism}
+
+\subsubsection{Flat morphism}
+\label{subs:Flat morphism}
+
+\subsubsection{Etale morphisms}
+\label{subs:Etale morphisms}
+
+\subsubsection{Smoot morphism}
+\label{subs:Smoot morphism}
+\begin{dfn}
+ $X$を体$k$上の代数多様体とし，$\bar{k} $を $k$の代数閉体とする．
+ $X$が$x \in X$で\bf{smooth}とは， $x$の上にある $X_{\bar{k}}$の点が正則なら・・・・？？？？
+\end{dfn}
+
+\end{document}

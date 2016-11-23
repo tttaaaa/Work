@@ -1,0 +1,749 @@
+%===============
+%一行目に必ず必要
+%文章の形式を定義
+%===============
+\documentclass{ujarticle}
+%===============
+%パッケージの定義、必要か不明
+%===============
+%この下4つを加えることで、mathbbが機能した
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+%可換図式用パッケージ
+\usepackage{amscd}
+\usepackage[all]{xy}
+\usepackage{tikz-cd}
+%リンク用パッケージ
+\usepackage[dvipdfmx]{hyperref}
+%複数行コメント
+%\usepackage{comment}
+
+%タイトルデータ
+\title{Weil予想入門}
+\author{ari}
+\date{2016/9/22}
+
+
+%===============
+%定理環境の設定
+%セクション毎
+%===============
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem{prop}[thm]{Propostion}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corllary}
+\newtheorem{epl}[thm]{Example}
+\newtheorem*{prob}{Problem}
+\newtheorem*{rem}{Remark}
+\newtheorem{prf}{Proof}
+
+\begin{document}
+
+% タイトルを出力
+\maketitle
+% 目次の表示
+\tableofcontents
+
+
+\section{Introduction}
+\label{sec:Introduction}
+
+数論幾何の入門として、楕円曲線の場合のヴェイユ予想について解説する。
+
+今回の講演のMotivationを以下に記す．
+\begin{itemize}
+  \setlength{\parskip}{0cm} % 段落間
+  \setlength{\itemsep}{0cm} % 項目間
+  \item 『代数幾何の枠組み』で『数論の問題を考える』＝『数論幾何』
+  \item s.t氏に数論幾何はいいぞ！と言ってもらうこと。
+  \item 数論幾何が難しすぎて、意味不明!となること
+  \item 事実は一意であっても、証明と解釈は一意でないこと。
+\end{itemize}
+Motivationは標語的なので，内容を説明する。
+数論幾何とは，数論的な問題、例えば多項式の有理数解がどの程度あるのか、
+解の公式があるのかを調べていた。これらはガロア理論により、
+ガロア群を調べることに変更した。
+ガロア群は調べるのか難しく、$\mathbb{Q}$でも最大アーベル拡大の
+場合しかわかっていない。
+そのため、一般のガロア群を調べるために、表現を考える。
+表現を考えるには作用する空間が必要となる。その空間が代数幾何で出てくるもの
+つまり，解全体のなす図形やその図形の不変量，もっと言えば、
+代数多様体から誘導されるエタールコホモロジーである。
+今回はヴェイユ予想をもとに代数幾何的な道具である，
+楕円曲線と，そのTate Moduleに対し，
+TateModuleへの作用を基に解の個数について記述する様を説明していく．
+ヴェイユ予想の病的とまでも感じる美しい結果をみて，
+数論幾何の魅力を感じていただければ幸いである．
+今回の講演はs.t氏が私に依頼したことで生まれた．
+そのため，s.t.氏が満足することが私の目標である．
+講演では，時間の許す限り，説明をしたが，群環体の知識，
+および，最低限の代数幾何の知識を知っていることを仮定した．
+そのため，大学院に入学できるレベルの高度な数学力が要求する話とした．
+具体的な議論をするにはそれでも時間が足りなかった．
+これは，数論幾何は(もしかしたら数学は)
+多くの複雑な道具が出現し，理解するためには
+いくつものハードルをじっくり消化してはじめて，理解できることを意味している．
+そのため、中途半端に分かった気になるぐらいなら、
+わけがわからないと思ってくれてもいいと考えている。
+講演としてはなるべく、わかるように説明するつもりであるが、
+この内容からヴェイユ予想を一般のsmooth projective Variety
+に拡張するのは容易ではない。
+また，ヴェイユ予想は今回のように楕円曲線に限れば具体的に証明できる．
+一般の場合も$l$-adicなコホモロジーや$p$-adicな方法など，複数の方法がある．
+問題は一つであっても，その解釈や証明は一通りでなく，
+それ次第でできる数学が異なることに触れておく．
+別の証明については，講演では一言も触れなかったが，余力があれば，説明したい．
+
+さて，楕円曲線のヴェイユ予想であるが，今回は以下の順で説明する。
+\begin{enumerate}
+  \item 代数多様体と代数曲線
+  \item 楕円曲線の定義
+  \item 楕円曲線の性質
+  \item ヴェイユ予想の証明
+\end{enumerate}
+代数多様体と代数曲線については今回は証明しない。
+証明しないのは、ここを大幅に認めると楕円曲線は環論の知識がほとんどいらないこと
+と、時間及び筆者の力量不足である。
+なので、この資料を公開する時は可能な限り証明をつけたい。
+また，定期的に証明をつけて，更新することがある．
+ここでわかってもらいたいことは、Projective Varietyの定義と
+射の定義、および、一次元の特異性とリーマンロッホの定理である。
+リーマンロッホの定理があるので、以降の議論は線形代数敵に説明できる。
+楕円曲線の定義では、代数曲線として楕円曲線を定義し、
+それがPic$(E)$と同型であること、isogenyとisogenyが
+群の準同型となることについて説明する。
+これらは楕円曲線の基本であるので、それらを説明する。
+楕円曲線の性質ではDual Isogeny,Tate Module,Weil Pairing等
+について説明する。
+特に射がSeparableであれは、分岐次数が1になることと
+Tate ModuleへのFrobeniusの作用がdegeeで計算できることは面白い現象だと思う。
+最後にこれらの性質をあつめて、Weil予想を証明する。
+
+
+なお、今回話せなかった基礎的ながロア理論に関する部分、
+また、今後に向けた話も少しは記載する。
+その後，代数体のガロア群を調べることとガロア表現のモチベーションについて話す．
+ガロア表現を作るには⇒幾何的に作る．
+古典的には楕円曲線のTateModule
+
+今回は具体的に楕円曲線の性質を調べ，TateModuleにかかるFrobeniusの作用の仕方から
+ヴェイユ予想を導く．
+
+コホモロジー論的なものの見方についてとエタールコホモロジーコホモロジーについて，
+何も触れることができなかったので，機会があれば触れたい．
+
+TBD.
+頑張ってWeil Conjectureと自分に関する理解を説明する．
+
+目標としては，etale CohomologyによるRationalityの証明と
+Dworkによる証明までやりたい．
+
+最後にAppendixとしてガロア理論やガロア群に関する
+数論のモチベーションについて記載した．
+ガロア理論はよく知らない人は参考にせよ．
+
+
+
+代数幾何と楕円曲線(具体例)
+\begin{itemize}
+  \setlength{\parskip}{0cm} % 段落間
+  \setlength{\itemsep}{0cm} % 項目間
+  \item 代数多様体の定義
+  \item 代数曲線とリーマンロッホの定理
+  \item 楕円曲線の定義とその性質
+\end{itemize}
+
+ヴェイユ予想の定式化と楕円曲線の場合の証明
+\begin{itemize}
+  \item ヴェイユ予想の定式化
+  \item 楕円曲線の場合の証明
+\end{itemize}
+
+ヴェイユ予想のお話
+\begin{itemize}
+  \item ヴェイユコホモロジーと其の実現としてのエタールコホモロジー
+  \item Trace Formulaによる有理点の証明
+\end{itemize}
+
+スキームとエタールコホモロジーの定義
+\begin{itemize}
+  \item ヒルベルトの零点定理と代数多様体
+  \item スキームの定義
+  \item etale射の定義
+  \item etale cohomologyの定義
+\end{itemize}
+
+p進表現のお話
+\begin{itemize}
+  \item p進解析によるヴェイユ予想の有理性の証明
+  \item p進表現とp進周期環
+\end{itemize}
+
+
+\section{代数多様体とスキーム}
+\label{sec:代数多様体とスキーム}
+
+\subsection{代数多様体の定義}
+\label{sub:代数多様体の定義}
+幾何学においては調べる対象である図形を定める．
+代数幾何で扱う図形は主に代数多様体と呼ばれるものである．そのため，
+代数多様体を一般的に定義する．
+以降では，$K$を完全体とし，$\bar{K}$を$K$の代数閉包，
+$\mathrm{Gal}_{\bar{K}/K}$を絶対ガロア群とする．
+\begin{dfn}
+$V$がアフィン代数多様体とは以下を満たすことである．
+\begin{enumerate}
+  \item $V \subset \bar{K}^n$
+  \item $\bar{K}[X_1,\dots,X_n]$のある素イデアル$I$が存在し，
+           $V = \{ (x_1, \dots,X_n) \} \subset K^n|
+           \mbox{任意の} f \in I \mbox{に対し}f(x_1,\dots,x_n)=0)$
+\end{enumerate}
+\end{dfn}
+\begin{dfn}
+  $V$が$K$上定義されているとは，$I$の生成元$f_1,\dots,f_n$として，
+  $K$係数の多項式がとれること
+  また，$K$有理点$V(K)$を$V \cap K^n$で定める．
+\end{dfn}
+
+一般に$I$に対し，
+$V_I:=\{ (x_1,\dots,x_n)  \subset \bar{K}^n |
+\mbox{任意の}f \in I \mbox{に対し} f(x_1,\dots,x_n)=0$ \}
+と定める．また，$V \subset \bar{K}^n$に対し，
+$I_V:=\{ f \in \bar{K}[X_1,\dots,X_n] | \mbox{任意の}V
+\mbox{の元}(x_1.\dots,x_n)\mbox{に対し}f(x_1,\dots,x_n)=0 \} $
+これは一般には可逆な操作ではない．そして，一般的には
+$I_{V_I}=\sqrt{I}$となる．
+
+幾何学なので，これに位相を定めたい．****あとで書く．
+
+\begin{dfn}
+  $V$の次元を以下で定める。
+  \begin{equation*}
+    \mathrm{dim}V:=trans.deg_{\bar{K}}\bar{K(V)}
+  \end{equation*}
+\end{dfn}
+
+\begin{dfn}
+ $V$が$P$でなめらかとは、$P \in V$に対し
+ 微分の行列$(\frac{\nabla f_i(P)}{\nabla x_j})_{ij}$のrankが
+ $n- \mathrm{dim} V$と一致すること。
+\end{dfn}
+
+\begin{dfn}
+$V$がProjetive Varietyとは
+\begin{enumerate}
+  \item $V \subset \mathbb{P}^n(\bar{K})$
+  \item $\bar{K}[X_0,\dots,X_n]$のあるhomogeneousな素イデアル
+           $I$が存在し，$V = \{ [(x_0,x_1, \dots,X_n)] \} \subset
+           \mathbb{P}^n(\bar{K}) | \mbox{任意の}f \in I
+           \mbox{に対し}f(x_1,\dots,x_n)=0)$
+\end{enumerate}
+\end{dfn}
+\begin{prop}
+ $V \subset K^n$ = 0 or $\bar{V \subset K^n} = V$
+\end{prop}
+
+局所的にアフィンなので，次元や滑らかなども定義できる．
+
+\begin{dfn}
+  $ \phi V_1 \to V_2$がrational mapとは，
+  $f_0,\dots,f_n \in \bar{K}(V_1)$であって，
+  任意の点$P \in V$で値が定義されるものであり，$[f_0(P), \dots , f_n(P)] \in
+  V$と定義される
+\end{dfn}
+
+\section{代数曲線とリーマン・ロッホの定理}
+\label{sec:代数曲線とリーマン・ロッホの定理}
+
+代数曲線を定義し，代数曲線でよく使われる，リーマン・ロッホの定理を紹介する．
+\begin{dfn}
+  代数曲線とは1次元射影代数多様体をさす．
+\end{dfn}
+
+代数曲線の性質をAEC2章にもとづきいくつか記載する．
+特に証明はしない予定．
+
+\begin{prop}
+ $C$をcurve,$P \in C$がsmoothとする．この時, $\bar{K}[C]_P$はDVRとなる．
+\end{prop}
+ネーターローカル一次元かつ，$M_P/M_P^2$が一元生成されるので，言える．
+
+\begin{dfn}
+ $C$を曲線とする．$P \in C$をsmoothな点とする．$\bar{K}[C]_P$には以下で正規付値
+ を与えられる．
+ \begin{eqnarray*}
+  \mathrm{ord}_P:\bar{K}[C]_P \to \{0,1,\dots \} \subset {\infty}
+ \end{eqnarray*}
+ 商体にも自然に拡張できる．
+ $M_P$の生成元をuniformizerという．
+\end{dfn}
+
+\begin{rem}
+ $P \in C(K)$なら，$K(C)$は$P$での$K(C)$のuniformizerを持つ．
+\end{rem}
+
+\begin{dfn}
+   $f \in \bar{K}(C)$に対し$\mathrm{ord}_P(f) < 0$なら$f$は$P$で
+   poleを持つという.
+   また，$ \mathrm{ord}_P(f) \ge 0$なら$f$は$P$でregularという．
+\end{dfn}
+
+\begin{prop}
+ $C$をなめらかな曲線とし，$f \in \bar{K}(C)$で$f \neq 0$とする．
+ $C$がpole or zeroとなる点はたかだか有限個である．
+ もし，$f$がpoleを一つも持たない場合$f \in \bar{K}$となる．
+\end{prop}
+
+\begin{epl}
+ $C$を代数曲線とし，$V \subset \mathbb{P}^n$ mapを定める．
+これは一対一対応であり．$K(C)$となっていない
+
+**これは後で直す**
+\end{epl}
+
+\begin{prop}
+ $C_1,C_2$を1次元代数多様体とする．
+ morphism$f:C_1 \to C_2$は定数写像か全射になる．
+\end{prop}
+
+
+\subsection{Divisor}
+\label{sub:Divisor}
+
+\subsection{微分加群}
+\label{sub:微分加群}
+微分加群の一般論を概観する．
+$A$を環，$M$をA加群とする．$A$から$M$への導分
+
+\begin{dfn}
+ $C$を曲線とする．$C$上の微分形式のなす空間$\Omega_{C}$とは，
+ $x \in \bar{K}(C)$で生成する
+ $\bar{K}(C)$ベクトル空間を以下の関係で割ったものである．
+ \begin{enumerate}
+   \item $d(x + y)= dx+dy$
+   \item $d(xy)= ydx + xdy$
+  　\item $da = 0  (a \in \bar{K})$
+ \end{enumerate}
+\end{dfn}
+
+$\phi :C_1 \to C_2$を曲線の非定数写像とする．
+これに対し，$\phi^* : K(C_2) \to K(C_1)$が定まり，
+そこから，$\phi^*: \Omega_{C_2} \to \Omega_{C_1}$が誘導される．
+
+\begin{prop}
+ $C$を代数曲線とする.
+ \begin{enumerate}
+   \item $\Omega_{C}$は$\bar{K}_C$の1次元ベクトル空間となる．
+   \item $x \in \bar{K}_C$に対し，$dx$が$\Omega_C$上基底であることと，
+   $\bar{K}(C)$が$\bar{K}(x)$の有限次分離拡大であることは同値.
+   \item $\phi:C_1 \to C_2$が非定数写像だとすると$\phi$がseparable
+   と$\Omega_{C_2} \to \Omega_{C_1}$が単射は同値．
+ \end{enumerate}
+\end{prop}
+
+\begin{dfn}
+ $\omega \in \Omega_C$に対し，$\omega$に付随するdivisorを
+ \begin{equation*}
+  \mathrm{div}(\omega)=\sum_{P \in C}\mathrm{ord}_P(\omega)(P)
+ \end{equation*}
+ と書く．
+\end{dfn}
+$\Omega_C$は$\bar{K}(C)$上一次元なので，任意の$\omega$
+に付随するdivisorは同値となる．
+\subsection{リーマン・ロッホの定理}
+\label{sub:リーマン・ロッホの定理}
+
+リーマン・ロッホの定
+**ここはちゃんと主張を述べる．ただし証明はしないかもしれない．
+\begin{thm}
+
+\end{thm}
+
+
+\section{楕円曲線の定義}
+\label{sub:楕円曲線}
+楕円曲線を代数多様体として定義する．
+その後,具体的に代数多様体の性質をみる．
+\subsubsection{楕円曲線の定義}
+\label{subs:楕円曲線の定義}
+
+
+\begin{dfn}
+$(E,O)$が楕円曲線とは，$E$がgenus 1の1次元非特異代数多様体であり，
+$O \in E$となるもののことである．
+$E$が $ K $上定義されるとは，$E$が $K$上定義され，$O \in E(K)$となることである．
+\end{dfn}
+
+この定義がワイエルシュトラスの多項式の曲面と
+一致することをリーマンロッホを使い示す．
+
+
+
+\begin{prop}
+ Let $ E $ be an elliptic curve defined over $K$.
+ \begin{enumerate}
+  \item $ x,y \in K(E) $でを写像
+    \begin{equation*}
+      \phi : E \to \mathbb{P}^2, \phi=[x,y,1]
+    \end{equation*}
+    が$E/K$上で，以下のワイエルシュトラス方程式で与えられる曲線との同型を定める．
+    \begin{equation*}
+      C: Y^2 + a_1XY + a_3Y = X^3 + a_2 X^2 + a_4X +a_6
+    \end{equation*}
+    ただし， $a_1,\dots,a_6 \in K$で$ \phi(O) \in [0,1,0]$
+    $x,y$は楕円曲線$E$のワイエルシュトラス座標と呼ばれる．
+  \item うえで定めた$E$に対する，2つのワイエルシュトラス方程式は変数を以下のよう
+  に変形することで得られる．
+    \begin{equation*}
+      X = u^2 X' + r, Y = u^3Y + su^2 + t,
+    \end{equation*}
+    ただし，$u \in K^{\times} ,r,s,t \in K $
+  \item 逆に，任意のワイエルシュトラス方程式で与えられたsmoothな曲線は$K$
+  上$O=[0,1,0]$を起点とする楕円曲線を定める．
+ \end{enumerate}
+\end{prop}
+\begin{proof}
+  \begin{enumerate}
+    \item $\mathcal{L}(n(O))$にリーマン・ロッホの定理を種数1で適用することで，
+    \begin{equation*}
+      l(n(O)) = \mathrm{dim} \mathcal{L}(n(O)) = n
+    \end{equation*}
+    となる．これより，$x,y \in K(E)$を,$\{ 1,x\},\{1,x,y\}$がそれぞれ，
+    $\mathrm{dim}\mathcal{L}(2(O)),\mathrm{dim}\mathcal{L}(3(O))$の
+    生成元とする．
+    $n=1$の場合のリーマン・ロッホの定理より$l((O))=1$となるので,
+    $x$は$O$で位数2の極を持ち，
+    $y$は$O$で位数3の極を持つ．
+    $\mathcal{L}(6(O))$は次元6のため，
+    \begin{equation*}
+      1,x,y,x^2,xy,y^2,x^3
+    \end{equation*}
+    は以下の関係を満たす．
+    \begin{equation*}
+      A_1 + A_2x + A_3y + \dots + A_7x^3=0
+    \end{equation*}
+    これは，$A_i$を$K$の元として取れる．また，$A_6,A_7$の積は0とならない．
+    これが0になると，極の位数の議論から，全ての$A_i$が0となるためである．
+    題意の方程式を得るため，$A_6,A_7$の係数をうまく掛け合わせて，
+    $y^2,x^3$の1次の項を1としたい．
+    そのため，$x$を$A_6A_7x$,$y$を$-A_6A_7^2y$にそれぞれ，置換し，
+    $A_6^3A_7^4$で割ればよい．
+    これにより求めるワイエルシュトラス方程式が得られる．
+    \begin{equation*}
+     \phi: E \to \mathbb{P}^2, \phi = [x,y,1]
+    \end{equation*}
+    はrational mapを定め，像はワイエルシュトラス方程式で定められた
+    曲線$C$内になる.すなわち，$\mathrm{Im}(\phi) \subset C$となる．
+    この2つが同型であることを，$C_1,C_2$がsmooth curveで$\phi C_1 \to C_2$が
+    次数1のmorphismとなっていることを示す．
+    $E$がnonsingularなので，rational map$\phi$はmorphismになる.
+    また，代数曲線の間のmorphismは定数写像か全射のどちらかであり，$\phi$は$O$で
+    は極になり，他は極にならないため，定数写像でないい．
+    よって，全射になる．
+    $\phi$が次数1であることを示す．
+    $[x,1]:E \to \mathbb{P^1}$を考えると，$x$は$O$で位数2の極となり，
+    他の点では極となっていない．
+    そのため$\mathrm{deg}\phi=2$となる，同様に$[y,1]$は次数3となる．
+    定義から，
+    $[K(E),K(x)]=2,[K(E):K(y)]=3$より，$[K(E):K(x,y)]=1$となる．
+    $C$がsmoothであることを示す．$C$がある点$P$でsingularだとすると．AEC III1.6
+    より$\psi:E \to \mathbb{P}^1$で次数1となる$\psi$が存在する．
+    すると，$\psi \circ \phi:E \to \mathbb{P}^1$は次数1のmapとなり
+    ，$E,\mathbb{P}^1$となり，はsmoothなので，Cor2.4.1よりisomorphismとなる．
+    これは種数1の曲線と種数0の曲線が同型となること意味するため，矛盾する．．よっ
+    て$C$はsmoothとなることがわかる．これより$E$と$C$が同型であることがわかった．
+    \item $\{x,y \},\{x' , y' \}$が$E$のワイエルシュトラス座標系とする．
+    ．この時，基底の定義から，$x = u_1x' +r ,y = u_2y' + s_2x' +t$と表せる
+    ．$u_1,u_2 \in K^{\times}$
+    ワイエルシュトラス多項式となること$x',y'$の係数は一致する．つまり，
+    $u_1^3=u_2^2$となる．よって，$u=u_2/u_1,s=s_2/u^2$とすることにより，
+    求める関係式は得られる．
+    \item 一旦保留する．
+  \end{enumerate}
+\end{proof}
+
+ワイエルシュトラス多項式で定義された方程式について一度概観する．
+以降は計算簡略化のため$\mathrm{Char}K \neq 2,3$とする．
+極を$[0,1,0]$とし，非斉次化して，
+$ y^2 + a_1xy + a_3 y= x^3 + a2x^2 + a_4x + a_6$を考える．
+
+\subsubsection{楕円曲線の性質}
+\label{subs:楕円曲線の性質}
+
+- j-invariant
+- differential
+
+
+\subsubsection{楕円曲線の写像}
+\label{subs:isogeny}
+- isogeny
+- dual isogeny
+- Endmorphism
+
+Isogenyについて定義する．
+\begin{dfn}
+ $E_1,E_2$を楕円曲線とする．$\phi: E_1 \to E_2$がIsogneyとは
+ $\phi$が代数曲線の間のmorphismになっており，$\phi(O)=O$となること．
+\end{dfn}
+$E_1$と$E_2$がisogeniousとは$E_1 \to E_2$へのconstでないisogenyが
+存在すること．
+
+deg等もmorphismの場合と同様に定義できる．
+また，deg$[0]=0$と定める．
+
+$\mathrm{Hom}(E_1,E_2)$でisogeny全体の集合を表す．
+これはアーベル群になっている．
+
+\begin{prop}
+  \begin{enumerate}
+    \item $E/K$を楕円曲線とする．
+ \begin{equation*}
+   [m]:E \to E
+ \end{equation*}
+ はnonconstantなisogenyになる．
+    \item $E_1,E_2$を楕円曲線とする．$\mathrm{Hom}(E_1,E_2$は
+    torsion free $\mathbb{Z}$加群となる．
+  \end{enumerate}
+\end{prop}
+上記は群の行き先を具体的に計算するぐらいしか見つからなかった．
+他にいい方法があれば証明を記述する．
+
+\begin{dfn}
+ $E$を楕円曲線とする．m-torsion 群を$E[m]$，tosion全体のなす群を
+ $E_{tor}$と書く．
+\end{dfn}
+
+Isogenyの構成例
+
+$E/K$を楕円曲線,$P \in E$とする．
+\begin{equation*}
+  \tau_Q : E \to E ,P \mapsto P+Q
+\end{equation*}
+は楕円曲線の間の代数曲線としてのisomorphismを定める．
+任意のmorphism$\phi:E_1 \to E_2$に対し，$\tau_{-\phi(O)}\circ \phi$
+はisogenyになる．
+\begin{prop}
+ $\phi:E_1 \to E_2$を楕円曲線の間のisogenyとする．
+\end{prop}
+この時，$phi(P +Q)=\phi(P) + \phi(Q)$となる．
+
+Isogenyの性質と$E \simeq \mathrm{Pic}(E)$より，自然に導かれる．
+
+\begin{cor}
+$\phi$をnon-zeroのisogenyとする．この時
+  $\mathrm{Ker}(\phi)$は有限群となる．
+\end{cor}
+この辺証明雑です．
+
+\section{楕円曲線の性質}
+\label{subs:楕円曲線の性質}
+
+\subsection{Invariant Differential}
+\label{sub:Invariant Differential}
+
+$E$を$y^2 + a_1xy + a_3 y = x^3 + a_2 x^2 + a_4 x + a_6$を楕円曲線とする．
+AEC III1.5等に記載があるように
+\begin{equation*}
+  \omega = \frac{dx}{2y+a_1x +a_3} \in \Omega_E
+\end{equation*}
+が零点も極も存在しない。
+
+\begin{prop}
+ $Q \in E$とし、$\tau_Q$を$Q$平行移動する射とする。このとき
+ \begin{equation*}
+   \tau_Q^{*}\omega =\omega
+ \end{equation*}
+\end{prop}
+
+Dual Isogenyを定義する。
+\begin{prop}
+ $\phi:E_1 \to E_2$が次数$m$のnon constantなisogenyとする。
+ このとき、
+ \begin{enumerate}
+   \item isogeny$\hat{\phi}:E_2 \to E_1$で$\hat{\phi} \circ \phi= [m]$
+   となるものがただ一つ存在する。
+   \item $\hat{\phi}$は以下の合成と等しい
+   \begin{eqnarray*}
+    E_2 \to \mathrm{Div}E_2 \xrightarrow{\phi^*} \mathrm{Div}E_1 \to E_1 \\
+    P \mapsto (P) - (O)                         \sum n_P(P) \to \sum[n_P]P
+   \end{eqnarray*}
+ \end{enumerate}
+\end{prop}
+\begin{proof}
+\begin{enumerate}
+  \item 一意性を示す。
+  $\hat{\phi}\circ \phi - \hat{\phi'} \circ \phi = [0]$とする。
+  $\phi$はnonconstより全射となる、そのため、$\hat{\phi} = \hat{\phi'}$となる。
+  $\phi$がseparableの場合かFrobeniusの場合に示せばよい。
+  \begin{description}
+    \item[$\phi$がseparable] 準同型定理もどきから示せる。
+    \item[$\phi$がFrobenius] $p$乗の場合に示せば、その合成から示せる。
+    \begin{equation*}
+      [p]^{*} \omega = p \omega = 0
+    \end{equation*}
+    となり、分離的でない、そのため分離的でない部分についてはFrobeniusを使って
+    分解できるので、言えた。
+  \end{description}
+  \item 計算するとできる。本当は計算を書くべきだが、頭に入らない。
+\end{enumerate}
+\end{proof}
+\begin{dfn}
+ 上の条件を満たす$\hat{\phi}$をdual isogenyという。
+\end{dfn}
+
+- Tate Module
+- Weil Pairing
+
+
+\section{ヴェイユ予想の定式化と楕円曲線の場合の証明}
+\label{sec:ヴェイユ予想の定式化と楕円曲線の場合の証明}
+ヴェイユ予想を定式化し，楕円曲線の場合に示す．
+\subsection{ヴェイユ予想の定式化}
+\label{subs:ヴェイユ予想の定式化}
+まず，ヴェイユ予想を述べ，そこで出てくる用語について整理する．
+\begin{thm}
+  $V$を位数$q$の有限体$\mathbb{F}_q$上定義された$d$次元非特異代数多様体とする．
+  この時以下が成り立つ．
+  \begin{description}
+    \item[Rationality]  ~\\
+    ゼータ関数$Z(V/\mathbb{F}_q;T)$は
+    $\mathbb{Q}(T)$の元となる．
+    \item[Functional equation] ~\\
+    あるオイラー標数$ \epsilon \in \mathbb{Z}$が存在し，
+    \begin{equation*}
+      Z(V/\mathbb{F}_q;\frac{1}{q^dT})=\pm
+      q^{d \epsilon/2}Z(V/\mathbb{F}_q;T)
+    \end{equation*}
+    \item[Riemann Hypothesis] ~\\
+    ゼータ関数は
+    \begin{equation*}
+     Z(V/\mathbb{F}_q;T)=
+     \frac{P_1(T)\dots P_{2d-1}(T)}{P_0(T)\dots P_{2N}(T)}
+    \end{equation*}
+    とかけ，任意の$P_i(T)$は$\mathbb{Z}$係数多項式となる．さらにこれを
+    $ \mathbb{C} $上分解すると
+    \begin{equation*}
+     P_i(T)= \prod_{j=1}^{b_i}(1-\alpha_{ij}T) \mbox{with }
+      |\alpha_{ij}|=q^{i/2}.
+    \end{equation*}
+    \item[Betti Number] ~\\
+    $V$が代数体$K$上定義された非特異代数多様体$X$の$\mathfrak{p}$を法とする還元
+    で得られるならば，任意の体の埋め込み$K \to \mathbb{C}$
+    に対し，$X(\mathbb{C})$は複素多様体となる．
+    その特異コホモロジー$H^i(X(\mathbb{C}),\mathbb{Q})$が定義される．
+    その次元(Betti数)は多項式$P_i(T)$の次数と等しい．
+  \end{description}
+\end{thm}
+話すこと
+- ゼータ関数の定義
+ゼータ関数$Z(V/\mathbb{F}_q;T)$を定義する．
+べき級数の間の写像として，exponentialを定義する．
+\begin{eqnarray*}
+  \mathrm{exp}: \{F \in \mathbb{Q}[[T]] | F(0) = 0 \} & \to &
+  \mathbb{Q}[[T]] \\
+  \sum_{k=1}^{\infty}a_kT^k  & \to &
+  \sum_{n=0}^{\infty}\frac{{(\sum_{k=1}^{\infty}a_kT^k) }^n}{n!}
+\end{eqnarray*}
+像の各次数ごとに項を数えるとたかたが有限なのでwelldefined.
+また，定数項が1となることに注意．
+\begin{eqnarray*}
+  \mathrm{log(1 + )}: \{F \in \mathbb{Q}[[T]] | F(0) = 0 \} & \to
+  &\mathbb{Q}[[T]] \\
+  \sum_{k=1}^{\infty}a_kT^k  & \to &
+  \sum_{n=1}^{\infty}\frac{{(-1^n)(\sum_{k=1}^{\infty}a_kT^k) }^n}{n}
+\end{eqnarray*}
+とする．同様にこれもwelldefined.この時，$ \mathrm{exp} \circ
+\mathrm{log}=\mathrm{log} \circ \mathrm{exp} = id$となる．
+$ \# V(F_{q^n})$を有理点の位数とする．
+\begin{dfn}
+  ゼータ関数$Z(V/\mathbb{F}_q;T)$を以下で定義する．
+  \begin{equation*}
+   Z(V/\mathbb{F}_q;T)=
+   \mathrm{exp}(\sum_{n=1}^{\infty}\#V(\mathbb{F}_{q^n}) ) \frac{T^n}{n})
+  \end{equation*}
+\end{dfn}
+
+- 代数多様体の定義(古典的版，スキーム版)　\\
+- 代数多様体の還元 \\
+- C上の代数多様体が複素多様体になること
+- 特異コホモロジー.
+Betti数が次元でEuler標数はその交代和，つまり$\sum_{i=0}^{2d}(-1)^i
+\mathrm{dim}_{\mathbb{Q}}H^i{X(\mathbb{C}),\mathbb{Q}}$となる．
+
+\subsection{楕円曲線の場合の証明}
+\label{sub:楕円曲線の場合の証明}
+楕円曲線$E$の場合にWeil予想を示す．AECに沿って示すので，コホモロジーの部分は特に触
+れない．
+
+\begin{epl}
+ $V$として，$\mathbb{P}^N$を取る．この時，
+ \begin{equation*}
+  \# \mathbb{P}^N(\mathbb{F}_{q^n})=\frac{q^{n(N+1)}-1}{q^n-1}=
+  \sum_{i=0}^Nq^{ni}
+ \end{equation*}
+ となる．この時，
+ \begin{equation*}
+  \mathrm{log}Z(\mathbb{P}^n/\mathbb{F}_q;T)= \sum_{n=1}^{\infty}
+  (\sum_{i=0}^Nq^{ni})\frac{T^n}{n} = \sum_{i=0}^N-log(1-q^iT).
+\end{equation*}
+  となる．これより
+\begin{equation*}
+  Z(\mathbb{P}^n/\mathbb{F}_q;T)= \frac{1}{(1-T)(1-qT)\dots(1-q^nT)}
+\end{equation*}
+となる．
+\end{epl}
+標数$p$の有限体の場合の楕円曲線での性質を調べる
+
+$l$を$p$と異なる整数とする．
+\begin{equation*}
+ \mathrm{End}(E) \to \mathrm{End}(T_l(E)), \phi \to \phi_l
+\end{equation*}
+が定まる．
+
+$det(\phi_l),tr(\phi_l)$を定義できる．
+
+\begin{prop}
+  $\phi \in \mathrm{End}(E)$とする．この時，
+  \begin{equation*}
+   \mathrm{det}(\phi_l)=\mathrm{deg}(\phi) ,  \mathrm{tr}(\phi_l) = 1 +
+   \mathrm{deg}(\phi) - \mathrm{deg}(1 - \phi).
+  \end{equation*}
+  となる．特に，$det(\phi_l),tr(\phi_l)$は$l$の取り方によらない．
+\end{prop}
+
+
+これを使って$\#E(\mathbb{F}_q^n)$を計算しよう．
+\begin{thm}
+ $E/\mathbb{F}_q$を楕円曲線とする，
+ \begin{equation*}
+  \phi E: \to E, (x,y) \to (x^q,y^q)
+ \end{equation*}
+ を$q$上Frobeniusとし，$a = q+1 -E(\mathbb{F}_q)$とする．
+ \begin{enumerate}
+   \item $\alpha,\beta \in \mathbb{C}$を$T^2 -aT +q$の２つの根とする．
+   この時，$\alpha$と$\beta$は複素共役で，$| \alpha | =|\beta| = \sqrt{q}$と
+   なる．また．$n ge 1$のとき，
+   \begin{equation*}
+    \#E(\mathbb{F})_{q^n}=q^n +1 -\alpha^n -\beta^n
+   \end{equation*}
+   \item Frobenius $\phi$は以下を満たす．
+   \begin{equation*}
+    \phi^2 -a\phi +q =0
+   \end{equation*}
+ \end{enumerate}
+\end{thm}
+
+\begin{proof}
+$a \in \bar{\mathbb{F}_q}$とすると$a^q=a$は$a \in \mathbb{F}_q$
+と同値になるので$E(\mathbb{F}_{q})=\mathrm{Ker}(1 - \phi)=\mathrm{deg}
+(1 - \phi)$となる．
+一番最後よくわからない？
+\end{proof}
+
+
+
+
+\end{document}

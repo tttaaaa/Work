@@ -1,0 +1,90 @@
+%===============
+%一行目に必ず必要
+%文章の形式を定義
+%===============
+\documentclass{ujarticle}
+%===============
+%パッケージの定義、必要か不明
+%===============
+%この下4つを加えることで、mathbbが機能した
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+%可換図式用パッケージ
+\usepackage{amscd}
+\usepackage[all]{xy}
+\usepackage{tikz-cd}
+%リンク用パッケージ
+\usepackage[dvipdfmx]{hyperref}
+%複数行コメント
+%\usepackage{comment}
+
+%タイトルデータ
+\title{Dimension}
+\author{ari}
+\date{2016/10/21}
+
+
+%===============
+%定理環境の設定
+%セクション毎
+%===============
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem{prop}[thm]{Propostion}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corllary}
+\newtheorem{epl}[thm]{Example}
+\newtheorem*{prob}{Problem}
+\newtheorem*{rem}{Remark}
+\newtheorem{prf}{Proof}
+
+\begin{document}
+
+% タイトルを出力
+\maketitle
+% 目次の表示
+\tableofcontents
+
+次元の定義をし，代数多様体での次元論を考える
+
+
+\section{空間の次元}
+\label{sec:空間の次元}
+
+$X$を位相空間とする．$X$の次元を定義しよう．そのために必要な用語を定義する．
+\begin{dfn}
+ $X$が既約であるとは,$V_1,V_2$を$X$の閉集合で，$V_1 \cup V_2 =X$となる時，
+ $V_1$か$V_2$が$X$と一致する．
+　$V$が$X$の部分位相で既約となる閉集合であるとき， $V \subset X$が既約閉集合という．
+\end{dfn}
+
+
+$X_1 \subset X_2 \cdots  \subset X_r$を$X$の既約閉部分集合の真の包含列とする.
+この時$r$を列の長さという.
+$X$の次元$\mathrm{dim}X$を$X$の既約閉集合の列の長さの最大値とする．これは有限とは限らない．
+
+\begin{prop}
+ $Y \subset X$となるとき， $\mathrm{dim}Y \le \mathrm{dim}X$となる．
+\end{prop}
+\begin{proof}
+ $V$を$Y$の既約閉集合とする時,$X$の閉包$\bar{V}$は既約閉集合となることを示せばよい．
+ それは，$V_1 \subset V_2 \cdots \subset V_r$を$Y$の既約閉集合の列とすると，
+ その閉包達による列は既約閉集合の列となる．また，閉包が一致している場合，元々も一致するので，これは真の列になる，
+ これより，上の定理が成り立つ．
+ $bar{V}$を既約閉集合となることを示す．$U_1 \cup U_2 \subset \bar{V}$とすると，$U_1 \cap Y$,
+ $U_2 \cap V$は$V$の閉集合となるので，$V$の既約性より，どちらかは$V$に一致する．
+ 仮に$U_1 \cap V =V$とすると，$U_1 \supset V$となり，閉包の定義より，$U_1 =\bar{V}$となる．
+\end{proof}
+
+
+
+\begin{dfn}
+ 環$R$の素イデアルの列$\mathfrak{p}_1 \subset \mathfrak{p}_2 \subset \cdots \subset \mathfrak{p}_r$
+ を素イデアルの列とする．$\mathfrak{p}$から始まる列の長さの最大値をheightという．
+\end{dfn}
+イメージは既約閉集合が閉部分多様体となるように定義している．
+閉部分多様体は恐らく次元が落ちるので…．
+
+\end{document}

@@ -1,0 +1,32 @@
+\contentsline {section}{\numberline {1}Introduction}{1}{section.1}
+\contentsline {section}{\numberline {2}Prepartion of Algebra and Set}{2}{section.2}
+\contentsline {subsection}{\numberline {2.1}環論の基本}{2}{subsection.2.1}
+\contentsline {subsubsection}{\numberline {2.1.1}環の定義と基本的性質}{2}{subsubsection.2.1.1}
+\contentsline {subsubsection}{\numberline {2.1.2}素イデアルと極大イデアル}{2}{subsubsection.2.1.2}
+\contentsline {subsubsection}{\numberline {2.1.3}多項式環とべき級数環}{2}{subsubsection.2.1.3}
+\contentsline {subsection}{\numberline {2.2}体とガロア理論}{2}{subsection.2.2}
+\contentsline {subsubsection}{\numberline {2.2.1}体の定義と代数拡大}{2}{subsubsection.2.2.1}
+\contentsline {subsubsection}{\numberline {2.2.2}体の超越拡大}{3}{subsubsection.2.2.2}
+\contentsline {subsubsection}{\numberline {2.2.3}体の分離拡大}{3}{subsubsection.2.2.3}
+\contentsline {subsubsection}{\numberline {2.2.4}体の正規拡大}{4}{subsubsection.2.2.4}
+\contentsline {subsubsection}{\numberline {2.2.5}ガロア理論}{5}{subsubsection.2.2.5}
+\contentsline {subsubsection}{\numberline {2.2.6}Frobeniusと有限体}{5}{subsubsection.2.2.6}
+\contentsline {subsubsection}{\numberline {2.2.7}TraceとNorm}{5}{subsubsection.2.2.7}
+\contentsline {subsection}{\numberline {2.3}ガロアコホモロジー}{5}{subsection.2.3}
+\contentsline {section}{\numberline {3}Basic Knowledge of p-adic Number}{5}{section.3}
+\contentsline {section}{\numberline {4}離散付値の一般論}{6}{section.4}
+\contentsline {section}{\numberline {5}代数多様体とヴェイユ予想}{6}{section.5}
+\contentsline {section}{\numberline {6}p-adic解析によるヴェイユ予想の証明}{6}{section.6}
+\contentsline {subsection}{\numberline {6.1}A formula for the number of $\mathbb {F}_q$ points on a hypersuface}{6}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}The constructrion of $\Theta $}{7}{subsection.6.2}
+\contentsline {subsection}{\numberline {6.3}Trace of certaion linear maps on rings of formal power series}{9}{subsection.6.3}
+\contentsline {subsection}{\numberline {6.4}The Rationality of the Zeta function}{9}{subsection.6.4}
+\contentsline {section}{\numberline {7}スキームとスキームによる代数多様体の定義}{11}{section.7}
+\contentsline {subsection}{\numberline {7.1}エタール射}{11}{subsection.7.1}
+\contentsline {subsection}{\numberline {7.2}エタール基本群}{11}{subsection.7.2}
+\contentsline {section}{\numberline {8}数論のモチベーション}{12}{section.8}
+\contentsline {subsection}{\numberline {8.1}体とガロア理論}{12}{subsection.8.1}
+\contentsline {subsection}{\numberline {8.2}有限体とその絶対ガロア群}{12}{subsection.8.2}
+\contentsline {section}{\numberline {A}圏論}{13}{appendix.A}
+\contentsline {section}{\numberline {B}類体論}{13}{appendix.B}
+\contentsline {subsection}{\numberline {B.1}類体論の主定理の紹介}{13}{subsection.B.1}

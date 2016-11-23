@@ -1,0 +1,409 @@
+%===============
+%一行目に必ず必要
+%文章の形式を定義
+%===============
+\documentclass{ujarticle}
+%===============
+%パッケージの定義、必要か不明
+%===============
+%この下4つを加えることで、mathbbが機能した
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+%可換図式用パッケージ
+\usepackage{amscd}
+\usepackage[all]{xy}
+\usepackage{tikz-cd}
+%リンク用パッケージ
+\usepackage[dvipdfmx]{hyperref}
+%複数行コメント
+%\usepackage{comment}
+
+%タイトルデータ
+\title{Regular}
+\author{ari}
+\date{2016/11/10}
+
+
+%===============
+%定理環境の設定
+%セクション毎
+%===============
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem{prop}[thm]{Propostion}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corllary}
+\newtheorem{epl}[thm]{Example}
+\newtheorem*{prob}{Problem}
+\newtheorem*{rem}{Remark}
+\newtheorem{prf}{Proof}
+
+\begin{document}
+
+% タイトルを出力
+\maketitle
+% 目次の表示
+\tableofcontents
+
+
+\section{滑らかな曲面}
+\label{sec:Regular}
+滑らか(Regular)を代数多様体やスキームで定義する前に，滑らかを実の場合に復習する．．
+$f:\mathbb{R} \to \mathbb{R}$が滑らかとは，
+$f$が微分可能なことである．
+
+これは$\mathbb{R}$内に滑らか曲線を定義する．
+
+
+  ================TBD=====================
+
+滑らかな曲線，曲面を一般化し，\bf{可微分多様体}が定義される．
+可微分多様体は，$\mathbb{R}^n$の開集合$U_i$を"滑らかに"貼り合わせたものである．
+可微分多様体には各点ごとに，接ベクトル空間が定義される．その点での接線(接ベクトル)全体のなす集合である．
+具体的に接ベクトル空間を定義する．
+座標の取り方によらないように定義するために微分を以下のように定義する．
+
+\begin{dfn}
+多様体$M$の点$p$での接ベクトルとは$p$の近傍から $\mathbb{R}$への滑らかな写像$f$に対し,実数$v_p(f)$を対応させる写像で，以下を満たすものである．
+\begin{enumerate}
+  \item $f,g$が$p$の近傍で一致してる時，$v_p(f)=v_p(g)$となる．
+  \item $v_p(f+g)=v_p(f) +v_p(g)$となる．
+  \item $v_p(fg)=f(p)v_p(g)+v_p(f)g(p)$となる．
+\end{enumerate}
+定義から，接ベクトル全体は$\mathbb{R}$ベクトル空間になる．
+$C^{\infty}$多様体$M$では，局所座標による方向微分のなす空間と一致する．
+
+つまり，$ \frac{ \partial }{ \partial X_1}, \dots , \frac{ \partial }{ \partial X_n}$の生成する$\mathbb{R}$ベクトル空間になる．
+\end{dfn}
+
+上の性質は，"滑らかな空間"では，その接ベクトル空間の次元はもともとの空間の次元に一致していることを意味している．
+また，接ベクトル空間の定義は代数的であるため，代数多様体にも一般化適用しやすい．
+
+
+
+\section{代数多様体におけるRegular}
+\label{sec:代数多様体のRegular}
+代数多様体では，実の場合と違い，解析的な方法ではなく，純代数的に滑らかを定義したい．
+特に，一般のスキームへ拡張するためには純代数的な定義が必須となる．
+
+まず，自然に想像しやすい$\mathrm{Spec}k[X_1,\dots,X_n]$に対象を絞る．
+可微分多様体の定義と同様に，接ベクトル空間を定義する．
+\begin{dfn}
+  $y$での$X_i$方向の微分を，多項式$P$に対し，$\frac{ \partial  P(y)}{ \partial X_i}$とする．
+  方向微分全体のなすベクトル空間
+  \begin{equation*}
+  \{ \left( \frac{\partial P(y)}{ \partial X_i} \right)_{i=1}^n \in k^n \}
+  \end{equation*}
+  を\bf{接ベクトル空間}という．
+\end{dfn}
+\begin{rem}
+ たたの$n$次元のベクトル空間になる．
+\end{rem}
+
+
+上の定義は多項式でないと定義できないものである．
+しかし，我々は一般の環に対しても，微分を定義したい．
+そこで，上と同値になるものを定義していく．
+ただし，代数多様体の場合は接ベクトル空間ではなく，
+余接ベクトル空間をまず定義する．
+それはスキーム$X$に対し，スキームの構造層$O_{X}$への対応が，反変となっているからである．
+実際，可微分多様体の間の射$f:M \to N$に対し，$T_pM \to T_{f(p)}N$が誘導されるので，
+接ベクトル空間は多様体に対し，共変関手となり，逆の対応となっている．
+
+
+そこで，$D_y:k[X_1,\dots,X_n ] \to \mathrm{Hom}_{k}(k^n,k)$を以下で定義する．
+\begin{equation*}
+    D_y(P):(t_1,\dots,t_n) \mapsto \sum_{i=1}^n\frac{ \partial  P(y)}{ \partial X_i}t_i
+\end{equation*}
+これは$D_y(PQ)=P(y)D_y(Q)+D_y(P)Q(y)$を満たす．$D_y$の像全体を余接ベクトル空間という．
+\begin{rem}
+ ベクトル空間としては$n$次元のベクトル空間である．
+\end{rem}
+%これにより$\mathrm{Hom}_{k}(k^n,k)$に積構造が入るとも考えられる．
+
+また，$y=(\lambda_1,\cdots,\lambda_n) \in k^n$に対応する
+極大イデアルとして，$\mathfrak{m}_y=(x_1 -\lambda_1, \dots,x_n -\lambda_n)
+\in \mathrm{Spec}k[X_1, \cdots,X_n]$を取る．
+これは$k[X_1,\dots,X_n]/\mathfrak{m}_y \simeq k$
+となるので，$(x_1 -\lambda_1, \dots,x_n -\lambda_n)$が極大イデアルであり，その剰余体が$k$となることがわかる．
+
+余接ベクトル空間には次の同型が成り立つ．
+
+
+\begin{prop}
+ $D_y|_{\mathfrak{m}_y}$は$\mathfrak{m}_y/{\mathfrak{m}_y}^2 \simeq \mathrm{Hom}_{k}(k^n,k)$を誘導する．
+\end{prop}
+
+\begin{proof}
+ 多項式$P$に対し，$X_i - \lambda_i$を中心に展開する．つまり，$P= a_0 + \sum a_{1i} (X_i -\lambda_i) + \cdots $と書く．定義域を$\mathfrak{m}_y$に制限しているので，$a_0=0$となる．
+ $D_y(P):(t_1,\dots,t_n) \mapsto \sum_{i=1}^n a_{1i}t_i$となる．これより，$P_i=X_i - \lambda_i$に対し，$D_y(P_i):(t_1,\dots,t_n) \mapsto t_i$となる・$D_y(P_i)$たちは$\mathrm{Hom}(k^n,k)$の基底となる．
+ 上が基底なことから，1次の係数のうち0でないものが存在するとき$Dy(P)$は0でない．
+ また，1次の項が全て消えている場合，$D_y(P)$が0になるので，
+ $D_y|\mathfrak{m}_y$は全射であり，カーネルは${\mathfrak{m}_y}^2 $となる．
+\end{proof}
+これで，多項式環のSpecに対し，多項式という形に依存しない余接ベクトル空間が定義できた．
+$\mathfrak{m}_y/{\mathfrak{m}_y}^2$を\bf{Zariski-cotanget space}という．
+また，Zariski-cotangent spaceの双対をZariski tangent spaceという．
+上の定義は任意の環に対して定義できる．
+
+多項式環だけでなく，一般の代数多様体について上の定義が接ベクトル空間らしいものになっていることを確認する．
+記号を定義する．$E$を有限次元$k$ベクトル空間とし，$F$をその部分空間とする．$ E^{\vee}$をその双対空間
+$\mathrm{Hom}(k^n,k)$とする．
+\begin{equation*}
+  F^{\bot}= \{\phi \in E^{\vee}| \phi(v)=0, \forall v \in F \}
+\end{equation*}
+とすると，以下の完全列を得る．
+\begin{equation*}
+ 0 \to F^{\bot} \to  E^{\vee} \to F^{\vee} \to 0
+\end{equation*}
+
+さらに以下が成り立つ．(スキーム的な言い方．)
+\begin{prop}
+ $X=V( \mathfrak{p})$を$Y=\mathbb{A}_k^n$のclosed subvarietyとする．
+ (つまり,$X=\mathrm{Spec}(k[x_1,\dots,x_n]/\mathfrak{p})$)．$x \in X(k)$を$k$-rational pointとし，$f:X \to Y$をclosed immersionとする．
+ (つまり，自然な射$\pi :k[x_1,\dots,x_n] \to k[x_1,\dots,x_n]/\mathfrak{p} $
+ が誘導する，$\mathfrak{q} \mapsto \pi^{-1}(\mathfrak{q}) $で与えられる写像)
+ この時，${\mathfrak{m}_x/{\mathfrak{m}_x}^2}^{\vee}$は以下と同一視される．
+ \begin{equation*}
+  \{ (t_1,\dots,t_n) \in E | \sum  \frac{\partial P(x)}{ \partial x_i} t_i =0, \forall P \in \mathfrak{p} \}
+ \end{equation*}
+\end{prop}
+\begin{proof}
+  以下は完全列となる．
+  \begin{eqnarray*}
+    0 \to \mathfrak{p} \cap \mathfrak{m}^2 \to \mathfrak{m}^2 \to \mathfrak{m}^2/\mathfrak{p} \to 0 \\
+    0 \to     \mathfrak{p}\to \mathfrak{m} \to \mathfrak{m}/\mathfrak{p} \to 0
+  \end{eqnarray*}
+これより，Snake Lemmaで
+\begin{equation*}
+  0 \to     \mathfrak{p}/(\mathfrak{p} \cap \mathfrak{m}^2) \to \mathfrak{m}/\mathfrak{m}^2 \to \mathfrak{m}/\mathfrak{p}/ \mathfrak{m}^2/\mathfrak{p}(= \mathfrak{m}/\mathfrak{m}^2 + \mathfrak{p})  \to 0
+\end{equation*}
+という完全列を得る．これらは全て$k$ベクトル空間なので,$\mathrm{Hom(\cdot,k)}$が反変完全関手となる．これより，$\mathfrak{p}/(\mathfrak{p} \cap \mathfrak{m}^2)$の双対は
+\begin{equation*}
+ \{ (t_1,\dots,t_n) \in E | \sum  \frac{\partial P(x)}{ \partial T_i} t_i =0, \forall P \in \mathfrak{p} \}
+\end{equation*}
+と同一視される．
+\end{proof}
+
+代数多様体においても，余接ベクトル空間らしくなっている．
+ここできちんと言葉を定義しておく．(コメント:どうしても違和感ある．)
+\begin{dfn}
+  $R$を環とする.$\mathrm{Spec}R$の点$\mathfrak{p} \in \mathrm{Spec}R$の
+  Zariski cotangent spaceを$\mathfrak{p}R_{\mathfrak{p}}/\mathfrak{p}^2R_{\mathfrak{p}}$
+  で定める．またZariski tanget spaceをその双対で定め，$T_{\mathrm{Spec}R,\mathfrak{p}}$と書く．
+\end{dfn}
+
+
+ところで，接ベクトル空間を定義したのは『滑らか』を定義するためであった．
+可微分多様体の場合は接ベクトル空間の次元と，元の空間の次元が一致していた．
+代数多様体にどうなっているかを実際に，例を用いて計算する．
+\begin{epl}
+  $\mathrm{Spec}k[x,y]/(x^2 - y^3)$をとる．これの適当な点での接ベクトル空間を求める．
+  $k[x,y]/(x^2 - y^3)$の次元は，超越次数が$2$未満で，かつ$k[x]$を単射に埋め込めるので，1となる．
+  座標$(1,1)$に対応する極大イデアル$(x-1,y-1)$での接ベクトル空間の次元を計算する．
+　\begin{eqnarray*}
+　 x^2 - y^3 -y^2(y-1)  - (x-1)^2 & =  & 2x - 1 +y^2  \\
+  2x - 1 +y^2- (y+1)(y-1) & = & 2(x -1)  \\
+　\end{eqnarray*}
+より，$k[x,y]/(x^2 - y^3)$では，$(x-1,y-1)=(y-1)$となる．$y-1 =0$とはならないので，ベクトル空間として$(x-1,y-1)/(x-1,y-1)^2$は1次元となる．
+原点に対応する極大イデアル$(x,y)$で接ベクトル空間の次元を計算する．
+これは2次元になる．イデアル$(x^2 - y^3 ,y)$で$x$の次数に注目すれば，$x$が生成できないことがわかるので，$y$だけで生成することが出来ず，$x,y$の二元生成になることがわかる．($x$だけでも生成できないことも同様にわかる．)．$(x,y)^2 +(x^2 - y^3)=(x^2.xy.y^2)$となるので，接ベクトル空間の次元は2になる．
+\end{epl}
+
+この例から，特異点では接ベクトル空間の次元があがるのではないかと推測される．
+(元の空間の2つの接ベクトル空間が合成されて，大きなベクトル空間になるイメージだろうか．)
+
+
+それを基に，regularは以下で定義する．
+\begin{dfn}
+ 代数多様体$X$が$x$でregularとは，$\mathrm{dim}_k￥
+ 　\mathfrak{m}_x/{\mathfrak{m}_x}^2=\mathrm{dim}X$となること．
+\end{dfn}
+
+さらに，regularはJabobi行列を用いて，判定することができる．
+
+\begin{thm}[Jacobian criterion]
+  $X=V( \mathfrak{p})$を$Y=\mathbb{A}_k^n$のclosed subvarietyとする．
+  (つまり,$X=\mathrm{Spec}(k[x_1,\dots,x_n]/\mathfrak{p})$)．$x \in X(k)$を$k$-rational pointとし，$f:X \to Y$をclosed immersionとする．
+  (つまり，自然な射$\pi :k[x_1,\dots,x_n] \to k[x_1,\dots,x_n]/\mathfrak{p} $
+  が誘導する，$\mathfrak{q} \mapsto \pi^{-1}(\mathfrak{q}) $で与えられる写像)
+  $F_1,\dots,F_r$を$\mathfrak{p}$の生成系とする．
+  \begin{equation*}
+   J_x=(\frac{\partial F_1(x)}{\partial x_j})
+  \end{equation*}
+  とする．$X$がregularは以下と同値.
+  \begin{equation*}
+   \mathrm{rank}J_x=n- \mathrm{dim}
+    \mathrm{Spec}(k[x_1,\dots,x_n]/\mathfrak{p}).
+  \end{equation*}
+\end{thm}
+
+\begin{proof}
+  接ベクトル空間$T_{X,x}$の次元は前の完全列から，
+  $\mathrm{dim}(D_x \mathfrak{p})^{\bot}=n -
+  \mathrm{dim}D_x \mathfrak{p}$となり，$\mathrm{dim}D_x \mathfrak{p}$
+  は，$J_x$の各列で生成されているので，$\mathrm{dim}D_x \mathfrak{p}=\mathrm{rank} J_x$となる．
+\end{proof}
+
+\section{環のRegular}
+\label{環のRegular}
+
+環についても，上と同じように正則を定義する．ただし，ここで環とは0と1が異なる単位的可換環であり，ネータとする．
+\begin{dfn}
+ $\mathrm{Spec}R$の点$x=\mathfrak{p}$での剰余体
+ $R_{\mathfrak{p}}/\mathfrak{p}R_{\mathfrak{p}}$を$k(x)$と書く．
+ $\mathrm{Spec}R$が点$x$で正則とは，以下が成り立つことである．
+\begin{equation*}
+  \mathrm{dim}_{k(x)}\mathfrak{p}R_{\mathfrak{p}}/\mathfrak{p}^2
+  = \mathrm{dim}R_{\mathfrak{p}}
+\end{equation*}
+逆に局所環$(R,\mathfrak{m})$が上の式が成り立つ時，正則局所環(Regular local ring)という．
+\end{dfn}
+
+なお$\mathrm{Spec}R$については，次元について以下の性質が成り立つ．
+\begin{thm}
+  \begin{equation*}
+    \mathrm{dim}_{k(x)}\mathfrak{p}R_{\mathfrak{p}}/\mathfrak{p}^2
+    \geq \mathrm{dim}R_{\mathfrak{p}}
+  \end{equation*}
+  となり，また，$\mathfrak{p}R_{\mathfrak{p}}$の生成元の個数の最小値は，
+  $R_{\mathfrak{p}}$の次元と一致する．
+\end{thm}
+\begin{proof}
+ 各自の演習問題とすればよい．
+\end{proof}
+
+regular local ringに関する性質をいくつか記載する．
+\begin{prop}
+$(R,\mathfrak{m})$を正則局所環とする．この時，$R$は整域となる．
+\end{prop}
+
+\begin{prop}
+$(R,\mathfrak{m})$を正則局所環とする．この時，$f \in \mathfrak{m}\setminus \{0\}$に対し，
+$R/f$が正則局所環になることは，$f \in \mathfrak{m}^2$と同値．
+\end{prop}
+
+気合があったら，ちゃんと書く．(Liuをのそのままコピペしてきました．)
+Definition 2.14. Let (A,m) be a regular Noetherian local ring of dimension d.
+Any system of generators of m with d elements is called a coordinate system or
+system of parameters for A. If d = 1, a generator of m is also called a uniformizing
+parameter for A.
+
+
+Corollary 2.15. Let (A,m) be a regular Noetherian local ring. Let I be a proper
+ideal of A. Then A/I is regular if and only if I is generated by r elements of a
+coordinate system for A, with r = dimA − dim A/I.
+
+
+Lemma 2.22. Let (A,m) be a Noetherian local ring, and let p be a prime ideal
+of A. Let us suppose that Ap and A/p are regular, and that p is generated by e
+elements, where e = dimAp. Then A is regular.
+
+Definition 2.23. Let X be a locally Noetherian scheme. We denote the set of
+regular points of X by Reg(X) and denote the set of singular points of a scheme
+X by Sing(X) or Xsing.
+Proposition 2.24. Let X be an algebraic variety over an algebraically closed
+field k. Then Reg(X) is an open subset of X. Moreover, if X is normal, then
+codim(Xsing,X) ≥ 2.
+
+Lemma 2.26. Let (A,m) be a Noetherian local ring, and let Aˆ be the m-adic
+completion of A. Then dimAˆ = dimA. Moreover, A is regular if and only if Aˆ
+is regular.
+
+\section{Smooth(etale)}
+\label{Smooth(etale)}
+
+Regularは特に体$k$に制限がなく定義してきた．
+しかし，ヒルベルトの零点定理等があることからもわかるように，
+代数多様体は代数閉体に係数体を変更して考えることが多い．
+そのため，代数閉体上で考えたときには正則になるという状態を定義しておきたい．
+(もしかしたら，$\mathbb{R}$多様体だけでなく，
+複素多様体にもなっているという風に解釈できる?)
+
+$X$を$k$上の代数多様体とする．
+$X \times_{k} \bar{k}$を$X_{\bar{k}}$とかく．
+
+\begin{dfn}
+ Let $X$ be an algebraic variety over a field $k$. Let $k$ be the
+algebraic closure of $k$. We say that $X$ is smooth at $x \in X$ if the points of $X_{\bar{k}}$
+lying above $x$ are regular points of $X_{\bar{k}}$. We say that $X$ is smooth over $k$ if it is
+smooth at all of its points (i.e., $X_{\bar{k}}$ is regular).
+\end{dfn}
+
+smoothとregularの関係を考えると，以下が成り立つ．
+
+\begin{prop}
+  Let $X$ be an algebraic variety over $k$, and let $x \in X$ be
+ a closed point. Let us suppose that $X$ is smooth at $x$; then $X$ is regular at $x$.
+ Moreover, the converse is true if $k(x)$ is separable over $k$.
+\end{prop}
+
+\begin{prop}
+  Let $X$ be an algebraic variety over $k$, and let $x \in X$ be
+ an arbitrary  point. Let us suppose that $X$ is smooth at $x$; then $X$ is regular at $x$.
+\end{prop}
+
+\begin{prop}
+  Let $X$ be an algebraic variety over a perfect field $k$. Then $X$
+  is smooth over $k$ if and only if it is regular.
+\end{prop}
+
+今までは空間が滑らかであることを定めてきた．以降では空間ではなく，空間同士の写像が滑らかであることを定義する．
+
+準備として，ファイバーを定義する．
+\begin{dfn}
+$Y$をスキーム，$y \in Y$での剰余体を$\mathrm{Spec}k(y)$とする．
+$Speck(y) \to Y$と$X \to Y$のファイバー積$X \times_{Y} \mathrm{Spec}k(y)$を
+$y$でのファイバーという
+\end{dfn}
+
+\begin{dfn}
+
+
+ Let $Y$ be a locally Noetherian scheme, and let $f : X → Y$
+be a morphism of finite type. We say that $f$ is smooth at a point $x \in X$ if it is
+flat at $x$, and if $X_y \to \mathrm{Spec} k(y)$ (with $y = f(x)$) is smooth at $x$.
+We say that $f$
+is smooth if it is smooth at every point $x \in X$. Note that it is enough to check
+the smoothness at closed points of fibers $X_y$ over closed points $y \in Y$ (using
+Corollary 2.17 and Exercise 3.2). The set of points $x\in X$ such that $f$ is smooth
+at $x$ is called the smooth locus of $f$.
+\end{dfn}
+
+We say that $f$ is smooth of relative dimension $n$ if it is smooth and
+if all of its non-empty fibers are equidimensional of dimension n.
+
+\begin{dfn}
+  an etale morphism of finite type is smooth of relative dimension 0.
+\end{dfn}
+
+\begin{rem}
+ つまりsmoothは滑らかではあるが，写像で移しあったときに次元が潰れる場合はある．
+ その潰れ方が等質的であるとき，relative dimensionを使ってその等質的に潰れた情報を出す．また，relative dimensionが0であるとき，つまり関数が前後で全く変わらない時をetaleという．
+\end{rem}
+\begin{rem}
+ etaleについて補足しておくと，etaleは上の定義も有名だが．別の定義がある．
+ それはunramifiedかつflatつまり，剰余体の情報と元の情報がほとんど変わらないものである．例えば，$L/K$を局所体同士の拡大で，かつ，unramifiedとする．すると，その整数環同士にある自然な埋め込みから誘導される $\mathrm{Spec}O_L \to \mathrm{Spec}O_K$
+ はetaleとなる．
+\end{rem}
+\begin{rem}
+ 体$L/K$のSpecがetaleと$L/K$が分離であることが同値．
+\end{rem}
+
+\begin{thm}
+
+ Let $Y$ be a regular locally Noetherian scheme, and let $f : X →
+Y$ be a smooth morphism. Then $X$ is regular.
+
+\end{thm}
+
+\begin{prop}
+
+Smooth morphisms are stable under base change, composition,
+and fibered products.
+
+\end{prop}
+
+\end{document}

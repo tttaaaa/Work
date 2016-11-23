@@ -1,0 +1,4 @@
+\contentsline {section}{\numberline {1}滑らかな曲面}{1}{section.1}
+\contentsline {section}{\numberline {2}代数多様体におけるRegular}{2}{section.2}
+\contentsline {section}{\numberline {3}環のRegular}{5}{section.3}
+\contentsline {section}{\numberline {4}Smooth(etale)}{6}{section.4}

@@ -1,0 +1,106 @@
+%===============
+%一行目に必ず必要
+%文章の形式を定義
+%===============
+\documentclass{ujarticle}
+%===============
+%パッケージの定義、必要か不明
+%===============
+%この下4つを加えることで、mathbbが機能した
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+%可換図式用パッケージ
+\usepackage{amscd}
+\usepackage[all]{xy}
+\usepackage{tikz-cd}
+%リンク用パッケージ
+\usepackage[dvipdfmx]{hyperref}
+%複数行コメント
+%\usepackage{comment}
+
+%タイトルデータ
+\title{p進解析入門}
+\author{ari}
+\date{2016/9/22}
+
+
+%===============
+%定理環境の設定
+%セクション毎
+%===============
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem{prop}[thm]{Propostion}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corllary}
+\newtheorem{epl}[thm]{Example}
+\newtheorem*{prob}{Problem}
+\newtheorem*{rem}{Remark}
+\newtheorem{prf}{Proof}
+
+\begin{document}
+
+% タイトルを出力
+\maketitle
+% 目次の表示
+\tableofcontents
+
+
+\section{Introduction}
+\label{sec:Introduction}
+
+$p$進解析入門．$p$進解析について自分の復習も兼ねて，記載する．
+
+\begin{itemize}
+  \item $p$-adic位相の基本的な定義
+  \item $\mathbb{Q}_p$の間の連続写像
+  \item $p$-adic Banah空間の一般論?
+  \item $\mathbb{C}_p$のべき級数における一般論
+\end{itemize}
+
+このあたりを調べて，最終的には以下の4つを理解し直したい．
+\begin{itemize}
+  \item $\mathbb{Z}_p$の間の連続写像の決定(Mahlerの定理)
+  \item 全不連結性より，微分が消えるがconstでない写像の例
+  \item $p$-adic L関数の定義と一意性
+  \item Weil Conjecture
+\end{itemize}
+
+\section{$p$-adic topology}
+\label{sec:$p$-adic topology}
+
+\subsection{$\mathbb{Q}$の完備化}
+\label{sub:\mathbb{Q}の完備化}
+
+***********
+ここは後で埋める．
+***********
+
+\subsection{$\mathbb{Q}_p$の位相的性質}
+\label{sub:$qb}
+
+
+$\mathbb{Q}_p$の位相を定義し、収束やコンパクト性、連結性などの位相空間の基本的な性質を調べる．
+
+\begin{dfn}
+  $\mathbb{Q}_p$は以下により距離空間となる．
+  \begin{equation*}
+    d : \mathbb{Q}_p \times \mathbb{Q}_p \to \mathbb{R}_{\ge 0},d(x,y)=p^{-v_p(x-y)}
+  \end{equation*}
+  これによって定める位相を$p$-adic位相という．
+\end{dfn}
+
+\begin{lem}
+  上の$d$は距離の公理を満たす．確認は容易なので，各自の演習問題とする．
+\end{lem}
+
+\begin{prop}
+ 距離空間$(\mathbb{Q}_p,d)$は完備である．
+\end{prop}
+\begin{proof}
+どうやって計算するんだっけ？
+\end{proof}
+
+\end{document}

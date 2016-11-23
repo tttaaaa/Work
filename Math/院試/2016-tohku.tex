@@ -1,0 +1,166 @@
+%===============
+%一行目に必ず必要
+%文章の形式を定義
+%===============
+\documentclass{ujarticle}
+%===============
+%パッケージの定義、必要か不明
+%===============
+%この下4つを加えることで、mathbbが機能した
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+%可換図式用パッケージ
+\usepackage{amscd}
+\usepackage[all]{xy}
+\usepackage{tikz-cd}
+%リンク用パッケージ
+\usepackage[dvipdfmx]{hyperref}
+%複数行コメント
+%\usepackage{comment}
+
+%タイトルデータ
+\title{Modular Formとその周辺}
+\author{take}
+\date{2016/August}
+
+
+%===============
+%定理環境の設定
+%セクション毎
+%===============
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem{prop}[thm]{Propostion}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{ex}[thm]{Example}
+\newtheorem*{prob}{Problem}
+\newtheorem*{rem}{Remark}
+\newtheorem{prf}{Proof}
+
+\begin{document}
+平成28年度、東北大の数学科の院試を解いてみました。
+東北大は標準的な知識がついているかを確認する問題を出題しており、
+その分野の基礎ができているかを確認する時に参考になります。
+
+今回は3番、ホモロジーの問題を解説します。
+
+以下解答です。
+
+(1)
+$S^n$の$\mathbb{Z}$係数ホモロジー群は一般的な教科書に書かれているので計算はしません。
+値としては以下になります。
+
+\begin{equation*}
+  H_p(S^n ) =
+  \begin{cases}
+    \mathbb{Z} & \text{$p =0,n$のとき}　\\
+    0  & \text{$p  \neq 0,n$のとき}
+  \end{cases}
+\end{equation*}
+なので、答えは
+$p =0,n$となります。
+
+(2)
+$S^2$の定義を何とするか、少し悩ましいですが、ここでは、
+\begin{equation*}
+  S^2 = \{ (x,y,z,w) \in \mathbb{R}^4 |  x^2 + y^2 + z^2 = 4 ,w =0 \}
+\end{equation*}
+とします。
+$S^2$と$A$のホモトピー同値を示すために、まず$f:A \to S^2,g:S^2 \to A$を定義しましょう。
+$f$では$(x,y,z.w) \mapsto  \frac{1}{\sqrt{x^2 + y^2 + z^2}}(x,y,z.w)$
+$g$では$(x,y,z.w) \mapsto  (x,y,z.w)$
+と定めます。
+$f$は任意の点を原点からの距離が2になる部分に移動する写像です。
+像を見ると、穴の空いた球から半径2の球面に縮んでいることがわかります。
+$g$はそのまま$A$に埋め込んだものです。
+合成を計算してみると　\\
+$f \circ g = id_{S^2}$　 \\
+$g \circ f :(x,y,z.w) \mapsto \frac{2}{\sqrt{x^2 + y^2 + z^2}}(x,y,z.w) $ \\
+となります。
+
+ホモトピー同値の定義は
+$g \circ f$が$id_A$、$f \circ  g$が$id_{S^2}$とそれぞれ、ホモトピックであることです。
+$f \circ g = id_{S^2}$なので、こちらは明らかにホモトピックなものが作れます。
+なので、連続写像$F:[0,1] \times A \to A$で、$F(1,x)=g \circ f (x)$,$F(0,x) = id_A(x)$となるものを
+構成できれば、問題の証明になります。
+
+$F(x ,a) =a(x,y,z,w)+(1-a)\frac{2}{\sqrt{x^2 + y^2 + z^2}}(x,y,z,w)$
+としてみましょう。
+$F$が連続で$F(1,x)=g \circ f (x)$,$F(0,x) = id_A(x)$となるので、ホモトピックとなることがわかります。
+
+これで、(2)はいえました。
+
+(3)
+$A \cap B = \{ (x,y,z.w) \in \mathbb{R}^4 |  1 \le x^2 + y^2  \le 9 ,z=w =0 \}$
+となります。
+これは(2)と同じような計算をすることで、$S^1$とホモトピックとなります。
+よって
+
+\begin{equation*}
+  H_p(A \cap B ) =
+  \begin{cases}
+    \mathbb{Z} & \text{$p =0,1$のとき}　\\
+    0  & \text{$p  \neq 0,1$のとき}
+  \end{cases}
+\end{equation*}
+となります。
+
+(4)
+今までの知識を合わせて和集合のホモロジーを計算してみましょう。
+和集合のホモロジーを求めるとなると、まずマイヤーヴィエトリスが思い出されます。
+定理の主張を書いてみましょう。
+
+\begin{thm}{マイヤーヴィエトリス}
+  $A,B \subset X,\mathring{A}　\cap \mathring{B} =X $となるとき以下の完全列が成り立つ。
+  \begin{equation*}
+  \dots \to  H^n(A \cap B) \to H^n(A) \oplus H^n(B) \to H^n(X) \to \dots
+  \end{equation*}
+\end{thm}
+この問題にマイヤーヴィエトリスを適用することを考えましょう。
+しかし、そのままでは、
+$A,B$には適用できません。なぜなら$\mathring{A} \cup \mathring{B}$が$X$より真に小さいからです。
+じゃあ、どうすればいいか考えてみましょう。
+絵をかいてみるとイメージしやすいかもしれませんが、内部は、ただ、境界がなくなっただけです。
+今$Amb$ともに中身がつまっていて、内部をってみて、視覚的には変わらない図形になりそうです。
+ということは、$X$と$\mathring{A} \cup \mathring{B}$は
+ホモトピー同値な気がしますね。
+
+実際に示してみましょう。
+$X$と$\mathring{A} \cup \mathring{B}$のホモトピー同値を示すよりも真ん中を経由したほうが簡単に感じたので、
+以下を示せればよいです。
+\begin{thm}
+$X$と$Z=\{ (x,y,z,w) \in \mathbb{R}^4 |  x^2 + y^2 + z^2 = 4 ,w =0 , x^2 +y^2 + w^2 =4,z=0   \}$
+がホモトピー同値になる。
+\end{thm}
+
+ホモトピー同値なので、(2)と同じく$f,g$を定義しましょう。$A,B$ともになことに注意して
+\begin{eqnarray*}
+  g &=& id_{S^2}　 \\
+  f :(x,y,z.w) &\mapsto& \frac{2}{\sqrt{x^2 + y^2 + z^2 +w^2}}(x,y,z.w)  \\
+\end{eqnarray*}
+とします。
+するとほとんど、(2)と同じ状態になっています、(2)と同様の合成をしてやればホモトピー同値であることがいえます。
+これの何が重要かというと境界をへんに意識しなくてすむことです。
+$Z \subset \mathring{A} \cup \mathring{B} \subset X$となっているため、
+同じ議論を適用してやることで、$Z$と$\mathring{A} \cup \mathring{B} $,$Z$と$X$のホモトピー同値性が言えます。
+ホモトピー同値は推移律を満たすので、このこととマイヤーヴィエトリスから以下の完全列が誘導されます。
+
+$ 0 \to \mathbb{Z} \oplus \mathbb{Z} \to H^2( X) \to \mathbb{Z} \to 0
+\to H^1(X) \to \mathbb{Z} \to \mathbb{Z} \oplus \mathbb{Z} \to H^0(X) \to 0$
+
+となります。
+$H^n(X)(n \ge 3)$は$0$になるので、省略します。
+
+何が面白いかというと、これは写像をみなくても、完全性からホモロジー群が計算できるんですね。
+$H^0(X)$は弧状連結成分が一つなので、$\mathbb{Z}$なので、となります。
+$H^2(X)$は、像がfreeになる短完全列がsplitすることから、$\mathbb{Z}^3$となります。
+$H^1(X)$は$\mathbb{Z}$-rankの加法性から0となり、自由加群の部分群となることから、$0$となります。
+
+以上で、ホモロジー群が計算できました。
+
+楽しい計算でしたね。
+
+
+\end{document}

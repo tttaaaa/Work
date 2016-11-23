@@ -1,0 +1,95 @@
+%===============
+%一行目に必ず必要
+%文章の形式を定義
+%===============
+\documentclass{ujarticle}
+%===============
+%パッケージの定義、必要か不明
+%===============
+%この下4つを加えることで、mathbbが機能した
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+%可換図式用パッケージ
+\usepackage{amscd}
+\usepackage[all]{xy}
+\usepackage{tikz-cd}
+%リンク用パッケージ
+\usepackage[dvipdfmx]{hyperref}
+%複数行コメント
+%\usepackage{comment}
+
+%タイトルデータ
+\title{Definition of Homology}
+\author{ta}
+
+
+%===============
+%定理環境の設定
+%セクション毎
+%===============
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem{prop}[thm]{Propostion}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{ex}[thm]{Example}
+\newtheorem*{prob}{Problem}
+\newtheorem*{rem}{Remark}
+\newtheorem{prf}{Proof}
+
+\begin{document}
+
+% タイトルを出力
+\maketitle
+\section{Introduction}
+\label{sec:Introduction}
+
+Homologyの定義と性質について概説する。
+本資料のメインテーマは胞体複体のHomologyが特異Homologyと一致することの証明である。
+証明を理解し、実際に胞体複体のHomologyの計算ができれば、Homologyの初心者ではなくなっているであろう。
+今のところに、以下について説明する予定である。
+\begin{itemize}
+  \setlength{\parskip}{0cm} % 段落間
+  \setlength{\itemsep}{0cm} % 項目間
+  \item Singular Homologyの定義
+  \item Singular Homologyの基本的な性質
+  \item 空間対のHomology
+  \item 胞体腹体/単体複体のHomology
+  \item Persistent Homology
+\end{itemize}
+
+位相空間の基本的性質についても、よく使うものは事前にまとめる予定である。
+
+\section{Singular Homologyの定義}
+\label{sec:Singular Homologyの定義}
+
+n次元単体の定義
+特異Chainの定義
+特異Homologyの定義
+
+\section{Singular Homologyの基本的な性質}
+\label{sec:Singular Homologyの基本的な性質}
+0次元Homology
+Mayor-Vietris
+
+\section{胞体複体のHomology}
+\label{sec:胞体複体のHomology}
+胞体複体のHomologyを定義し、これが実際に特異Homologyと一致していることをみる。
+
+まず、胞体、および、胞体複体について定義する。
+
+\begin{dfn}
+  $X$が$n$次元胞体とは、
+\end{dfn}
+
+
+
+
+
+\begin{thebibliography}{数字}
+  \bibitem{K} Elliptic Curves.・Anthony W. Knapp
+  \bibitem{M} Modular Functions and Modular Forms・J. S. Milne
+\end{thebibliography}
+
+\end{document}

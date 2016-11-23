@@ -1,0 +1,6 @@
+\contentsline {subsection}{\numberline {0.1}構造主義}{1}{subsection.0.1}
+\contentsline {subsection}{\numberline {0.2}位相のやりたいこと}{1}{subsection.0.2}
+\contentsline {subsection}{\numberline {0.3}位相の定義}{1}{subsection.0.3}
+\contentsline {subsection}{\numberline {0.4}例}{1}{subsection.0.4}
+\contentsline {subsection}{\numberline {0.5}コンパクト，ハウスドルフ}{1}{subsection.0.5}
+\contentsline {subsection}{\numberline {0.6}ザリスキ位相}{1}{subsection.0.6}

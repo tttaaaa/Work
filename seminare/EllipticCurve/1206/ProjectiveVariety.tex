@@ -1,0 +1,86 @@
+%===============
+%一行目に必ず必要
+%文章の形式を定義
+%===============
+\documentclass{ujarticle}
+%===============
+%パッケージの定義、必要か不明
+%===============
+%この下4つを加えることで、mathbbが機能した
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+%可換図式用パッケージ
+\usepackage{amscd}
+\usepackage[all]{xy}
+\usepackage{tikz-cd}
+%リンク用パッケージ
+\usepackage[dvipdfmx]{hyperref}
+%複数行コメント
+%\usepackage{comment}
+
+%タイトルデータ
+\author{ari}
+\title{Projectvie variety}
+\date{2016/12/6}
+
+
+%===============
+%定理環境の設定
+%セクション毎
+%===============
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem{prop}[thm]{Propostion}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corllary}
+\newtheorem{epl}[thm]{Example}
+\newtheorem*{prob}{Problem}
+\newtheorem*{rem}{Remark}
+\newtheorem*{yodan}{余談，疑問}
+\newtheorem{prf}{Proof}
+
+\begin{document}
+
+% タイトルを出力
+\maketitle
+% 目次の表示
+\tableofcontents
+
+射影代数多様体と射影スキームについて解説する．
+
+\section{Projective Variety}
+\label{sec:Projective Variety}
+
+\subsection{Definition of Projecti Variety}
+\label{sub:Definition of Projecti Variety}
+
+射影空間と射影代数多様体について定義する．
+\begin{dfn}
+ $K$を体とする．射影空間とは…
+\end{dfn}
+
+\subsection{relation of affine and Projective}
+\label{sub:relation of affine and Projective}
+射影代数多様体とアフィン代数多様体に関係を述べる
+特に非斉次化とその時の次元について触れる．
+
+\section{Projective Scheme}
+\label{sec:Projective Scheme}
+
+
+\subsection{Graded A algebra}
+\label{sec:Graded A algebra}
+
+\subsection{Definition of　 Projective Scheme}
+\label{sub:Definition of Projective Scheme}
+
+\section{Proper Morphism}
+\label{sec:Proper Morphism}
+
+\section{Projective Morphism}
+\label{sec:Projective Morphism}
+
+
+\end{document}
