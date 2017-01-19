@@ -1,0 +1,90 @@
+%===============
+%一行目に必ず必要
+%文章の形式を定義
+%===============
+\documentclass{ujarticle}
+%===============
+%パッケージの定義、必要か不明
+%===============
+%この下4つを加えることで、mathbbが機能した
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+%可換図式用パッケージ
+\usepackage{amscd}
+\usepackage[all]{xy}
+\usepackage{tikz-cd}
+%リンク用パッケージ
+\usepackage[dvipdfmx]{hyperref}
+%複数行コメント
+%\usepackage{comment}
+
+%タイトルデータ
+\author{ari}
+\title{Projectvie variety}
+\date{2016/12/6}
+
+
+%===============
+%定理環境の設定
+%セクション毎
+%===============
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem{prop}[thm]{Propostion}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corllary}
+\newtheorem{epl}[thm]{Example}
+\newtheorem*{prob}{Problem}
+\newtheorem*{rem}{Remark}
+\newtheorem*{yodan}{余談，疑問}
+\newtheorem{prf}{Proof}
+
+\begin{document}
+
+% タイトルを出力
+\maketitle
+% 目次の表示
+\tableofcontents
+セミナーを通じ学んだ基礎的な代数幾何と楕円曲線の知識について説明する．
+特に，スキーム論が古典的な代数幾何の自然な一般化であることを説明する．
+代数多様体とスキームについて説明する．
+
+\section{definition of Spec and classical algebraic variety}
+\label{sec:definition of Spec}
+
+
+\section{Sheaf and Ringed Space}
+スキームの定義に向け，その定義で使われる層と環付き空間について説明する．
+層はスキームだけでなく非常にたくさんの応用があるため，ここで可能な限り学ぶ．
+
+環/アーベル群の前層の定義
+環/アーベル群の層の定義
+前層の層化
+アーベル圏の定義
+層の圏がアーベル圏になること
+連接層
+連接層のコホモロジー
+グロタンディークトポロジー上の層
+
+
+\section{definiton of scheme}
+\label{sec:definiton of scheme}
+
+
+\section{dimension}
+\label{sec:dimension}
+
+\section{smooth}
+\label{sec:smooth}
+
+\section{Proper and Projective}
+\label{sec:Proper and Projective}
+
+
+\section{relation of algebraic variety of classical and schme}
+\label{sec:algebraic variety}
+
+\section{algebraic curvers}
+\label{sec:algebraic curvers}

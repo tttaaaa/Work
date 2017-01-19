@@ -1,0 +1,100 @@
+%===============
+%一行目に必ず必要
+%文章の形式を定義
+%===============
+\documentclass{ujarticle}
+%===============
+%パッケージの定義、必要か不明
+%===============
+%この下4つを加えることで、mathbbが機能した
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+%可換図式用パッケージ
+\usepackage{amscd}
+\usepackage[all]{xy}
+\usepackage{tikz-cd}
+%リンク用パッケージ
+\usepackage[dvipdfmx]{hyperref}
+%複数行コメント
+%\usepackage{comment}
+
+%タイトルデータ
+\author{ari}
+\title{Projectvie variety}
+\date{2016/12/6}
+
+
+%===============
+%定理環境の設定
+%セクション毎
+%===============
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem{prop}[thm]{Propostion}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corllary}
+\newtheorem{epl}[thm]{Example}
+\newtheorem*{prob}{Problem}
+\newtheorem*{rem}{Remark}
+\newtheorem*{yodan}{余談，疑問}
+\newtheorem{prf}{Proof}
+
+\begin{document}
+
+\section{Introduction}
+\label{sec:Introduction}
+TeXは現在の数学界隈で非常に重要である．それはTeX以外に
+数学でよく使われるギリシャ文字，特殊記号を出せるものがないからであろう．
+一方で使いこなすにはなかなか癖の多いものである．そのため，自分の知識をまとめ，理解度を増やす．
+特に自分がよく忘れてるところ，忘れるところと，同時にTeXで高速に作業を作るための方法を模索する．
+それはプログラミング力，及び管理力を増やす．
+
+
+\section{図全般}
+\label{sec:図全般}
+図の作成方法をまとめる．
+以下を対象にする
+\begin{description}
+  \item[箇条書き]
+  \begin{itemize}
+    \item 箇条書きの種類
+    \item 行間のサイズ調整
+    \item 段落記号の変更
+  \end{itemize}
+  \item[表の調整]
+  \item[グラフの描画]
+  \item[可換図式の描画]
+\end{description}
+
+\subsection{箇条書き}
+\label{sub:箇条書き}
+TeXの段落には以下の3種類がある．
+\begin{description}
+  \item[箇条書き] itemize
+  \item[数字つき] enumerate
+  \item[記号付き箇条書き] description
+\end{description}
+
+表示が少し変わるという以外本質的に同じなので，共通の変更についてまず記載する．
+個別に変わるところについて後で記載する．
+これらはネストすることも可能である.
+
+
+
+\section{キーワード}
+\label{sec:キーワード}
+
+\subsection{関数の作成}
+\label{sub:関数の作成}
+
+\subsection{Snippet}
+\label{sub:Snippet}
+
+\subsection{記号}
+\label{sub:記号}
+
+
+
+\end{document}

@@ -1,0 +1,437 @@
+%===============
+%一行目に必ず必要
+%文章の形式を定義
+%===============
+\documentclass{ujarticle}
+%===============
+%パッケージの定義、必要か不明
+%===============
+%この下4つを加えることで、mathbbが機能した
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+%可換図式用パッケージ
+\usepackage{amscd}
+\usepackage[all]{xy}
+\usepackage{tikz-cd}
+%リンク用パッケージ
+\usepackage[dvipdfmx]{hyperref}
+%複数行コメント
+%\usepackage{comment}
+%MathFOnt
+\usepackage{mathrsfs}
+
+
+
+%タイトルデータ
+\author{ari}
+\title{p-adic Weil予想入門}
+\date{2016/9/22}
+
+
+%===============
+%定理環境の設定
+%セクション毎
+%===============
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem{prop}[thm]{Propostion}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corllary}
+\newtheorem{epl}[thm]{Example}
+\newtheorem*{prob}{Problem}
+\newtheorem*{rem}{Remark}
+\newtheorem*{yodan}{余談，疑問}
+\newtheorem{prf}{Proof}
+
+%==================
+%p進botスタイル
+%＝＝===============
+\setlength{\topmargin}{0cm}
+\setlength{\oddsidemargin}{0.3cm}
+\setlength{\evensidemargin}{0.3cm}
+\setlength{\textwidth}{14.9cm}
+\setlength{\textheight}{22.0cm}
+\setlength{\headheight}{0.0cm}
+
+\usepackage{amscd}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{ascmac}
+\usepackage[T1]{fontenc}
+\usepackage{here}
+\usepackage{mathrsfs}
+%持っていないためかエラーになった．
+%\usepackage{slashbox}
+\usepackage{txfonts}
+\usepackage[all]{xy}
+
+\allowdisplaybreaks
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\renewcommand{\contentsname}{Contents}
+\renewcommand{\refname}{References}
+\renewcommand{\indexname}{Index}
+\renewcommand{\figurename}{Figure}
+\renewcommand{\tablename}{Table}
+
+%定理環境
+%\theoremstyle{plain}
+%\newtheorem{thm}{Theorem}[section]
+%\newtheorem{lmm}[thm]{Lemma}
+%\newtheorem{prp}[thm]{Proposition}
+%\newtheorem{crl}[thm]{Corollary}
+%\theoremstyle{definition}
+%\newtheorem{dfn}[thm]{Definition}
+%\newtheorem{rmk}[thm]{Remark}
+%\newtheorem{exm}[thm]{Example}
+%\newtheorem{qst}[thm]{Question}
+
+% \setcounter{section}{-1}
+% \renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+%意味がわかっていない．考える必要あり．
+\def\ens#1{\mathchoice{\left\{ #1 \right\}}{\{ #1 \}}{\{ #1 \}}{\{ #1 \}}}
+\def\set#1#2{\mathchoice{\left\{ #1 \middle| #2 \right\}}{\{ #1 \mid #2 \}}{\{ #1 \mid #2 \}}{\{ #1 \mid #2 \}}}
+\def\r#1{\text{\rm #1}}
+\def\t#1{\text{#1}}
+\def\v#1{\mathchoice{\left| #1 \right|}{| #1 |}{| #1 |}{| #1 |}}
+\def\n#1{\mathchoice{\left\| #1 \right\|}{\| #1 \|}{\| #1 \|}{\| #1 \|}}
+\def\rt#1#2{\sqrt[#1]{\mathstrut #2} \ }
+\def\ol#1{\overline{#1}{}}
+\def\tl#1{\tilde{#1}{}}
+\def\ul#1{\underline{#1}{}}
+\def\wh#1{\widehat{#1}{}}
+\def\wt#1{\widetilde{#1}{}}
+\newcommand{\longhookrightarrow}{\lhook\joinrel\longrightarrow}
+\newcommand{\longtwoheadrightarrow}{\relbar\joinrel\twoheadrightarrow}
+\newcommand{\im}{\r{im}}
+\newcommand{\coker}{\r{coker}}
+\newcommand{\coim}{\r{coim}}
+\newcommand{\reprod}{\mathrlap{coprod}\prod}
+
+\makeatletter
+\newcommand{\colim@}[2]{
+  \vtop{\m@th\ialign{##\cr
+    \hfil $#1\operator@font colim$ \hfil\cr
+    \noalign{\nointerlineskip\kern1.5\ex@}#2\cr
+    \noalign{\nointerlineskip\kern-\ex@}\cr}}
+}
+
+\newcommand{\colim}{
+  \mathop{\mathpalette\colim@{\rightarrowfill@\textstyle}}\nmlimits@
+}
+\makeatother
+
+\newcommand{\address}{
+    \footnote{
+      あどれす
+    }
+}
+
+\newcommand{\info}[2]{
+  \footnote[0]{
+    $
+    \begin{array}{l}
+      \r{MSC2010: #1} \\
+      \r{Key words: #2}
+    \end{array}
+    $
+  }
+}
+
+\newcommand{\bA}{\mathbb{A}}
+\newcommand{\bB}{\mathbb{B}}
+\newcommand{\bC}{\mathbb{C}}
+\newcommand{\bD}{\mathbb{D}}
+\newcommand{\bE}{\mathbb{E}}
+\newcommand{\bF}{\mathbb{F}}
+\newcommand{\bG}{\mathbb{G}}
+\newcommand{\bH}{\mathbb{H}}
+\newcommand{\bI}{\mathbb{I}}
+\newcommand{\bJ}{\mathbb{J}}
+\newcommand{\bK}{\mathbb{K}}
+\newcommand{\bL}{\mathbb{L}}
+\newcommand{\bM}{\mathbb{M}}
+\newcommand{\bN}{\mathbb{N}}
+\newcommand{\bO}{\mathbb{O}}
+\newcommand{\bP}{\mathbb{P}}
+\newcommand{\bQ}{\mathbb{Q}}
+\newcommand{\bR}{\mathbb{R}}
+\newcommand{\bS}{\mathbb{S}}
+\newcommand{\bT}{\mathbb{T}}
+\newcommand{\bU}{\mathbb{U}}
+\newcommand{\bV}{\mathbb{V}}
+\newcommand{\bW}{\mathbb{W}}
+\newcommand{\bX}{\mathbb{X}}
+\newcommand{\bY}{\mathbb{Y}}
+\newcommand{\bZ}{\mathbb{Z}}
+\newcommand{\cA}{\mathscr{A}}
+\newcommand{\cB}{\mathscr{B}}
+\newcommand{\cC}{\mathscr{C}}
+\newcommand{\cD}{\mathscr{D}}
+\newcommand{\cE}{\mathscr{E}}
+\newcommand{\cF}{\mathscr{F}}
+\newcommand{\cG}{\mathscr{G}}
+\newcommand{\cH}{\mathscr{H}}
+\newcommand{\cI}{\mathscr{I}}
+\newcommand{\cJ}{\mathscr{J}}
+\newcommand{\cK}{\mathscr{K}}
+\newcommand{\cL}{\mathscr{L}}
+\newcommand{\cM}{\mathscr{M}}
+\newcommand{\cN}{\mathscr{N}}
+\newcommand{\cO}{\mathscr{O}}
+\newcommand{\cP}{\mathscr{P}}
+\newcommand{\cQ}{\mathscr{Q}}
+\newcommand{\cR}{\mathscr{R}}
+\newcommand{\cS}{\mathscr{S}}
+\newcommand{\cT}{\mathscr{T}}
+\newcommand{\cU}{\mathscr{U}}
+\newcommand{\cV}{\mathscr{V}}
+\newcommand{\cW}{\mathscr{W}}
+\newcommand{\cX}{\mathscr{X}}
+\newcommand{\cY}{\mathscr{Y}}
+\newcommand{\cZ}{\mathscr{Z}}
+
+\newcommand{\rA}{\r{A}}
+\newcommand{\rB}{\r{B}}
+\newcommand{\rC}{\r{C}}
+\newcommand{\rD}{\r{D}}
+\newcommand{\rE}{\r{E}}
+\newcommand{\rF}{\r{F}}
+\newcommand{\rG}{\r{G}}
+\newcommand{\rH}{\r{H}}
+\newcommand{\rI}{\r{I}}
+\newcommand{\rJ}{\r{J}}
+\newcommand{\rK}{\r{K}}
+\newcommand{\rL}{\r{L}}
+\newcommand{\rM}{\r{M}}
+\newcommand{\rN}{\r{N}}
+\newcommand{\rO}{\r{O}}
+\newcommand{\rP}{\r{P}}
+\newcommand{\rQ}{\r{Q}}
+\newcommand{\rR}{\r{R}}
+\newcommand{\rS}{\r{S}}
+\newcommand{\rT}{\r{T}}
+\newcommand{\rU}{\r{U}}
+\newcommand{\rV}{\r{V}}
+\newcommand{\rW}{\r{W}}
+\newcommand{\rX}{\r{X}}
+\newcommand{\rY}{\r{Y}}
+\newcommand{\rZ}{\r{Z}}
+
+\newcommand{\C}{\bC}
+\newcommand{\F}{\bF}
+\newcommand{\N}{\bN}
+\newcommand{\Q}{\bQ}
+\newcommand{\R}{\bR}
+\newcommand{\Z}{\bZ}
+
+\newcommand{\Bdr}{\mathbb{B}_{\r{dR}}}
+\newcommand{\Cp}{\mathbb{C}_p}
+\newcommand{\Cl}{\mathbb{C}_{\ell}}
+\newcommand{\Fp}{\mathbb{F}_p}
+\newcommand{\Fl}{\mathbb{F}_{\ell}}
+\newcommand{\Ga}{\mathbb{G}_{\r{a}}}
+\newcommand{\Gm}{\mathbb{G}_{\r{m}}}
+\newcommand{\Qp}{\mathbb{Q}_p}
+\newcommand{\Ql}{\mathbb{Q}_{\ell}}
+\newcommand{\Zp}{\mathbb{Z}_p}
+\newcommand{\Zl}{\mathbb{Z}_{\ell}}
+
+\newcommand{\Cpb}{\ol{\mathbb{C}}_p}
+\newcommand{\Clb}{\ol{\mathbb{C}}_{\ell}}
+\newcommand{\Fpb}{\ol{\mathbb{F}}_p}
+\newcommand{\Flb}{\ol{\mathbb{F}}_{\ell}}
+\newcommand{\hatZ}{\widehat{\mathbb{Z}}{}}
+\newcommand{\Qpb}{\ol{\mathbb{Q}}_p}
+\newcommand{\Qb}{\ol{\mathbb{Q}}}
+\newcommand{\Qlb}{\ol{\mathbb{Q}}_{\ell}}
+\newcommand{\Zpb}{\ol{\mathbb{Z}}_p}
+\newcommand{\Zlb}{\ol{\mathbb{Z}}_{\ell}}
+
+\newcommand{\ab}{\r{ab}}
+\newcommand{\Ab}{\r{Ab}}
+\newcommand{\an}{\r{an}}
+\newcommand{\alg}{\r{alg}}
+\newcommand{\Alg}{\r{Alg}}
+\newcommand{\Ann}{\r{Ann}}
+\newcommand{\Aut}{\r{Aut}}
+\newcommand{\Ban}{\r{Ban}}
+\newcommand{\ch}{\r{ch}}
+\newcommand{\Cat}{\r{Cat}}
+\newcommand{\Cod}{\r{Cod}}
+\newcommand{\cont}{\r{cont}}
+\newcommand{\Diag}{\r{Diag}}
+\newcommand{\Div}{\r{Div}}
+\newcommand{\Dom}{\r{Dom}}
+\newcommand{\dR}{\r{dR}}
+\newcommand{\End}{\r{End}}
+\newcommand{\et}{\r{\'et}}
+\newcommand{\Ext}{\r{Ext}}
+\newcommand{\Field}{\r{Field}}
+\newcommand{\Frac}{\r{Frac}}
+\newcommand{\Frob}{\r{Frob}}
+\newcommand{\Gal}{\r{Gal}}
+\newcommand{\GL}{\r{GL}}
+\newcommand{\Grp}{\r{Grp}}
+\newcommand{\Hch}{\check{\r{H}}{}}
+\newcommand{\Hdr}{\r{H}_{\r{dR}}}
+\newcommand{\Het}{\r{H}_{\r{\'et}}}
+\newcommand{\Hfet}{\r{H}_{\r{f\'et}}}
+\newcommand{\Hom}{\r{Hom}}
+\newcommand{\Hopf}{\r{Hopf}}
+\newcommand{\id}{\r{id}}
+\newcommand{\ind}{\r{ind}}
+\newcommand{\Ind}{\r{Ind}}
+\newcommand{\Isom}{\r{Isom}}
+\newcommand{\Max}{\r{Max}}
+\newcommand{\Mod}{\r{Mod}}
+\newcommand{\Mon}{\r{Mon}}
+\newcommand{\Mor}{\r{Mor}}
+\newcommand{\Nr}{\r{Nr}}
+\newcommand{\ob}{\r{ob}}
+\newcommand{\op}{\r{op}}
+\newcommand{\pro}{\r{pro}}
+\newcommand{\Pro}{\r{Pro}}
+\newcommand{\PSh}{\r{PSh}}
+\newcommand{\Rep}{\r{Rep}}
+\newcommand{\Res}{\r{Res}}
+\newcommand{\Ring}{\r{Ring}}
+\newcommand{\Sch}{\r{Sch}}
+\newcommand{\Set}{\r{Set}}
+\newcommand{\Sh}{\r{Sh}}
+\newcommand{\SL}{\r{SL}}
+\newcommand{\Spec}{\r{Spec}}
+\newcommand{\Stab}{\r{Stab}}
+\newcommand{\Sym}{\r{Sym}}
+\newcommand{\Tor}{\r{Tor}}
+\newcommand{\Tpl}{\r{Top}}
+\newcommand{\tr}{\r{tr}}
+
+\newcommand{\Cech}{$\check{\t{C}}$ech }
+\newcommand{\Frechet}{Fr\'echet }
+\newcommand{\Gelfand}{Gel'fand }
+\newcommand{\Poincare}{Poincar\'e }
+\newcommand{\Shnirelman}{Shnirel'man }
+\newcommand{\Teichmuller}{Teichm\"uller }
+
+\newcommand{\adm}{\r{adm}}
+\newcommand{\cov}{\r{cov}}
+\newcommand{\Cov}{\r{Cov}}
+\newcommand{\Et}{\r{\'Et}}
+\newcommand{\Fet}{\r{F\'et}}
+\newcommand{\fet}{\r{f\'et}}
+\newcommand{\fin}{\r{fin}}
+\newcommand{\Ger}{\r{Ger}}
+\newcommand{\PB}{\r{PB}}
+\newcommand{\PLSp}{\r{PLSp}}
+\newcommand{\pr}{\r{pr}}
+\newcommand{\red}{\r{red}}
+\newcommand{\Sub}{\r{Sub}}
+\newcommand{\triv}{\r{triv}}
+\newcommand{\whC}{\wh{\cC}}
+\newcommand{\whH}{\wh{\r{H}}}
+\newcommand{\WSet}{\r{WSet}}
+\newcommand{\wtC}{\wt{\cC}}
+
+\title{たいとる}
+\author{おーさー}
+\date{ひづけ}
+
+
+\begin{document}
+
+% タイトルを出力
+\maketitle
+% 目次の表示
+\tableofcontents
+
+\section{Introduction}
+\label{sec:Introduction}
+グレブナー基底について調べ，その理解をまとめる．
+このノートでは，グレブナー基底が数学において，どのように使われるのか，また，どのような部分が問題なのかを
+探し，まとめていくものである，そのため章ごとの関連ははないことに注意して欲しい．
+グレブナー基底を中心にした私の現時点の興味は２点ある．
+1つは定理の自動証明だ．アルゴリズム的に解けるか否かを判定させ，それを用いて問題を解くというものである．
+コンピュータが発展した今だからこそできるようになった分野であること，またアルゴリズム的に解ける，ひいては有限と無限の
+間を与える問題に感じるためである．
+もう1点はグレブナー基底自体のアルゴリズムの拡張である．
+グレブナー基底は多項式にのみ考えられているが，それを拡張したい．
+例えば，一般のネーター環に対してどの程度グレブナー基底のような方法ができるのか．
+そこまでは難しくとも，べき級数環や，多項式の係数が整数やp進数の場合の定式化に興味がある．
+また，付値論的な方法でグレブナー基底らしいものを作れないかという興味ある．
+完備離散付値環，例えば $\mathbb{Z}_p$に対し，元の計算を楽にする方法がないか．
+例えばその元の付値が簡単に計算できるアルゴリズムがないかを考えたい．
+これらが見えてくると計算機における理解が非常に進むように感じる．
+
+\section{definition of Gr\ddot{o}bner basis}
+\label{sec:definition of Gr\ddot{o}bner basis}
+この章ではグレブナー基底を定義し，その基本的な性質を概観する．
+グレブナー基底の定義に必要な多項式の順序と多変数での割り算について定義し，
+グレブナー基底の定義，及び，グレブナー基底がアルゴリズムとして計算できることを示す．
+
+\subsection{多項式の割り算}
+\label{sub:多項式の割り算}
+１変数多項式環$K[X]$には次数が定義される．
+この次数を用いて，割り算ができる．
+\begin{rem}
+ 割り算はどう解釈するべきだろうか．例えば最大公約数のように考えると，割り算はだし，
+ これはユークリッド整域に思えるのか．ユークリッド整域だと割り算が計算できるアルゴリズムがあるということ．元に着目してるんだよなぁ．完全な余談です．
+\end{rem}
+
+多変数の場合にも同様に割り算を定義したい．
+\begin{yodan}
+ なぜ？割り算を定義したい？．一種の同一視．自然な拡張ができるか．
+ 特に割り算がうまく定義できれば，イデアルの元かの判別ができるため，
+ 一つの元に対して計算が可能になる．
+\end{yodan}
+
+多項式の場合は次数による順序の概念が自然には定義できない．
+そのため都合のいい順序を考える必要がある．
+1変数の場合と同様な多項式にしたい．
+
+1変数の類似で直感的に思い浮かぶ性質は２つ．
+\begin{itemize}
+  \item 1変数に制限した時に多項式の次数で比較できること
+  \item 任意の二元に対して比較ができること．
+\end{itemize}
+
+グレブナー基底では以下の条件を満たす単項式順序を入れる．
+
+\begin{dfn}
+ 単項式順序とは，
+ \begin{itemize}
+   \item $\alpha > \beta$ ならば,$ \alpha + \gamma > \beta + \gamma$となる.
+   \item 整列可能順序になっている．つまり最小限が存在する．
+ \end{itemize}
+\end{dfn}
+\begin{rem}
+ 整列可能順序ってこれでいいんだっけ？
+\end{rem}
+
+例として辞書式順序等がある．
+
+\begin{thm}
+ 多変数多項式で割り算するアルゴリズムが存在する．すなわち，
+\begin{equation*}
+    g = a_1f_1 + \cdots + a_nf_n +r
+\end{equation*}
+とかける．ここで $a_if_i$の次数は$g$の次数以下となる．
+\end{thm}
+\begin{rem}
+ $r$の次数が小さいとは限らない． 
+\end{rem}
+
+\subsection{グレブナー基底の定義}
+\label{sub:グレブナー基底の定義}
+
+\subsection{グレブナー基底の計算アルゴリズム}
+\label{sub:グレブナー基底の計算アルゴリズム}
+
+
+
+
+\end{document}

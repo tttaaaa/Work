@@ -1,0 +1,691 @@
+%===============
+%一行目に必ず必要
+%文章の形式を定義
+%===============
+\documentclass{ujarticle}
+%===============
+%パッケージの定義、必要か不明
+%===============
+%この下4つを加えることで、mathbbが機能した
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+%可換図式用パッケージ
+\usepackage{amscd}
+\usepackage[all]{xy}
+\usepackage{tikz-cd}
+%リンク用パッケージ
+\usepackage[dvipdfmx]{hyperref}
+%複数行コメント
+%\usepackage{comment}
+%MathFOnt
+\usepackage{mathrsfs}
+
+
+
+%タイトルデータ
+\author{ari}
+\title{p-adic Weil予想入門}
+\date{2017/1/29}
+
+
+%===============
+%定理環境の設定
+%セクション毎
+%===============
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem{prop}[thm]{Propostion}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corllary}
+\newtheorem{epl}[thm]{Example}
+\newtheorem*{prob}{Problem}
+\newtheorem*{rem}{Remark}
+\newtheorem*{yodan}{余談，疑問}
+\newtheorem{prf}{Proof}
+
+%==================
+%p進botスタイル
+%＝＝===============
+\setlength{\topmargin}{0cm}
+\setlength{\oddsidemargin}{0.3cm}
+\setlength{\evensidemargin}{0.3cm}
+\setlength{\textwidth}{14.9cm}
+\setlength{\textheight}{22.0cm}
+\setlength{\headheight}{0.0cm}
+
+\usepackage{amscd}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{ascmac}
+\usepackage[T1]{fontenc}
+\usepackage{here}
+\usepackage{mathrsfs}
+%持っていないためかエラーになった．
+%\usepackage{slashbox}
+\usepackage{txfonts}
+\usepackage[all]{xy}
+
+\allowdisplaybreaks
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\renewcommand{\contentsname}{Contents}
+\renewcommand{\refname}{References}
+\renewcommand{\indexname}{Index}
+\renewcommand{\figurename}{Figure}
+\renewcommand{\tablename}{Table}
+
+%定理環境
+%\theoremstyle{plain}
+%\newtheorem{thm}{Theorem}[section]
+%\newtheorem{lmm}[thm]{Lemma}
+%\newtheorem{prp}[thm]{Proposition}
+%\newtheorem{crl}[thm]{Corollary}
+%\theoremstyle{definition}
+%\newtheorem{dfn}[thm]{Definition}
+%\newtheorem{rmk}[thm]{Remark}
+%\newtheorem{exm}[thm]{Example}
+%\newtheorem{qst}[thm]{Question}
+
+% \setcounter{section}{-1}
+% \renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+%意味がわかっていない．考える必要あり．
+\def\ens#1{\mathchoice{\left\{ #1 \right\}}{\{ #1 \}}{\{ #1 \}}{\{ #1 \}}}
+\def\set#1#2{\mathchoice{\left\{ #1 \middle| #2 \right\}}{\{ #1 \mid #2 \}}{\{ #1 \mid #2 \}}{\{ #1 \mid #2 \}}}
+\def\r#1{\text{\rm #1}}
+\def\t#1{\text{#1}}
+\def\v#1{\mathchoice{\left| #1 \right|}{| #1 |}{| #1 |}{| #1 |}}
+\def\n#1{\mathchoice{\left\| #1 \right\|}{\| #1 \|}{\| #1 \|}{\| #1 \|}}
+\def\rt#1#2{\sqrt[#1]{\mathstrut #2} \ }
+\def\ol#1{\overline{#1}{}}
+\def\tl#1{\tilde{#1}{}}
+\def\ul#1{\underline{#1}{}}
+\def\wh#1{\widehat{#1}{}}
+\def\wt#1{\widetilde{#1}{}}
+\newcommand{\longhookrightarrow}{\lhook\joinrel\longrightarrow}
+\newcommand{\longtwoheadrightarrow}{\relbar\joinrel\twoheadrightarrow}
+\newcommand{\im}{\r{im}}
+\newcommand{\coker}{\r{coker}}
+\newcommand{\coim}{\r{coim}}
+\newcommand{\reprod}{\mathrlap{coprod}\prod}
+
+\makeatletter
+\newcommand{\colim@}[2]{
+  \vtop{\m@th\ialign{##\cr
+    \hfil $#1\operator@font colim$ \hfil\cr
+    \noalign{\nointerlineskip\kern1.5\ex@}#2\cr
+    \noalign{\nointerlineskip\kern-\ex@}\cr}}
+}
+
+\newcommand{\colim}{
+  \mathop{\mathpalette\colim@{\rightarrowfill@\textstyle}}\nmlimits@
+}
+\makeatother
+
+\newcommand{\address}{
+    \footnote{
+      あどれす
+    }
+}
+
+\newcommand{\info}[2]{
+  \footnote[0]{
+    $
+    \begin{array}{l}
+      \r{MSC2010: #1} \\
+      \r{Key words: #2}
+    \end{array}
+    $
+  }
+}
+
+\newcommand{\bA}{\mathbb{A}}
+\newcommand{\bB}{\mathbb{B}}
+\newcommand{\bC}{\mathbb{C}}
+\newcommand{\bD}{\mathbb{D}}
+\newcommand{\bE}{\mathbb{E}}
+\newcommand{\bF}{\mathbb{F}}
+\newcommand{\bG}{\mathbb{G}}
+\newcommand{\bH}{\mathbb{H}}
+\newcommand{\bI}{\mathbb{I}}
+\newcommand{\bJ}{\mathbb{J}}
+\newcommand{\bK}{\mathbb{K}}
+\newcommand{\bL}{\mathbb{L}}
+\newcommand{\bM}{\mathbb{M}}
+\newcommand{\bN}{\mathbb{N}}
+\newcommand{\bO}{\mathbb{O}}
+\newcommand{\bP}{\mathbb{P}}
+\newcommand{\bQ}{\mathbb{Q}}
+\newcommand{\bR}{\mathbb{R}}
+\newcommand{\bS}{\mathbb{S}}
+\newcommand{\bT}{\mathbb{T}}
+\newcommand{\bU}{\mathbb{U}}
+\newcommand{\bV}{\mathbb{V}}
+\newcommand{\bW}{\mathbb{W}}
+\newcommand{\bX}{\mathbb{X}}
+\newcommand{\bY}{\mathbb{Y}}
+\newcommand{\bZ}{\mathbb{Z}}
+\newcommand{\cA}{\mathscr{A}}
+\newcommand{\cB}{\mathscr{B}}
+\newcommand{\cC}{\mathscr{C}}
+\newcommand{\cD}{\mathscr{D}}
+\newcommand{\cE}{\mathscr{E}}
+\newcommand{\cF}{\mathscr{F}}
+\newcommand{\cG}{\mathscr{G}}
+\newcommand{\cH}{\mathscr{H}}
+\newcommand{\cI}{\mathscr{I}}
+\newcommand{\cJ}{\mathscr{J}}
+\newcommand{\cK}{\mathscr{K}}
+\newcommand{\cL}{\mathscr{L}}
+\newcommand{\cM}{\mathscr{M}}
+\newcommand{\cN}{\mathscr{N}}
+\newcommand{\cO}{\mathscr{O}}
+\newcommand{\cP}{\mathscr{P}}
+\newcommand{\cQ}{\mathscr{Q}}
+\newcommand{\cR}{\mathscr{R}}
+\newcommand{\cS}{\mathscr{S}}
+\newcommand{\cT}{\mathscr{T}}
+\newcommand{\cU}{\mathscr{U}}
+\newcommand{\cV}{\mathscr{V}}
+\newcommand{\cW}{\mathscr{W}}
+\newcommand{\cX}{\mathscr{X}}
+\newcommand{\cY}{\mathscr{Y}}
+\newcommand{\cZ}{\mathscr{Z}}
+
+\newcommand{\rA}{\r{A}}
+\newcommand{\rB}{\r{B}}
+\newcommand{\rC}{\r{C}}
+\newcommand{\rD}{\r{D}}
+\newcommand{\rE}{\r{E}}
+\newcommand{\rF}{\r{F}}
+\newcommand{\rG}{\r{G}}
+\newcommand{\rH}{\r{H}}
+\newcommand{\rI}{\r{I}}
+\newcommand{\rJ}{\r{J}}
+\newcommand{\rK}{\r{K}}
+\newcommand{\rL}{\r{L}}
+\newcommand{\rM}{\r{M}}
+\newcommand{\rN}{\r{N}}
+\newcommand{\rO}{\r{O}}
+\newcommand{\rP}{\r{P}}
+\newcommand{\rQ}{\r{Q}}
+\newcommand{\rR}{\r{R}}
+\newcommand{\rS}{\r{S}}
+\newcommand{\rT}{\r{T}}
+\newcommand{\rU}{\r{U}}
+\newcommand{\rV}{\r{V}}
+\newcommand{\rW}{\r{W}}
+\newcommand{\rX}{\r{X}}
+\newcommand{\rY}{\r{Y}}
+\newcommand{\rZ}{\r{Z}}
+
+\newcommand{\C}{\bC}
+\newcommand{\F}{\bF}
+\newcommand{\N}{\bN}
+\newcommand{\Q}{\bQ}
+\newcommand{\R}{\bR}
+\newcommand{\Z}{\bZ}
+
+\newcommand{\Bdr}{\mathbb{B}_{\r{dR}}}
+\newcommand{\Cp}{\mathbb{C}_p}
+\newcommand{\Cl}{\mathbb{C}_{\ell}}
+\newcommand{\Fp}{\mathbb{F}_p}
+\newcommand{\Fl}{\mathbb{F}_{\ell}}
+\newcommand{\Ga}{\mathbb{G}_{\r{a}}}
+\newcommand{\Gm}{\mathbb{G}_{\r{m}}}
+\newcommand{\Qp}{\mathbb{Q}_p}
+\newcommand{\Ql}{\mathbb{Q}_{\ell}}
+\newcommand{\Zp}{\mathbb{Z}_p}
+\newcommand{\Zl}{\mathbb{Z}_{\ell}}
+
+\newcommand{\Cpb}{\ol{\mathbb{C}}_p}
+\newcommand{\Clb}{\ol{\mathbb{C}}_{\ell}}
+\newcommand{\Fpb}{\ol{\mathbb{F}}_p}
+\newcommand{\Flb}{\ol{\mathbb{F}}_{\ell}}
+\newcommand{\hatZ}{\widehat{\mathbb{Z}}{}}
+\newcommand{\Qpb}{\ol{\mathbb{Q}}_p}
+\newcommand{\Qb}{\ol{\mathbb{Q}}}
+\newcommand{\Qlb}{\ol{\mathbb{Q}}_{\ell}}
+\newcommand{\Zpb}{\ol{\mathbb{Z}}_p}
+\newcommand{\Zlb}{\ol{\mathbb{Z}}_{\ell}}
+
+\newcommand{\ab}{\r{ab}}
+\newcommand{\Ab}{\r{Ab}}
+\newcommand{\an}{\r{an}}
+\newcommand{\alg}{\r{alg}}
+\newcommand{\Alg}{\r{Alg}}
+\newcommand{\Ann}{\r{Ann}}
+\newcommand{\Aut}{\r{Aut}}
+\newcommand{\Ban}{\r{Ban}}
+\newcommand{\ch}{\r{ch}}
+\newcommand{\Cat}{\r{Cat}}
+\newcommand{\Cod}{\r{Cod}}
+\newcommand{\cont}{\r{cont}}
+\newcommand{\Diag}{\r{Diag}}
+\newcommand{\Div}{\r{Div}}
+\newcommand{\Dom}{\r{Dom}}
+\newcommand{\dR}{\r{dR}}
+\newcommand{\End}{\r{End}}
+\newcommand{\et}{\r{\'et}}
+\newcommand{\Ext}{\r{Ext}}
+\newcommand{\Field}{\r{Field}}
+\newcommand{\Frac}{\r{Frac}}
+\newcommand{\Frob}{\r{Frob}}
+\newcommand{\Gal}{\r{Gal}}
+\newcommand{\GL}{\r{GL}}
+\newcommand{\Grp}{\r{Grp}}
+\newcommand{\Hch}{\check{\r{H}}{}}
+\newcommand{\Hdr}{\r{H}_{\r{dR}}}
+\newcommand{\Het}{\r{H}_{\r{\'et}}}
+\newcommand{\Hfet}{\r{H}_{\r{f\'et}}}
+\newcommand{\Hom}{\r{Hom}}
+\newcommand{\Hopf}{\r{Hopf}}
+\newcommand{\id}{\r{id}}
+\newcommand{\ind}{\r{ind}}
+\newcommand{\Ind}{\r{Ind}}
+\newcommand{\Isom}{\r{Isom}}
+\newcommand{\Max}{\r{Max}}
+\newcommand{\Mod}{\r{Mod}}
+\newcommand{\Mon}{\r{Mon}}
+\newcommand{\Mor}{\r{Mor}}
+\newcommand{\Nr}{\r{Nr}}
+\newcommand{\ob}{\r{ob}}
+\newcommand{\op}{\r{op}}
+\newcommand{\pro}{\r{pro}}
+\newcommand{\Pro}{\r{Pro}}
+\newcommand{\PSh}{\r{PSh}}
+\newcommand{\Rep}{\r{Rep}}
+\newcommand{\Res}{\r{Res}}
+\newcommand{\Ring}{\r{Ring}}
+\newcommand{\Sch}{\r{Sch}}
+\newcommand{\Set}{\r{Set}}
+\newcommand{\Sh}{\r{Sh}}
+\newcommand{\SL}{\r{SL}}
+\newcommand{\Spec}{\r{Spec}}
+\newcommand{\Stab}{\r{Stab}}
+\newcommand{\Sym}{\r{Sym}}
+\newcommand{\Tor}{\r{Tor}}
+\newcommand{\Tpl}{\r{Top}}
+\newcommand{\tr}{\r{tr}}
+
+\newcommand{\Cech}{$\check{\t{C}}$ech }
+\newcommand{\Frechet}{Fr\'echet }
+\newcommand{\Gelfand}{Gel'fand }
+\newcommand{\Poincare}{Poincar\'e }
+\newcommand{\Shnirelman}{Shnirel'man }
+\newcommand{\Teichmuller}{Teichm\"uller }
+
+\newcommand{\adm}{\r{adm}}
+\newcommand{\cov}{\r{cov}}
+\newcommand{\Cov}{\r{Cov}}
+\newcommand{\Et}{\r{\'Et}}
+\newcommand{\Fet}{\r{F\'et}}
+\newcommand{\fet}{\r{f\'et}}
+\newcommand{\fin}{\r{fin}}
+\newcommand{\Ger}{\r{Ger}}
+\newcommand{\PB}{\r{PB}}
+\newcommand{\PLSp}{\r{PLSp}}
+\newcommand{\pr}{\r{pr}}
+\newcommand{\red}{\r{red}}
+\newcommand{\Sub}{\r{Sub}}
+\newcommand{\triv}{\r{triv}}
+\newcommand{\whC}{\wh{\cC}}
+\newcommand{\whH}{\wh{\r{H}}}
+\newcommand{\WSet}{\r{WSet}}
+\newcommand{\wtC}{\wt{\cC}}
+
+\title{第3回ヴェイユ予想物語~楕円曲線のヴェイユ予想~}
+\author{ari}
+\date{1/29}
+
+
+\begin{document}
+
+% タイトルを出力
+\maketitle
+% 目次の表示
+\tableofcontents
+
+\section{Introduction}
+\label{sec:Introduction}
+楕円曲線のヴェイユ予想を楕円曲線には深入りせずに証明する．
+ヴェイユがいくつかの特別な場合を示したことから，1940年台にヴェイユ予想は
+楕円曲線のいくつかの性質は時間の都合上，認めて証明をする．
+
+プロットは，以下の通り．
+
+\begin{itemize}
+  \item 代数多様体(Affineのみ)Projectiveはそれを無限遠点を加えたものととして定義する．及びsmoothの定義
+  \item 代数多様体の射の定義(しないかも)
+  \item ヴェイユ予想の主張
+  \item 合同ゼータ関数とHasse-Weilのζ関数の関係
+  \item リーマン予想との類似
+  \item 楕円曲線の定義
+  \item 楕円曲線の性質
+  \begin{itemize}
+    \item 有理点全体が群になること
+    \item Isogenyと[m]倍写像の　存在
+    \item Frobeniusとdegree
+    \item Tate-Module
+    \item Weil-Pairing
+  \end{itemize}
+  \item Weil-Conjectureの証明
+\end{itemize}
+代数多様体や楕円曲線の一般論については，今回は記述せず，最低限の範囲でコンパクトに止めた資料にする．
+目標は合計15P程度でまとめること．
+
+\section{代数多様体とヴェイユ予想}
+\label{sec:代数多様体とヴェイユ予想}
+この章ではヴェイユ予想の主張を述べる．
+以下では，簡単のため，$K$を完全体とし，$\overline{K}$を$K$の代数閉包とし，$G$で$\overline{K}/K$のガロア群とする．
+
+\subsection{代数多様体}
+\label{sub:代数多様体}
+代数多様体を定義する．
+\subsubsection{アフィン代数多様体}
+\label{subs:アフィン代数多様体}
+
+\begin{dfn}[アフィン代数多様体]
+$\mathfrak{p}$を$\overline{K}[X_1,\dots,X_n]$上の素イデアルとする．以下を満たす時，$V$をアフィン代数多様体という．
+\begin{equation*}
+  V = \{ (t_1, \dots t_n) \in {\overline{K}}^n | \mbox{任意の}f \in \mathfrak{p} \mbox{に対し，}f(t_1, \dots t_n)=0 \}
+\end{equation*}
+$\mathfrak{p}$の生成元を$K$係数で取れる場合，$V$は$K$上定義されていると書く．
+また，$V \cap K^n$を$V(K)$と書く．
+\end{dfn}
+\begin{dfn}[次元]
+$V$をアフィン代数多様体とする．$V$の次元を$\mathrm{Frac}(\overline{K}[X_1,\dots,X_n]/\mathfrak{p}$)/$\overline{K}$の超越次数で定める.
+$V$の次元を$\mathrm{dim}V$と書く．
+\end{dfn}
+
+\begin{dfn}[smooth]
+  $f_1,\dots,f_m$を$\mathfrak{p}$の生成元とする．$P \in V$でsmoothとは，以下を満たすことである．
+  \begin{equation*}
+    \mathrm{rank}\Bigl(\frac{ \partial f_i(P)}{ \partial X_j} \Bigr)_{ij} = n - \mathrm{dim}V
+  \end{equation*}
+\end{dfn}
+
+\subsubsection{射影代数多様体}
+\label{subs:射影代数多様体}
+
+射影代数多様体については説明する．
+アフィン代数多様体に無限遠を付け加えたようなものであり，アフィン代数多様体による被覆を取ることができる．
+\begin{dfn}[射影代数多様体]
+
+\end{dfn}
+
+\subsubsection{代数多様体の間の射}
+\label{subs:代数多様体の間の射}
+
+
+\subsection{ヴェイユ予想}
+\label{sub:ヴェイユ予想}
+\subsubsection{ゼータ関数とヴェイユ予想}
+\label{subs:ゼータ関数とヴェイユ予想}
+
+代数多様体のヴェイユ予想を記述する．
+\begin{dfn}
+    $V$を有限体$\mathbb{F}_q$上定義された射影代数多様体とする．
+    この時，$V$の合同$\zeta$関数を以下で定義する．
+    \begin{equation*}
+     Z(V/\mathbb{F}_q;T):= \mathrm{exp}\Bigl( \sum_{n=1}^{\infty}(\#V(\mathbb{F}_{q^n}))\frac{T^n}{n} \Bigr)
+    \end{equation*}
+\end{dfn}
+
+\begin{thm}[ヴェイユ予想]
+  $V$を有限体$\mathbb{F}_q$上定義された$d$次元のsmoothな射影代数多様体とする．
+  この時以下が成り立つ．
+  \begin{description}
+    \item[Rationality]
+    ゼータ関数$Z(V/\mathbb{F}_q;T)$は
+    $\mathbb{Q}(T)$の元となる．
+    \item[Functional equation]
+    あるオイラー標数$ \epsilon \in \mathbb{Z}$が存在し，
+    \begin{equation}
+      Z(V/\mathbb{F}_q;\frac{1}{q^dT})=\pm
+      q^{d \epsilon/2}Z(V/\mathbb{F}_q;T)
+    \end{equation}
+    \item[Riemann Hypothesis]
+    ゼータ関数は
+    \begin{equation}
+     Z(V/\mathbb{F}_q;T)=
+     \frac{P_1(T)\dots P_{2d-1}(T)}{P_0(T)\dots P_{2N}(T)}
+    \end{equation}
+    とかけ，任意の$P_i(T)$は$\mathbb{Z}$係数多項式となる．さらにこれを
+    $ \mathbb{C} $上分解すると以下を満たす．
+    \begin{equation*}
+     P_i(T)= \prod_{j=1}^{b_i}(1-\alpha_{ij}T) \mbox{ with }
+      |\alpha_{ij}|=q^{i/2}.
+    \end{equation*}
+    \item[Betti Number] ~\\
+    任意の体の埋め込み$K \to \mathbb{C}$に対し，$X(\mathbb{C})$は複素多様体であり，
+    その特異コホモロジー$H^i(X(\mathbb{C}),\mathbb{Q})$が定義される．
+    $V$が代数体$K$上定義された非特異代数多様体$X$の$\mathfrak{p}$を法とする還元
+    で得られるなるとする．
+    この時，得意コホモロジーの次元(Betti数)は多項式$P_i(T)$の次数と等しい．
+  \end{description}
+\end{thm}
+
+\subsection{ヴェイユ予想とリーマン予想}
+\label{sub:ヴェイユ予想とリーマン予想}
+
+ヴェイユ予想とリーマン予想の類似について説明する．
+ここでは，スキームや代数多様体について曖昧に用語を使う.
+類似に関する概要の説明のため，不正確であることについては容赦されたい．
+まず，合同ゼータ関数が(リーマン)ゼータ関数の類似であることを説明する．
+リーマンゼータ関数は
+\begin{equation*}
+ \zeta(s)= \prod_{p}\frac{1}{1-p^{-s}}
+\end{equation*}
+で定義されること思い出そう．
+この無限積は全ての素数を走る．ここで素数と極大イデアルが一対一に対応することに注意すると
+リーマンゼータ関数は以下のようにかくこともできる．
+\begin{equation*}
+ \zeta(s) = \prod_{\mathfrak{m}}
+ \frac{1}{1-{\#(\mathbb{Z}/\mathfrak{m})}^{-s}}
+\end{equation*}
+ただし，$\mathfrak{m}$は$\mathbb{Z}$の極大イデアルを走る．
+上のようにリーマンゼータ関数を解釈することで，ゼータ関数を代数幾何的に一般化できる．
+$X$をスキームとした時，$|X|$を$X$の閉点の集合とする．
+また$x \in |X|$での剰余体を$\kappa(x)$で表す．
+\begin{dfn}
+  $X$を$\mathrm{Spec}\mathbb{Z}$上of finite typeなスキームとする．この時,$X$のHasse-Weilのゼータ関数を以下で定める．
+  \begin{equation*}
+   \zeta(X,s)=\prod_{x \in |X|} \frac{1}{1-\#(\kappa(x))^{-s}}
+  \end{equation*}
+\end{dfn}
+$X$として$\mathrm{Spec}\mathbb{Z}$を取ると，
+Hasse-Weilのゼータ関数はリーマンゼータ関数に一致する．
+また，代数体$K$の整数環$O_K$とする．
+$X$として，$\mathrm{Spec}O_K$を取るとデデキントゼータ関数となる．
+
+Hasse-Weilのゼータ関数と合同ゼータ関数の関係をみる．
+$X$を$\mathrm{Spec}\mathbb{F}_q[X_1,\dots,X_n]/\mathfrak{p}$とする.
+この時，$X(\overline{\mathbb{F}_q})$が,最初に定義した(古典的な意味での)代数多様体$V$に一致する．
+また，以下の関係が成り立つ．
+\begin{prop}
+  $V$を$\mathbb{F}_q$上の代数多様体とする．この時,
+  合同ゼータ関数とHasse-Weilのゼータ関数には以下が成り立つ．
+  \begin{equation*}
+   \zeta(V,s)=\exp(\sum_{m=1}^{\infty}\#V(\mathbb{F}_{q^m}) \frac{q^{-sm}}{m})
+  \end{equation*}
+\end{prop}
+\begin{proof}
+ 計算すればわかる．
+\end{proof}
+ヴェイユ予想の等式(1)(2)の意味は上を通して理解される．
+Hasse-Weilのゼータ関数でみると，(1)は$s$での値と$d-s$での値の関係を述べている．
+(2)はHasse-Weilのゼータ関数の零点や極が$|\alpha_{ij}|=q^{i/2}$となる複素数を用いて，
+\begin{eqnarray*}
+   1- \alpha_{ij} q^{-s}=0  \\
+   \alpha_{ij} =q^{s}
+\end{eqnarray*}
+を満たす$s$として得られる．
+つまり,$s$の実部が$i/2$という主張をしている．そのため，リーマン予想の類似と考えられている．
+
+
+\subsection{Trace Fomulaとヴェイユ予想}
+\label{sub:Trace Fomulaとヴェイユ予想}
+
+余力があれば，コホモロジーについても記載する．
+******************
+ あとで埋める
+******************
+
+\section{楕円曲線の性質}
+\label{sec:楕円曲線の性質}
+この章では，楕円曲線を定義して，基本的な定義を述べる．この章では事実を列挙するだけで，基本的に証明は述べない．それは結果を使うだけで楕円曲線のヴェイユ予想が示せるのと，
+楕円曲線自体の理論は他に優れた参考書が多数存在し，中途半端に解説する価値を見いだせないためである．参考文献は最後に上げたので参考にして欲しい．
+楕円曲線は最も基本的な代数多様体であり，様々な重要な性質を持つ．
+ここでは，数論的な性質．特に楕円曲線の有理点全体が群構造を持つことと
+その群構造から誘導されるTate-Moduleについて説明する．こ
+Tate-Moduleはガロア表現の最も基本的な例であり，ヴェイユ予想を解く上でも重要な役割を果たす．
+以下では，簡単のため，体$K$の標数は2でも3でもないとする．
+
+\subsection{楕円曲線の定義}
+\label{sub:楕円曲線の定義}
+
+\begin{dfn}[楕円曲線]
+  $K$上定義された射影代数多様体$V$が楕円曲線とはある既約な二変数多項式$Y^2 - X^3 - aX - b$が存在し，以下が成り立つことである．
+  \begin{equation*}
+   V=\{O \} \cup \{ (x,y) \in \overline{K}^2 | y^2 - x^3 - ax - b=0 \}
+  \end{equation*}
+\end{dfn}
+
+\begin{dfn}[Isogeny]
+楕円曲線の間の射$f$が$f(O)=O$を満たす時，Isogenyという．
+\end{dfn}
+
+\begin{thm}
+  楕円曲線の有理点全体には足し算が定義でき，その足し算に対しアーベル群になる.
+\end{thm}
+\begin{proof}
+ 証明略．元を具体的に構成するといえる．
+ 具体的な構成は
+******************
+  あとで埋める
+******************
+\end{proof}
+
+足し算を用いることで，楕円曲線には写像が定義できる
+\begin{thm}
+ $E/K$を$K$上定義された楕円曲線とする．この時，以下で定義する楕円曲線の間の射が存在する．
+ \begin{equation}
+   [m]:E \to E, P \mapsto P + \dots +P
+ \end{equation}
+\end{thm}
+\begin{yodan}
+ 上の写像もっときれいに書けないかな．
+\end{yodan}
+\begin{proof}
+ 証明略．計算するとでる．
+\end{proof}
+
+\subsection{Tate Module}
+\label{sub:Tate Module}
+
+Ker[$m$]を$E[m]$と書く．
+\begin{prop}
+  $m$が$\mathrm{char}(K)$と互いに素の時，以下が成り立つ．
+  \begin{equation*}
+   E[m] \simeq \mathbb{Z}/m \mathbb{Z} \times \mathbb{Z}/m \mathbb{Z}
+  \end{equation*}
+\end{prop}
+\begin{proof}
+ 証明略．Dual Isogenyを考え．射が分離的であり，次数$\mathrm{deg}[m]=m^2$となることからわかる．
+\end{proof}
+\begin{rem}
+  $p =\mathrm{char}K$とする．この時，以下のどちらかが成り立つ．
+  \begin{eqnarray*}
+  E[p^e]={O} \\
+  E[p^e]=\mathbb{Z}/p^e \mathbb{Z}
+  \end{eqnarray*}
+つまり，標数と同じ素数上で考えるか，異なる素数上で考えるかで起きる現象が異なる.
+\end{rem}
+また，楕円曲線$E$にはガロア群$G$が作用しているが，$O$を$O$に映し,$[m]$はガロア群の作用と可換なので，$E[m]$は$G$が作用している．
+上の話を逆極限を取る．それが楕円曲線のTate-Moduleである．
+
+\begin{dfn}
+ $E$を楕円曲線とする．$l \in \mathbb{Z}$を素数とする．$l$-adic Tate Moduleを以下で定義する．
+ \begin{equation*}
+  T_l(E)= \varprojlim_{n}E[l^n]
+ \end{equation*}
+\end{dfn}
+$\mathrm{char}(K)$と$l$が異なる時，
+$E[l^n] \simeq \mathbb{Z}/l^n \mathbb{Z} \times \mathbb{Z}/l^n \mathbb{Z} $
+より，$T_l(E)\simeq \mathbb{Z}_l \times \mathbb{Z}_l$となる．
+$E$の有理点全体を決定するのは難しいが，Tate Moduleは非常に簡単な形になっている．
+これは最も基本的なガロア表現である．
+また，Isogeny$\phi:E \to E$に対し，$\phi_l:T_l(E) \to T_l(E)$が誘導される．
+これからさらに，以下が従う．
+\begin{thm}
+  $E$を標数$p$の楕円曲線とする．
+  フロベニウス写像$\phi_q E \to E,(x,y) \to (x^q,y^q)$に対し,$\phi_l: T_l(E) \to T_l(E)$が誘導され，以下が成り立つ．
+  \begin{align}
+   \mathrm{det}\phi_l  &= q \\
+   \#Ker(1 - \phi) &= \mathrm{det}(1 - \phi_l)
+ \end{align}
+\end{thm}
+\begin{proof}
+ 証明略．Weil Pairingと代数多様体でのFrobeniusの性質から証明する．
+\end{proof}
+\begin{rem}
+ $\#E(\mathbb{F}_q)=\#Ker(1 - \phi)$となるので，上の式から有理点の個数が具体的に計算することができる．
+\end{rem}
+
+\section{楕円曲線のヴェイユ予想の証明}
+\label{sec:楕円曲線のヴェイユ予想の証明}
+上で示したこと様々な性質から楕円曲線のヴェイユ予想を実際に計算して示そう．
+楕円曲線の場合は，ヴェイユ予想は以下となる．
+\begin{thm}
+ 有限体$\mathbb{F}_q$上の楕円曲線$E$に対し，以下が成り立つ．
+  \begin{equation*}
+   Z(E/\mathbb{F}_q;T)=\frac{(1- \alpha T)(1- \beta T)}{(1-T)(1-qT)}
+  \end{equation*}
+  ただし，$\alpha,\beta$は複素共役で，$\alpha+\beta \in \mathbb{Z}$かつ，$|\alpha|=|\beta|= \sqrt{q}$となる．
+  さらに，
+  \begin{equation*}
+   Z(E/\mathbb{F}_q; \frac{1}{qT})=Z(E/\mathbb{F}_q;T).
+  \end{equation*}
+\end{thm}
+\begin{proof}
+ $\phi_l$の特性多項式$T^2 -\mathrm{Tr}\phi_l T+ \mathrm{det}\phi_l$の判別式が0以上になることを示す．
+ それは，上記の二次式に任意の実数を代入しても0以上になることが言えればよい.
+ \begin{equation*}
+  \mathrm{det}(\frac{n}{m} - \phi_l)=\frac{\mathrm{det}(n -m \phi_l)}{m^2}
+  = \frac{\#\mathrm{ker}(n -m \phi_l)}{m^2} \ge 0
+ \end{equation*}
+が成り立つ．
+$\mathbb{Q}$が$\mathbb{R}$上稠密なので，任意の実数を代入しても0以上になる．
+
+$\mathrm{det}\phi_l=q$より，$T^2 -\mathrm{Tr}\phi_l T+ \mathrm{det}\phi_l=0$の$\mathbb{C}$上の解を$\alpha,\beta$とすると，$\alpha \beta=q$であり，$\alpha,\beta$が複素共役になるので，$|\alpha|=|\beta|=\sqrt{q}$となる．
+
+また,$\phi_l$を代数閉体上まで拡張し，ジョルダン標準形を考えると，
+2行2列の行列で対角成分が$\alpha,\beta$となる.
+これより，$(\phi_l)^n$の特性多項式は，$1-(\alpha^n + \beta^n)T +q^nT^2.$となる．これより,
+\begin{equation*}
+  E(\mathbb{F}_{q^n})=1-(\alpha^n + \beta^n) +q^n.
+\end{equation*}
+
+$Z(E/\mathbb{F}_q;T)$を上の等式を用いて，計算する.
+\begin{align*}
+  \mathrm{log}Z(E/\mathbb{F}_q;T) &= \sum_{n=1}^{\infty} \frac{\# E(\mathbb{F}_{q^n})T^n}{n} \\
+  &= \sum_{n=1}^{\infty} \frac{(1 - \alpha^n -\beta^n + q^n)T^n}{n} \\
+  &= -\mathrm{log}(1-T) + \mathrm{log}(1- \alpha T)+ \mathrm{log}(1- \beta T) - \mathrm{log}(1 -qT).
+\end{align*}
+となる．これより，
+\begin{equation*}
+ Z(E/\mathbb{F}_q;T)=\frac{(1- \alpha T)(1- \beta T)}{(1-T)(1-qT)}
+\end{equation*}
+となる.また，
+\begin{align*}
+  Z(E/\mathbb{F}_q;1/qT) &= \frac{(qT -\alpha)(qT -\beta)}{(q T - 1)(qT -q)} \\
+  &= \frac{\alpha \beta(\beta T - 1)(\alpha T - 1)}{q(q T - 1)(T -1)}　\\
+  &= Z(E/\mathbb{F}_q;T)
+\end{align*}
+となる．
+\end{proof}
+\end{document}

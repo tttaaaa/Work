@@ -1,0 +1,245 @@
+# Your snippets
+#
+# Atom snippets allow you to enter a simple prefix in the editor and hit
+#tab to
+# expand the prefix into a larger code block with templated values.
+#
+# You can create a new snippet in this file by typing "snip"
+# and then hitting
+# tab.
+#
+# An example CoffeeScript snippet to expand log to console.log:
+#
+# '.source.coffee':
+#   'Console log':
+#     'prefix': 'log'
+#     'body': 'console.log $1'
+#
+# Each scope (e.g. '.source.coffee' above) can only be declared once.
+#
+# This file uses CoffeeScript Object Notation (CSON).
+# If you are unfamiliar with CSON, you can read more about it in the
+# Atom Flight Manual:
+# https://atom.io/docs/latest/using-atom-basic-customization#cson
+'.source.gfm':
+  'r2':
+   'prefix':'r2'
+   'body':'|||\n|-|-|\n|||'
+  'r3':
+   'prefix':'r3'
+   'body':'||||\n|-|-|-|\n||||'
+
+'.text.tex.latex':
+# tex symbol
+  'affinebarK':
+    'prefix':'afbk'
+    'body':'\\\\mathbb{A}^n(\\\\bar{K})'
+  'affine':
+    'prefix':'afk'
+    'body':'\\\\mathbb{A}^n(K)'
+  'bar':
+    'prefix':'ba'
+    'body':'\\\\bar{$1}'
+  'displaystyle':
+    'prefix':'dis'
+    'body':'\\\\displaystyle'
+  'dol':
+    'prefix':'dl'
+    'body':'\$$1\$'
+  'epsilon':
+    'prefix':'ep'
+    'body':'\\\\epsilon'
+  'forall':
+    'prefix':'fa'
+    'body':'\\\\forall'
+  'infty':
+    'prefix':'mg'
+    'body':'\\\\infty'
+  'inverse':
+    'prefix':'iv'
+    'body':'^{-1}'
+  'item':
+    'prefix':'/'
+    'body':'\\\\item '
+  'longcomment':
+    'prefix':'lco'
+    'body':'**$1** '
+  'mapsto':
+    'prefix':'mto'
+    'body':'\\\\mapsto'
+  'mathcal':
+    'prefix':'mc'
+    'body':'\\\\mathcal{$1}'
+  'mathrm':
+    'prefix':'mr'
+    'body':'\\\\mathrm{$1}'
+  'mathrmend':
+    'prefix':'mend'
+    'body':'\\\\mathrm{End}($1)'
+  'mathrmtrace':
+    'prefix':'mtr'
+    'body':'\\\\mathrm{Tr}_{$1}'
+  'mathbb':
+    'prefix':'mb'
+    'body':'\\\\mathbb{$1}'
+  'mathbbz':
+    'prefix':'zb'
+    'body':'\\\\mathbb{Z}'
+  'mathbbzp':
+    'prefix':'zp'
+    'body':'\\\\mathbb{Z}_p'
+  'mathbbf':
+    'prefix':'fb'
+    'body':'\\\\mathbb{F}'
+  'mathbbfp':
+    'prefix':'fp'
+    'body':'\\\\mathbb{F}_p'
+  'mathbbfq':
+    'prefix':'fq'
+    'body':'\\\\mathbb{F}_q'
+  'mathbbr':
+    'prefix':'rb'
+    'body':'\\\\mathbb{R}'
+  'mathbbq':
+    'prefix':'qb'
+    'body':'\\\\mathbb{Q}'
+  'mathbbqp':
+    'prefix':'qp'
+    'body':'\\\\mathbb{Q}_p'
+  'mathbbc':
+    'prefix':'cb'
+    'body':'\\\\mathbb{C}'
+  'mathbbcp':
+    'prefix':'cp'
+    'body':'\\\\mathbb{C}_p'
+  'mathbbn':
+    'prefix':'nb'
+    'body':'\\\\mathbb{N}'
+  'mathfrak':
+    'prefix':'mf'
+    'body':'\\\\mathfrak{$1}'
+  'otimes':
+    'prefix':'ot'
+    'body':'\\\\otimes'
+  'mathfrakX':
+    'prefix':'Xf'
+    'body':'\\\\mathfrak{X}'
+  'X1n':
+    'prefix':'X1n'
+    'body':'X_1,\\\\dots,X_n'
+  'x1n':
+    'prefix':'x1n'
+    'body':'x_1,\\\\dots,x_n'
+  'nabla':
+    'prefix':'na'
+    'body':'\\\\nabla'
+  'partial':
+    'prefix':'pa'
+    'body':'\\\\partial'
+  'subset':
+    'prefix':'sbt'
+    'body':'\\\\subset'
+  'sumsum':
+    'prefix':'su'
+    'body':'\\\\sum_{$1}^{}'
+  'supset':
+    'prefix':'spt'
+    'body':'\\\\supset'
+  'tbd':
+    'prefix':'tbd'
+    'body':'****************** \n あとで埋める \n ******************'  
+  # tex shortcut word
+  'introduction':
+    'prefix':'intr'
+    'body':'\\\\section{Introduction}\n\\\\label{sec:Introduction}'
+  'definition':
+    'prefix':'dfn'
+    'body':'\\\\begin{dfn}\n $1 \n\\\\end{dfn}'
+  'example':
+    'prefix':'epl'
+    'body':'\\\\begin{epl}\n $1 \n\\\\end{epl}'
+  'excersize':
+    'prefix':'exs'
+    'body':'\\\\begin{exs}\n $1 \n\\\\end{exs}'
+  'equation*':
+    'prefix':'ean'
+    'body':'\\\\begin{equation*}\n $1 \n\\\\end{equation*}'
+  'equationarray*':
+    'prefix':'eay'
+    'body':'\\\\begin{eqnarray*}\n $1 \n\\\\end{eqnarray*}'
+  'lemma':
+    'prefix':'lem'
+    'body':'\\\\begin{lem}\n $1 \n\\\\end{lem}'
+  'matrixp':
+    'prefix':'mxp'
+    'body':'\\\\begin{pmatrix}\n $1 & \\\\\\\\ \n &  \n\\\\end{pmatrix}'
+  'ngreatherequalthan0':
+    'prefix':'nge0'
+    'body':'n \\\\ge 0'
+  'proposition':
+    'prefix':'prop'
+    'body':'\\\\begin{prop}\n $1 \n\\\\end{prop}'
+  'beproof':
+    'prefix':'prf'
+    'body':'\\\\begin{proof}\n $1 \n\\\\end{proof}'
+  'theorem':
+    'prefix':'thm'
+    'body':'\\\\begin{thm}\n $1 \n\\\\end{thm}'
+  'proof':
+    'prefix':'pf'
+    'body':'\\\\begin{proof}\n $1 \n\\\\end{proof}'
+  'polynomialX':
+    'prefix':'pX'
+    'body':'[X_1,\\\\dots,X_n]'
+  'polynomialx':
+    'prefix':'px'
+    'body':'[x_1,\\\\dots,x_n]'
+  'remark':
+    'prefix':'rem'
+    'body':'\\\\begin{rem}\n $1 \n\\\\end{rem}'
+  'yodan':
+    'prefix':'ydn'
+    'body':'\\\\begin{yodan}\n $1 \n\\\\end{yodan}'
+  # tex mathmatical term
+  'abelian':
+    'prefix':'ab'
+    'body':'abelian'
+  'algebra':
+    'prefix':'alg'
+    'body':'algebra'
+  'cuspform':
+    'prefix':'cpfm'
+    'body':'cusp form'
+  'category':
+    'prefix':'cat'
+    'body':'category'
+  'complexmultiplication':
+    'prefix':'cm'
+    'body':'complex multiplication'
+  'doldol':
+    'prefix':'dd'
+    'body':'$$1$'
+  'group':
+    'prefix':'gp'
+    'body':'group'
+  'Jacobi':
+    'prefix':'ja'
+    'body':'Jacobi'
+  'Jacobian':
+    'prefix':'jn'
+    'body':'Jacobian'
+  'projective':
+    'prefix':'prj'
+    'body':'projective'
+  'modularfrom':
+    'prefix':'mdfm'
+    'body':'modular form'
+  'subalgebra':
+    'prefix':'salg'
+    'body':'subalgebra'
+  'subgroup':
+    'prefix':'sgp'
+    'body':'subgroup'
+  'variety':
+    'prefix':'var'
+    'body':'variety'
