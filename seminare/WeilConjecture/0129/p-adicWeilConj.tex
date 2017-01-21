@@ -351,9 +351,11 @@
 
 \section{Introduction}
 \label{sec:Introduction}
-楕円曲線のヴェイユ予想を楕円曲線には深入りせずに証明する．
-ヴェイユがいくつかの特別な場合を示したことから，1940年台にヴェイユ予想は
-楕円曲線のいくつかの性質は時間の都合上，認めて証明をする．
+
+ヴェイユ予想は20世紀の数論の方向性を決定づけた重要な定理であり，そこで使われた道具は現在の数論の研究においても重要な位置を占める．ヴェイユ予想物語では，そのヴェイユ予想を現代の知識を持って改めて解釈することを目標としている．これまでの講義では，代数の基礎，ヴェイユ予想やその証明のアイディアの元となった，リーマン予想とリフシッツ不動点定理について解説してきた．この講義では，そうした準備を元に，ヴェイユ予想の主張，及び，ヴェイユ予想がリーマン予想の類似であることの説明をする．また，楕円曲線という特別な場合において，実際にヴェイユ予想を証明する．ただし，楕円曲線には優れた解説書が多数存在するため，その証明は本書では特に記載しない．
+証明が気になる場合は，例えば\cite{s}を参照するとよい．
+本書の概要を述べる．
+まずは代数多様体を述べる．
 
 プロットは，以下の通り．
 
@@ -389,13 +391,14 @@
 \label{subs:アフィン代数多様体}
 
 \begin{dfn}[アフィン代数多様体]
-$\mathfrak{p}$を$\overline{K}[X_1,\dots,X_n]$上の素イデアルとする．以下を満たす時，$V$をアフィン代数多様体という．
+$\mathfrak{p}$を$\overline{K}[X_1,\dots,X_n]$上の素イデアルとする．以下を満たす時，$(V,\overline{K}[X_1,\dots,X_n]/\mathfrak{p})$をアフィン代数多様体という．
 \begin{equation*}
   V = \{ (t_1, \dots t_n) \in {\overline{K}}^n | \mbox{任意の}f \in \mathfrak{p} \mbox{に対し，}f(t_1, \dots t_n)=0 \}
 \end{equation*}
-$\mathfrak{p}$の生成元を$K$係数で取れる場合，$V$は$K$上定義されていると書く．
-また，$V \cap K^n$を$V(K)$と書く．
+$\mathfrak{p}$の生成元を$K$係数で取れる場合，$V$は$K$上定義されているという．
+また，$V \cap K^n$を$V(K)$と書き，$K$-有理点という．$\mathfrak{p}$が明らかな時は$V$を代数多様体と書く．
 \end{dfn}
+
 \begin{dfn}[次元]
 $V$をアフィン代数多様体とする．$V$の次元を$\mathrm{Frac}(\overline{K}[X_1,\dots,X_n]/\mathfrak{p}$)/$\overline{K}$の超越次数で定める.
 $V$の次元を$\mathrm{dim}V$と書く．
@@ -411,15 +414,85 @@ $V$の次元を$\mathrm{dim}V$と書く．
 \subsubsection{射影代数多様体}
 \label{subs:射影代数多様体}
 
-射影代数多様体については説明する．
-アフィン代数多様体に無限遠を付け加えたようなものであり，アフィン代数多様体による被覆を取ることができる．
-\begin{dfn}[射影代数多様体]
-
+射影代数多様体を定義する．
+射影代数多様体はアフィン代数多様体に無限遠を付け加えたようなものであり，アフィン代数多様体による被覆を取ることができる．
+\begin{dfn}[斉次イデアル]
+イデアル$I\subset \overline{K}(X_1,\dots,X_n)$が斉次イデアルとは，$I$の生成元$(f_i)$で$f_i$が
+斉次多項式であるものが存在すること.
 \end{dfn}
 
-\subsubsection{代数多様体の間の射}
-\label{subs:代数多様体の間の射}
+\begin{dfn}[射影空間]
+射影空間を$\mathbb{P}^n(\overline{K})$を以下で定義する．
+\begin{equation*}
+ \mathbb{P}^n(\overline{K}):=\overline{K}^{n+1}\backslash\{O\}/\sim
+\end{equation*}
+ただし，同値関係$a \sim b$はある$\lambda \in \overline{K}$が存在し，$a= \lambda b$となることで定める．
+\end{dfn}
 
+\begin{lem}
+ $[a] \in \mathbb{P}^n(\overline{K})$とする． $[a]$の代表元$a$を一つ固定する.斉次多項式$f$に対し，
+ $f(a)=0$ならば$[a]$の任意の代表元$b$に対し$f(b)=0$となる.
+\end{lem}
+
+上の補題の条件を満たす時，$f([a])=0$と書く.
+
+\begin{dfn}[射影代数多様体]
+  $\mathfrak{p}$を$\overline{K}[X_0,\dots,X_n]$の斉次素イデアルとする．この時，$(V,\overline{K}[X_0,\dots,X_n]/\mathfrak{p})$が射影代数多様体とは，以下が成り立つことである．
+  \begin{equation*}
+   V=\{[t_0:\dots:t_n] \in \mathbb{P}^n(\overline{K}) |   \mbox{任意の}f \in \mathfrak{p} \mbox{に対し，}f(t_0: \dots :t_n)=0\}
+  \end{equation*}
+\end{dfn}
+射影代数多様体とアフィン代数多様体には以下の関係がある．
+******************\\
+あとで埋める \\
+******************
+\begin{rem}
+  特に1次元射影代数多様体は，アフィン代数多様体に1点$O$を追加したものになる．
+\end{rem}
+
+\subsection{スキーム}
+\label{sub:スキーム}
+代数多様体では代数閉体上の図形しか調べられない．そのため，より一般の図形に拡張できないかは考えられていた．
+その成功例として，スキームがある．スキームは理論が広大であり，なぜこのように考えるとよいかは初学者には理解しづらいかもしれない．ただ．スキームによって数論的な問題を幾何的に解釈できるようになるなど，様々な利点がある．
+
+まず，代数幾何の重要な定理を述べる．
+
+\begin{thm}[ヒルベルトの弱零点定理]
+代数閉体$K$上の代数多様体$(V,K[X_1,\dots,X_n]/\mathfrak{p})$に対し，$\mathrm{Spm}V$を$V$
+の極大イデアル全体のなす集合とする．
+$V \to \mathrm{Spm}V,(t_1,\dots,t_n)\mapsto (\overline{X_1 - t_1},\dots,\overline{X_n - t_n})$
+は全単射となる．
+\end{thm}
+
+上の定理により，代数多様体では，関数$K[X_1,\dots,X_n]/\mathfrak{p}$の情報さえわかれば，$V$の情報はいらないことがわかる．つまり，代数多様体を調べる時は，関数だけを調べればよい．このことを逆手にとり，関数を多項式環から一般の単位的可換環に一般化したものがスキームである.この時，点も極大イデアルではなく素イデアルに一般化する．スキームは環付き空間(空間と空間上の環の層の組)として定義される．空間や空間上の層がどのように定義されるかがわかる命題を証明なく列挙する．
+
+\begin{prop}
+$R$を可換環とする．$\mathrm{Spec}R$を$R$の素イデアル全体のなす集合とする．
+$V(I)$を$I$を含む素イデアル全体の集合とする.この時，$V(I)$は閉集合系の公理を満たす．
+$D(I):=\mathrm{Spec}R \backslash V(I)$とする．
+\end{prop}
+
+\begin{lem}
+ $D(f)$は開集合基となる．すなわち，任意の開集合$D(I)$は$D(f)$の和集合で表すことができる．
+ また，$\mathrm{Spec}R$はコンパクトになる．
+\end{lem}
+
+\begin{prop}
+ $\mathrm{Spec}R$上に,$\mathcal{O}_{\mathrm{SpecR}}(D(f))=R_f$を満たす可換環の層
+ $\mathcal{O}_{\mathrm{Spec}R}$が存在する．
+\end{prop}
+これらより，アフィンスキームが定義できる．
+\begin{dfn}
+ $(\mathrm{Spec}R,\mathcal{O}_{\mathrm{Spec}R})$をアフィンスキームという．
+\end{dfn}
+アフィンスキームは実質，可換環と思える．
+\begin{prop}
+ 可換環の圏とアフィンスキームの圏は圏同値になる．
+\end{prop}
+\begin{rem}
+ 代数多様体やスキームの射は定義が複雑だが，可換環だと思うことにより，環準同型と思える．
+\end{rem}
+スキームはアフィンスキームを貼り合わせたものとして定義されるが，本講義ではアフィンスキームのみを扱うので，定義は省略する．
 
 \subsection{ヴェイユ予想}
 \label{sub:ヴェイユ予想}
@@ -429,43 +502,45 @@ $V$の次元を$\mathrm{dim}V$と書く．
 代数多様体のヴェイユ予想を記述する．
 \begin{dfn}
     $V$を有限体$\mathbb{F}_q$上定義された射影代数多様体とする．
-    この時，$V$の合同$\zeta$関数を以下で定義する．
+    この時，$V$の合同ゼータ関数を以下で定義する．
     \begin{equation*}
      Z(V/\mathbb{F}_q;T):= \mathrm{exp}\Bigl( \sum_{n=1}^{\infty}(\#V(\mathbb{F}_{q^n}))\frac{T^n}{n} \Bigr)
     \end{equation*}
 \end{dfn}
 
+
+
 \begin{thm}[ヴェイユ予想]
   $V$を有限体$\mathbb{F}_q$上定義された$d$次元のsmoothな射影代数多様体とする．
-  この時以下が成り立つ．
+  この時,以下が成り立つ．
   \begin{description}
     \item[Rationality]
-    ゼータ関数$Z(V/\mathbb{F}_q;T)$は
-    $\mathbb{Q}(T)$の元となる．
+    \begin{equation*}
+      Z(V/\mathbb{F}_q;T) \in \mathbb{Q}(T)
+    \end{equation*}
     \item[Functional equation]
     あるオイラー標数$ \epsilon \in \mathbb{Z}$が存在し，
     \begin{equation}
       Z(V/\mathbb{F}_q;\frac{1}{q^dT})=\pm
-      q^{d \epsilon/2}Z(V/\mathbb{F}_q;T)
+      q^{d \epsilon/2}T^{\epsilon}Z(V/\mathbb{F}_q;T)
     \end{equation}
     \item[Riemann Hypothesis]
-    ゼータ関数は
+    ゼータ関数は$\mathbb{Z}$係数多項式$P_i(T)$を用いて，
     \begin{equation}
      Z(V/\mathbb{F}_q;T)=
-     \frac{P_1(T)\dots P_{2d-1}(T)}{P_0(T)\dots P_{2N}(T)}
+     \frac{P_1(T)\dots P_{2d-1}(T)}{P_0(T)\dots P_{2d}(T)}
     \end{equation}
-    とかけ，任意の$P_i(T)$は$\mathbb{Z}$係数多項式となる．さらにこれを
+    とかける．さらに$P_i(T)$を
     $ \mathbb{C} $上分解すると以下を満たす．
     \begin{equation*}
-     P_i(T)= \prod_{j=1}^{b_i}(1-\alpha_{ij}T) \mbox{ with }
-      |\alpha_{ij}|=q^{i/2}.
+     P_i(T)= \prod_{j=1}^{b_i}(1-\alpha_{ij}T) \mbox{ }
+      (|\alpha_{ij}|=q^{i/2}).
     \end{equation*}
-    \item[Betti Number] ~\\
-    任意の体の埋め込み$K \to \mathbb{C}$に対し，$X(\mathbb{C})$は複素多様体であり，
-    その特異コホモロジー$H^i(X(\mathbb{C}),\mathbb{Q})$が定義される．
-    $V$が代数体$K$上定義された非特異代数多様体$X$の$\mathfrak{p}$を法とする還元
-    で得られるなるとする．
-    この時，得意コホモロジーの次元(Betti数)は多項式$P_i(T)$の次数と等しい．
+    \item[Betti Number]
+    $V$が代数体$K$上定義された滑らかな代数多様体$X$の$\mathfrak{l}$を法とする還元
+    で得られるとする．体の任意の埋め込み$K \to \mathbb{C}$に対し，$X(\mathbb{C})$は
+    複素多様体であり，その特異コホモロジー$H^i(X(\mathbb{C}),\mathbb{Q})$が定義される．
+    この時，特異コホモロジーの次元(Betti数)は多項式$P_i(T)$の次数と等しい．
   \end{description}
 \end{thm}
 
@@ -489,10 +564,10 @@ $V$の次元を$\mathrm{dim}V$と書く．
 \end{equation*}
 ただし，$\mathfrak{m}$は$\mathbb{Z}$の極大イデアルを走る．
 上のようにリーマンゼータ関数を解釈することで，ゼータ関数を代数幾何的に一般化できる．
-$X$をスキームとした時，$|X|$を$X$の閉点の集合とする．
+$X=\mathrm{Spec}R$をアフィンスキームとし，$|X|$を$X$の閉点の集合とする．($R$の極大イデアル全体の集合と一致する.)
 また$x \in |X|$での剰余体を$\kappa(x)$で表す．
 \begin{dfn}
-  $X$を$\mathrm{Spec}\mathbb{Z}$上of finite typeなスキームとする．この時,$X$のHasse-Weilのゼータ関数を以下で定める．
+  $\mathbb{Z}$上有限生成な環$R$とし，アフィンスキーム$X=\mathrm{Spec}R$とする．この時,$X$のHasse-Weilのゼータ関数を以下で定める．
   \begin{equation*}
    \zeta(X,s)=\prod_{x \in |X|} \frac{1}{1-\#(\kappa(x))^{-s}}
   \end{equation*}
@@ -504,27 +579,35 @@ $X$として，$\mathrm{Spec}O_K$を取るとデデキントゼータ関数と�
 
 Hasse-Weilのゼータ関数と合同ゼータ関数の関係をみる．
 $X$を$\mathrm{Spec}\mathbb{F}_q[X_1,\dots,X_n]/\mathfrak{p}$とする.
-この時，$X(\overline{\mathbb{F}_q})$が,最初に定義した(古典的な意味での)代数多様体$V$に一致する．
+確認しておくと，$X(\overline{\mathbb{F}_q}),\mathbb{F}_q[X_1,\dots,X_n]/\mathfrak{p}\otimes \overline{F}_q$が,$\mathfrak{F}_q$上のアフィン代数多様体に一致する．これを$V$とかく.
 また，以下の関係が成り立つ．
 \begin{prop}
-  $V$を$\mathbb{F}_q$上の代数多様体とする．この時,
-  合同ゼータ関数とHasse-Weilのゼータ関数には以下が成り立つ．
   \begin{equation*}
-   \zeta(V,s)=\exp(\sum_{m=1}^{\infty}\#V(\mathbb{F}_{q^m}) \frac{q^{-sm}}{m})
+   \zeta(X,s)=\exp(\sum_{m=1}^{\infty}\#V(\mathbb{F}_{q^m}) \frac{q^{-sm}}{m})
   \end{equation*}
 \end{prop}
 \begin{proof}
  計算すればわかる．
+******************\\
+あとで埋める \\
+******************
 \end{proof}
 ヴェイユ予想の等式(1)(2)の意味は上を通して理解される．
-Hasse-Weilのゼータ関数でみると，(1)は$s$での値と$d-s$での値の関係を述べている．
-(2)はHasse-Weilのゼータ関数の零点や極が$|\alpha_{ij}|=q^{i/2}$となる複素数を用いて，
+Hasse-Weilのゼータ関数でみると，(1)は
+\begin{equation*}
+ \zeta(V,d-s)=Z(V/\mathbb{F}_q;q^{-d+s})=\pm q^{d \epsilon/2 -s}Z(V/\mathbb{F}_q;q^{-s})
+ = \pm q^{d \epsilon/2 -s} \zeta(V,s)
+\end{equation*}
+となり，$s$での値と$d-s$での値の関係を述べている．
+
+(2)は零点や極を取る場所を示している．Hasse-Weilのゼータ関数の場合に零点や極を取る点$s$は
+$P_i(q^{-s})=0$を満たす．これより．$|\alpha_{ij}|=q^{i/2}$となる複素数を用いて，
 \begin{eqnarray*}
    1- \alpha_{ij} q^{-s}=0  \\
    \alpha_{ij} =q^{s}
 \end{eqnarray*}
-を満たす$s$として得られる．
-つまり,$s$の実部が$i/2$という主張をしている．そのため，リーマン予想の類似と考えられている．
+を満たす$s$となる．$|q^{s}|$は$s$の実部になるので，
+上の式は$s$の実部が$i/2$という主張をしている．そのため，リーマン予想の類似と考えられている．
 
 
 \subsection{Trace Fomulaとヴェイユ予想}
@@ -537,56 +620,53 @@ Hasse-Weilのゼータ関数でみると，(1)は$s$での値と$d-s$での値�
 
 \section{楕円曲線の性質}
 \label{sec:楕円曲線の性質}
-この章では，楕円曲線を定義して，基本的な定義を述べる．この章では事実を列挙するだけで，基本的に証明は述べない．それは結果を使うだけで楕円曲線のヴェイユ予想が示せるのと，
+この章では，楕円曲線を定義して，基本的な性質を述べる．この章では事実を列挙するだけで，基本的に証明は述べない．それは結果を使うだけで楕円曲線のヴェイユ予想が示せるのと，
 楕円曲線自体の理論は他に優れた参考書が多数存在し，中途半端に解説する価値を見いだせないためである．参考文献は最後に上げたので参考にして欲しい．
-楕円曲線は最も基本的な代数多様体であり，様々な重要な性質を持つ．
-ここでは，数論的な性質．特に楕円曲線の有理点全体が群構造を持つことと
-その群構造から誘導されるTate-Moduleについて説明する．こ
-Tate-Moduleはガロア表現の最も基本的な例であり，ヴェイユ予想を解く上でも重要な役割を果たす．
 以下では，簡単のため，体$K$の標数は2でも3でもないとする．
 
 \subsection{楕円曲線の定義}
 \label{sub:楕円曲線の定義}
 
 \begin{dfn}[楕円曲線]
-  $K$上定義された射影代数多様体$V$が楕円曲線とはある既約な二変数多項式$Y^2 - X^3 - aX - b$が存在し，以下が成り立つことである．
+  $K$上定義された射影代数多様体$V$が楕円曲線であるとはある既約な二変数多項式$Y^2 - X^3 - aX - b$が存在し，以下が成り立つことである．
   \begin{equation*}
    V=\{O \} \cup \{ (x,y) \in \overline{K}^2 | y^2 - x^3 - ax - b=0 \}
   \end{equation*}
 \end{dfn}
 
 \begin{dfn}[Isogeny]
-楕円曲線の間の射$f$が$f(O)=O$を満たす時，Isogenyという．
+楕円曲線の間の射であって，$f$が$f(O)=O$を満たす時，Isogenyという．
 \end{dfn}
+\begin{rem}
+ 射が何かは特に説明しない．
+\end{rem}
 
 \begin{thm}
-  楕円曲線の有理点全体には足し算が定義でき，その足し算に対しアーベル群になる.
+  楕円曲線には足し算が定義でき，その足し算に対しアーベル群になる.
 \end{thm}
 \begin{proof}
- 証明略．元を具体的に構成するといえる．
- 具体的な構成は
-******************
-  あとで埋める
-******************
+ 証明略.
 \end{proof}
 
-足し算を用いることで，楕円曲線には写像が定義できる
+\begin{rem}
+ 足し算によって楕円曲線の間の射が一つ構成できた．
+ また，足し算から掛け算も構成することができる．
+\end{rem}
+
 \begin{thm}
  $E/K$を$K$上定義された楕円曲線とする．この時，以下で定義する楕円曲線の間の射が存在する．
  \begin{equation}
    [m]:E \to E, P \mapsto P + \dots +P
  \end{equation}
 \end{thm}
-\begin{yodan}
- 上の写像もっときれいに書けないかな．
-\end{yodan}
 \begin{proof}
- 証明略．計算するとでる．
+ 証明略．
 \end{proof}
 
 \subsection{Tate Module}
 \label{sub:Tate Module}
-
+上で定義した[$m$]は楕円曲線の間の代数曲線としての射になっているだけでなく，
+アーベル群の間の準同型になっている．そこで，この射のカーネルがどうなっているかを調べる．
 Ker[$m$]を$E[m]$と書く．
 \begin{prop}
   $m$が$\mathrm{char}(K)$と互いに素の時，以下が成り立つ．
@@ -594,9 +674,11 @@ Ker[$m$]を$E[m]$と書く．
    E[m] \simeq \mathbb{Z}/m \mathbb{Z} \times \mathbb{Z}/m \mathbb{Z}
   \end{equation*}
 \end{prop}
+
 \begin{proof}
  証明略．Dual Isogenyを考え．射が分離的であり，次数$\mathrm{deg}[m]=m^2$となることからわかる．
 \end{proof}
+
 \begin{rem}
   $p =\mathrm{char}K$とする．この時，以下のどちらかが成り立つ．
   \begin{eqnarray*}
@@ -605,8 +687,9 @@ Ker[$m$]を$E[m]$と書く．
   \end{eqnarray*}
 つまり，標数と同じ素数上で考えるか，異なる素数上で考えるかで起きる現象が異なる.
 \end{rem}
-また，楕円曲線$E$にはガロア群$G$が作用しているが，$O$を$O$に映し,$[m]$はガロア群の作用と可換なので，$E[m]$は$G$が作用している．
-上の話を逆極限を取る．それが楕円曲線のTate-Moduleである．
+
+また，楕円曲線$E$にはガロア群$\mathrm{Gal}_{\overline{K}/K}$が作用しているが，その作用では，$O$を$O$に映し,$[m]$と可換なので，$E[m]$上に$G$の作用が定義できる．
+$E[m]$の逆極限を取る．それが楕円曲線のTate-Moduleである．
 
 \begin{dfn}
  $E$を楕円曲線とする．$l \in \mathbb{Z}$を素数とする．$l$-adic Tate Moduleを以下で定義する．
@@ -623,7 +706,7 @@ $E$の有理点全体を決定するのは難しいが，Tate Moduleは非常に
 これからさらに，以下が従う．
 \begin{thm}
   $E$を標数$p$の楕円曲線とする．
-  フロベニウス写像$\phi_q E \to E,(x,y) \to (x^q,y^q)$に対し,$\phi_l: T_l(E) \to T_l(E)$が誘導され，以下が成り立つ．
+  フロベニウス写像$\phi_q: E \to E,(x,y) \to (x^q,y^q)$に対し,$\phi_l: T_l(E) \to T_l(E)$が誘導され，以下が成り立つ．
   \begin{align}
    \mathrm{det}\phi_l  &= q \\
    \#Ker(1 - \phi) &= \mathrm{det}(1 - \phi_l)
@@ -688,4 +771,19 @@ $Z(E/\mathbb{F}_q;T)$を上の等式を用いて，計算する.
 \end{align*}
 となる．
 \end{proof}
+
+\begin{thebibliography}{数字}
+%\begin{thebibliography}{数字}
+%thebibliography:参考文系の段落を表す
+%数字:開始の種類を表す．
+%bibitem:箇条書きのタイトルを表す．
+\bibitem{S} J.Silverman. The Arithmetic of Elliptic Curves. Springer-Verlag,1992
+参考文献の著者・名前など
+\bibitem{名前２}
+参考文献の著者・名前など
+・
+・
+・
+\end{thebibliography}
+
 \end{document}
