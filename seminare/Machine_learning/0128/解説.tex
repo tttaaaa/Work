@@ -353,8 +353,83 @@
 \label{sec:Introduction}
 この論文では,one-hidden layerのニューラルネットワークとdeep networkを比較する．
 
+この論文で定理とされているものを記載する．
+\begin{thm}
+  Let $\sigma:\mathbb{R} \to \mathbb{R}$ be infinitely differentiable, and not a polynomial
+  on any subinterval of $\mathbb{R}$.
+  \begin{itemize}
+    \item For $f \in W_{r,d}^{NN}$
+    \begin{equation*}
+     \mathrm{dist}(f,S_n) = \mathcal{O}(n^{-r/d})
+    \end{equation*}
+    \item For $f \in W_{H,r,2}^{NN}$
+    \begin{equation*}
+     \mathrm{dist}(f,D_n)= \mathcal{O}(n^{-2/d})
+    \end{equation*}
+  \end{itemize}
+\end{thm}
+
+\begin{thm}
+There exists a constant $c > 0$ depending on $d$ alone with the following property.
+Let  $\{ C_m \}$ be a sequence of finite subsets with $\{ C_m \} \subset [-cm,cm]^d$ with
+\begin{equation*}
+  1/m \preceq \mathrm{max}_{y \in K}\mathrm{min}_{x \in C}|x -y | \preceq  \eta(C_m)
+\end{equation*}
+ If $\gamma > 0$ and $f \in W_{\gamma,d}$
+ then for integer $m \ge 1$ there exists
+ $G \in N_{|Cm|,m}$ with centers at points in $C_m$
+ such that
+\begin{equation*}
+  ||f -G||_d \preceq \frac{1}{m^{\gamma}}||f||_{\gamma,d}
+\end{equation*}
+ Moreover, the coefficients of $G$ can be chosen as linear combinations of the data $\{f(x) : x \in C_m\}$.
+\end{thm}
+
+\begin{thm}
+  For each $v in V$, let  $\{C_{m,v}\}$ be a sequence of finite subsets as described in Theorem 2.
+  Let $\gamma > 0$ and $f \in TW_{\gamma,2}$.
+  Then for integer $m \ge 1$, there exists $G \in TN_{\mathrm{max} |C_{m,v}|m}(\mathbb{R}^2)$
+  with centers of the constituent network $G_v$ at vertex $v$ at points in $C_{m,v}$ such that
+\begin{equation*}
+  ||f - G||_{\mathcal{T}} \preceq \frac{1}{m^{\gamma}}||f||_{\mathcal{T},\gamma,2}
+\end{equation*}
+Moreover, the coefficients of each constituent $G_v$
+can be chosen as linear combinations of the data $\{f(x) : x \in C_{m,v} \}$.
+\end{thm}
+
+\begin{thm}
+  \begin{itemize}
+    \item[(a)] Let $\{C_m\}$ be a sequence of finite subsets of $\mathbb{R}^d$,
+    such that for each integer $m \ge 1, C_m \subset C_{m+1},$
+    $|C_m| \le c \mathrm{exp}exp(c_1m^2)$, and $\eta (C_m) \ge 1/m$.
+    Further, let $f \in C_0(\mathbb{R}^d)$, and for each $m \ge 1$,
+    let $G_m$ be a Gaussian network with centers among points in $C_m$,
+    such that
+    \begin{equation*}
+      \mathrm{sup}_{m \ge 1 } m^{ \gamma }||f -G_m||_{\mathcal{T}} < \infty
+    \end{equation*}
+ Then $f \in W_{\gamma,d}$
+ \item[(b)]
+ For each $v \in V$ , let $\{ C_{m,v} \}$ be a sequence of finite subsets of $\mathbb{R}^{d(v)}$, satisfying the conditions as described in part
+ (a) above. Let $f \in  \mathcal{T}C_0(\mathbb{R}^2), \gamma> 0$, and $\{ G_m \in \mathcal{T}N_{n,m} \}$ be a sequence where, for each $v \in V$,
+ the centers of the constitutent networks $G_{m,v}$ are among points in $C_{m,v}$, and such that
+\begin{equation*}
+\mathrm{sup}_{m \ge 1}m^{\gamma}||f -G_m||_{\mathcal{T}} \ge \infty
+\end{equation*}
+ Then $f \in \mathcal{T}W_{\gamma,2}$.
+\end{itemize}
+\end{thm}
+
 \section{Previous Work}
 \label{sec:Previous Work}
+以前の仕事自体には興味が無いので，自分が疑問に思う点をここに記載する．
+全体の主張としては誤差が小さいものが存在するといってるだけ，誤差が$O(n^{-r/2})$まで落とせると言っている．
+
+\begin{itemize}
+  \item $\mathbb{Q},\mathbb{Q}_p$上でうまく定義できるか
+  \item $n$や$d$の関係を明確にして，その状況で問題設定を解決したい．
+  \item 計算量に関する考察は何かできないか
+\end{itemize}
 
 \section{Compositional functions}
 \label{sec:Compositional functions}
@@ -367,13 +442,18 @@
 \begin{equation}
 　\mathrm{dist}(f,V_n)= \mathrm{inf}_{P \in V_n}||f - P||
 \end{equation}
+\begin{rem}
+ $V_n$は関数の集合，実際にははニューラルネットワークとして定義される関数の集合として，使われていた．
+
+\end{rem}
 \subsection{Deep and shallow neural netwokrs}
 \label{sub:Deep and shallow neural netwokrs}
 $I^d:=[-1,1]^d,\mathbb{X}=C(I^d,\mathbb{R})$とし，
 $||f||=\mathrm{max}_{x \in I^d}|f(x)|$とする．
 $S_n$をn個のunitを持つshallow netoworkのなす集合とする．すなわち，
 \begin{equation*}
- S_n:=\{f:\mathbb{R}^d,\mathbb{R}|\mbox{ある}w_k ^in \mathbb{R}^d,b_k.a_k \in \mathbb{R}\mbox{が存在し，}f(x)=\sum_{k=1}^na_k \sigma(w_kx+b_k) \}
+ S_n:=\{f:\mathbb{R}^d \to \mathbb{R}|\mbox{ある}w_k ^in \mathbb{R}^d,b_k.a_k
+ \in \mathbb{R}\mbox{が存在し，}f(x)=\sum_{k=1}^na_k \sigma(w_kx+b_k) \}
 \end{equation*}
 この時，訓練パラメータが$(d+2)n$個存在する.(メタ的で数学的ではない).
 $W_{r,d}^{NN}$で$r$回連続偏微分可能であって,

@@ -1,5 +1,5 @@
 \contentsline {section}{\numberline {1}Introduction}{1}{section.1}
-\contentsline {section}{\numberline {2}Previous Work}{1}{section.2}
-\contentsline {section}{\numberline {3}Compositional functions}{1}{section.3}
-\contentsline {section}{\numberline {4}Main results}{1}{section.4}
-\contentsline {subsection}{\numberline {4.1}Deep and shallow neural netwokrs}{2}{subsection.4.1}
+\contentsline {section}{\numberline {2}Previous Work}{2}{section.2}
+\contentsline {section}{\numberline {3}Compositional functions}{2}{section.3}
+\contentsline {section}{\numberline {4}Main results}{2}{section.4}
+\contentsline {subsection}{\numberline {4.1}Deep and shallow neural netwokrs}{3}{subsection.4.1}

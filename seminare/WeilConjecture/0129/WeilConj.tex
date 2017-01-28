@@ -337,7 +337,7 @@
 \newcommand{\WSet}{\r{WSet}}
 \newcommand{\wtC}{\wt{\cC}}
 
-\title{第3回ヴェイユ予想物語~楕円曲線のヴェイユ予想~}
+\title{第3回ヴェイユ予想物語 \\ ~楕円曲線のヴェイユ予想~}
 \author{ari}
 \date{1/29}
 
@@ -352,17 +352,25 @@
 \section{Introduction}
 \label{sec:Introduction}
 
-ヴェイユ予想は20世紀の数論の方向性を決定づけた重要な定理であり，そこで使われた道具は現在の数論の研究においても重要な位置を占める．ヴェイユ予想物語では，そのヴェイユ予想を現代の知識を持って改めて解釈することを目標としている．これまでの講義では，代数の基礎，ヴェイユ予想やその証明のアイディアの元となった，リーマン予想とリフシッツ不動点定理について解説してきた．この講義では，そうした準備を元に，ヴェイユ予想の主張，及び，ヴェイユ予想がリーマン予想の類似であることの説明をする．また，楕円曲線という特別な場合において，実際にヴェイユ予想を証明する．ただし，楕円曲線には優れた解説書が多数存在するため，楕円曲線の一般論については定理を記載するのみで，その証明は本書では特に記載しない．
-証明が気になる場合は，例えば\cite{s}を参照するとよい．
-最後にヴェイユ予想におけるリフシッツ不動点定理の関係を概要程度に説明し，エタールコホモロジー等の数論幾何の道具を活用するモチベーションを説明した．
-\begin{yodan}
- もっといい序文をかけないものか．
-\end{yodan}
+ヴェイユ予想は20世紀の数論の方向性を決定づけた重要な定理であり，
+そこで使われた道具は現在の数論の研究においても重要な位置を占める．ヴェイユ予想物語では，
+そのヴェイユ予想を現代の知識を持って改めて解釈することを目標としている．
+これまでの講義では，代数の基礎，ヴェイユ予想の着想やその証明のアイディアの元となった，
+リーマン予想とリフシッツ不動点定理について解説してきた．この講義では，そうした準備を元に，ヴェイユ予想の主張，
+及び，ヴェイユ予想がリーマン予想の類似であることの説明をする．また，楕円曲線という特別な場合において，
+実際にヴェイユ予想を証明する．
+ただし，楕円曲線には優れた解説書が多数存在するため，楕円曲線の一般論については定理を記載するのみで，
+その証明は本書では特に記載しない．
+証明が気になる場合は，例えば\cite{S}を参照するとよい．
+最後にヴェイユ予想におけるリフシッツ不動点定理の関係を概要程度に説明し，Weil予想でどのようにエタールコホモロジーが活躍するかを説明する．
+%\begin{yodan}
+% もっといい序文をかけないものか．
+%\end{yodan}
 
 \section{代数多様体とヴェイユ予想}
 \label{sec:代数多様体とヴェイユ予想}
 この章ではヴェイユ予想の主張を述べる．
-以下では，簡単のため，$K$を完全体とし，$\overline{K}$を$K$の代数閉包とし，$G$で$\overline{K}/K$のガロア群とする．
+以下では，簡単のため，$K$を完全体とし，$\overline{K}$を$K$の代数閉包とする．
 
 \subsection{代数多様体}
 \label{sub:代数多様体}
@@ -371,21 +379,28 @@
 \label{subs:アフィン代数多様体}
 
 \begin{dfn}[アフィン代数多様体]
-$\mathfrak{p}$を$\overline{K}[X_1,\dots,X_n]$上の素イデアルとする．以下を満たす時，$(V,\overline{K}[X_1,\dots,X_n]/\mathfrak{p})$をアフィン代数多様体という．
+$\mathfrak{p}$を多項式環$\overline{K}[X_1,\dots,X_n]$の素イデアルとする．以下を満たす時，組$(V,\overline{K}[X_1,\dots,X_n]/\mathfrak{p})$をアフィン代数多様体という．
 \begin{equation*}
   V = \{ (t_1, \dots t_n) \in {\overline{K}}^n | \mbox{任意の}f \in \mathfrak{p} \mbox{に対し，}f(t_1, \dots t_n)=0 \}
 \end{equation*}
-$\mathfrak{p}$の生成元を$K$係数で取れる場合，$V$は$K$上定義されているという．
-また，$V \cap K^n$を$V(K)$と書き，$K$-有理点という．$\mathfrak{p}$が明らかな時は$V$を代数多様体と書く．
+$\mathfrak{p}$が明らかな時は$V$で代数多様体を表す．
+$\mathfrak{p}$の生成元を$K$係数で取れる場合，代数多様体$V$は$K$上定義されているという．
+また，$V \cap K^n$を$V(K)$と書き，$K$-有理点という．
 \end{dfn}
+\begin{rem}
+ $V$が代数多様体の時、$\{f \in \overline{K}[X_1,\dots,X_n] |
+ \mbox{任意の}(x_1,\dots,x_n) \in V \mbox{に対し、}
+ f(x_1,\dots,x_n)=0 \}$が$\mathfrak{p}$と一致する.
+\end{rem}
 
 \begin{dfn}[次元]
-$V$をアフィン代数多様体とする．$V$の次元を$\mathrm{Frac}(\overline{K}[X_1,\dots,X_n]/\mathfrak{p}$)/$\overline{K}$の超越次数で定める.
+$V$をアフィン代数多様体とする．$V$の次元を
+$\mathrm{Frac}(\overline{K}[X_1,\dots,X_n]/\mathfrak{p}$)の$\overline{K}$上の超越次数で定める.
 $V$の次元を$\mathrm{dim}V$と書く．
 \end{dfn}
 
-\begin{dfn}[smooth]
-  $f_1,\dots,f_m$を$\mathfrak{p}$の生成元とする．$P \in V$でsmoothとは，以下を満たすことである．
+\begin{dfn}[なめらか]
+  $f_1,\dots,f_m$を$\mathfrak{p}$の生成元とする．$P \in V$が以下を満たすときなめらかという．
   \begin{equation*}
     \mathrm{rank}\Bigl(\frac{ \partial f_i(P)}{ \partial X_j} \Bigr)_{ij} = n - \mathrm{dim}V
   \end{equation*}
@@ -395,18 +410,18 @@ $V$の次元を$\mathrm{dim}V$と書く．
 \label{subs:射影代数多様体}
 
 射影代数多様体を定義する．
-射影代数多様体はアフィン代数多様体に無限遠を付け加えたようなものであり，アフィン代数多様体による被覆を取ることができる．
+射影代数多様体はアフィン代数多様体に無限遠を付け加えたものであり，局所的にはアフィン代数多様体だとみなすことができる.
 \begin{dfn}[斉次イデアル]
-イデアル$I\subset \overline{K}(X_1,\dots,X_n)$が斉次イデアルとは，$I$の生成元$(f_i)$で$f_i$が
-斉次多項式であるものが存在すること.
+イデアル$I\subset \overline{K}[X_1,\dots,X_n]$が斉次イデアルとは，$I$の生成元$(f_i)_i$であって，
+全ての$f_i$が斉次多項式であるものが存在すること.
 \end{dfn}
 
 \begin{dfn}[射影空間]
 射影空間を$\mathbb{P}^n(\overline{K})$を以下で定義する．
 \begin{equation*}
- \mathbb{P}^n(\overline{K}):=\overline{K}^{n+1}\backslash\{O\}/\sim
+  \mathbb{P}^n(\overline{K}):=(\overline{K}^{n+1}\backslash\{O\})/\sim
 \end{equation*}
-ただし，同値関係$a \sim b$はある$\lambda \in \overline{K}$が存在し，$a= \lambda b$となることで定める．
+ただし，ある$\lambda \in \overline{K}$が存在し，$a= \lambda b$となる時,同値関係$a \sim b$と定める.
 \end{dfn}
 
 \begin{lem}
@@ -419,17 +434,20 @@ $V$の次元を$\mathrm{dim}V$と書く．
 \begin{dfn}[射影代数多様体]
   $\mathfrak{p}$を$\overline{K}[X_0,\dots,X_n]$の斉次素イデアルとする．この時，$(V,\overline{K}[X_0,\dots,X_n]/\mathfrak{p})$が射影代数多様体とは，以下が成り立つことである．
   \begin{equation*}
-   V=\{[t_0:\dots:t_n] \in \mathbb{P}^n(\overline{K}) |   \mbox{任意の}f \in \mathfrak{p} \mbox{に対し，}f(t_0: \dots :t_n)=0\}
+   V=\{[t_0:\dots:t_n] \in \mathbb{P}^n(\overline{K}) |
+   \mbox{任意の}f \in \mathfrak{p} \mbox{に対し，}f(t_0, \dots ,t_n)=0\}
   \end{equation*}
 \end{dfn}
 
-射影代数多様体とアフィン代数多様体に無限遠を付け加えたようなものになっている．
+射影代数多様体とアフィン代数多様体に"無限遠"を付け加えたようなものとなっている．
 具体的には以下が成り立つ．
 
 \begin{prop}
 $(V,\overline{K}[X_0 ,\dots,X_n]/\mathfrak{p})$を射影代数多様体とする．
-$U_i :=\{[t_0/t_i,\dots,t_{i-1}/t_i,t_{i+1}/t_i,t_n/t_i]\in V | t_i \neq 0\}$とし
-$\mathfrak{p}_i$を任意の$f\in \mathfrak{p}$に対し，$f(X_1,\dots,X_i,1,X_{i+1},X_n)$で生成される$\overline{K}[X_1,\dots,X_n]$のイデアルとする.
+\begin{equation*}
+  U_i :=\{[\frac{t_0}{t_i},\dots,\frac{t_{i-1}}{t_i},\frac{t_{i+1}}{t_i},\frac{t_n}{t_i}]\in V | t_i \neq 0\}
+\end{equation*}
+とし，$\mathfrak{p}_i$を任意の$f\in \mathfrak{p}$に対し，$f(X_1,\dots,X_i,1,X_{i+1},X_n)$で生成される$\overline{K}[X_1,\dots,X_n]$のイデアルとする.
 この時，$(U_i,\overline{K}[X_1,\dots,X_n]/\mathfrak{p}_i)$はアフィン代数多様体となる．
 \end{prop}
 \begin{rem}
@@ -439,9 +457,12 @@ $\mathfrak{p}_i$を任意の$f\in \mathfrak{p}$に対し，$f(X_1,\dots,X_i,1,X_
 
 \subsection{スキーム}
 \label{sub:スキーム}
-代数多様体では代数閉体上の図形しか調べられない．そのため，より一般の図形に拡張できないかは考えられていた．
-その成功例として，スキームがある．スキームは理論が広大であり，なぜこのように考えるとよいかは初学者には理解しづらいかもしれない．ただ．スキームによって数論的な問題を幾何的に解釈できるようになるなど，様々な利点がある．
-まず，代数幾何の重要な定理を述べる．
+代数多様体では代数閉体上の図形しか調べられない．そのため，
+より一般の係数の図形に拡張できないかを考えたい．
+スキームはそうした拡張の成功例である．
+ただ，スキームは理論が広大であり，なぜこのように考えるとよいかは初学者には理解しづらいかもしれない．
+しかし,スキームによって数論的な問題を幾何的に解釈できるようなるなど,様々な利点がある．
+まず，スキーム論的に問題を考えるようになった代数幾何の重要な定理を述べる．
 \begin{thm}[ヒルベルトの弱零点定理]
 代数閉体$K$上の代数多様体$(V,K[X_1,\dots,X_n]/\mathfrak{p})$に対し，$\mathrm{Spm}V$を$V$
 の極大イデアル全体のなす集合とする．
@@ -449,12 +470,19 @@ $V \to \mathrm{Spm}V,(t_1,\dots,t_n)\mapsto (\overline{X_1 - t_1},\dots,\overlin
 は全単射となる．
 \end{thm}
 
-ヒルベルトの零点定理により，代数多様体では，関数$K[X_1,\dots,X_n]/\mathfrak{p}$の情報さえわかれば，$V$の情報はいらないことがわかる．つまり，代数多様体を調べる時は，関数だけを調べればよい．このことを逆手にとり，関数を多項式環から一般の単位的可換環に一般化したものがスキームである.この時，点も極大イデアルではなく素イデアルに一般化する．スキームは環付き空間(空間と空間上の環の層の組)として定義される．空間や空間上の層がどのように定義されるかがわかる命題を証明なく列挙する．
+ヒルベルトの零点定理により，代数多様体では，代数多様体上の関数全体のなす環
+$K[X_1,\dots,X_n]/\mathfrak{p}$の情報さえわかれば，$V$の情報は自動的に復元できることがわかる．
+つまり，代数多様体を調べる時は，関数だけを調べればよい．
+このことを逆手にとり，スキームでは、関数を多項式環から一般の単位的可換環に拡張して考えてみる.
+この時，スキームの底空間も極大イデアルのなす集合ではなく素イデアルのなす集合に一般化する．
+これらを組み合わせ,スキームは環付き空間(空間と空間上の環の層の組)として定義される．
+空間や空間上の層がどうなっているかを証明なく述べる.
 
 \begin{prop}
-$R$を可換環とする．$\mathrm{Spec}R$を$R$の素イデアル全体のなす集合とする．
+$R$を可換環とし，$\mathrm{Spec}R$を$R$の素イデアル全体のなす集合とする．
 $V(I)$を$I$を含む素イデアル全体の集合とする.この時，$V(I)$は閉集合系の公理を満たす．
 $D(I):=\mathrm{Spec}R \backslash V(I)$とする．
+$I=(f)$の時，$V(I),D(I)$をそれぞれ，$V(f),D(f)$と書く.
 \end{prop}
 
 \begin{lem}
@@ -466,11 +494,15 @@ $D(I):=\mathrm{Spec}R \backslash V(I)$とする．
  $\mathrm{Spec}R$上に,$\mathcal{O}_{\mathrm{SpecR}}(D(f))=R_f$を満たす可換環の層
  $\mathcal{O}_{\mathrm{Spec}R}$が存在する．
 \end{prop}
+
 これらより，アフィンスキームが定義できる．
+
 \begin{dfn}
  $(\mathrm{Spec}R,\mathcal{O}_{\mathrm{Spec}R})$をアフィンスキームという．
 \end{dfn}
+
 アフィンスキームは実質，可換環と思える．
+
 \begin{prop}
  可換環の圏とアフィンスキームの圏は圏同値になる．
 \end{prop}
@@ -480,12 +512,12 @@ $D(I):=\mathrm{Spec}R \backslash V(I)$とする．
 スキームはアフィンスキームを貼り合わせたものとして定義されるが，本講義ではアフィンスキームのみを扱うので，定義は省略する．
 
 \begin{dfn}[S上のスキーム]
-  スキーム$X$が射$X \to S$の組を$S$上のスキームという．$S=\mathrm{Spec}R$の場合，$R$上のスキーム
-  ともいう．
+  スキーム$X$と射$X \to S$の組を$S$上のスキームという．$S=\mathrm{Spec}R$の場合，$R$上のスキーム
+  という．
 \end{dfn}
 
 \begin{dfn}[有理点]
-  $K$を体とする．スキームの射$\mathrm{Spec}K \to X$を$K$-有理点という．
+  $K$を体とする．$K$上のスキームの射$\mathrm{Spec}K \to X$を$K$-有理点という．
 \end{dfn}
 \begin{prop}
  体$K$上のスキーム$X=\mathrm{Spec}K[X_1,\dots,X_n]/\mathfrak{p}$とする．この時，
@@ -500,9 +532,9 @@ $D(I):=\mathrm{Spec}R \backslash V(I)$とする．
  $\pi_b = h \circ \pi_a$となる準同型$h$は存在しない.
 \end{rem}
 
-\subsection{ヴェイユ予想}
+\section{ヴェイユ予想}
 \label{sub:ヴェイユ予想}
-\subsubsection{ヴェイユ予想の主張}
+\subsection{ヴェイユ予想の主張}
 \label{subs:ゼータ関数とヴェイユ予想}
 
 代数多様体のヴェイユ予想を記述する．
@@ -552,15 +584,13 @@ $D(I):=\mathrm{Spec}R \backslash V(I)$とする．
 \label{sub:ヴェイユ予想とリーマン予想}
 
 ヴェイユ予想とリーマン予想の類似について説明する．
-ここでは，スキームや代数多様体について曖昧に用語を使う.
-類似に関する概要の説明のため，不正確であることについては容赦されたい．
 まず，合同ゼータ関数が(リーマン)ゼータ関数の類似であることを説明する．
 リーマンゼータ関数は
 \begin{equation*}
  \zeta(s)= \prod_{p}\frac{1}{1-p^{-s}}
 \end{equation*}
-で定義されること思い出そう．
-この無限積は全ての素数を走る．ここで素数と極大イデアルが一対一に対応することに注意すると
+で定義された．
+この無限積は全ての素数を走る．$\mathbb{Z}$では,素数と極大イデアルが一対一に対応することに注意すると
 リーマンゼータ関数は以下のようにかくこともできる．
 \begin{equation*}
  \zeta(s) = \prod_{\mathfrak{m}}
@@ -582,9 +612,9 @@ Hasse-Weilのゼータ関数はリーマンゼータ関数に一致する．
 $X$として，$\mathrm{Spec}O_K$を取るとデデキントゼータ関数となる．
 
 Hasse-Weilのゼータ関数と合同ゼータ関数の関係をみる．
-$X$を$\mathrm{Spec}\mathbb{F}_q[X_1,\dots,X_n]/\mathfrak{p}$とする.
-確認しておくと，$X(\overline{\mathbb{F}_q}),\mathbb{F}_q[X_1,\dots,X_n]/\mathfrak{p}\otimes \overline{F}_q$が,$\mathfrak{F}_q$上のアフィン代数多様体に一致する．これを$V$とかく.
-また，以下の関係が成り立つ．
+$\mathbb{F}_q$上の代数多様体$(V,\mathrm{Spec}\mathbb{F}_q[X_1,\dots,X_n]/\mathfrak{p}\cap \mathbb{F}_q[X_1,\dots,X_n]$とおく.
+$X$を$\mathrm{Spec}\mathbb{F}_q[X_1,\dots,X_n]/\mathfrak{p}\cap \mathbb{F}_q[X_1,\dots,X_n]$とする.
+以下の関係が成り立つ．
 \begin{prop}
   \begin{equation*}
    \zeta(X,s)=\exp(\sum_{m=1}^{\infty}\#V(\mathbb{F}_{q^m}) \frac{q^{-sm}}{m})
@@ -602,9 +632,9 @@ $X$を$\mathrm{Spec}\mathbb{F}_q[X_1,\dots,X_n]/\mathfrak{p}$とする.
   \begin{equation*}
    \sum_{x\in |X|, m_x|n}m_x = \#V(\mathbb{F}_{q^n})
   \end{equation*}
-  を示せばよい.生成元の行き先だけで決まるので，$\mathrm{Hom}(\mathbb{F}_q[X_1,\dots,X_n]/\mathfrak{p},\mathbb{F}_{q^n})
-  \simeq \mathrm{Hom}(\mathbb{F}_{q^n}[X_1,\dots,X_n]/\mathfrak{p}^{ext},\mathbb{F}_{q^n})$
-  となり， $\#V(\mathbb{F}_{q^n})=\#\mathrm{Hom}(\mathbb{F}_{q^n}[X_1,\dots,X_n]/\mathfrak{p}^{ext},\mathbb{F}_{q^n})$となるので，$\mathrm{Hom}(\mathbb{F}_q[X_1,\dots,X_n]/\mathfrak{p},\mathbb{F}_{q^n})$
+  を示せばよい.生成元の行き先だけで決まるので，$\mathrm{Hom}(\mathbb{F}_q[X_1,\dots,X_n]/\mathfrak{p} \cap \mathbb{F}_q[X_1,\dots,X_n],\mathbb{F}_{q^n})
+  \simeq \mathrm{Hom}(\mathbb{F}_{q^n}[X_1,\dots,X_n]/\mathfrak{p}\cap\mathbb{F}_{q^n}[X_1,\dots,X_n],\mathbb{F}_{q^n})$
+  となり， $\#V(\mathbb{F}_{q^n})=\#\mathrm{Hom}(\mathbb{F}_{q^n}[X_1,\dots,X_n]/\mathfrak{p}\cap \mathbb{F}_{q^n}[X_1,\dots,X_n]/,\mathbb{F}_{q^n})$となるので，$\mathrm{Hom}(\mathbb{F}_q[X_1,\dots,X_n]/\mathfrak{p},\mathbb{F}_{q^n})$
   の個数がわかればよい．$x \in |X|$に対し、$m_x=\#Gal(\mathbb{F}_{q^{m_x}}/\mathbb{F}_q)$個の射が
   kernelが一致する.これより,閉点$x$に対し,射が$m_x$個存在することがわかる．また，射が存在すれば，そのkernelに一致する閉点が存在する.よって，
   \begin{equation*}
@@ -827,7 +857,7 @@ $Z(E/\mathbb{F}_q;T)$を上の等式を用いて，計算する.
 \end{equation*}
 とすると，
 \begin{equation*}
- Z(X;T)=\prod_{i=0}^{2n}(P_i(T))^{{-1}^{i+1}}= \frac{P_1(T)P_3(T)\dots P_{2n-1}(T)}{P_0(T)\dots P_{2n}(T)}
+ Z(X;T)=\prod_{i=0}^{2d}(P_i(T))^{{-1}^{i+1}}= \frac{P_1(T)P_3(T)\dots P_{2d-1}(T)}{P_0(T)\dots P_{2d}(T)}
 \end{equation*}
 となる．これより有理関数であることはすぐわかる．
 また，関数等式も実際に計算すればでる．
