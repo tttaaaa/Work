@@ -367,30 +367,29 @@
 % もっといい序文をかけないものか．
 %\end{yodan}
 
-\section{代数多様体とヴェイユ予想}
-\label{sec:代数多様体とヴェイユ予想}
-この章ではヴェイユ予想の主張を述べる．
+\section{代数多様体}
+\label{sec:代数多様体}
+この章ではヴェイユ予想の舞台となる代数多様体について述べる．
 以下では，簡単のため，$K$を完全体とし，$\overline{K}$を$K$の代数閉包とする．
 
 \subsection{代数多様体}
 \label{sub:代数多様体}
-代数多様体を定義する．
 \subsubsection{アフィン代数多様体}
 \label{subs:アフィン代数多様体}
-
+アフィン代数多様体を定義する.アフィン代数多様体は多項式方程式の解によって定義される．
 \begin{dfn}[アフィン代数多様体]
 $\mathfrak{p}$を多項式環$\overline{K}[X_1,\dots,X_n]$の素イデアルとする．以下を満たす時，組$(V,\overline{K}[X_1,\dots,X_n]/\mathfrak{p})$をアフィン代数多様体という．
 \begin{equation*}
-  V = \{ (t_1, \dots t_n) \in {\overline{K}}^n | \mbox{任意の}f \in \mathfrak{p} \mbox{に対し，}f(t_1, \dots t_n)=0 \}
+  V = \{ (t_1, \dots t_n) \in {\overline{K}}^n \mid \mbox{任意の}f \in \mathfrak{p} \mbox{に対し，}f(t_1, \dots t_n)=0 \}
 \end{equation*}
 $\mathfrak{p}$が明らかな時は$V$で代数多様体を表す．
 $\mathfrak{p}$の生成元を$K$係数で取れる場合，代数多様体$V$は$K$上定義されているという．
 また，$V \cap K^n$を$V(K)$と書き，$K$-有理点という．
 \end{dfn}
 \begin{rem}
- $V$が代数多様体の時、$\{f \in \overline{K}[X_1,\dots,X_n] |
+ $V$がアフィン代数多様体の時、$\{f \in \overline{K}[X_1,\dots,X_n] \mid
  \mbox{任意の}(x_1,\dots,x_n) \in V \mbox{に対し、}
- f(x_1,\dots,x_n)=0 \}$が$\mathfrak{p}$と一致する.
+ f(x_1,\dots,x_n)=0 \}$は$\mathfrak{p}$と一致する.
 \end{rem}
 
 \begin{dfn}[次元]
@@ -412,14 +411,15 @@ $V$の次元を$\mathrm{dim}V$と書く．
 射影代数多様体を定義する．
 射影代数多様体はアフィン代数多様体に無限遠を付け加えたものであり，局所的にはアフィン代数多様体だとみなすことができる.
 \begin{dfn}[斉次イデアル]
-イデアル$I\subset \overline{K}[X_1,\dots,X_n]$が斉次イデアルとは，$I$の生成元$(f_i)_i$であって，
-全ての$f_i$が斉次多項式であるものが存在すること.
+イデアル$I\subset \overline{K}[X_1,\dots,X_n]$に対し，
+$I$の生成元$<f_1,\dots,f_k>$であって，
+全ての$f_i$が斉次多項式であるものが存在する時$I$を斉次イデアルという．
 \end{dfn}
 
 \begin{dfn}[射影空間]
 射影空間を$\mathbb{P}^n(\overline{K})$を以下で定義する．
 \begin{equation*}
-  \mathbb{P}^n(\overline{K}):=(\overline{K}^{n+1}\backslash\{O\})/\sim
+  \mathbb{P}^n(\overline{K}):=(\overline{K}^{n+1}\backslash\{O\})/{\sim}
 \end{equation*}
 ただし，ある$\lambda \in \overline{K}$が存在し，$a= \lambda b$となる時,同値関係$a \sim b$と定める.
 \end{dfn}
@@ -434,7 +434,7 @@ $V$の次元を$\mathrm{dim}V$と書く．
 \begin{dfn}[射影代数多様体]
   $\mathfrak{p}$を$\overline{K}[X_0,\dots,X_n]$の斉次素イデアルとする．この時，$(V,\overline{K}[X_0,\dots,X_n]/\mathfrak{p})$が射影代数多様体とは，以下が成り立つことである．
   \begin{equation*}
-   V=\{[t_0:\dots:t_n] \in \mathbb{P}^n(\overline{K}) |
+   V=\{[t_0:\dots:t_n] \in \mathbb{P}^n(\overline{K}) \mid
    \mbox{任意の}f \in \mathfrak{p} \mbox{に対し，}f(t_0, \dots ,t_n)=0\}
   \end{equation*}
 \end{dfn}
@@ -445,9 +445,9 @@ $V$の次元を$\mathrm{dim}V$と書く．
 \begin{prop}
 $(V,\overline{K}[X_0 ,\dots,X_n]/\mathfrak{p})$を射影代数多様体とする．
 \begin{equation*}
-  U_i :=\{[\frac{t_0}{t_i},\dots,\frac{t_{i-1}}{t_i},\frac{t_{i+1}}{t_i},\frac{t_n}{t_i}]\in V | t_i \neq 0\}
+  U_i :=\{[\frac{t_0}{t_i},\dots,\frac{t_{i-1}}{t_i},\frac{t_{i+1}}{t_i},\frac{t_n}{t_i}]\in V \mid  t_i \neq 0\}
 \end{equation*}
-とし，$\mathfrak{p}_i$を任意の$f\in \mathfrak{p}$に対し，$f(X_1,\dots,X_i,1,X_{i+1},X_n)$で生成される$\overline{K}[X_1,\dots,X_n]$のイデアルとする.
+とする.任意の$f\in \mathfrak{p}$に対し，$f(X_1,\dots,X_i,1,X_{i+1},X_n)$で生成される$\overline{K}[X_1,\dots,X_n]$のイデアルを$\mathfrak{p}_i$とする.
 この時，$(U_i,\overline{K}[X_1,\dots,X_n]/\mathfrak{p}_i)$はアフィン代数多様体となる．
 \end{prop}
 \begin{rem}
@@ -521,7 +521,7 @@ $I=(f)$の時，$V(I),D(I)$をそれぞれ，$V(f),D(f)$と書く.
 \end{dfn}
 \begin{prop}
  体$K$上のスキーム$X=\mathrm{Spec}K[X_1,\dots,X_n]/\mathfrak{p}$とする．この時，
- $K$-有理点全体の集合は$V=\{(t_1,\dots,t_n) \in K^n | \mbox{任意の}f \in \mathfrak{p} \mbox{に対し，}f(t_1, \dots t_n)=0  \} $と一致する．
+ $K$-有理点全体の集合は$V=\{(t_1,\dots,t_n) \in K^n \mid \mbox{任意の}f \in \mathfrak{p} \mbox{に対し，}f(t_1, \dots t_n)=0  \} $と一致する．
 \end{prop}
 \begin{proof}
 アフィンスキームの圏と可換環の圏の圏同値から，$K$-有理点は$\tilde{g}:K[X_1,\dots,X_n]/\mathfrak{p} \to K$となる準同型と一対一に対応する．この準同型は剰余環の普遍性から$g:K[X_1,\dots,X_n] \to K$への準同型であって，kernelが$\mathfrak{p}$を含むものと一対一に対応する．$g(X_i)=a_i$とすると$\mathrm{Ker}f=(X_1 -a_1, \dots,X_n -a_n)$となる．$(X_1 -a_1, \dots,X_n -a_n) \supset \mathfrak{p}$は
@@ -547,7 +547,7 @@ $I=(f)$の時，$V(I),D(I)$をそれぞれ，$V(f),D(f)$と書く.
 \end{dfn}
 
 \begin{thm}[ヴェイユ予想]
-  $V$を有限体$\mathbb{F}_q$上定義された$d$次元のsmoothな射影代数多様体とする．
+  $V$を有限体$\mathbb{F}_q$上定義された$d$次元のなめらかな射影代数多様体とする．
   この時,以下が成り立つ．
   \begin{description}
     \item[Rationality]
@@ -612,7 +612,7 @@ Hasse-Weilのゼータ関数はリーマンゼータ関数に一致する．
 $X$として，$\mathrm{Spec}O_K$を取るとデデキントゼータ関数となる．
 
 Hasse-Weilのゼータ関数と合同ゼータ関数の関係をみる．
-$\mathbb{F}_q$上の代数多様体$(V,\mathrm{Spec}\mathbb{F}_q[X_1,\dots,X_n]/\mathfrak{p}\cap \mathbb{F}_q[X_1,\dots,X_n]$とおく.
+$\mathbb{F}_q$上の代数多様体$(V, \overline{\mathbb{F}_q}[X_1,\dots,X_n]/\mathfrak{p}$とする.
 $X$を$\mathrm{Spec}\mathbb{F}_q[X_1,\dots,X_n]/\mathfrak{p}\cap \mathbb{F}_q[X_1,\dots,X_n]$とする.
 以下の関係が成り立つ．
 \begin{prop}
@@ -651,7 +651,7 @@ Hasse-Weilのゼータ関数でみると，(1)は
 となり，$s$での値と$d-s$での値の関係を述べている．
 
 (2)は零点や極を取る場所を示している．Hasse-Weilのゼータ関数の場合に零点や極を取る点$s$は
-$P_i(q^{-s})=0$を満たす．これより．$|\alpha_{ij}|=q^{i/2}$となる複素数を用いて，
+$P_i(q^{-s})=0$を満たす．リーマン予想の等式から,$|\alpha_{ij}|=q^{i/2}$となる複素数を用いて，
 \begin{eqnarray*}
    1- \alpha_{ij} q^{-s}=0  \\
    \alpha_{ij} =q^{s}
@@ -672,7 +672,7 @@ $P_i(q^{-s})=0$を満たす．これより．$|\alpha_{ij}|=q^{i/2}$となる複
 \begin{dfn}[楕円曲線]
   $K$上定義された射影代数多様体$V$が楕円曲線であるとは$4a^3+27b^2\neq0$となる，二変数多項式$Y^2 - X^3 - aX - b$が存在し，以下が成り立つことである．
   \begin{equation*}
-   V=\{O \} \cup \{ (x,y) \in \overline{K}^2 | y^2 - x^3 - ax - b=0 \}
+   V=\{O \} \cup \{ (x,y) \in \overline{K}^2 \mid y^2 - x^3 - ax - b=0 \}
   \end{equation*}
 \end{dfn}
 
@@ -779,15 +779,17 @@ $E$の有理点全体を決定するのは難しいが，Tate Moduleは非常に
 \begin{proof}
  $\phi$をq乗のFrobenius写像．$\phi_l$をFrobeniusから誘導されるTate Moduleの間の準同型とする．
  有理点の個数は上の定理から$1 - \phi_l$が誘導する行列の行列式で計算できる．
- $\phi_l$の特性多項式$\mathrm{det}(T - \phi_l)=T^2 -\mathrm{Tr}\phi_l T+ \mathrm{det}\phi_l$となるので，行列式は$1-\mathrm{Tr}\phi_l+ \mathrm{det}\phi_l$となる．また,特性多項式の判別式が0以上になることを示す．
+ $\phi_l$の特性多項式$\mathrm{det}(T - \phi_l)=T^2 -\mathrm{Tr}\phi_l T+ \mathrm{det}\phi_l$となるので，行列式は$1-\mathrm{Tr}\phi_l+ \mathrm{det}\phi_l$となる．
+ これの解$\alpha,\beta$が複素共役になることを示す．
  それは，上記の二次式に任意の実数を代入しても0以上になることが言えればよい.
  \begin{equation*}
   \mathrm{det}(\frac{n}{m} - \phi_l)=\frac{\mathrm{det}(n -m \phi_l)}{m^2}
   = \frac{\#\mathrm{ker}(n -m \phi_l)}{m^2} \ge 0
- \end{equation*}
+\end{equation*}
 が成り立つ．
 $\mathbb{Q}$が$\mathbb{R}$上稠密なので，任意の実数を代入しても0以上になる．($n$が$p$の倍数のときは上の等式は成り立たないが，$n/m$をうまく取り替えることにより正当化できる．)
-$\mathrm{det}\phi_l=q$より，$T^2 -\mathrm{Tr}\phi_l T+ \mathrm{det}\phi_l=0$の$\mathbb{C}$上の解を$\alpha,\beta$とすると，$\alpha \beta=q$であり，$\alpha,\beta$が複素共役になるので，$|\alpha|=|\beta|=\sqrt{q}$となる．
+$\mathrm{det}\phi_l=q$より，$\alpha \beta=q$であり，$\alpha,\beta$が複素共役になるので，$|\alpha|=|\beta|=\sqrt{q}$となる．
+また，$\alpha + \beta=q -\#E(\mathbb{F}_q)$より，整数になる．
 $\phi_l$をの場合の結果を使って，$(\phi_l)^n$の場合に計算する．
 $\phi_l$を代数閉体上まで拡張し，ジョルダン標準形を考えると，
 2行2列の行列で対角成分が$\alpha,\beta$になり，n乗した行列の対角成分は$\alpha^n,\beta^n$となる．
@@ -824,9 +826,9 @@ $Z(E/\mathbb{F}_q;T)$を上の等式を用いて，計算する.
 ヴェイユ予想とTrace Formulaとの関係を説明する．
 位相幾何でのLefschetz Trace Formulaは以下のようなものであった．
 \begin{thm}[Lefschetz Fixed Point Theorem]
- $M$をコンパクト位相多様体,$\phi;M \to M$を連続写像とする．$Fix(\phi):=\{ x \in M |\phi (x)=x\}$とおく，$\phi$の固定点が高々有限で非退化で孤立的なら，
+ $M$をコンパクト位相多様体,$\phi;M \to M$を連続写像とする．$Fix(\phi):=\{ x \in M \mid\phi (x)=x\}$とおく，$\phi$の固定点が高々有限で非退化で孤立的なら，
  \begin{equation*}
-   \#Fix(\phi) = \sum(-1)^i \mathrm{Tr}(\phi^*| H^i(M))
+   \#Fix(\phi) = \sum(-1)^i \mathrm{Tr}(\phi^*| H^i(M,\mathbb{Q}))
  \end{equation*}
 \end{thm}
 \begin{rem}
@@ -840,14 +842,14 @@ $Z(E/\mathbb{F}_q;T)$を上の等式を用いて，計算する.
 このとき，
 \begin{equation*}
   \#X(\mathbb{F}_{q^m})=\#Fix(\phi^m)= \sum_{i=0}^{2d}(-1)^i
-  \mathrm{Tr}((\phi^{*})^m;H^i(X \otimes_{\mathbb{F}_q} \overline{\mathbb{F}_q}, \mathbb{Q}_l))
+  \mathrm{Tr}((\phi^{*})^m;H^i_{\et}(X \otimes_{\mathbb{F}_q} \overline{\mathbb{F}_q}, \mathbb{Q}_l))
 \end{equation*}
 がなりたつ．
 \end{thm}
 \begin{rem}
  詳しくないため誤っている可能性がある．また，Frobeniusでなくても有限体でなくても成り立つ．
 \end{rem}
-この時，$H^i(X \otimes_{\mathbb{F}_q} \overline{\mathbb{F}_q}, \mathbb{Q}_l))$のFrobenius射が誘導する作用の固有値を$\alpha_{i,1},\dots,\alpha_{i,k_i}$とすると
+この時，$H^i_{\et}(X \otimes_{\mathbb{F}_q} \overline{\mathbb{F}_q}, \mathbb{Q}_l))$のFrobenius射が誘導する作用の固有値を$\alpha_{i,1},\dots,\alpha_{i,k_i}$とすると
 \begin{equation*}
 　\#X(\mathbb{F}_{q^m})=\sum_{i=0}^{2d}(-1)^i(\alpha_{i,1}^m + \cdots + \alpha_{i,k_i}^m)
 \end{equation*}
@@ -865,7 +867,7 @@ Betti数についても，以下のような特異コホモロジーとの比較
 \begin{thm}[特異コホモロジーとの比較同型]
 $\mathbb{C}$上のスキーム$X$に対し,以下が成り立つ．
 \begin{equation*}
- H^i(X,\mathbb{Q}_l) \simeq H^i(X(\mathbb{C}),\mathbb{Q})\otimes \mathbb{Q}_l
+ H^i_{\et}(X,\mathbb{Q}_l) \simeq H^i(X(\mathbb{C}),\mathbb{Q})\otimes \mathbb{Q}_l
 \end{equation*}
 \end{thm}
 つまり，都合のよいコホモロジーが定義できれば，ヴェイユ予想のリーマン予想の類似以外の証明がほとんど自動的に示すことができる．

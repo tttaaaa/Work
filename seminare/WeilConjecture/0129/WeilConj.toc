@@ -1,5 +1,5 @@
 \contentsline {section}{\numberline {1}Introduction}{1}{section.1}
-\contentsline {section}{\numberline {2}代数多様体とヴェイユ予想}{2}{section.2}
+\contentsline {section}{\numberline {2}代数多様体}{2}{section.2}
 \contentsline {subsection}{\numberline {2.1}代数多様体}{2}{subsection.2.1}
 \contentsline {subsubsection}{\numberline {2.1.1}アフィン代数多様体}{2}{subsubsection.2.1.1}
 \contentsline {subsubsection}{\numberline {2.1.2}射影代数多様体}{2}{subsubsection.2.1.2}
