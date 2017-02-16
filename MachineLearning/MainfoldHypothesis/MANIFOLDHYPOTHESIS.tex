@@ -1,0 +1,208 @@
+%===============
+%一行目に必ず必要
+%文章の形式を定義
+%===============
+\documentclass{jarticle}
+%===============
+%パッケージの定義、必要か不明
+%===============
+%この下4つを加えることで、mathbbが機能した
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+%可換図式用パッケージ
+\usepackage{amscd}
+\usepackage[all]{xy}
+\usepackage{tikz-cd}
+%リンク用パッケージ
+\usepackage[dvipdfmx]{hyperref}
+%複数行コメント
+%\usepackage{comment}
+
+
+%タイトルデータ
+\title{TESTING THE MANIFOLD HYPOTHESIS}
+\author{test}
+\date{2017/01/29}
+%===============
+%定理環境の設定
+%セクション毎
+%===============
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem{prop}[thm]{Propostion}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corllary}
+\newtheorem{epl}[thm]{Example}
+\newtheorem*{prob}{Problem}
+\newtheorem*{rem}{Remark}
+\newtheorem{prf}{Proof}
+
+
+%この論文紹介用定義
+\newcommand{\C11}{C^{1,1}}
+\newcommand{\gdvt}{\mathcal{G}(d,V,\tau)}
+\newcommand{\Me}{M_{erm}}
+\newcommand{\Px}{\Pi_x}
+\newcommand{\Py}{\Pi_y}
+
+\begin{document}
+
+
+\part{内容}
+
+\section{start}
+\label{start}
+第1回では、前半の主定理
+周辺の基礎知識とそれらの意味を紹介する。
+また、実際に、Thm1を示すときの主な結果である、laim1の証明を紹介する。
+論文の1~3章相当
+この論文の主定理とその主定理のための記号を定義する。
+\begin{thm}
+
+\end{thm}
+
+
+\part{論文そのもの}
+
+\setcounter{section}{0}
+\section{Introduction}
+\label{sec:Introduction}
+多様体仮説について解説する。
+
+参照性を高めるため、章立てはや定理番号は論文と合わせる。
+必要な範囲で数学的な用語、意味論をまとめて紹介したい。
+この論文は一言で言うならば、"In this paper, we take a “worst case” viewpoint of the Manifold Learning problem."となる。
+
+最初にこの論文で使う記号の定義を説明する。
+$H$を可分なHilbert Space(おそらく$\mathbb{R}$ベクトル空間)
+$| \cdot |:H \to \mathbb{R}$をヒルベルト空間のノルムとし、$d(x,y):=|x-y|$で距離を定める。
+$B_H:=\{x \in H| |x| \le 1\}$とし、$P$を$B_H$上の確率測度とする。
+$M$を$B_H$の閉部分集合とし、$x \in B_H$に対し、$d(x,M):=\mathrm{inf}_{y \in M}|x -y |$とし、
+$\mathcal{L}(M,P):=int d(x,M)^2 dP(x)$とする。
+確率測度$P$でi.i.d(互いに独立)に分布するとする。しかし、$P$は未知とする。
+This is a worst-case view in the sense that no prior information
+about the data generating mechanism is assumed to be available or used for the subsequent development
+
+In order to state the problem more precisely, we need to describe the class of manifolds within which we
+will search for the existence of a manifold which satisfies the manifold hypothesis.
+Let $M$ be a submanifold of $H$. The reach $ \tau > 0$ of $M$ is the largest number such that
+for any $0 < r < \tau$, any point at a distance $r$ of $M$ has a unique nearest point on $M$.
+Let $\mathcal{G}_e == \mathcal{G}_e(d; V;\tau)$を$d$次元の$B_H$の$C^2$部分多様体であって、体積が$V$以下で、reachが$\tau$以上のもの。
+$P$を確率分布とする。(測度との関係は？)$(x_1,x_2,\dots)$をiidな分布とする。($H$は無限次元であってもよい。)
+
+The test for the Manifold Hypothesis answers the following affirmatively: Given error $\epsilon$, dimension $d$,
+volume $V$, reach and confidence $1 - \delta$, is there an algorithm that takes a number of samples depending on
+these parameters and with probability $1 - \delta$ distinguishes between the following two cases (as least one must
+hold):
+\begin{itemize}
+  \item Whether there is a
+  \begin{equation*}
+    M \in \mathcal{G}_e = \mathcal{G}_e(d;CV;\tau/C)
+  \end{equation*}
+  such that
+  \begin{equation*}
+    \int d(M; x)^2 dP(x) < C \epsilon
+  \end{equation*}
+  \item Whether there is no manifold
+  \begin{equation*}
+    M \in \mathcal{G}_e(d, V/C; C\tau)
+  \end{equation*}
+  such that
+  \begin{equation*}
+    \int d(M,x)^2dP(x) < \epsilon/C
+  \end{equation*}
+\end{itemize}
+ただし、$C$は$d$のみ依存する。
+
+Empirical Loss$L_{emp}(M)$を
+\begin{equation*}
+ L_{emp}(M)= \frac{1}{s}\sum_{i=1}^s d(x_i,M)^2
+\end{equation*}
+とする。
+******************
+ あとで埋める
+ ******************
+$M_A$の定義がわからなかったので、次のsubusectionに移動した。
+
+\subsection{Definitions}
+\label{sub-Definitions}
+\begin{dfn}[reach]
+  Let $M$ be a submanifold of $H$. The reach $ \tau > 0$ of $M$ is the largest number such that
+  for any $0 < r < \tau$, any point at a distance $r$ of $M$ has a unique nearest point on $M$.
+\end{dfn}
+
+\begin{dfn}[Tanget Space]
+$H$を可分ヒルベルト空間とする。閉集合$A \subset H$と$a \in A$に対し、$Tan^0(a,A)$を
+$v \in H$で、任意の$\epsilon$に対し、ある$b \in A$が存在し、$0 <|a -b| < \epsilon$と、$|\frac{v}{|v|} - \frac{b-a}{|b-a|} < \epsilon$.
+を表す。
+$Tan(a,A)$を$\{x \in H| x -a \in Tan^0(a,A)\}$とする。
+\end{dfn}
+\begin{prop} $A$を $\mathbb{R}^n$の閉部分集合とする。この時
+  \begin{equation*}
+   reach(A)^{-1}=\mathrm{sup}\{2|b-a|^{-2}d(b,Tan(a,A)) | a.b \in A\}
+  \end{equation*}
+\end{prop}
+\begin{dfn}[$C^r$-submfd]
+
+\end{dfn}
+We assume that $\tau < 1$ and $r = 2$.
+******************
+ あとで埋める
+******************
+燃え尽きました。
+
+
+\section{Sample complexity of manifold fitting}
+\label{Sample complexity of manifold fitting}
+
+we show that if instead of estimating a least-square optimal manifold using the probability
+measure, we randomly sample sufficiently many points and then find the least square fit manifold to this
+data, we obtain an almost optimal manifold.
+つまり、確率が一番小さい多様体というものを見つけなくても、適当に十分な点を取れば、だいたい欲しい図形を取れる。
+最小化という作業が不要。(つまり学習のタスクが少ない)を主張したい。
+
+\begin{dfn}[Sample Complexity]
+$\epsilon, \delta \in \mathbb{R}$,$X$を位相空間、$F$を$f:X \to \mathbb{R}$全体のなす集合
+$s=S(\epsilon,\delta,F)$を以下が成り立つ最小の実数とする。
+ある$A:X^s \to F$が存在し、$X$上の任意の確率分布に対し、$(x_1\,cdots ,x_x) \in X^s$が$P$のi.i.dな列であって.
+$f_{out}:= A(x_1,\dots,x_s)$が以下を満たすとする。
+\begin{equation*}
+ \mathbb{P}[\mathbb{E}_{x|?P}f_{out}(x) < (\mathrm{inf}_{f \in F}E_{x|P}f) + \epsilon ] > 1 - \delta
+\end{equation*}
+
+\end{dfn}
+
+\begin{thm}
+ ある$r > 0$に対し、
+ \begin{equation*}
+  U_{\mathcal{G}(1/r)}:=CV( \frac{ 1 }{ \tau^d } + \frac{ 1 }{ (\tau r)^{d/2} } )
+ \end{equation*}
+ とする。また、
+ \begin{equation*}
+  s_{\mathcal{G}}(\epsilon,\delta):=C(\frac{ U_{\mathcal{G}}(1/\epsilon) }{ \epsilon^2 }(\mathrm{log}^4
+  (\frac{U_{\mathcal{G}}(1/\epsilon)}{\epsilon})) + \frac{ 1 }{ \epsilon^2 }\mathrm{log}\frac{ 1 }{ \delta }  )
+ \end{equation*}
+とする。
+$s \ge s_{\mathcal{G}}(\epsilon,\delta)$とし、$x=\{ x_1,\dots,x_s\}$を確率測度$P$による独立試行によるエられた集合とする。
+$P_X$を$X$上の一様確率測度とする。(どの元が出る確率が等しい)
+$M_{erm}$を$\mathcal{G}(d,V,\tau)$の元であって、
+\begin{equation*}
+ L(M_{erm}(x),P_X) - \mathrm{inf}_{M \in \mathcal{G}(d,V,\tau)} L(M,P_X) < \frac{ \epsilon }{ 2 }
+\end{equation*}
+を満たし、以下を最初にするものとする。
+\begin{equation*}
+ \sum_{i=1}^sd(x_i,M)^2
+\end{equation*}
+この時、
+\begin{equation*}
+ \mathbb{P}[L(M_{erm}(x),P)] - \mathrm{inf}_{M \in \mathcal{G}(d,V,\tau)} L(M,P) < \epsilon > 1- \delta
+\end{equation*}
+となる。
+\end{thm}
+
+
+
+
+\end{document}
