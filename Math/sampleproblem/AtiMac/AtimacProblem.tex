@@ -26,7 +26,7 @@
 
 %タイトルデータ
 \author{ari}
-\title{p-adic Weil予想入門}
+\title{AtiMac problem}
 \date{2017/1/29}
 
 
@@ -44,9 +44,11 @@
 \newtheorem*{rem}{Remark}
 \newtheorem*{yodan}{余談，疑問}
 \newtheorem{prf}{Proof}
+\newtheorem{exs}{Exercise}
+
 
 %==================
-%botスタイル
+%p進botスタイル
 %＝＝===============
 \setlength{\topmargin}{0cm}
 \setlength{\oddsidemargin}{0.3cm}
@@ -337,9 +339,7 @@
 \newcommand{\WSet}{\r{WSet}}
 \newcommand{\wtC}{\wt{\cC}}
 
-\title{第3回Math-iine learning~Learning Functions: When Is Deep Better Than Shallow~}
-\author{}
-\date{1/28}
+
 
 
 \begin{document}
@@ -349,151 +349,41 @@
 % 目次の表示
 \tableofcontents
 
-\section{Introduction}
-\label{sec:Introduction}
-この論文では,one-hidden layerのニューラルネットワークとdeep networkを比較する．
+Atiyah Macdonaldの問題の解答をUpしておく．
 
-この論文で定理とされているものを記載する．
-\begin{thm}
-  Let $\sigma:\mathbb{R} \to \mathbb{R}$ be infinitely differentiable, and not a polynomial
-  on any subinterval of $\mathbb{R}$.
-  \begin{itemize}
-    \item For $f \in W_{r,d}^{NN}$
-    \begin{equation*}
-     \mathrm{dist}(f,S_n) = \mathcal{O}(n^{-r/d})
-    \end{equation*}
-    \item For $f \in W_{H,r,2}^{NN}$
-    \begin{equation*}
-     \mathrm{dist}(f,D_n)= \mathcal{O}(n^{-2/d})
-    \end{equation*}
-  \end{itemize}
-\end{thm}
-
-\begin{thm}
-There exists a constant $c > 0$ depending on $d$ alone with the following property.
-Let  $\{ C_m \}$ be a sequence of finite subsets with $\{ C_m \} \subset [-cm,cm]^d$ with
-\begin{equation*}
-  1/m \preceq \mathrm{max}_{y \in K}\mathrm{min}_{x \in C}|x -y | \preceq  \eta(C_m)
-\end{equation*}
- If $\gamma > 0$ and $f \in W_{\gamma,d}$
- then for integer $m \ge 1$ there exists
- $G \in N_{|Cm|,m}$ with centers at points in $C_m$
- such that
-\begin{equation*}
-  ||f -G||_d \preceq \frac{1}{m^{\gamma}}||f||_{\gamma,d}
-\end{equation*}
- Moreover, the coefficients of $G$ can be chosen as linear combinations of the data $\{f(x) : x \in C_m\}$.
-\end{thm}
-
-\begin{thm}
-  For each $v in V$, let  $\{C_{m,v}\}$ be a sequence of finite subsets as described in Theorem 2.
-  Let $\gamma > 0$ and $f \in TW_{\gamma,2}$.
-  Then for integer $m \ge 1$, there exists $G \in TN_{\mathrm{max} |C_{m,v}|m}(\mathbb{R}^2)$
-  with centers of the constituent network $G_v$ at vertex $v$ at points in $C_{m,v}$ such that
-\begin{equation*}
-  ||f - G||_{\mathcal{T}} \preceq \frac{1}{m^{\gamma}}||f||_{\mathcal{T},\gamma,2}
-\end{equation*}
-Moreover, the coefficients of each constituent $G_v$
-can be chosen as linear combinations of the data $\{f(x) : x \in C_{m,v} \}$.
-\end{thm}
-
-\begin{thm}
-  \begin{itemize}
-    \item[(a)] Let $\{C_m\}$ be a sequence of finite subsets of $\mathbb{R}^d$,
-    such that for each integer $m \ge 1, C_m \subset C_{m+1},$
-    $|C_m| \le c \mathrm{exp}exp(c_1m^2)$, and $\eta (C_m) \ge 1/m$.
-    Further, let $f \in C_0(\mathbb{R}^d)$, and for each $m \ge 1$,
-    let $G_m$ be a Gaussian network with centers among points in $C_m$,
-    such that
-    \begin{equation*}
-      \mathrm{sup}_{m \ge 1 } m^{ \gamma }||f -G_m||_{\mathcal{T}} < \infty
-    \end{equation*}
- Then $f \in W_{\gamma,d}$
- \item[(b)]
- For each $v \in V$ , let $\{ C_{m,v} \}$ be a sequence of finite subsets of $\mathbb{R}^{d(v)}$, satisfying the conditions as described in part
- (a) above. Let $f \in  \mathcal{T}C_0(\mathbb{R}^2), \gamma> 0$, and $\{ G_m \in \mathcal{T}N_{n,m} \}$ be a sequence where, for each $v \in V$,
- the centers of the constitutent networks $G_{m,v}$ are among points in $C_{m,v}$, and such that
-\begin{equation*}
-\mathrm{sup}_{m \ge 1}m^{\gamma}||f -G_m||_{\mathcal{T}} \ge \infty
-\end{equation*}
- Then $f \in \mathcal{T}W_{\gamma,2}$.
-\end{itemize}
-\end{thm}
-
-\section{Previous Work}
-\label{sec:Previous Work}
-
-以前の仕事自体には興味が無いので，自分が疑問に思う点をここに記載する．
-全体の主張としては誤差が小さいものが存在するといってるだけ，誤差が$O(n^{-r/2})$まで落とせると言っている．
-
-\begin{itemize}
-  \item $\mathbb{Q},\mathbb{Q}_p$上でうまく定義できるか
-  \item $n$や$d$の関係を明確にして，その状況で問題設定を解決したい．
-  \item 計算量に関する考察は何かできないか
-\end{itemize}
-
-\section{Compositional functions}
-\label{sec:Compositional functions}
-
-\section{Main results}
-\label{sec:Main results}
-この章では，shallow network,deep networkの2つの場合に近似定理を述べる．
-2つとは，ReLUによるdeep networkとdeep Gaussian networkである．
-\it{degree of approximation}は以下で定義される．
-\begin{equation}
-　\mathrm{dist}(f,V_n)= \mathrm{inf}_{P \in V_n}||f - P||
-\end{equation}
-\begin{rem}
- $V_n$は関数の集合，実際にははニューラルネットワークとして定義される関数の集合として，使われていた．
-
-\end{rem}
-\subsection{Deep and shallow neural netwokrs}
-\label{sub:Deep and shallow neural netwokrs}
-$I^d:=[-1,1]^d,\mathbb{X}=C(I^d,\mathbb{R})$とし，
-$||f||=\mathrm{max}_{x \in I^d}|f(x)|$とする．
-$S_n$をn個のunitを持つshallow netoworkのなす集合とする．すなわち，
-\begin{equation*}
- S_n:=\{f:\mathbb{R}^d \to \mathbb{R}|\mbox{ある}w_k ^in \mathbb{R}^d,b_k.a_k
- \in \mathbb{R}\mbox{が存在し，}f(x)=\sum_{k=1}^na_k \sigma(w_kx+b_k) \}
-\end{equation*}
-この時，訓練パラメータが$(d+2)n$個存在する.(メタ的で数学的ではない).
-$W_{r,d}^{NN}$で$r$回連続偏微分可能であって,
-$||f||+\sum_{1 \le |k|_1 \le r}||D^kf|| \le 1$を満たすもの全体とする．
-また，$W_{H,r,2}^{NN}$を以下で定義する．
-\begin{equation*}
-  W_{H,r,2}^{NN}:=\{h | h=f_{11} \circ \cdots \circ f_{k2^k} (f_{ij} \in W_{r,2}^{NN})\}
-\end{equation*}
-$\mathcal{D}_n$を$S_n$に属する関数の合成で書けるもの全体とする．
-上の書き方，かなりまずいけど， $f_11(f_21,f_22)$で表せるもの？つまり，dが実質2のものということですかね．
-この時はパラメターの個数が$d=2^m$とした時に，$(d+2)m(1 + 2 + \cdots +2^{m-1})=(d+2)m(d-1)$となる．
-\begin{thm}
- $\sigma :\mathbb{R} \to \mathbb{R}$を無限回微分可能であって，$\mathbb{R}$の任意の開区間上で，
- 多項式でないとする． この時以下が成り立つ．
- \begin{enumerate}
-   \item 任意の$f \in W_{r,d}^{NN}$に対し，
-   \begin{equation}
-     \mathrm{dist}(f,S_n)= \mathcal{O}(n^{-r/d})
-   \end{equation}
-   \item 任意の$f \in W_{H,r,d}^{NN}$に対し，
-   \begin{equation}
-     \mathrm{dist}(f,\mathcal{D}_n)=\mathcal{O}(n^{-r/2})
-   \end{equation}
- \end{enumerate}
-\end{thm}
+\section{RINGS AND IDEALS}
+\label{sec:RINGS AND IDEALS}
+\begin{exs}
+ Let $x$ be a nilpotent element of a ring $A$. Show that $1 + x $ is a unit of $A$.
+ Deduce that the sum of a nilpotent element and a unit is a unit
+\end{exs}
 \begin{proof}
-  1つめの主張は他の論文にて示した．
-  2つめの主張を示す．$f$が無限回微分可能な時，特にリプシッツ連続である．
-  よって，$f(g_1,g_2)-f(P_1,P_2) \le M|g_1 - P_1||g_2 - P_2|$となる．
-  これより，
-  \begin{align*}
-    |f(g_1,g_2)-P_0(P_1,P_2) |  & \le |f(g_1,g_2) - f(P_1,P_2)| +|  f(P_1,P_2) -P_0(P_1,P_2) | \\
-    & \le M|g_1 - P_1||g_2 - P_2| +\mathrm{dist}(f,S_n)
-  \end{align*}
-となる．$|g_1 - P_1||g_2 - P_2|\le \mathcal{O}(n^{-r})$となるので．$f(g_1,g_2)-P_0(P_1,P_2) =\mathcal{O}(n^{-r/2})$となる．
-これをinductiveに続けていけばよい．
+ $x$がnilpotentなので，$x^m=0$となる.これより
+\begin{equation*}
+  (1 + x )(\sum_{i=0}^{m-1}(-x)^i) = 1 +(-x)^m=1
+\end{equation*}
+となるため，$1+x$が単元であることがわかる．
+unitとnilpotentの和は，unitとnilpotentの積がnilpotentになることから，
+unitをかけて，1とnilpotentの和となり，特にunitにできることから言える．
 \end{proof}
-\begin{rem}
-オーダとしてはこれが限界であることが示されている．
-\end{rem}
+
+\section{MODULES}
+\label{sec:MODULES}
+
+\section{RINGS ANS FRACTION OF MODULES}
+\label{sec:RINGS ANS FRACTION OF MODULES}
+
+\section{PRIMAY DECOMPOSITION}
+\label{sec:PRIMAY DECOMPOSITION}
+
+\section{Integral Dependence and Valuations}
+\label{sec:Integral Dependence and Valuations}
+\begin{exs}
+ Lef $f:A \to B$ be an itengral homomorphism of rings. Show that $f^*: \mathrm{Spec}B \to \mathrm{Spec}A$ is a
+ \it{closed} mapping,i.e. that it maps closed sets to closed sets.
+\end{exs}
+\begin{proof}
+
+\end{proof}
 
 \end{document}

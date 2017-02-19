@@ -2,7 +2,7 @@
 %一行目に必ず必要
 %文章の形式を定義
 %===============
-\documentclass{jarticle}
+\documentclass{ujarticle}
 %===============
 %パッケージの定義、必要か不明
 %===============
@@ -38,33 +38,51 @@
 \newtheorem*{prob}{Problem}
 \newtheorem*{rem}{Remark}
 \newtheorem{prf}{Proof}
-
+\newtheorem{clm}{Claim}
 
 %この論文紹介用定義
-\newcommand{\C11}{C^{1,1}}
+\newcommand{\bh}[2]{B_{\mathcal{H}}(#1,#2)}
+\newcommand{\bpa}{B_{\Pi_1}(0,r)}
+\newcommand{\bpb}{B_{\Pi_2}(0,r)}
+\newcommand{\bpd}{B_{\Pi}(0,r)}
+\newcommand{\bp}[3]{B_{\Pi_{#3}}(#1,#2)}
+\newcommand{\gn}[4]{||\Gamma_{#1}||_{C^{1,1}(\bp{#2}{#3}{#4})}}
+\newcommand{\gnaaad}{||\Gamma_1||_{C^{1,1}(\bp{z_1}{r_1}{})}}
+\newcommand{\gnd}{||\Gamma||_{C^{1,1}(\bpd)}}
 \newcommand{\gdvt}{\mathcal{G}(d,V,\tau)}
 \newcommand{\Me}{M_{erm}}
 \newcommand{\Px}{\Pi_x}
 \newcommand{\Py}{\Pi_y}
 
+
 \begin{document}
+
+
 
 
 \part{内容}
 
 \section{start}
 \label{start}
-第1回では、前半の主定理
-周辺の基礎知識とそれらの意味を紹介する。
-また、実際に、Thm1を示すときの主な結果である、laim1の証明を紹介する。
-論文の1~3章相当
-この論文の主定理とその主定理のための記号を定義する。
+第1回で紹介したいもの
+\begin{itemize}
+  \item 最低限の周辺知識＋記号
+  \item 前半の主定理(Thm1)と意味
+  \item Claim1の証明を含めた論文の1~3章
+\end{itemize}
+
+
+
 \begin{thm}
 
 \end{thm}
 
 
 \part{論文そのもの}
+
+%定理環境の変更
+
+
 
 \setcounter{section}{0}
 \section{Introduction}
@@ -123,7 +141,7 @@ Empirical Loss$L_{emp}(M)$を
 とする。
 ******************
  あとで埋める
- ******************
+******************
 $M_A$の定義がわからなかったので、次のsubusectionに移動した。
 
 \subsection{Definitions}
@@ -202,7 +220,92 @@ $M_{erm}$を$\mathcal{G}(d,V,\tau)$の元であって、
 となる。
 \end{thm}
 
+\begin{clm}
+  $M \in \gdvt$とし，$\Pi_x$を$\mathcal{H} \to \mathrm{Tan}(x,M)$への射影とする．
+  十分大きい(controlされた?)定数$C$に対し，
+  \begin{equation*}
+   U:= \{ y \mid |y - \Pi_xy| \le \tau/C \} \cap \{ y \mid |x - \Pi_x y| \le \tau/C \}
+  \end{equation*}
+  とする．この時，$C^{1,1}$級関数$F_{x,U}:\Pi_x(U) \to \Pi_x^{-1}(\Pi_x(0))$で以下を満たすものが存在する．
+  \begin{enumerate}
+    \item $F_{x,U}$のLipschitz constant of the gradientが$C$以下である．
+    \item \begin{equation*}
+    M \cap U = \{ y + F_{x,U}(y) \mid y \in \Pi_x(U) \}
+    \end{equation*}
+  \end{enumerate}
+\end{clm}
 
+\section{Proof of CLAIM 1}
+\label{sec:Proof of CLAIM 1}
 
+\subsection{Constans}
+\label{sub:Constans}
+$D$ is a fixed integer. Constants $c,C,C\prime$ etc depend only on $D$. These symbols may denote
+different constants in different occurrences, but $D$ always stays fixed.
+
+\subsection{D-planes}
+\label{sub:D-planes}
+$\mathcal{H}$をヒルベルト空間とする．(無限次元でもよい)
+$D$-planeを$\mathcal{H}$の$D$次元部分ベクトル空間とする．
+$DPL$で$D$-plane全体のなす空間を表す．
+$\Pi,\Pi^\prime \in DPL$に対し，直交変換(内積が不変な変換)$T: \mathcal{H} \to \mathcal{H}$
+であって，$T(\Pi)= \Pi^\prime$とする．これ全体のなす集合を$A_{\Pi,\Pi^\prime}$とする(自分オリジナル).
+この時，
+\begin{equation*}
+ \mathrm{dist} (\Pi,\Pi^\prime):= \mathrm{inf}_{T \in A_{\Pi,\Pi^\prime}} ||T -I||
+\end{equation*}
+で定める.
+$(DPL,dist)$は距離空間になる．(未確認)
+
+\subsection{Patches}
+\label{sub:Patches}
+$D$-palne $\Pi$に対し，
+\begin{equation*}
+ \Psi :\bpd \to \Pi^{\perp}
+\end{equation*}
+を$C^{1,1}$(定義不明)で$\Psi(0)=0$とする．
+この時，a patch of radius $r$ over $\Pi$ centered at 0とは，
+\begin{equation*}
+ \Gamma=\{ x + \Psi(x) \mid x \in \bpd \}
+\end{equation*}
+をさす．さらに
+\begin{equation*}
+ \gnd := \mathrm{sup}_{x \neq y \in \bpd} \frac{ \nabla \Psi(x) - \nabla \Psi(y)}{||x - y||}
+\end{equation*}
+とする．ここで
+$\nabla\Psi(x):\Pi \to \Pi^{\perp}$は$T_x\Pi \to T_x\Pi^{\perp}$のこと.
+ただし，$\Pi \sim T_x \Pi$を使って同一視している．
+
+もし$ \nabla \Psi(0)=0$(0写像)が成り立っている場合，$\Gamma$を
+a patch of radius r tangent to $\Pi$ at its center 0という．
+
+\begin{lem}
+  $\Gamma_1$を$\Pi_1$上の半径$r_1$で中心$z_1$で$\Pi_1$に接しているpatchとする．
+  $z_2 \in \Gamma_1$で$||z_2 -z_1 || < c_0r_1$を満たすとする．
+  \begin{equation*}
+   \gnaaad \le \frac{c_0}{r_1}
+  \end{equation*}
+  とする．$\Pi_2 \in DPL$で$\mathrm{dist}(\Pi_2,\Pi_1) <c_0$とする．
+  この時，$\Pi_2$上の半径$c_1r_1$で中心$z_2$のpatch $\Gamma_2$で以下を満たすものが存在する．
+  \begin{equation*}
+   \gn{2}{0}{c_1r_1}{} \ge \frac{200c_0}{r_1}
+  \end{equation*}
+と
+\begin{equation*}
+\Gamma_2 \cap \bh{z_2}{\frac{c_1r_1}{2}} = \Gamma_1 \cap \bh{z_2}{\frac{c_1r_1}{2}}
+\end{equation*}
+\end{lem}
+
+\begin{proof}
+ わからん…．恐らく陰関数定理を使いたいのだろうが，条件を満たす$\Gamma$の一意性が言えないような…
+\end{proof}
+
+\subsection{Imbedded manifolds}
+\label{sub:Imbedded manifolds}
+$M \subse \mathcal{H}$が"compact imbedded D-manifold" (for short, just a "manifold")とは，以下が成り立つことである．
+\begin{itemize}
+  \item Mがcompact
+  \item
+\end{itemize}
 
 \end{document}
