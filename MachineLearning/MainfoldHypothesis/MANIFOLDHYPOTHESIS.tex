@@ -71,11 +71,167 @@
   \item Claim1の証明を含めた論文の1~3章
 \end{itemize}
 
+\subsection{論文概要}
+\label{sub:論文概要}
 
+この論文では多様体仮説が成り立っているかを確認できるアルゴリズム
+をある意味で提示している．
+数学的に示していることをざっくりとした，日本語で説明すると以下の二点である．
+\begin{itemize}
+  \item ある多様体に対して，多様体仮説が成り立つと仮定した時，実際に多様体仮説が成り立つ多様体$M$を数学的に構成できた．
+  \item 上の多様体$M$を具体的に求めるアルゴリズムを構成した．
+\end{itemize}
 
+完全に勘違いしていたが，数学的な条件では，入力となるデータに関する性質を記述できていないので，多様体仮説が成り立つことは確認できない．
+この論文では，多様体仮説が成り立つかはわからないが，多様体仮説が成り立つならば，
+求めたい多様体(といっていいもの)を定義し，求めるアルゴリズムを定義できたので，実際に実験してみればいいはずだと主張している．
+以下では，結果を具体的に記述するため，最低限の数学的な用語を定義する．
+
+\subsection{基本的な定義}
+\label{sub:基本的な定義}
+
+\begin{dfn}
+  有限次元とは限らない$\mathcal{H}$を$\mathbb{R}$-ベクトル空間が
+  以下を満たす時,\textbf{ヒルベルト空間}という.
+  \begin{itemize}
+    \item 内積が定義できる．すなわち,以下を満たす写像$< \cdot , \cdot >: \mathcal{H} \times \mathcal{H} \to \mathbb{R}$が存在する.
+      \begin{enumerate}
+        \item 任意の$x_1,x_2,y \in \mathcal{H}$に対し，${<}x_1 +x_2,y{>}= {<}x_1,y{>} +{<}x_2,y{>}$
+        \item　任意の$x,y \in \mathcal{H},a \in \mathbb{R}$に対し，$<ax,y> =a<x,y>$
+        \item 任意の$x,y \in \mathcal{H}$に対し，$<x,y>=<y,x>$
+        \item 任意の$x \in \mathcal{H}$に対し，${<}x,x{>} \ge 0$であり，${<}x,x{>}=0$と$x=0$は同値である．
+      \end{enumerate}
+    \item 内積が定める距離について完備である．
+  \end{itemize}
+\end{dfn}
+\begin{rem}
+　上で定めた内積のことを正定値対象双線型形式という.
+\end{rem}
+\begin{rem}
+  $x,y \in \mathcal{H}$に対し，$d(x,y):=\sqrt{{<}x-y,x-y{>}}$
+ とすると距離の公理を満たす．
+ 距離の公理とは以下の3つのこと．
+ \begin{enumerate}
+   \item $d(x,y)=d(y,x)$
+   \item $d(x,y)=0$は$x=y$と同値
+   \item $d(x,y)+d(y,z) \ge d(x,z)$
+ \end{enumerate}
+\end{rem}
+\begin{rem}
+ 距離空間$X$が完備とは，任意のコーシー列$\{x_n\}_{n \in \mathbb{Z}_{\ge 0}}$に対し，収束先$x \in X$が存在すること．
+\end{rem}
+\begin{epl}
+ $\mathbb{R}^n$は標準内積により，ヒルベルト空間になる．
+\end{epl}
+
+この論文で使われる"多様体"の定義をする．
+\begin{dfn}[reach]
+  $M$を$H$の部分集合とし．$x\in \mathcal{H}$に対し，$d(x,M)$を$\mathrm{inf}_{y \in M}d(x,y)$とする．
+  実数$\tau$が$M$の\textbf{reach}とは,$d(x,M)< \tau$となる任意の$x$に対し，
+  $y\in M$が存在し，$y$と異なる任意の$z\in M$に対し，$d(x,z) > d(x,M)=d(x,y)$となること．
+\end{dfn}
+
+\begin{dfn}[Tangent Space]
+$H$を可分ヒルベルト空間とする。閉集合$A \subset H$と$a \in A$に対し、$Tan^0(a,A)$を
+$v \in H$で、任意の$\epsilon$に対し、ある$b \in A$が存在し、$0 <|a -b| < \epsilon$と、$|\frac{v}{|v|} - \frac{b-a}{|b-a|} < \epsilon$.
+を表す。
+$Tan(a,A)$を$\{x \in H| x -a \in Tan^0(a,A)\}$とする。
+\end{dfn}
+
+\begin{prop} $A$を $\mathbb{R}^n$の閉部分集合とする。この時
+  \begin{equation*}
+   reach(A)^{-1}=\mathrm{sup}\{2|b-a|^{-2}d(b,Tan(a,A)) | a.b \in A\}
+  \end{equation*}
+\end{prop}
+\begin{dfn}[$C^r$-submfd]
+ヒルベルト空間$\mathcal{H}$の閉集合$M$が$d$次元$C^r$\textbf{級部分多様体}とは，以下が成り立つことである．
+任意の$p \in M$に対し，$x \in U$となる$\mathcal{H}$の開部分集合と$C^r$級写像$\phi:U \to \mathcal{H}$で$\phi|_{U \cap M}$は中への微分同相写像であり，その像が$d$次元アフィン空間$V$(ある点$x\in \mathcal{H}$が存在し，$V-x$が$d$次元のベクトル空間になる)のインターセクションでかけるものが存在する.
+  $B_{\mathcal{H}}:= \{ x \in \mathcal{H} \mid d(x,x) \le 1 \}$とする．
+$\gdvt$を$d$次元で体積$V$以下でreachが$\tau$以上で$B_{\mathcal{H}}$に含まれる$C^r$級多様体全体のなす集合とする．
+
+\end{dfn}
+\begin{rem}
+ 多様体は普通の数学書では上記のようには定義されない．$\mathcal{H}$を固定して考えたいがために，上記のように定義したのだと思われる．
+\end{rem}
+\begin{rem}
+ この論文では，後でもう一つ多様体と呼ぶものが出てくる．$C^r$級部分多様体が必ずしも後で出てくる多様体とは限らないことに注意せよ．
+\end{rem}
+
+\begin{dfn}
+ $(\Omega,F,P)$が確立空間とは，$\Omega$をある集合とし，
+ $F$を$\Omega$上の$\sigma$-加法族であり，$P$は非負測度であり，
+ $P(\Omega)=1$となる．
+\end{dfn}
+\begin{dfn}
+ $X:\Omega \to [-\infty,\infty]$が確立変数とは任意の$a \in [-\infty,\infty]$で，$\{x \in \Omega \mid X(x) \le a \} \in F$となること．
+\end{dfn}
+\begin{dfn}
+ $X$を確立変数とした時，$F_X(x) = P(X <x)$と書ける時，確立分布関数という，
+\end{dfn}
+
+\begin{dfn}
+ 確立分布関数とは
+\end{dfn}
+
+\subsection{多様体仮説}
+\label{sub:多様体仮説}
+この論文で考える多様体仮説とそのために必要な用語を定義する．
+可分なヒルベルト空間を$\mathcal{H}$,その単位球を$B_{\mathcal{H}}$,
+$B_{\mathcal{H}}$上の確立分布関数を$P$とする．
+\begin{equation*}
+ \mathcal{L}(M,P):=\int_{x \in B_{\mathcal{H}}} d(x,M)^2\frac{dx}{dP(x)}dx.
+\end{equation*}
+とする．
+\begin{dfn}
+  確立分布関数$P$で,i.i.d(独立試行)が行われた時，以下が成り立つことを多様体仮説と呼ぶ．ある$M \in \mathcal{G}(d,CV,c\tau)$が存在し，$\mathcal{L}(M,P) \le C \epsilon$となる.
+\end{dfn}
+\begin{rem}
+ 論文中でこれを多様体仮説と直接呼んではいないが，内容から判断して多様体仮説と呼ぶことにした．
+\end{rem}
+\begin{rem}
+ この時点でもわかるように，$d,C,V,\tau$としてどのような値を取るべきかは不明．
+\end{rem}
+
+\subsection{主結果その1}
+\label{sub:主結果その1}
+
+1つめの定理を述べる．
 \begin{thm}
-
+ ある$r > 0$に対し、
+ \begin{equation*}
+  U_{\mathcal{G}(1/r)}:=CV( \frac{ 1 }{ \tau^d } + \frac{ 1 }{ (\tau r)^{d/2} } )
+ \end{equation*}
+ とする。また、
+ \begin{equation*}
+  s_{\mathcal{G}}(\epsilon,\delta):=C(\frac{ U_{\mathcal{G}}(1/\epsilon) }{ \epsilon^2 }(\mathrm{log}^4
+  (\frac{U_{\mathcal{G}}(1/\epsilon)}{\epsilon})) + \frac{ 1 }{ \epsilon^2 }\mathrm{log}\frac{ 1 }{ \delta }  )
+ \end{equation*}
+とする。
+$s \ge s_{\mathcal{G}}(\epsilon,\delta)$とし、$x=\{ x_1,\dots,x_s\}$を確率測度$P$による独立試行により，得られた集合とする。
+$P_X$を$X$上の一様確率測度とする。(どの元が出る確率が等しい)
+$M_{erm}$を$\mathcal{G}(d,V,\tau)$の元であって、
+\begin{equation*}
+ L(M_{erm}(x),P_X) - \mathrm{inf}_{M \in \mathcal{G}(d,V,\tau)} L(M,P_X) < \frac{ \epsilon }{ 2 }
+\end{equation*}
+を満たし、以下を最初にするものとする。
+\begin{equation*}
+ \sum_{i=1}^sd(x_i,M)^2
+\end{equation*}
+この時、
+\begin{equation*}
+ \mathbb{P}[L(M_{erm}(x),P)] - \mathrm{inf}_{M \in \mathcal{G}(d,V,\tau)} L(M,P) < \epsilon > 1- \delta
+\end{equation*}
+となる。
 \end{thm}
+
+\begin{rem}
+ この定理が何を示しているかというと,$L(M,P)$の極小値に十分近い値を取る,多様体$M_{erm}(x)$を構成できることが言えた．$M_{erm}$は最適化問題の解として得られるので，極小値自体よりもかなり具体的になっている．
+ 特に，$M_{erm}$が確立を計算しなてくも求められるのがよい．基本的に$P_X$は未知であることを前提に問題と解くので，$P_X$に依存しないのは強い結果である．
+\end{rem}
+\begin{rem}
+  仮定からわかるように,$\epsilon.\delta$の値にも強く依存する．だが，これらとして何を取るべきかはまだ，わかっていない．本当は計算してみて，どのぐらい大きい$s$が必要化推測するべきだが…．
+\end{rem}
+
 
 
 \part{論文そのもの}
@@ -151,7 +307,7 @@ $M_A$の定義がわからなかったので、次のsubusectionに移動した�
   for any $0 < r < \tau$, any point at a distance $r$ of $M$ has a unique nearest point on $M$.
 \end{dfn}
 
-\begin{dfn}[Tanget Space]
+\begin{dfn}[Tangent Space]
 $H$を可分ヒルベルト空間とする。閉集合$A \subset H$と$a \in A$に対し、$Tan^0(a,A)$を
 $v \in H$で、任意の$\epsilon$に対し、ある$b \in A$が存在し、$0 <|a -b| < \epsilon$と、$|\frac{v}{|v|} - \frac{b-a}{|b-a|} < \epsilon$.
 を表す。
@@ -302,7 +458,7 @@ a patch of radius r tangent to $\Pi$ at its center 0という．
 
 \subsection{Imbedded manifolds}
 \label{sub:Imbedded manifolds}
-$M \subse \mathcal{H}$が"compact imbedded D-manifold" (for short, just a "manifold")とは，以下が成り立つことである．
+$M \subset \mathcal{H}$が"compact imbedded D-manifold" (for short, just a "manifold")とは，以下が成り立つことである．
 \begin{itemize}
   \item Mがcompact
   \item
