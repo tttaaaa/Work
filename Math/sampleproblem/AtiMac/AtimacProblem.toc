@@ -1,0 +1,5 @@
+\contentsline {section}{\numberline {1}RINGS AND IDEALS}{1}{section.1}
+\contentsline {section}{\numberline {2}MODULES}{1}{section.2}
+\contentsline {section}{\numberline {3}RINGS ANS FRACTION OF MODULES}{1}{section.3}
+\contentsline {section}{\numberline {4}PRIMAY DECOMPOSITION}{1}{section.4}
+\contentsline {section}{\numberline {5}Integral Dependence and Valuations}{1}{section.5}
