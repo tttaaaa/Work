@@ -378,27 +378,22 @@ $\Pi_1=\Pi_2$でとっているのと平行移動していること,そもそも
 \end{proof}
 
 \part{Main theorem 1の証明}
-Main theorem 1の証明の概略をのべ,一部を実際に示す．
+Main theorem 1の証明の概略をのべ,いくつかを実際に示す．
 \begin{rem}
 1点は論理的に間違いがあり,証明できていない(と思う)
 \end{rem}
 
 \section{証明のフロー}
 \label{sec:証明のフロー}
+基本的な証明の方針を述べる.
 
-Main Theorem \ref{mth1}の証明の方針を述べる.
-
-\begin{enumerate}
-  \item JLの補題による確率に関する不等式(\ref{JL})
-  \item fat shattering dimensinによる条件を満たす場合に一様確率分布の場合の期待値と
-       実際の期待値との誤差が十分小さくなる.(\ref{minifat})
-  \item fat shatterig dimensionを特別な確率変数(族)の場合に評価する(\ref{projvar})
-  \item 確率変数(族)として多様体$M$との距離を取る.この確率変数族は上の特別な確率変数族とはならないが，
-       多様体に関するある条件のもとで,上の条件を満たす確率変数(族)から期待値の評価ができる.(\ref{mfdvar})
-  \item $\mathcal{G}$の多様体は上記の条件を満たすことをClaim 1を用いて示す.(\ref{volumebound})
-  \item 上で示した,一様確率分布の場合と実際の期待値の間に差がないことは多様体の選び方によらないことと
-       一様確率分布の場合は距離を小さくする多様体を取ることで,期待値を十分小さくできることから定理は示せる.
-\end{enumerate}
+\begin{itemize}
+  \item JLの補題による確率の評価
+  \item 証明したい,確率をfat shattering dimensinにより評価
+  \item fat shatterig dimensionを特別な関数を用い,実際に評価し，定数による評価の作成
+  \item 多様体の距離を用いて確率の評価を出す(条件つき)
+  \item 今回の問題を示すのに必要な条件を満たすことをClaim 1を使う
+\end{itemize}
 
 
 \section{TOOLS FROM EMPIRICAL PROCESS}
@@ -408,7 +403,7 @@ Main Theorem \ref{mth1}の証明の方針を述べる.
  距離空間$(Y;\rho)$と$Z \subset Y$,$\eta \in \mathbb{R}$に対し,
  任意の$y \in Y$に対し,$\rho(y,z) <\eta$となる$z \in Z$が存在する時,$Y$を$\eta$-net of $Y$という.
  距離空間$X$上の確率測度$P$に対し,$F \subset \mathrm{Map}_{cont}(X,\mathbb{R})$は
- $L^2$-ノルムにより距離空間となる.
+ $L^2$-ノルムにより距離空間となる.(完備??)
  この時$N(\eta,F,L^2(P))$を$F$の$\eta$-netとなる有限集合$Y$の位数の最小値で定め，これを\textbf{metric entropy}という.
 \end{dfn}
 
@@ -440,7 +435,6 @@ is the largest integer $k$ such that there exists $(x_1, \dots,x_k)$ such that $
 \end{rem}
 VC dimensionには以下が成り立つ.
 \begin{thm}
-\label{vc}
  Let $\Lambda$ be the class of halfspaces in $\mathbb{R}^g$. Then $VC= g + 1$.
 \end{thm}
 \begin{lem}
@@ -457,7 +451,7 @@ Johson-Lindenstartusussの補題を述べる.
     (1 − \epsilon)||u − v||^2 \le ||f(u) − f(v)||^2 \le (1 + \epsilon )||u − v||^2
 \end{equation*}
 \end{lem}
-これを確率論に適用したものがある
+なお，これを確率論に適用したものを本論文で使う.
 \begin{lem}[JL確率版]
 A related lemma is the distributional JL lemma. This lemma states that for any
 $0 <\epsilon, \delta<1/2$ and positive integer $d$, there exists a distribution over $\mathbb{R}^{kd}$,
@@ -474,7 +468,6 @@ Then the JL lemma follows by a union bound over all such pairs.
 
 本論文ではそのcorollaryとして特に，以下を用いる.
 \begin{lem}[JL]
-\label{JL}
   Let $y_1,\dots,y_l$ be points in the unit ball in $\mathbb{R}^m$ for some finite $m$.
 Let $\mathbb{R}$ be an orthogonal projection onto a random $g$-dimensional subspace
 (where $g = C \frac{\mathrm{log}}{\gamma^2}$) for some $\gamma > 0$ and an
@@ -486,7 +479,6 @@ absolute constant $C$). Then,
 
 JLを使いfat-shattering dimensionを用いて確率の評価をしたのが以下である.
 \begin{lem}
-\label{minifat}
   Let $\mu$ be a measure supported on $X$, $F \subset \mathrm{Map}(X,\mathbb{R})$.
   Let $x_1,\dots, x_s$ be independent random variables drawn from $\mu$
   and $s$ be the uniform measure on $x := (x_1,\dots, x_s)$.
@@ -500,9 +492,43 @@ s \ge \frac{C}{\epsilon^2}(( \int_{c \epsilon}^{\infty}\sqrt{\mathrm{fat}_{\gamm
 \end{equation*}
 \end{lem}
 \begin{rem}
- 定理の主張がおそらく間違っていたので修正した(論文では$1- \delta$となっていた).
+ 定理の主張がおそらく，間違っていたので修正した(論文では$1- \delta$となっていたが，実際は$\delta$の間違いだと思う)
+ でないと以降で評価できない.
 \end{rem}
+
+fat-shattering dimensionを評価する.
+\begin{lem}
+  Let $P$ be a probability distribution supported on $B_{\mathcal{H}}$.
+  Let $F_{k,l} = \mathrm{Map}(B_{\mathcal{H}},\mathbb{R} \mid f(x)=\mathrm{max}_j \mathrm{min}_i(v_{ij} \cdot x) )$
+
+\begin{align*}
+   & \mathrm{fat}_{\gamma}(F_{k,l}) \le \frac{Ckl}{\gamma^2}\mathrm{log}^2 \frac{Ckl}{\gamma^2} \\
+  \mbox{If } & s \ge \frac{C}{\epsilon^2 }(kl \mathrm{log}^4(kl/\epsilon^2)+ \mathrm{log}{1/\delta}), \\
+  \mbox{then } & \mathbb{P}[\mathrm{sup}_{f \in F_{k,l}}| \mathbb{E}_{\mu_s}f(x_i) - \mathbb{E}_{\mu}f| \ge \epsilon ] \le 1 -\delta
+\end{align*}
+\end{lem}
 \begin{proof}
+  fat-shattering dimensionを上からboundする.
+  $X=(x_1,\dots,x_s)(x_i \in B_{\mathcal{H}})$を$\gamma$-shatteredとする.
+  この時,任意の$A \subset X$に対し,$f_A \in F_{k.l},t=(t_1,\dots,t_s)$が存在し，以下が成り立つ.
+  \begin{eqnarray*}
+ x_i \in A \mbox{の時 } f_A(x_i) - t_i > \gamma   \\
+x_i \notin A \mbox{の時 } f_A(x_i) -t_i < - \gamma
+  \end{eqnarray*}
+  今後の都合に合わせ(本当に?)$X \setminus A$を$A$とする.つまり
+  \begin{eqnarray*}
+ x_i \in A \mbox{の時 } f_A(x_i) - t_i < - \gamma   \\
+x_i \notin A \mbox{の時 } f_A(x_i) -t_i > \gamma
+  \end{eqnarray*}
+とする．
+  $f_A$の定義から,ある$v_{ij} \in B$を用いて,
+  $f_A(x)=\mathrm{max}_j \mathrm{min}_i(v_{ij} \cdot x) $とかける.
+これを用いると，上の条件は以下のようになる．
+\begin{eqnarray*}
+x_r \in A \mbox{の時,任意の }j\mbox{に対し,ある}i{が存在し，} v_{ij} \cdot x_r  < t_r - \gamma   \\
+x_r \in A \mbox{の時,ある }j\mbox{が存在し,任意の}i{に対し，} v_{ij} \cdot x_r  > t_r + \gamma   \\
+\end{eqnarray*}
+
   Let $g= C_1(4\gamma^{-2} \mathrm{log}(s + kl))$
   for a sufficiently large universal(意味不明) constant $C_1$.
 $g$次元部分空間 $V \subset \mathrm{span}(X cup V) $に対し，$ R : \mathrm{span}(X cup V) \to V$を自然な射影とする.
@@ -517,55 +543,13 @@ $g$次元部分空間 $V \subset \mathrm{span}(X cup V) $に対し，$ R : \math
     \mathbb{P} [ | \frac{m}{g}(Rv_{ij})\cdot (Rx_r) - v_{ij} \cdot  x_r | \le  \gamma ] \ge \frac{1}{2}
 \end{eqnarray*}
 となる．
-…中断
-\end{proof}
-
-
-\begin{lem}
-\label{projvar}
-  Let $P$ be a probability distribution supported on $B_{\mathcal{H}}$.
-  Let $F_{k,l} = \{ f \in \mathrm{Map}(B_{\mathcal{H}},\mathbb{R}) \mid f(x)=\mathrm{max}_j \mathrm{min}_i(v_{ij} \cdot x) \}$
-
-\begin{eqnarray*}
-  & & \mathrm{fat}_{\gamma}(F_{k,l}) \le \frac{Ckl}{\gamma^2}\mathrm{log}^2 \frac{Ckl}{\gamma^2} \\
-  &\mbox{If } & s \ge \frac{C}{\epsilon^2 }(kl \mathrm{log}^4(kl/\epsilon^2)+ \mathrm{log}{1/\delta}), \\
-  &\mbox{then } & \mathbb{P}[\mathrm{sup}_{f \in F_{k,l}}| \mathbb{E}_{\mu_s}f(x_i) - \mathbb{E}_{\mu}f| \ge \epsilon ] \le \delta
-\end{eqnarray*}
-\end{lem}
-\begin{proof}
-  fat-shattering dimensionを上からboundする.
-  $X=(x_1,\dots,x_s)(x_i \in B_{\mathcal{H}})$を$\gamma$-shatteredとする.
-  この時,任意の$A \subset X$に対し,$f_A \in F_{k.l},t=(t_1,\dots,t_s)$が存在し，以下が成り立つ.
-  \begin{eqnarray*}
-& x_i \in A \mbox{の時 } &f_A(x_i) - t_i > \gamma   \\
-&x_i \notin A \mbox{の時 }& f_A(x_i) -t_i < - \gamma
-  \end{eqnarray*}
-  今後の都合に合わせ(本当に?)$X \setminus A$を$A$とする.つまり
-  \begin{eqnarray*}
-& x_i \in A \mbox{の時 }  &f_A(x_i) - t_i < - \gamma   \\
-& x_i \notin A \mbox{の時 }& f_A(x_i) -t_i > \gamma
-  \end{eqnarray*}
-とする．
-  $f_A$の定義から,ある$v_{ij} \in B$を用いて,
-  $f_A(x)=\mathrm{max}_j \mathrm{min}_i(v_{ij} \cdot x) $とかける.
-これを用いると，上の条件は以下のようになる．
-\begin{eqnarray*}
-x_r \in A \mbox{の時,任意の }j\mbox{に対し,ある}i{が存在し，} v_{ij} \cdot x_r  < t_r - \gamma   \\
-x_r \in A \mbox{の時,ある }j\mbox{が存在し,任意の}i{に対し，} v_{ij} \cdot x_r  > t_r + \gamma   \\
-\end{eqnarray*}
-
-  Let $g= C_1(4\gamma^{-2} \mathrm{log}(s + kl))$
-  for a sufficiently large universal(意味不明) constant $C_1$.
-$g$次元部分空間 $V \subset \mathrm{span}(X \cup V) $に対し，
-$ R : \mathrm{span}(X \cup V) \to V$を自然な射影とする.
-
 
 $x_r \in A$の時，任意の$j$に対し，ある$i$が存在し，以下が成り立つ.
 \begin{eqnarray*}
   \mathbb{P} [ | \frac{m}{g}(Rv_{ij})\cdot (Rx_r) - v_{ij} \cdot  x_r \le  \gamma ]
-  & \ge &  \mathbb{P} [ | \frac{m}{g}(Rv_{ij})\cdot (Rx_r)| - |v_{ij} \cdot  x_r| \le  \gamma ] \\
-  & \ge &\mathbb{P} [ | \frac{m}{g}(Rv_{ij})\cdot (Rx_r)| - t_r + \gamma  \le  \gamma ] \\
-  & = & \mathbb{P} [ | \frac{m}{g}(Rv_{ij})\cdot (Rx_r)| \le t_r  ]
+  & \ge   \mathbb{P} [ | \frac{m}{g}(Rv_{ij})\cdot (Rx_r)| - |v_{ij} \cdot  x_r| \le  \gamma ] \\
+  & \ge \mathbb{P} [ | \frac{m}{g}(Rv_{ij})\cdot (Rx_r)| - t_r + \gamma  \le  \gamma ] \\
+  & = \mathbb{P} [ | \frac{m}{g}(Rv_{ij})\cdot (Rx_r)| \le t_r  ]
 \end{eqnarray*}
 
 $x_r \notin A$の時，ある$j$が存在し，任意の$i$に対し，いかが成り立つ.
@@ -577,114 +561,23 @@ $x_r \notin A$の時，ある$j$が存在し，任意の$i$に対し，いかが
 \end{eqnarray*}
 $J:=\mathrm{Span}RX$とし，$t^J J \to \mathbb{R}$をある$i$が存在し,$y=Rx_i$と書ける時，
 $t_j(y)$をその最小の$i$で定め，それ以外の時$0$とする.
-$F_{J,k,l}$をある相異なる$kl$個の$w_{ij} \in J$に対し,
-\begin{equation*}
- \{ z \mid \mathrm{max}_j \mathrm{min}_i \binom{w_{ij}}{1}\cdot \binom{z}{-t^J(z)} \le 0 \}
-\end{equation*}
-\end{proof}
-となる集合全体とする.
-この時以下が成り立つ
-\begin{clm}
-  Let $y_1, \cdots ,y_s \in J$. Then, the number $W(s,F_{J,k.l})$ of distinct sets
-  $\{ y_1, \cdots , y_s\} \cap \iota , \iota \in F_{J,k,l}$ is less or equal to $s^{O((g+2)k)}$
-\end{clm}
-\begin{rem}
- Oをそこに使う??
-\end{rem}
-\begin{proof}
- VC次元の性質(theorem \ref{vc})より,$(z,-t^J(z))$で生成される半平面のVC次元は高々$g+2$
- これより，$W(s,F_{J,1,1})  \le \sum_{i=0}^{g+2}\binom{s}{i} \le $となり,(一般に$s \ge g$ではない.
- $s < g$の時は$\binom{s}{g}=0$とする.)
- $F_{J,k,l}$の元は$F_{J,1,1}$の元のk個の和集合のl個の共通部分となるので,
- 位数は$N =\binom{W(s,F_{J,1,1})}{k}$とすると,
- $\binom{N}{l}$個以下となり，特に$W(s,F_{J,1,1})^{kl}$以下となる.
 
-\begin{rem}
- もっと強い評価ができそう.
-\end{rem}
-
-確率が1/2以上なので,$RX \cap \iota$の個数は$2^{s-1}$以上(と書いてある.)
-(正しくない．$RX$の位数が$X$の位数と異なる場合は上記は成り立たない．今回は上記が成り立たない$X$を取るとする)
-この時,Claimより
-$2^{s-1} \ge W(s,F_{J,k,l}) \ge  s^{kl(g+2)}$
-となる.
-よって,示された.
+これより，
 \end{proof}
 
-$s$の上界を求める.
-$s \le kl$なら既に求まるため,$s \ge kl$と仮定する.
-$g = C_1(\gamma^{-2}\mathrm{log}(s+kl) )$を代入し,式を整理すると,以下となる.
-\begin{equation*}
- \frac{s}{\mathrm{log}^2(s) } \le O (\frac{kl}{\gamma^2 })
-\end{equation*}
-となる.
-これより以下が成り立つ
-\begin{equation*}
-s \ge O(\frac{kl}{\gamma^2}\mathrm{log}^2(\frac{kl}{\gamma}))
-\end{equation*}
-\begin{rem}
- 本当に?? 不等式評価の向きを間違えているのでは?
-\end{rem}
 
-$B_H$上の点なので,任意の２点の距離は2以下となる.そのため，$\gamma \ge 2$の時
-fat-shattering dimensionは0となる.これと上のlemmaより,
-\begin{equation*}
- s \ge \frac{C}{\epsilon^2} (\int_{c \epsilon}^2 \frac{\sqrt{kl \mathrm{log}^2 (kl/\gamma)}}{\gamma}d \gamma)^2 + \mathrm{log}1/\delta
-\end{equation*}
-\begin{rem}
- 論文に誤植あり.
-\end{rem}
-ならば
-\begin{equation*}
- \mathbb{P}[ \mathrm{sup}_{f \in F} |\mathbb{E}_{\mu_s}f(x_i) -\mathbb{E}_{\mu}f|  \ge \epsilon] \le \delta.
-\end{equation*}
-がわかる.
-$s$の条件に出てくる不等式は$t= \mathrm{log}(\sqrt{kl}{\gamma}.)$により置換積分すればよい．
-これから
-\begin{equation*}
-  s \ge \frac{C}{\epsilon^2}(kl \mathrm{log}^4(kl/\epsilon^2) + \mathrm{log}1/\delta)
-\end{equation*}
-なら,
-\begin{equation*}
- \mathbb{P}[ \mathrm{sup}_{f \in F} |\mathbb{E}_{\mu_s}f(x_i) -\mathbb{E}_{\mu}f|  \ge \epsilon] \le \delta.
-\end{equation*}
-がわかる.
 
-上記の多様体の距離に関する期待値に適用する.
-\begin{lem}
-\label{mfdvar}
-$\epsilon,\delta \in [0,1]$,$U_{\mathcal{G}}:\mathbb{R}_{\ge 0} \to \mathbb{R}_{\ge 0}$とする.
-任意の$M \in \mathcal{G}(d,V,\tau)$が任意の$r >0$に対し,$U_{\mathcal{G}}(1/r)$個の半径$\frac{\sqrt{r \tau}}{16}$
-のopen ballの和集合で被覆されるとする.もし,
-\end{lem}
-\begin{equation*}
- s \ge C (\frac{U_{\mathcal{G}(1/\epsilon) }}{\epsilon^2})(\mathrm{log}^4 \frac{(U_{\mathcal{G}}(1/\epsilon)}{\epsilon})) + \frac{1}{\epsilon^2}
- \mathrm{log}\frac{1}{\delta}
-\end{equation*}
-ならば,
-\begin{equation*}
- \mathbb{P}[\mathrm{sup}_{M \in \mathcal{G}(d,V,\tau)} | \frac{\sum_{i=1}^s d(x_i,M)^2}{s} - \mathbb{E}_Pd(x,M)^2 | < \epsilon ]  > 1 - \delta
-\end{equation*}
-この仮定を実際に満たすことMain Theoremを示すことにしている.
-Main Thoeremの主張では$\mathcal{G}(d,V,\tau)$で,以下を最小にするものとしていた.
-\begin{equation*}
- \sum_{i=1}^sd(x_i,M)^2
-\end{equation*}
-ただ，論文を読む限り極限をとった議論を使っており，最小を構成ししているようにも読めなかった．
-(論文の一番最後の帰結を導く，多様体の存在は示せるが最小が存在するのかは不明)
 
-近似を用いて$Px$に対して$d(x,M_{erm})$と$d(x,M)$の差を小さくできることと
-
-上の仮定を満たすことは以下からわかる.
+\section{A bound on the size of an $\epsilon$-net}
+\label{a bound on the size of an epsilon net}
+この章では、Claim 1と上の定理を用い、実際に主定理1を示す。
 
 \begin{dfn}
  Let $(X,d)$ be a metric space, and $r > 0$. We call that $Y \subset X$ is an $r$-net of $X$
  if   for each $x \in X$, there is a $y \in Y$ such that $d(x,y) < r$.
 \end{dfn}
 
-\begin{cor}
-\label{volumebound}
-   Let
+\begin{cor} Let
   \begin{equation*}
    U_{\mathcal{G}}:\mathbb{R}^{+} \to \mathbb{R}
   \end{equation*}
@@ -704,8 +597,7 @@ Then, for any $r >0$, there is an $\sqrt{\tau r}$-net of $M$ consisting of no mo
   この時、$Y=\{ x_i \}$は有限で、任意の$x_i \in Y$に対し、$\mathrm{mini}|x_ i -x_j| < \epsilon$となる.
   $Y$が$M$の$r$-netになることは上より、明らか。
 
-これもうまく証明できていない.(おそらく有限個の全体がほとんど重複しない球による有限被覆が存在することを示し,
-Claim 1から球と$M$の共通部分の体積が十分あることを示している.)
+これもうまく証明できていない.
 \end{proof}
 
 

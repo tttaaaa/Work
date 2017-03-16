@@ -14,6 +14,9 @@
 %可換図式用パッケージ
 \usepackage{amscd}
 \usepackage[all]{xy}
+%tilkz用
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{tikz}
 \usepackage{tikz-cd}
 \usepackage{my-default}
 %リンク用パッケージ
@@ -196,9 +199,62 @@ $\{ g \in M(2,\mathbb{C}) | \mathrm{Tr}g = 0 \}$
 
 \section{Hopf代数}
 \label{sub:Hopf代数}
+ここでは，Hopf代数の定義を記述し,以下2つを示す．
+\begin{itemize}
+  \item 群$G$から体$K$への写像全体の集合がHopf代数になること
+  \item リー環の普遍包絡環がHopf代数になっていること
+\end{itemize}
 
-- Hopf代数の定義
-- 普遍包絡環がHopf代数になっていることの証明
+\subsection{Hopf代数の定義}
+\label{sub:Hopf代数の定義}
+\begin{dfn}
+代数$(A,m,\mu)$とは$\mathbb{C}$上のベクトル空間$A$と
+\begin{eqnarray*}
+m :& A \otimes A \to A  &\mbox{積} \\
+\mu :& \mathbb{C} \to A &\mbox{単位射}
+\end{eqnarray*}
+に対し，以下の図式が可換になること．
+
+
+\begin{tikzpicture}[auto]
+\node (a) at (2.5, 4.2) {$A \otimes A \otimes A$}; \node (x) at (4.5, 4.2) {$A \otimes A$};
+\node (b) at (2.5, 3) {$A \otimes A$};   \node (y) at (4.5, 3) {$A$};
+\draw[->] (a) to node {$\scriptstyle id \otimes m$} (x);
+\draw[->] (x) to node {$\scriptstyle m$} (y);
+\draw[->] (a) to node[swap] {$\scriptstyle m \otimes id $} (b);
+\draw[->] (b) to node[swap] {$\scriptstyle m$} (y);
+
+\node (aa) at (2, 1.5) {$\mathbb{C} \otimes A $}; \node (xx) at (4, 1.5) {$A \otimes A$};
+\node (zz) at (6,1.5) {$A \otimes \mathbb{C}$};
+\node (bb) at (4, 0) {$A$};
+\draw[->] (aa) to node {$\mu \otimes id$} (xx);
+\draw[->] (zz) to node[swap] {$id \otimes \mu$} (xx);
+\draw[->] (xx) to node {$\scriptstyle m$} (bb);
+\draw[->] (aa) to node[swap] {$\scriptstyle \simeq$} (bb);
+\draw[->] (zz) to node[swap] {$\scriptstyle \simeq$} (bb);
+\end{tikzpicture}
+
+\end{dfn}
+\begin{rem}
+ 数式が相変わらず汚い．
+\end{rem}
+\begin{tikzpicture}[auto]
+\node (a) at (0, 1.2) {$A \otimes A \otimes A$}; \node (x) at (1.2, 1.2) {$A \otimes A$};
+\node (b) at (0, 0) {$b$};   \node (y) at (1.2, 0) {$y$};
+\draw[->] (a) to node {$\scriptstyle f$} (x);
+\draw[->] (x) to node {$\scriptstyle p$} (y);
+\draw[->] (a) to node[swap] {$\scriptstyle i$} (b);
+\draw[->] (b) to node[swap] {$\scriptstyle g$} (y);
+\end{tikzpicture}
+
+\begin{prop}
+ 体$K$と群$G$に対し，$\mathrm{Map}(G,K)$はHopf代数になる.
+\end{prop}
+\begin{proof}
+ はじめに$\mathrm{Map}(G,K) \otimes \mathrm{Map}(G,K) \simeq \mathrm{Map}(G\times G,K)$
+ であることを示す．
+ $\mathrm{Map}(G,K)$は$K$の直和なので，
+\end{proof}
 
 %\section{SLの場合の量子群}
 \section{$\mathrm{SL}(2,\mathbb{C})$の場合の量子群}
