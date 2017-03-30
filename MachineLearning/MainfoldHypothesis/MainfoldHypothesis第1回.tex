@@ -59,8 +59,7 @@
 
 \begin{document}
 
-\part{1}
-\label{part:1}
+
 
 
 
@@ -94,7 +93,7 @@
 \label{sub:Notation and Definition}
 
 \begin{dfn}
-  有限次元とは限らない$\mathcal{H}$を$\mathbb{R}$-ベクトル空間が
+  有限次元とは限らない$\mathbb{R}$-ベクトル空間$\mathcal{H}$が
   以下を満たす時,\textbf{ヒルベルト空間}という.
   \begin{itemize}
     \item 内積が定義できる.すなわち,以下を満たす写像$< \cdot , \cdot >: \mathcal{H} \times \mathcal{H} \to \mathbb{R}$が存在する.
@@ -108,15 +107,14 @@
   \end{itemize}
 \end{dfn}
 \begin{rem}
-上で定めた内積のことを正定値対象双線型形式という.
+上で定めた内積のことを正定値対称双線型形式という.
 \end{rem}
 \begin{rem}
   $x,y \in \mathcal{H}$に対し,$d(x,y):=\sqrt{{<}x-y,x-y{>}}$
- とすると距離の公理を満たす.
- 距離の公理とは以下の3つのこと.
+ とすると,これは距離の公理を満たす.なお,距離の公理とは以下の3つのこと.
  \begin{enumerate}
    \item $d(x,y)=d(y,x)$
-   \item $d(x,y)=0$は$x=y$と同値
+   \item $d(x,y)=0$と$x=y$は同値
    \item $d(x,y)+d(y,z) \ge d(x,z)$
  \end{enumerate}
 \end{rem}
@@ -129,7 +127,7 @@
 
 この論文で使われる"多様体"の定義をする.
 \begin{dfn}[reach]
-  $M$を$\mathcal{H}$の部分集合とし.$x\in \mathcal{H}$に対し,$d(x,M)$を$\mathrm{inf}_{y \in M}d(x,y)$で定める.
+  $M$を$\mathcal{H}$の部分集合とし,$x\in \mathcal{H}$に対し,$d(x,M)$を$\mathrm{inf}_{y \in M}d(x,y)$で定める.
   実数$\tau$が$M$の\textbf{reach}とは,$d(x,M)< \tau$となる任意の$x$に対し,
   $y\in M$が存在し,$y$と異なる任意の$z\in M$に対し,$d(x,z) > d(x,M)=d(x,y)$となること.
 \end{dfn}
@@ -137,15 +135,16 @@
  半径$r$の円周$\{(x,y) \in \mathbb{R}^2 \mid x^2+y^2=r^2 \}$のreachは$r$になる.
 \end{epl}
 \begin{rem}
- reachの定義は初めて見た.恐らく多様体をクラスタリングするために,定義されているのだと思う.
+ reachの定義は初めて見た.多様体によるクラスタリングを可能にするために,定義されていると思われる.
 \end{rem}
 \begin{dfn}
  位相空間$X$の部分集合$Y$が\textbf{稠密}とは$Y$の閉包が$X$に一致することをいう.
  位相空間$M$が稠密な加算部分集合を持つ時,\textbf{可分}という.
 \end{dfn}
 \begin{epl}
- 実数体$\mathbb{R}$に通常のユークリッド位相を定めた時,有理数体$\mathbb{Q}$は稠密になる.
- また$\mathbb{Q}$は加算集合のため,$\mathbb{R}$は可分である.
+ 実数体$\mathbb{R}$に通常のユークリッド位相を定めた時,
+ 実数の定義から有理数体$\mathbb{Q}$は稠密となる.
+ また$\mathbb{Q}$は加算集合のため,$\mathbb{R}$は可分となる.
 \end{epl}
 
 \begin{dfn}[Tangent Space]
@@ -170,21 +169,23 @@ $Tan(a,A)$を$\{x \in H| x -a \in Tan^0(a,A)\}$で定め,$a$での\textbf{Tangen
 $d$次元$C^r$\textbf{級部分多様体}という.
 \begin{itemize}
   \item 任意の$p \in M$に対し,$x \in U$となる$\mathcal{H}$の開部分集合と$C^r$級写像$\phi:U \to \mathcal{H}$が存在する.
-  \item $\phi|_{U \cap M}$は終域を像に制限すると微分同相写像である
-  \item $d$次元アフィン空間の族$\{ V_i \}_{i \in I}$に対し,$\phi(U \cap M)=\cap_{i \in I} V_i \cap \phi(U)$が成り立つ.
+  \item $\phi|_{U \cap M}$は終域を像に制限すると微分同相写像である.
+  \item $d$次元アフィン空間の族$\{ V_i \}_{i \in I}$に対し,$\phi(U \cap M)=\bigcap_{i \in I} V_i \cap \phi(U)$が成り立つ.
 \end{itemize}
   $B_{\mathcal{H}}:= \{ x \in \mathcal{H} \mid d(x,x) \le 1 \}$とする.
 $\gdvt$を体積$V$以下であり,reachが$\tau$以上となる$B_{\mathcal{H}}$に含まれる$d$次元(境界のない)$C^r$級多様体全体のなす集合とする.
 
 \end{dfn}
 \begin{rem}
- 多様体は普通の数学書では上記のようには定義されない.
+ 普通の数学書では多様体は上記のようには定義されない.
+ 多様体は上記のように$\mathcal{H}$に埋め込まれたものではないと考える．
+ これは計量の定義等が埋め込み方に依存すること等が原因である.今は,
  $\mathcal{H}$を固定して考えたいがために,上記のように定義したのだと思われる.
 \end{rem}
 \begin{rem}
- この論文では,後でもう一つ多様体と呼ぶものが出てくる.$C^r$級部分多様体が必ずしも後で出てくる多様体とは限らないことに注意せよ.
+ この論文では,他にも多様体と呼ばれるものがある.$C^r$級部分多様体が必ずしも後で出てくる多様体とは限らないことに注意せよ.
 \end{rem}
-
+確率論の基本的な用語を定義する.
 \begin{dfn}
  $\Omega$を集合とする.
  $F$を$\Omega$上の$\sigma$-加法族,
@@ -237,14 +238,11 @@ $B_{\mathcal{H}}$上の確率分布関数を$P$とする.
 とする.
 $s \ge s_{\mathcal{G}}(\epsilon,\delta)$とし,$x=\{ x_1,\dots,x_s\}$を確率分布$P$による独立試行により,得られた集合とする.
 $P_X$を$X$上の一様確率分布関数とする.
-$M_{erm}(x) \in \mathcal{G}(d,V,\tau)$を
+
 \begin{equation*}
  L(M_{erm}(x),P_X) - \mathrm{inf}_{M \in \mathcal{G}(d,V,\tau)} L(M,P_X) < \frac{ \epsilon }{ 2 }
 \end{equation*}
-を満たす$\mathcal{G}(d,V,\tau)$で,以下を最小にするものとする.
-\begin{equation*}
- \sum_{i=1}^sd(x_i,M)^2
-\end{equation*}
+を満たす$\mathcal{G}(d,V,\tau)$の元$M_{erm}(x) \in \mathcal{G}(d,V,\tau)$が存在し,
 この時,
 \begin{equation*}
  \mathbb{P}[L(M_{erm}(x),P) - \mathrm{inf}_{M \in \mathcal{G}(d,V,\tau)} L(M,P) < \epsilon] > 1- \delta
@@ -255,8 +253,7 @@ $M_{erm}(x) \in \mathcal{G}(d,V,\tau)$を
  $s$次元の直積測度で考えた時,上の条件を満たす$x$全体の集合をその測度に代入すると$1- \delta$より大きいという意味.
 \end{rem}
 \begin{rem}
- この定理が何を示しているかというと,$L(M,P)$の極小値に十分近い値を取る,多様体$M_{erm}(x)$を構成できることが言えた.$M_{erm}(x)$は最適化問題の解として得られるので,
- 極小値よりもかなり具体的になっている.
+ この定理が何を示しているかというと,$L(M,P)$の極小値に十分近い値を取る,多様体$M_{erm}(x)$を構成できることが言えた.
  特に,$M_{erm}(x)$が確率を計算しなてくも求められるのがよい.基本的に$P_X$は未知であることを前提に問題と解くので,$P_X$に依存しないのは強い結果である.
 \end{rem}
 \begin{rem}
@@ -300,7 +297,7 @@ $D$-palne $\Pi$に対し,
 \begin{equation*}
  \Psi :\bpd \to \Pi^{\perp}
 \end{equation*}
-を$C^{1,1}$級関数(定義不明)で$\Psi(0)=0$とする.
+を$C^{1,1}$級関数(偏微分が局所Lipischitz連続な関数)で$\Psi(0)=0$とする.
 この時,a patch of radius $r$ over $\Pi$ centered at 0とは,
 \begin{equation*}
  \Gamma=\{ x + \Psi(x) \mid x \in \bpd \}
@@ -326,7 +323,7 @@ a patch of radius r tangent to $\Pi$ at its center 0という.
   とする.$\Pi_2 \in DPL$で$\mathrm{dist}(\Pi_2,\Pi_1) <c_0$とする.
   この時,$\Pi_2$上の半径$c_1r_1$で中心$z_2$のpatch $\Gamma_2$で以下を満たすものが存在する.
   \begin{equation*}
-   \gn{2}{0}{c_1r_1}{} \ge \frac{200c_0}{r_1}
+   \gn{2}{0}{c_1r_1}{} \le \frac{200c_0}{r_1}
   \end{equation*}
 と
 \begin{equation*}
@@ -334,7 +331,9 @@ a patch of radius r tangent to $\Pi$ at its center 0という.
 \end{equation*}
 \end{lem}
 \begin{proof}
- わからん….恐らく陰関数定理を使いたいのだろうが,条件を満たす$\Gamma$の一意性が言えないような…
+  全域で偏微分が0ならば、定数関数になるので,明らかに成り立つ.
+  ある点で偏微分が0でないとする.このとき、陰関数定理から示せる
+  (のか?不等式の評価が妙に具体的だか…
 \end{proof}
 
 \begin{dfn}
@@ -377,16 +376,14 @@ $\Pi_1=\Pi_2$でとっているのと平行移動していること,そもそも
 \end{equation*}
 \end{proof}
 
-\part{Main theorem 1の証明}
-Main theorem 1の証明の概略をのべ,一部を実際に示す．
+\section{flow proof of Maint Theorem 1}
+\label{sec:証明のフロー}
+以降では,
+Main Theorem \ref{mth1}の証明の方針を述べる.
+一部を実際に示す．
 \begin{rem}
 1点は論理的に間違いがあり,証明できていない(と思う)
 \end{rem}
-
-\section{証明のフロー}
-\label{sec:証明のフロー}
-
-Main Theorem \ref{mth1}の証明の方針を述べる.
 
 \begin{enumerate}
   \item JLの補題による確率に関する不等式(\ref{JL})
@@ -405,19 +402,19 @@ Main Theorem \ref{mth1}の証明の方針を述べる.
 \label{sec:TOOLS FROM EMPIRICAL PROCESS}
 証明に使う用語を定義する.
 \begin{dfn}[metric entropy]
- 距離空間$(Y;\rho)$と$Z \subset Y$,$\eta \in \mathbb{R}$に対し,
- 任意の$y \in Y$に対し,$\rho(y,z) <\eta$となる$z \in Z$が存在する時,$Y$を$\eta$-net of $Y$という.
+ 距離空間$(Y,\rho)$と$Z \subset Y$,$\eta \in \mathbb{R}$に対し,
+ 任意の$y \in Y$に対し,$\rho(y,z) <\eta$となる$z \in Z$が存在する時,$Z$を$\eta$-net of $Y$という.
  距離空間$X$上の確率測度$P$に対し,$F \subset \mathrm{Map}_{cont}(X,\mathbb{R})$は
  $L^2$-ノルムにより距離空間となる.
  この時$N(\eta,F,L^2(P))$を$F$の$\eta$-netとなる有限集合$Y$の位数の最小値で定め，これを\textbf{metric entropy}という.
 \end{dfn}
 
 \begin{dfn}[Fat-shattering dimension]
-  Let $F \subset \mathrm{Map}_{cont}(\mathbb{R},\mathbb{R}$.
+  Let $F \subset \mathrm{Map}_{cont}(\mathbb{R},\mathbb{R})$.
   We say that a set of points $(x_1, \dots, x_k)$ is $\gamma$-shattered by $F$
-  if there is $t = (t_1, \dots,t_k) \in \mathbb{R}^k$ such that for all
-  $b = (b_1, \dots,b_k) \in {\pm 1}^k$, each $i \in [s]= \{1; \dots,s\}$,
-   there is a function $f_{b,t}$ satisfying,
+  if there exists $t = (t_1, \dots,t_k) \in \mathbb{R}^k$ such that for all
+  $b = (b_1, \dots,b_k) \in \{ {\pm 1}^k \}$, each $i \in [s]= \{1, \dots,s\}$,
+   there exists a function $f_{b,t}$ satisfying,
    \begin{equation*}
      b_i (f_{b,t}(xi) - t_i) >  \gamma
    \end{equation*}
@@ -431,7 +428,7 @@ Main Theorem \ref{mth1}の証明の方針を述べる.
 \begin{dfn}[VC dimension]
 Let $\Lambda$ be a collection of measurable subsets of $\mathbb{R}^m$.
 For $x_1,\dots,x_k \in \mathbb{R}^m$,
-let $\#\{(x1, \dots ,x_k) \cap H \mid H \in \Lambda\}$ be denoted the shatter coefficient $N(x_1, \dots, x_k)$.
+let $\#\{ x_i \cap H \mid x_i \in \mathbb{R}^m,H \in \Lambda\}$ be denoted the shatter coefficient $N(x_1, \dots, x_k)$.
 The VC dimension $VC_{\Lambda}$
 is the largest integer $k$ such that there exists $(x_1, \dots,x_k)$ such that $N(x_1,\dots, x_k) = 2^k$.
 \end{dfn}
@@ -451,7 +448,7 @@ VC dimensionには以下が成り立つ.
 Johson-Lindenstartusussの補題を述べる.
 
 \begin{lem}[Johnson-Lindenstrauss]
-  Let $ \epsilon \in (0, 1/2)$. Let $Q ⊂ \mathbb{R}^d$ be a set of $n$ points and $k =\frac{20 \mathrm{log}n}{\epsilon^2}$
+  Let $ \epsilon \in (0, 1/2)$. Let $Q ⊂ \mathbb{R}^d$ be a set of $n$ points and $k =\frac{20 \mathrm{log}n}{\epsilon^2}$.
   There exists a Lipshcitz mapping $f : \mathbb{R}^d \to \mathbb{R}^k$ such that for all $u, v \in Q$:
   \begin{equation*}
     (1 − \epsilon)||u − v||^2 \le ||f(u) − f(v)||^2 \le (1 + \epsilon )||u − v||^2
@@ -480,7 +477,7 @@ Let $\mathbb{R}$ be an orthogonal projection onto a random $g$-dimensional subsp
 (where $g = C \frac{\mathrm{log}}{\gamma^2}$) for some $\gamma > 0$ and an
 absolute constant $C$). Then,
 \begin{equation*}
-\mathbb{P}[\mathrm{sup}_{i,j \in \{1,\dots,g\}}] | \frac{m}{g}Ry_i\cdot Ry_j -y_i\cdot y_j| > \frac{ \gamma}{2}] < \frac{1}{2}
+\mathbb{P}[\mathrm{sup}_{i,j \in \{1,\dots,g\}} | \frac{m}{g}Ry_i\cdot Ry_j -y_i\cdot y_j| > \frac{ \gamma}{2}] < \frac{1}{2}
 \end{equation*}
 \end{lem}
 
@@ -489,7 +486,7 @@ JLを使いfat-shattering dimensionを用いて確率の評価をしたのが以
 \label{minifat}
   Let $\mu$ be a measure supported on $X$, $F \subset \mathrm{Map}(X,\mathbb{R})$.
   Let $x_1,\dots, x_s$ be independent random variables drawn from $\mu$
-  and $s$ be the uniform measure on $x := (x_1,\dots, x_s)$.
+  and $s???$ be the uniform measure on $x := (x_1,\dots, x_s)$.
   If
 \begin{equation*}
 s \ge \frac{C}{\epsilon^2}(( \int_{c \epsilon}^{\infty}\sqrt{\mathrm{fat}_{\gamma}(F)}\mathrm{d}\gamma )^2 + \mathrm{log}1/\delta)
@@ -505,7 +502,8 @@ s \ge \frac{C}{\epsilon^2}(( \int_{c \epsilon}^{\infty}\sqrt{\mathrm{fat}_{\gamm
 \begin{proof}
   Let $g= C_1(4\gamma^{-2} \mathrm{log}(s + kl))$
   for a sufficiently large universal(意味不明) constant $C_1$.
-$g$次元部分空間 $V \subset \mathrm{span}(X cup V) $に対し，$ R : \mathrm{span}(X cup V) \to V$を自然な射影とする.
+$g$次元部分空間 $V \subset \mathrm{span}(X \cup V) $に対し，
+$ R : \mathrm{span}(X \cup V) \to V$を自然な射影とする.
   この時JLより$y_i,y_j \in \{ x_1 ,\dots ,x_s,v_11 ,\dots ,v_{kl} \}$を用い
   \begin{equation*}
    \mathbb{P} [\mathrm{sup}_{i,j \in \{ 1,\dots, s+kl\} } | \frac{m}{g}(Ry_i)\cdot (Ry_j) - y_i \cdot  y_j| > \gamma ] < \frac{1}{2}
@@ -672,6 +670,7 @@ Main Thoeremの主張では$\mathcal{G}(d,V,\tau)$で,以下を最小にする�
 \end{equation*}
 ただ，論文を読む限り極限をとった議論を使っており，最小を構成ししているようにも読めなかった．
 (論文の一番最後の帰結を導く，多様体の存在は示せるが最小が存在するのかは不明)
+⇒修正されている論文には最小に十分近いものがとれるという意味に修正されていた.
 
 近似を用いて$Px$に対して$d(x,M_{erm})$と$d(x,M)$の差を小さくできることと
 
@@ -700,13 +699,70 @@ Then, for any $r >0$, there is an $\sqrt{\tau r}$-net of $M$ consisting of no mo
 \end{rem}
 
 \begin{proof}
-  $\mathcal{G}$はコンパクトなので、$ s < r$とした時、$B(x,s)$を$x$を中心として半径$s$の開球とすると、$\cup_x B(x,s)$は有限部分被覆$\{ B(x_i.s) \}$を持つ。
+  indcutiveに取る.すなわたち$x_1,\dots,x_i$が与えられたとき、$x_{i+1}$を$\cup B(x_i,s)$に属さないようにとる.
+  これは$\cap B(x_i,s)$に対してZornの補題を適用することで,全体を被覆することがわかる.
+  $\mathcal{G}$はコンパクトなので、$ s < r$とした時、$B(x,s)$を$x$を中心として半径$s$の開球とすると、
+  $\cup_x B(x_i,s)$は有限部分被覆を持つ.(すなわち停止する)
   この時、$Y=\{ x_i \}$は有限で、任意の$x_i \in Y$に対し、$\mathrm{mini}|x_ i -x_j| < \epsilon$となる.
-  $Y$が$M$の$r$-netになることは上より、明らか。
-
-これもうまく証明できていない.(おそらく有限個の全体がほとんど重複しない球による有限被覆が存在することを示し,
-Claim 1から球と$M$の共通部分の体積が十分あることを示している.)
+  $Y$が$M$の$r$-netになることは上より、明らか.また,体積を考えることで個数に対する制限も示せる.
 \end{proof}
+\begin{rem}
+ Zornを使うのはやりすぎにしか思えないが,停止性を示す他の方法が思い浮かばなかった.
+\end{rem}
+
+
+\section{Overview of the algorithm for testing the manifold hypothesis}
+\label{sec:Overview of the algorithm for testing the manifold hypothesis}
+
+Given a set $X := \{x_1, \cdots , x_s \mid  x_i \in mathbb{R}^n \}$,  we give an overview of the algorithm that finds a nearly
+optimal interpolating manifold.
+
+\begin{dfn}
+ Let $M \in \mathcal{G}(d,V,\tau)$ be called an $\epsilon$-optimal interpolant if
+ \begin{equation*}
+  \sum_{i=1}^sd(x_i,M)^2 \le s\epsilon + \mathrm{inf}_{M' \in \mathcal{G}(d,V/C,C \tau )}  \sum_{i=1}^sd(x_i,M)^2
+ \end{equation*}
+\end{dfn}
+
+Given $d,\tau,V and  \delta$, our goal is to output an implicit representation of a manifold $M$ and an estimated
+error $\bar{\epsilon} \ge 0$ such that
+\begin{enumerate}
+  \item With probability greater than $1 - \delta$, $M$ is an $\epsilon$-optimal interpolant and
+\end{enumerate}
+\begin{equation*}
+ s \bar{\epsilon} \le \sum_{x \in X}d(x,M)^2 \le s(\epsilon/2 + \bar{\epsilon}).
+\end{equation*}
+
+Thus, we are required to perform an optimization over the set of manifolds $\mathcal{G} = \mathcal{G}(d,\tau,V)$.
+This set $\mathcal{G}$ can be viewed as a metric space $(\mathcal{G}, d_{haus})$ by defining the distance
+between two manifolds $M,M'$ in $\mathcal{G}$ to be
+the Hausdorff distance between $M$ and $M'$.
+Our strategy for producing an approximately optimal manifold
+will be to execute the following steps. First identify a $O(\tau)$-net $S_{\mathcal{G}}$ of $(\mathcal{G},d_{haus})$.
+Next, for each $M' \in S_{\mathcal{G}},$
+construct a disc bundle $D'$ that approximates its normal bundle. The fiber of $D'$ at a point $z \in M'$ is
+a $n - d$-dimensional disc of radius $O(\tau)$, that is roughly orthogonal to $Tan(z,M')$ (this is formalized in
+Definitions 11 and 12).
+Suppose that $M$ is a manifold in $\mathcal{G}$ such that
+\begin{equation*}
+  d_{haus}(M,M') < O(\tau).
+\end{equation*}
+As a consequence of (26) and the lower bounds on the reaches of $M$ and $M'$,
+it follows (as will be shown in Lemma 17) that $M$ must be the graph of a section of $D'$.
+In other words $M$ intersects each fiber of $D'$ in a unique point.
+We use convex optimization to find good local sections, and patch them up to find a good
+global section. Thus, our algorithm involves two main phases:
+\begin{enumerate}
+  \item Construct a set $\bar{D}^{norm}$ of disc bundles over manifolds in $\mathcal{G}(d,CV,\tau/C)$
+  which is rich enough that every $\epsilon$-optimal interpolant is a section of some member of $\bar{D}^{norm}$
+  \item Given $D^{norm} \in \bar{D}^{norm}$, use convex optimization to find a minimal
+   $\hat{\epsilon}$ such that $D^{norm}$ has a section
+(i. e. a small transverse perturbation of the base manifold of $D^{norm}$) which is a $\hat{\epsilon}$-optimal interpolant.
+This is achieved by finding the right manifold in the vicinity of the base manifold of $D^{norm}$ by finding
+good local sections (using results from [23, 24]) and then patching these up using a gentle partition
+of unity supported on the base manifold of $D^{norm}$
+\end{enumerate}
+
 
 
 \end{document}

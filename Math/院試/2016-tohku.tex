@@ -40,9 +40,41 @@
 \newtheorem{prf}{Proof}
 
 \begin{document}
-平成28年度、東北大の数学科の院試を解いてみました。
+平成28年度、東北大の数学科の院試を解説する.
 東北大は標準的な知識がついているかを確認する問題を出題しており、
 その分野の基礎ができているかを確認する時に参考になります。
+
+
+\section{1}
+\label{sec:1}
+正の整数$m,n$ に対し，$m$次対称群$S_m$の位数$n$の部分群の個数を$N(m,n)$ と書く．
+以下の問いに答えよ．
+\begin{enumerate}
+  \item $N(5,3)$ を求めよ．
+  \item  $N(5,4)$を求めよ．
+  \item  整数$m \ge 2$ に対し，次の式を示せ．
+  \begin{equation*}
+    N(m; 2) =\sum^r_{k=1} \frac{m!}{2^kk!(m-2k)!},
+    r =
+    \begin{cases}
+      m/2 & \text{$m$が偶数のとき}　\\
+      \frac{m-1}{2} & \text{$m$が奇数のとき}
+    \end{cases}
+\end{equation*}
+\end{enumerate}
+\begin{proof}
+  \begin{itemize}
+    \item
+  3は素数なので，位数3の群は巡回群となる.
+  そのため,集合としては$\binom{5}{3}=10$種類存在する．
+  演算を考慮すると,$\binom{3-1}{1}=2$通りなので,20種類となる.
+  \item
+
+  \end{itemize}
+
+\end{proof}
+
+
 
 今回は3番、ホモロジーの問題を解説します。
 
