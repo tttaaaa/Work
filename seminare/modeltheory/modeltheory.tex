@@ -1,0 +1,430 @@
+%===============
+%一行目に必ず必要
+%文章の形式を定義
+%===============
+\documentclass{ujarticle}
+%===============
+%パッケージの定義、必要か不明
+%===============
+%この下4つを加えることで、mathbbが機能した
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+%可換図式用パッケージ
+\usepackage{amscd}
+\usepackage[all]{xy}
+\usepackage{tikz-cd}
+%リンク用パッケージ
+\usepackage[dvipdfmx]{hyperref}
+%複数行コメント
+%\usepackage{comment}
+
+
+%===============
+%定理環境の設定
+%セクション毎
+%===============
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem{prop}[thm]{Propostion}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{ex}[thm]{Example}
+\newtheorem*{prob}{Problem}
+\newtheorem*{rem}{Remark}
+\newtheorem{prf}{Proof}
+
+
+
+\begin{document}
+本PDFでは,先日行われたモデル理論の勉強会の内容を元に筆者が勉強し直したものをまとめたものである.
+自分が数学をする上で気になることを中心にまとめるために,講義では触れられていないことも積極的にまとめてある.
+また，私は基本的な記号の定義が気になるため，それらを中心に記述す.
+
+
+
+
+\section{モデル理論の基本}
+\label{sec:モデル理論の基本}
+モデル理論というべきか,基礎論というべきかわからないが，このあたりに関する知識をまとめる.
+\begin{table}[htb]%htbの意味は不明
+  \begin{tabular}{|l|c|r||r|} \hline
+    用語 & 定義番号 & 概要 & 代数との対応 \\ \hline \hline
+    言語 & 並盛 & 500円 & 600 kcal \\
+    定数記号& 大盛 & 1,000円 & 800 kcal \\
+    関数記号 & 特盛 & 1,500円 & 1,000 kcal \\ \hline
+    述語記号 & 並盛 & 300円 & 250 kcal \\
+    項 & 大盛 & 700円 & 300 kcal \\
+    原子論理式 & 特盛 & 1,000円 & 350 kcal \\ \hline
+    論理式 & 特盛 & 1,000円 & 350 kcal \\ \hline
+    構造 & 特盛 & 1,000円 & 350 kcal \\ \hline
+    ウルトラフィルター & 特盛 & 1,000円 & 350 kcal \\ \hline
+  \end{tabular}
+\end{table}
+疑問とイメージをまとめる.
+
+\section{Ultrafilter}
+\label{sec:Ultrafilter}
+Ulterafilterについて理解をまとめる.
+特にUltrafileterは点だと豪語する友人の主張を理解する.
+Filterの定義は
+
+In order theory, an ultrafilter is a subset of a partially ordered set
+that is maximal among all proper filters.
+This implies that any filter that properly contains an ultrafilter has to be equal to the whole poset.
+
+\begin{dfn}
+  $F \subset P(I)$が以下を満たす時$I$の\textbf{fileter}という.
+  \begin{enumerate}
+    \item $ I \in F$ and $ \emptyset \notin F$
+    \item $A \in F$ and $A \subset B \subset I$, then $B \in F$
+    \item $A,B \in F$ then $A \cap B \in F$.
+  \end{enumerate}
+\end{dfn}
+
+\begin{dfn}[ultrafilter]
+  Filterであって,Filter全体の中の極大元となるものをultrafilterという.
+\end{dfn}
+
+\begin{lem}
+　$x \in I$に対し$F_x := \{ U | x \in U\}$はultrafilterになる.
+これをprincipal ultrafileterという.
+\end{lem}
+\begin{proof}
+  $F_x$がfilterとなるのは明らかなので,極大性を示せばよい.
+  filter $F$が$ F  \ge F_x$を満たすとする.もし$U \in F$で$x \notin U$となるものが存在したとすると,
+  $\emptyset = U \cap \{x\}$となり,filterの定義に矛盾する.
+  これより$F= F_x$となる.
+\end{proof}
+\begin{rem}
+principalでないultrafilterをprincipalなものの極限で書ける?
+compact化の文脈で正当化できると言われたが,これが正しいとすると
+点列の極限を取る操作orコンパクト集合に対応するのだろうか?
+\end{rem}
+集合Xの部分集合全体におけるultrafilter全体と、
+Spec$(Q^X)$は同相同型。$X$の点はその点への射影$Q^X→Q$の核に対応するけど、
+$X→Spec(Q^X)$の部分位相は離散で、
+$Spec$はいつもコンパクトなので、$X$が無限集合の時は補集合が非空。
+これはまだ証明はよくわかっていない．
+
+
+
+ultrafilterの性質についていくつか記載する.
+\begin{lem}
+ $F$が$I$のultrafilterとする.この時任意の$A \subset P(I)$に対し,$A \in F$または$A^c \in F$が成り立つ.
+\end{lem}
+\begin{proof}
+ $A \notin F$かつ$A^c \notin F$とする.この時$F \cup \{A\}, F \cap \{A^c\}$は$F$の極大性
+ からultrafileterではない.特に$F \cup \{A\}$が成り立たない.
+ つまり,$B_1  \cap A = \emptyset$かつ$B_2 \cap A^C$となる$B_1,B_2 \in F$が存在する.
+ この時,$B_1 \cap B_2 = \emptyset$となるので,filterの定義に矛盾する.
+ よって背理法より$A \in F$または$A^c \in F$となる.
+\end{proof}
+
+
+\section{Constructible sets}
+\label{section-constructible}
+\begin{dfn}
+Let  $X$ be a topological space.A subset $C$ is called retrocompact
+if for every quasi-compact (i.e. compact but not necessarily Hausdorff) open set $U$,
+the intersection of $U$ and $C$ is quasi-compact.
+\end{dfn}
+
+
+\begin{dfn}
+\label{dfn-constructible}
+Let $X$ be a topological space. Let $E \subset X$ be a subset of $X$.
+\begin{enumerate}
+\item We say $E$ is {\it constructible}\footnote{In the second edition
+of EGA I \cite{EGA1-second} this was called a ``globally constructible''
+set and a the terminology ``constructible'' was used for what we call a locally
+constructible set.}
+in $X$ if $E$ is a finite union
+of subsets of the form $U \cap V^c$ where $U, V \subset X$ are open and
+retrocompact in $X$.
+\item We say $E$ is {\it locally constructible} in $X$ if there exists an open
+covering $X = \bigcup V_i$ such that each $E \cap V_i$ is constructible
+in $V_i$.
+\end{enumerate}
+\end{dfn}
+
+\begin{lem}
+\label{lem-constructible}
+The collection of constructible sets is closed unsder
+finite intersections, finite unions and complements.
+\end{lem}
+
+\begin{proof}
+Note that if $U_1$, $U_2$ are open and retrocompact in $X$
+then so is $U_1 \cup U_2$ because the union of two quasi-compact
+subsets of $X$ is quasi-compact. It is also true that
+$U_1 \cap U_2$ is retrocompact. Namely, suppose $U \subset X$
+is quasi-compact open, then $U_2 \cap U$ is quasi-compact because
+$U_2$ is retrocompact in $X$, and then we conclude
+$U_1 \cap (U_2 \cap U)$ is quasi-compact because $U_1$ is
+retrocompact in $X$. From this it is formal to show that
+the complement of a constructible set is constructible,
+that finite unions of constructibles are constructible, and
+that finite intersections of constructibles are constructible.
+\end{proof}
+
+\begin{lem}
+\label{lem-inverse-images-constructibles}
+Let $f : X \to Y$ be a continuous map of topological spaces.
+If the inverse image of every retrocompact open subset of $Y$
+is retrocompact in $X$, then inverse images of constructible
+sets are constructible.
+\end{lem}
+
+\begin{proof}
+This is true because $f^{-1}(U \cap V^c) = f^{-1}(U) \cap f^{-1}(V)^c$,
+combined with the dfn of constructible sets.
+\end{proof}
+
+\begin{lem}
+\label{lem-open-immersion-constructible-inverse-image}
+Let $U \subset X$ be open. For a constructible set
+$E \subset X$ the intersection $E \cap U$ is constructible
+in $U$.
+\end{lem}
+
+\begin{proof}
+Suppose that $V \subset X$ is retrocompact open in $X$.
+It suffices to show that $V \cap U$ is retrocompact in $U$
+by Lemma \ref{lem-inverse-images-constructibles}. To show this
+let $W \subset U$ be open and quasi-compact. Then $W$
+is open and quasi-compact in $X$. Hence $V \cap W = V \cap U \cap W$
+is quasi-compact as $V$ is retrocompact in $X$.
+\end{proof}
+
+\begin{lem}
+\label{lem-quasi-compact-open-immersion-constructible-image}
+Let $U \subset X$ be a retrocompact open. Let $E \subset U$.
+If $E$ is constructible in $U$, then $E$ is constructible in $X$.
+\end{lem}
+
+\begin{proof}
+Suppose that $V, W \subset U$ are retrocompact open in $U$.
+Then $V, W$ are retrocompact open in $X$
+(Lemma \ref{lem-composition-quasi-compact}).
+Hence $V \cap (U \setminus W) = V \cap (X \setminus W)$
+is constructible in $X$. We conclude since every constructible subset of $U$
+is a finite union of subsets of the form $V \cap (U \setminus W)$.
+\end{proof}
+
+\begin{lem}
+\label{lem-collate-constructible}
+Let $X$ be a topological space. Let $E \subset X$ be a subset.
+Let $X = V_1 \cup \ldots \cup V_m$ be a finite covering by
+retrocompact opens.
+Then $E$ is constructible in $X$ if and only if $E \cap V_j$
+is constructible in $V_j$ for each $j = 1, \ldots, m$.
+\end{lem}
+
+\begin{proof}
+If $E$ is constructible in $X$, then by
+Lemma \ref{lem-open-immersion-constructible-inverse-image}
+we see that $E \cap V_j$ is constructible in $V_j$ for all $j$.
+Conversely, suppose that $E \cap V_j$
+is constructible in $V_j$ for each $j = 1, \ldots, m$.
+Then $E = \bigcup E \cap V_j$ is a finite union of
+constructible sets by
+Lemma \ref{lem-quasi-compact-open-immersion-constructible-image}
+and hence constructible.
+\end{proof}
+
+\begin{lem}
+\label{lem-intersect-constructible-with-closed}
+Let $X$ be a topological space. Let $Z \subset X$ be a closed
+subset such that $X \setminus Z$ is quasi-compact.
+Then for a constructible set $E \subset X$ the intersection
+$E \cap Z$ is constructible in $Z$.
+\end{lem}
+
+\begin{proof}
+Suppose that $V \subset X$ is retrocompact open in $X$.
+It suffices to show that $V \cap Z$ is retrocompact in $Z$
+by Lemma \ref{lem-inverse-images-constructibles}. To show this
+let $W \subset Z$ be open and quasi-compact. The subset
+$W' = W \cup (X \setminus Z)$ is quasi-compact, open, and $W = Z \cap W'$.
+Hence $V \cap Z \cap W = V \cap Z \cap W'$
+is a closed subset of the quasi-compact open $V \cap W'$
+as $V$ is retrocompact in $X$. Thus $V \cap Z \cap W$ is quasi-compact
+by Lemma \ref{lem-closed-in-quasi-compact}.
+\end{proof}
+
+\begin{lem}
+\label{lem-intersect-constructible-with-retrocompact}
+Let $X$ be a topological space. Let $T \subset X$ be a subset. Suppose
+\begin{enumerate}
+\item $T$ is retrocompact in $X$,
+\item quasi-compact opens form a basis for the topology on $X$.
+\end{enumerate}
+Then for a constructible set $E \subset X$ the intersection $E \cap T$ is
+constructible in $T$.
+\end{lem}
+
+\begin{proof}
+Suppose that $V \subset X$ is retrocompact open in $X$.
+It suffices to show that $V \cap T$ is retrocompact in $T$
+by Lemma \ref{lem-inverse-images-constructibles}. To show this
+let $W \subset T$ be open and quasi-compact. By assumption (2)
+we can find a quasi-compact open $W' \subset X$
+such that $W = T \cap W'$ (details omitted).
+Hence $V \cap T \cap W = V \cap T \cap W'$
+is the intersection of $T$ with  the quasi-compact open $V \cap W'$
+as $V$ is retrocompact in $X$. Thus $V \cap T \cap W$ is quasi-compact.
+\end{proof}
+
+\begin{lem}
+\label{lem-closed-constructible-image}
+Let $Z \subset X$ be a closed subset whose complement is retrocompact open.
+Let $E \subset Z$. If $E$ is constructible in $Z$, then $E$ is constructible
+in $X$.
+\end{lem}
+
+\begin{proof}
+Suppose that $V \subset Z$ is retrocompact open in $Z$. Consider the open
+subset $\tilde V = V \cup (X \setminus Z)$ of $X$. Let $W \subset X$ be
+quasi-compact open. Then
+$$
+W \cap \tilde V =
+\left(V \cap W\right) \cup \left((X \setminus Z) \cap W\right).
+$$
+The first part is quasi-compact as $V \cap W = V \cap (Z \cap W)$ and
+$(Z \cap W)$ is quasi-compact open in $Z$
+(Lemma \ref{lem-closed-in-quasi-compact}) and $V$ is retrocompact in $Z$.
+The second part is quasi-compact as $(X \setminus Z)$ is retrocompact in $X$.
+In this way we see that $\tilde V$ is retrocompact in $X$.
+Thus if $V_1, V_2 \subset Z$ are retrocompact open, then
+$$
+V_1 \cap (Z \setminus V_2) = \tilde V_1 \cap (X \setminus \tilde V_2)
+$$
+is constructible in $X$. We conclude since every constructible subset of $Z$
+is a finite union of subsets of the form $V_1 \cap (Z \setminus V_2)$.
+\end{proof}
+
+\begin{lem}
+\label{lem-constructible-is-retrocompact}
+Let $X$ be a topological space. Every constructible
+subset of $X$ is retrocompact.
+\end{lem}
+
+\begin{proof}
+Let $E = \bigcup_{i = 1, \ldots, n} U_i \cap V_i^c$ with $U_i, V_i$
+retrocompact open in $X$. Let $W \subset X$ be quasi-compact open.
+Then $E \cap W = \bigcup_{i = 1, \ldots, n} U_i \cap V_i^c \cap W$.
+Thus it suffices to show that $U \cap V^c \cap W$ is quasi-compact
+if $U, V$ are retrocompact open and $W$ is quasi-compact
+open. This is true because $U \cap V^c \cap W$ is a closed
+subset of the quasi-compact $U \cap W$ so
+Lemma \ref{lem-closed-in-quasi-compact}
+applies.
+\end{proof}
+
+\noindent
+Question: Does the following lem also hold if we assume $X$ is a
+quasi-compact topological space? Compare with
+Lemma \ref{lem-intersect-constructible-with-closed}.
+
+\begin{lem}
+\label{lem-intersect-constructible-with-constructible}
+Let $X$ be a topological space. Assume
+$X$ has a basis consisting of quasi-compact opens.
+For $E, E'$ constructible in $X$, the intersection
+$E \cap E'$ is constructible in $E$.
+\end{lem}
+
+\begin{proof}
+Combine Lemmas \ref{lem-intersect-constructible-with-retrocompact} and
+\ref{lem-constructible-is-retrocompact}.
+\end{proof}
+
+\begin{lem}
+\label{lem-constructible-in-constructible}
+Let $X$ be a topological space. Assume
+$X$ has a basis consisting of quasi-compact opens.
+Let $E$ be constructible in $X$ and $F \subset E$ constructible in $E$.
+Then $F$ is constructible in $X$.
+\end{lem}
+
+\begin{proof}
+Observe that any retrocompact subset $T$ of $X$ has a basis for the induced
+topology consisting of quasi-compact opens. In particular this holds
+for any constructible subset
+(Lemma \ref{lem-constructible-is-retrocompact}).
+Write $E = E_1 \cup \ldots \cup E_n$ with $E_i = U_i \cap V_i^c$
+where $U_i, V_i \subset X$ are retrocompact open.
+Note that $E_i = E \cap E_i$ is constructible in $E$ by
+Lemma \ref{lem-intersect-constructible-with-constructible}.
+Hence $F \cap E_i$ is constructible in $E_i$ by
+Lemma \ref{lem-intersect-constructible-with-constructible}.
+Thus it suffices to prove the lem in case $E = U \cap V^c$
+where $U, V \subset X$ are retrocompact open.
+In this case the inclusion $E \subset X$ is a composition
+$$
+E = U \cap V^c \to U \to X
+$$
+Then we can apply Lemma \ref{lem-closed-constructible-image}
+to the first inclusion and
+Lemma \ref{lem-quasi-compact-open-immersion-constructible-image}
+to the second.
+\end{proof}
+
+\begin{lem}
+\label{lem-collate-constructible-from-constructible}
+Let $X$ be a topological space which has a basis for the topology
+consisting of quasi-compact opens. Let $E \subset X$ be a subset.
+Let $X = E_1 \cup \ldots \cup E_m$ be a finite covering by constructible
+subsets. Then $E$ is constructible in $X$ if and only if $E \cap E_j$
+is constructible in $E_j$ for each $j = 1, \ldots, m$.
+\end{lem}
+
+\begin{proof}
+Combine
+Lemmas \ref{lem-intersect-constructible-with-constructible} and
+\ref{lem-constructible-in-constructible}.
+\end{proof}
+
+\begin{lem}
+\label{lem-generic-point-in-constructible}
+Let $X$ be a topological space. Suppose that
+$Z \subset X$ is irreducible. Let $E \subset X$
+be a finite union of locally closed subsets (e.g.\ $E$
+is constructible). The following are equivalent
+\begin{enumerate}
+\item The intersection $E \cap Z$ contains an open
+dense subset of $Z$.
+\item The intersection $E \cap Z$ is dense in $Z$.
+\end{enumerate}
+If $Z$ has a generic point $\xi$, then this is
+also equivalent to
+\begin{enumerate}
+\item[(3)] We have $\xi \in E$.
+\end{enumerate}
+\end{lem}
+
+\begin{proof}
+Write $E = \bigcup U_i \cap Z_i$ as the finite union of
+intersections of open sets $U_i$ and closed sets $Z_i$.
+Suppose that $E \cap Z$ is dense in $Z$. Note that
+the closure of $E \cap Z$ is the union of the closures
+of the intersections $U_i \cap Z_i \cap Z$. As $Z$ is irreducible we
+conclude that the closure of $U_i \cap Z_i \cap Z$ is $Z$ for some $i$.
+Fix such an $i$. It follows that $Z \subset Z_i$ since otherwise
+the closed subset $Z \cap Z_i$ of $Z$ would not be dense in $Z$.
+Then $U_i \cap Z_i \cap Z = U_i \cap Z$ is an open nonempty subset of $Z$.
+Because $Z$ is irreducible, it is open dense. Hence $E \cap Z$
+contains an open dense subset of $Z$.
+The converse is obvious.
+
+\medskip\noindent
+Suppose that $\xi \in Z$ is a generic point. Of course if
+(1) $\Leftrightarrow$ (2) holds, then $\xi \in E$. Conversely,
+if $\xi \in E$, then $\xi \in U_i \cap Z_i$ for some $i = i_0$.
+Clearly this implies $Z \subset Z_{i_0}$ and hence
+$U_{i_0} \cap Z_{i_0} \cap Z = U_{i_0} \cap Z$ is an open
+not empty subset of $Z$. We conclude as before.
+\end{proof}
+
+\end{document}

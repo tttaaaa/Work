@@ -36,8 +36,8 @@
 \def\c{c_{F_{\iy}/M_{\iy}}}
 \def\n{\nu_{F_{\iy}/M_{\iy}}}
 
-\newcommand\bqy{\bgn{eqnarray*}}
-\newcommand\eqy{\end{eqnarray*}}
+\newcommand\bqy{\bgn{end{equation*}array*}}
+\newcommand\eqy{\end{end{equation*}array*}}
 \newcommand\mac{\mathcal}
 \newcommand\mf{\mathfrak}
 \newcommand\mr{\mathrm}
@@ -474,8 +474,8 @@ $L/K$をガロア拡大とし,$\mathbb{F}_L$を$L$の剰余体とする.
   \mathrm{Gal}(\tilde{L}/K) \to \mathrm{Gal}(L/K) \\
     \tilde{\sigma} \mapsto \sigma
 \end{align}
-の逆像の元$\tilde{\sigma}$を一つ取り,その不変体を$\Sigma$とする.
-この時,$\Sigma/K$は有限拡大であり,$\tilde{\Sigma}/\Sigma$が不分岐拡大となり,
+の逆像の元であり,剰余体での位数が有限である$\tilde{\sigma}$を一つ取り,その不変体を$\Sigma$とする.
+この時,$\Sigma/K$は有限次拡大であり,$\tilde{\Sigma}/\Sigma$が不分岐拡大となり,
 $\tilde{L}=\tilde{\Sigma}$となる.
 $\tilde{\sigma}$は$\mathrm{Gal}(\tilde{L}K/\Sigma)$のFrobeniusになる.
 $\pi_{\Sigma}$を$\Sigma$の素元とする.
@@ -513,6 +513,40 @@ Euler System Argumentに成功したのではないかと思う.
 \end{rem}
 
 
+\section{Elliptic Units}
+\label{sec:Elliptic Units}
+elliptic unitsの定義とその性質は気力があれば述べる．
+なお，本論文では楕円単数を用いて$p$-adic L-functionを使うのみである．
+
+
+
+
+We recall some facts on $p$-adic $L$-function written in [de Shalit]
+\begin{prop}[\cite{de Shalit}III 1.5]
+Let $\f$ be an ideal prime to $p$ of K, let $D$ be the ring of  integers of completion of maximal unramified extension of $\Q_p$ and let $J_0$ be the annihilator of $\mu_{p^{\iy}}(K(\f p^{\iy}))$ as a $\Z_p[[\G(K(\f p^{\iy})/K)]]$-module
+and let $\mathfrak{P}$ be a prime of $F_{\iy}$ above $\p$.
+We denote   the decomposition group of $\mathfrak{P}$ and $\p$  by $D_{\p}$.
+Let $J_1$ be the annihilator of $\mu_{p^{\iy}}(K(\f p^{\iy})_{\mathfrak{P}})$  as a $\Z_p[[D_{\p}]]$-module.
+Then,
+\begin{equation*}
+(U_{\infty}(\p)/C({\f}))\hat{\otimes}_{\Z_p} D \simeq J_1 D[[\G(K(\f p^{\iy}/K)]]/\mu(\f)J_0D[[\G(K(\f p^{\iy}/K)]]
+\end{equation*}
+\end{prop}
+
+\begin{rem}
+$\mu(\f)$ is the two variable $p$-adic $L$ function.
+This is equal to $\mu(\f\bar{\p}^{\iy})$ in [de Shalit].
+\end{rem}
+
+Let $\mf{a}$ be an ideal   of $O_K$. We denote  the set of primes dividing $\mathfrak{a}$ by  $S_{\mathfrak{a}}$.
+\begin{prop}[\cite{de Shalit} II4.12 Remark (1)]
+Let  $\mathfrak{g} $and $ \f$ be ideals of $K$ such that $\mf{g}|\mf{f}$.
+Let $c$ be the natural  map $D[[\G(K(\f p^{\iy})/K)]] \to D[[\G(K(\mathfrak{g} p^{\iy})/K)]]$.
+Then
+\begin{equation*}
+c(\mu(\f))=\prod\limits_{\mathfrak{l} \in S_{\mathfrak{f}}\backslash S_{\mathfrak{g}}} (1-\mathrm{Frob}_{\mathfrak{l}}^{-1})\mu(\mathfrak{g}).
+\end{equation*}
+\end{prop}
 
 \section{主定理1}
 \label{sec:主定理1}
@@ -691,7 +725,40 @@ $O/p^m$は有限群なため,Mittag-Lefler conditionを満たす.これより$n,
 $\chi$作用が自明の場合にコホモロジーを計算する.計算にはKummer Sequenceを用いる.
 これにより$H^1,H^0$は完全に計算できる.(実際は$H^2$もある程度計算できる)
 実際に体として$F_n$の場合にコホモロジーを計算すると$\chi$の作用は自明となる.
+\subsubsection{Local Cohomology}
+\label{subs:Local Cohomology}
+Localな場合のコホモロジーを計算する.
+計算はKummer sequenceを用いる.
+すなわち,以下の完全列から計算する.
+\begin{equation*}
+\begin{split}
+0 \rightarrow   \varprojlim\limits_{n,m}\bigoplus\limits_{v \in S_n}H^0_{\acute{e}t}({K_n}_v,O/p^m(1)) \rightarrow &\varprojlim\limits_{n,m}\bigoplus\limits_{v \in S_n}H^0_{\acute{e}t}({K_n}_v,K^{\times}/p^m) \rightarrow \varprojlim\limits_{n,m}\bigoplus\limits_{v \in S_n}H^0_{\acute{e}t}({K_n}_v,K^{\times}/p^m)\\
+  \rightarrow  \varprojlim\limits_{n,m}\bigoplus\limits_{v \in S_n}H^1_{\acute{e}t}({K_n}_v,O/p^m(1)) \rightarrow &\varprojlim\limits_{n,m}\bigoplus\limits_{v \in S_n}H^1_{\acute{e}t}({K_n}_v,K^{\times}/p^m) \rightarrow \varprojlim\limits_{n,m}\bigoplus\limits_{v \in S_n}H^1_{\acute{e}t}({K_n}_v,K^{\times}/p^m)\\
+  \rightarrow \varprojlim\limits_{n,m}\bigoplus\limits_{v \in S_n}H^2_{\acute{e}t}({K_n}_v,O/p^m(1))  \rightarrow &\varprojlim\limits_{n,m}\bigoplus\limits_{v \in S_n}H^2_{\acute{e}t}({K_n}_v,K^{\times}/p^m) \rightarrow \varprojlim\limits_{n,m}\bigoplus\limits_{v \in S_n}H^2_{\acute{e}t}({K_n}_v,K^{\times}/p^m)
+\end{split}
+\end{equation*}
 
+$\varprojlim\limits_{n,m}\bigoplus\limits_{v \in S_n}H^0_{\acute{e}t}({K_n}_v,O/p^m(1))$
+は$K_{n+1} \to K_n$はノルム写像であり,十分大きい$n$に対し$\zeta_{p^n}$が存在するため,
+$p$乗写像となる.しかし,位数有限で群が変化しないため、逆系は$(1,1,1,1,1,\cdots)$のみとなる.
+よって,
+$\varprojlim\limits_{n,m}\bigoplus\limits_{v \in S_n}H^0_{\acute{e}t}({K_n}_v,O/p^m(1))=0$
+となる.
+$\varprojlim\limits_{n,m}\bigoplus\limits_{v \in S_n}H^1_{\acute{e}t}({K_n}_v,O/p^m(1))=U_{\infty}(p) \otimes O$
+******************
+ あとで埋める
+ ******************
+$\varprojlim\limits_{n,m}\bigoplus\limits_{v \in S_n}H^2_{\acute{e}t}({K_n}_v,O/p^m(1))= \varprojlim\limits_{n,m}\bigoplus\limits_{v \in S_n}O/p^m =
+O[[\mathrm{Gal}(K^{\infty}/K)/D_{\nu}]$
+となる.
+これは$H^2 = \mathbb{Q}/\mathbb{Z}$とその$p^m$倍写像のkernelに一致すること,および分岐の仕方からわかる.
+
+\subsection{Global Cohomology}
+\label{sub:Global Cohomology}
+
+
+\subsection{Dual Cohomology}
+\label{sub:Dual Cohomology}
 
   \begin{enumerate}
 
@@ -742,6 +809,23 @@ Then we have a long exact sequence
 
 Poitou-Tateを計算していきたい.
 
+\section{Refinement of Iwasawa theory}
+\label{sec:Refinement of Iwasawa theory}
+岩澤主予想では$\mathbb{Z}_p[\mathrm{Im}\chi]$-moduleとしてイデアル類群の関連を定式化した.
+自然な疑問として$\mathbb{Z}_p[\Delta]$加群としての構造はどうなるかがある.
+これは[Kurihara]によってある程度一般的な場合において解決した.
+
+著者は上で示した虚二次体の岩澤主予想に対し、適用し,Fitting Idealについても一定の関係があることを示した.
+
+\section{疑問}
+\label{sec:疑問}
+うろ覚えのものや久しぶりに論文を読んで感じた疑問について記述する
+\begin{itemize}
+  \item 体のConductorは何か
+  \item 楕円単数の定義
+  \item p進L関数とL関数の値の差
+  \item
+\end{itemize}
 
 \begin{thebibliography}{a99}
 

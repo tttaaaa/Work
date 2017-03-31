@@ -1,0 +1,145 @@
+%===============
+%一行目に必ず必要
+%文章の形式を定義
+%===============
+\documentclass{ujarticle}
+%===============
+%パッケージの定義、必要か不明
+%===============
+%この下4つを加えることで、mathbbが機能した
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{my-default}
+%リンク用パッケージ
+\usepackage[dvipdfmx]{hyperref}
+%tikz用パッケージ
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{my-default}
+
+%複数行コメント
+%\usepackage{comment}
+
+%修論当時
+\newcommand\X{\mathfrak{X}}
+\newcommand\p{\mathfrak{p}}
+\newcommand\f{\mathfrak{f}}
+\newcommand\m{\mathfrak{m}}
+\newcommand\G{\mathrm{Gal}}
+\newcommand\iy{\infty}
+\def\F{F_{\infty}}
+\def\M{M_{\infty}}
+\def\bgn{\begin}
+\def\c{c_{F_{\iy}/M_{\iy}}}
+\def\n{\nu_{F_{\iy}/M_{\iy}}}
+
+\newcommand\bqy{\bgn{end{equation*}array*}}
+\newcommand\eqy{\end{end{equation*}array*}}
+\newcommand\mac{\mathcal}
+\newcommand\mf{\mathfrak}
+\newcommand\mr{\mathrm}
+\newcommand\mb{\mathbb}
+
+\newcommand\vp{\varprojlim}
+\newcommand\ot{\otimes}
+
+
+\renewenvironment{itemize}%
+{%
+   \begin{list}{\parbox{1zw}{$\bullet$}}% 見出し記号／直後の空白を調節
+   {%
+      \setlength{\topsep}{0zh}
+      \setlength{\itemindent}{0zw}
+      \setlength{\leftmargin}{2zw}%  左のインデント
+      \setlength{\rightmargin}{0zw}% 右のインデント
+      \setlength{\labelsep}{1zw}%    黒丸と説明文の間
+      \setlength{\labelwidth}{3zw}%  ラベルの幅
+      \setlength{\itemsep}{0em}%     項目ごとの改行幅
+      \setlength{\parsep}{0em}%      段落での改行幅
+      \setlength{\listparindent}{0zw}% 段落での一字下り
+   }
+}{%
+   \end{list}%
+}
+
+
+\renewenvironment{enumerate}
+{
+\begin{list}{\arabic{enumi}.}
+{
+\usecounter{enumi}
+\setlength{\topsep}{0zh}
+\setlength{\itemindent}{0zw}
+\setlength{\leftmargin}{2zw} % 左のインデント
+\setlength{\rightmargin}{0zw} % 右のインデント
+\setlength{\labelsep}{1zw} % 黒丸と説明文の間
+\setlength{\labelwidth}{3zw} % ラベルの幅
+\setlength{\itemsep}{0em} % 項目ごとの改行幅
+\setlength{\parsep}{0em} % 段落での改行幅
+\setlength{\listparindent}{1zw} % 段落での一字下り
+}
+}{
+\end{list}
+}
+
+
+
+%タイトルデータ
+\title{BasicCategoryTheory}
+\author{test}
+\date{2017/01/29}
+%===============
+%定理環境の設定
+%セクション毎
+%===============
+
+
+%この論文紹介用定義
+\newcommand{\bh}[2]{B_{\mathcal{H}}(#1,#2)}
+\newcommand{\bpa}{B_{\Pi_1}(0,r)}
+\newcommand{\bpb}{B_{\Pi_2}(0,r)}
+\newcommand{\bpd}{B_{\Pi}(0,r)}
+\newcommand{\bp}[3]{B_{\Pi_{#3}}(#1,#2)}
+\newcommand{\gn}[4]{||\Gamma_{#1}||_{C^{1,1}(\bp{#2}{#3}{#4})}}
+\newcommand{\gnaaad}{||\Gamma_1||_{C^{1,1}(\bp{z_1}{r_1}{})}}
+\newcommand{\gnd}{||\Gamma||_{C^{1,1}(\bpd)}}
+\newcommand{\gdvt}{\mathcal{G}(d,V,\tau)}
+\newcommand{\Me}{M_{erm}}
+\newcommand{\Px}{\Pi_x}
+\newcommand{\Py}{\Pi_y}
+
+
+\begin{document}
+\section{Introduction}
+\label{sec:Introduction}
+圏論に関する可読性の高い図式の多い証明をする．
+基本的には自分の理解のためなので，ホモロジー代数性の高い話とする．
+すなわち
+\begin{itemize}
+  \item アーベル圏と導来関手
+  \item ミッチェルの埋め込み定理
+  \item スペクトル系列
+  \item グロタンティークトポロジー
+\end{itemize}
+等を記述する予定.余力があれば，圏の一般論や導来圏の話等を記述する.
+
+
+
+\section{アーベル圏}
+\label{sec:アーベル圏}
+アーベル圏を定義する.アーベル圏で使われる
+差核を定義する.
+\begin{dfn}
+ $\mathcal{C}$を圏とする.$A,B \in \mathcal{C}$と
+ $f_1,f_2:A \to B$に対し,$g:C \to A$が$f_1,f_2$の差核とは
+ \begin{tikzpicture}
+\node (C) at (0,0) {C}; \node (A) at (2,0) {A} ; \node (B) at (4,0) {B};
+\node (X) at (0,2) {X};
+\draw[->,double] (C) to node {$f_1$} (A);
+ \end{tikzpicture}
+\end{dfn}
+
+\end{document}
