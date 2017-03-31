@@ -2,7 +2,7 @@
 %一行目に必ず必要
 %文章の形式を定義
 %===============
-\documentclass{ujarticle}
+\documentclass{jarticle}
 %===============
 %パッケージの定義,必要か不明
 %===============
@@ -59,7 +59,7 @@
 
 \begin{document}
 
-\part{1}
+\part{Introduction and Statement}
 \label{part:1}
 
 
@@ -400,16 +400,26 @@ Main Theorem \ref{mth1}の証明の方針を述べる.
        一様確率分布の場合は距離を小さくする多様体を取ることで,期待値を十分小さくできることから定理は示せる.
 \end{enumerate}
 
+\subsection{この証明のすごいところ}
+\label{sub-この証明のすごいところ}
+この論文は何がすごいか。
+1つは多様体仮説やその議論が数学的に定式化されたこと。
+また、JLの不等式が実際にこの議論に使えるものとして、活用したこと。
+(定理自体は証明は難しくないが、これによって不等式評価がきちんとできたことがすごいと感じた。)
+
 
 \section{TOOLS FROM EMPIRICAL PROCESS}
 \label{sec:TOOLS FROM EMPIRICAL PROCESS}
 証明に使う用語を定義する.
 \begin{dfn}[metric entropy]
- 距離空間$(Y;\rho)$と$Z \subset Y$,$\eta \in \mathbb{R}$に対し,
- 任意の$y \in Y$に対し,$\rho(y,z) <\eta$となる$z \in Z$が存在する時,$Y$を$\eta$-net of $Y$という.
+ 距離空間$(Y,\rho)$,$Z \subset Y$,$\eta \in \mathbb{R}$をとる.
+ 任意の$y \in Y$に対し,$\rho(y,z) <\eta$となる$z \in Z$が存在する時,$Z$を$\eta$-net of $Y$という.
  距離空間$X$上の確率測度$P$に対し,$F \subset \mathrm{Map}_{cont}(X,\mathbb{R})$は
- $L^2$-ノルムにより距離空間となる.
- この時$N(\eta,F,L^2(P))$を$F$の$\eta$-netとなる有限集合$Y$の位数の最小値で定め，これを\textbf{metric entropy}という.
+ $P$の定める$L^2$-ノルムにより距離空間となる.
+ \begin{equation*}
+   N(\eta,F,L^2(P)):=\mathrm{min}\{ Y \subset F | \#Y < \infty, Y is \eta-net of F  \}
+ \end{equation*}
+ を\textbf{metric entropy}という.
 \end{dfn}
 
 \begin{dfn}[Fat-shattering dimension]
@@ -620,7 +630,7 @@ $g = C_1(\gamma^{-2}\mathrm{log}(s+kl) )$を代入し,式を整理すると,以�
 となる.
 これより以下が成り立つ
 \begin{equation*}
-s \ge O(\frac{kl}{\gamma^2}\mathrm{log}^2(\frac{kl}{\gamma}))
+s \le O(\frac{kl}{\gamma^2}\mathrm{log}^2(\frac{kl}{\gamma}))
 \end{equation*}
 \begin{rem}
  本当に?? 不等式評価の向きを間違えているのでは?
