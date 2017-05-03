@@ -1,0 +1,91 @@
+\documentclass[utf8]{beamer}
+\usetheme{CambridgeUS}
+
+%===============
+%この下4つを加えることで、mathbbが機能した
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+%可換図式用パッケージ
+\usepackage{amscd}
+\usepackage[all]{xy}
+\usepackage{tikz-cd}
+%リンク用パッケージ
+%\usepackage[dvipdfmx]{hyperref}
+%複数行コメント
+%\usepackage{comment}
+
+
+%===============
+%定理環境の設定
+%セクション毎
+%===============
+\newtheorem{thm}{Theorem}
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem{prop}[thm]{Propostion}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{ex}[thm]{Example}
+\newtheorem*{prob}{Problem}
+\newtheorem*{rem}{Remark}
+\newtheorem{prf}{Proof}
+
+\title{はじめてのBeamer}
+\author{高木貞治}
+\date{\today}
+
+
+\begin{document}
+\maketitle
+\begin{frame}{スライド}
+ スライドができたよ！やったね！
+\begin{thm}
+ (可換図式や代数、位相に慣れている人向けの)別証明
+\end{thm}
+\end{frame}
+
+
+\section{はじめに}
+\begin{frame}{何を問題としているか}
+\begin{itemize}
+\item こんなこと
+\item あんなこと
+\item しかも\alert{そんなことまで}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{何を問題としているか}
+\xymatrix{
+\mathbb{C}  \ar[r]_{f_{\alpha}} \ar[d]^{p_{\Gamma}} & \mathbb{C} \ar[d]_{p_{\alpha \Gamma}} \\
+\mathbb{C}/\Gamma \ar[r]^{\tilde{f_{\alpha}}} & \mathbb{C}/{\alpha \Gamma}  \ar[d]_{p_{ \Gamma^{'}}} \\
+ & \mathbb{C}/\Gamma^{'} }
+\end{frame}
+
+\begin{frame}{スライド}
+\begin{enumerate}
+\item 箇条書きと一緒に使うと
+\item 効果的なプレゼンが
+\item 可能となる\structure{ブロックの領域}が装飾される
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{ブロック環境を意味のまとまりとして使う}
+  \begin{block}{概略}
+    \begin{itemize}
+      \item usethemeでテーマを指定すると\structure{ブロックの領域}が装飾される
+      \item block, alertblock, exampleblock環境がある
+    \end{itemize}
+  \end{block}
+  \begin{alertblock}{注意}
+    \begin{itemize}
+      \item blockタイトルないと\alert{コンパイルエラー}になる
+    \end{itemize}
+  \end{alertblock}
+\end{frame}
+
+
+
+
+
+\end{document}

@@ -1,0 +1,215 @@
+%===============
+%一行目に必ず必要
+%文章の形式を定義
+%===============
+\documentclass{ujarticle}
+%===============
+%パッケージの定義,必要か不明
+%===============
+%この下4つを加えることで,mathbbが機能した
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+%可換図式用パッケージ
+%\usepackage{tikz}
+\usepackage{amscd}
+%\usepackage[all]{xy}
+%\usepackage{tikz-cd}
+%リンク用パッケージ
+\usepackage[dvipdfmx]{hyperref}
+%複数行コメント
+%\usepackage{comment}
+\usepackage[dvipdfmx]{graphicx}
+% \def\pgfsysdriver{pgfsys-dvipdfmx.def}%(graphicxパッケージを使用しない場合)
+\usepackage[dvipdfmx,svgnames]{xcolor}%tikzパッケージよりも前に読み込みます。
+\usepackage{tikz}
+
+%タイトルデータ
+\title{Math-iine learning}
+\author{ari}
+\date{2017/04/04-}
+%===============
+%定理環境の設定
+%セクション毎
+%===============
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem{prop}[thm]{Propostion}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corllary}
+\newtheorem{epl}[thm]{Example}
+\newtheorem*{prob}{Problem}
+\newtheorem*{rem}{Remark}
+\newtheorem{prf}{Proof}
+\newtheorem{clm}{Claim}
+\newtheorem{hyp}{HYPOTHESIS}
+\newtheorem{mtm}{Main Thoerem}
+
+
+
+
+\begin{document}
+
+\part{記号の準備}
+\label{part:記号の準備}
+ニューラルネットワークの例
+\def\layersep{2.5cm}
+
+\begin{tikzpicture}[shorten >=1pt,->,draw=black!50, node distance=\layersep]
+    \tikzstyle{every pin edge}=[<-,shorten <=1pt]
+    \tikzstyle{neuron}=[circle,fill=black!25,minimum size=17pt,inner sep=0pt]
+    \tikzstyle{input neuron}=[neuron, fill=green!50];
+    \tikzstyle{output neuron}=[neuron, fill=red!50];
+    \tikzstyle{hidden neuron}=[neuron, fill=blue!50];
+    \tikzstyle{annot} = [text width=4em, text centered]
+
+    % Draw the input layer nodes
+    \foreach \name / \y in {1,...,4}
+    % This is the same as writing \foreach \name / \y in {1/1,2/2,3/3,4/4}
+        \node[input neuron, pin=left:Input \#\y] (I-\name) at (0,-\y) {};
+
+    % Draw the hidden layer nodes
+    \foreach \name / \y in {1,...,5}
+        \path[yshift=0.5cm]
+            node[hidden neuron] (H-\name) at (\layersep,-\y cm) {};
+
+    % Draw the output layer node
+    \node[output neuron,pin={[pin edge={->}]right:Output}, right of=H-3] (O) {};
+
+    % Connect every node in the input layer with every node in the
+    % hidden layer.
+    \foreach \source in {1,...,4}
+        \foreach \dest in {1,...,5}
+            \path (I-\source) edge (H-\dest);
+
+    % Connect every node in the hidden layer with the output layer
+    \foreach \source in {1,...,5}
+        \path (H-\source) edge (O);
+
+    % Annotate the layers
+    \node[annot,above of=H-1, node distance=1cm] (hl) {Hidden layer};
+    \node[annot,left of=hl] {Input layer};
+    \node[annot,right of=hl] {Output layer};
+\end{tikzpicture}
+% End of code
+
+\part{第1回-2016/}
+
+\part{第2回-2016}
+ランダムフーリエ?
+
+\part{第3回-}
+Topological Data Analysisの基本について解説する
+
+\part{第4回-}
+Discrete Morse Thoeryについて解説する.
+
+\part{第5回-}
+論文を紹介する.
+
+\part{第6回-}
+VAEに向け、NNの基本と変分法を解説する.
+
+\section{今回話すこと}
+\label{sec:今回話すこと}
+VAEの理解を向けNNの基本的な手法を理解する.
+\begin{itemize}
+  \item FrequentとBayesian
+  \item NNの知識
+  \item 変分推論
+  \item 生成モデルと識別モデル
+\end{itemize}
+\section{FrequentとBayesian}
+\label{sec:FrequentとBayesian}
+FrequentとBayesianの違いは不確かさの根源がどこにあるのかで区別できる.
+\begin{itemize}
+  \item[\textbf{Frequent}] データの方に不確かさがある．
+この考えでは,ある正しいとされる仮説に対し,このデータは○○％の確率で得られると考える.
+データは確率変数$X$で与えられ,$X=N(μ,σ^2)$と仮定し,$n$個サンプリングしたもの.
+  \item[\textbf{Bayesian}] 不確かさは情報の不足に由来する．
+この考えでは,この仮説が正しい確率は○○\%であると考える.
+\end{itemize}
+
+\begin{table}[htb]
+  \centering
+  \begin{tabular}{l|cc}
+     & パラメータ & データ   \\ \hline
+     F & 定数 & 確率変数 \\
+    B& 確率変数 & 定数 \\
+  \end{tabular}
+\end{table}
+
+\begin{epl}[コイントス]
+コイントスを100回試行し、$H$が40回,$T$が60回出たとする.
+\subsection{Frequentist}
+\label{sub:Frequentist}
+Frequencyの手法では,データは確率分布ではなく,有限集合と考える.
+$D=\{H\} \times \{T\},…, \times \{T\}\ \subset {T,H}^{100} $とする.
+\textbf{表が出る確率を$\theta$(で互いに独立)とする.}
+(これは現実の現象をモデル化するための仮定であり,$\theta$はまだわからないので,未定)
+$D$となる確率は
+\begin{align*}
+P(D|\theta)=\theta^40(1-\theta)^60 \\
+\mathrm{log}p(D|\theta)=40\mathrm{log}\theta +60\mathrm{log}(1-\theta)
+\end{align*}
+となる.
+100回試行して,上の現象が起きたので,この現象が起きる確率が最も高い$\theta$が
+尤もらしい.
+上の確率が一番高くなる$\theta$,
+つまり,$p(D|\theta)$をmaximiseする$\theta$は
+微分して計算すると$\theta=4/10$となることがわかる.
+
+Bayesian $\theta$の上の確率分布として，どの$\theta$が確からしいか?
+Dを観測する前 $p(\theta)=1(0 <=\theta<=1)$(事前分布)
+これは，Beta(1,1)
+Beta(1/2,1/2)等も関係ある?
+
+$X_i$:i番目のコイントススの結果
+ $p(\theta|x_1)$を計算する
+ \begin{equation*}
+ p(\theta|x_1)=p(\theta,x_1)/p(x_1)=p(x_1|\theta)p(\theta)/∫p(x1|\theta)p(\theta)d\theta
+=
+\end{equation*}
+\end{epl} コイントス:表(Head)の確率
+
+
+確率測度の全空間を取替ることが多いが，それを隠蔽している．
+
+
+\part{第7回-2017/3/18}
+\label{part:第7回-2017/3/18}
+
+Variational Autoencoder\cite{Kingma Welling}を理解する．
+
+\section{今回の話すこと}
+\label{sec:今回の話すこと}
+前回話した変分推論の考え方に基づき，$L(\theta,\phi)$を$\theta,\phi$に対して最大化する．
+このために，以下について説明する
+\begin{itemize}
+  \item NNで確率を表現する
+  \item Backporpagation
+  \item VAEの学習
+\end{itemize}
+\begin{rem}
+ VAEは画像生成の方法(モデル)の一つであり，他にはGAN等がある．
+ 画像生成には学習用データを増やしたいという意図があるが，これについては学習済みのものからデータを生成するため，
+ 本質的にデータが増えておらず，意味がないと考えている人も多い.
+\end{rem}
+\section{NNで確率を表現する}
+\label{sec:NNで確率を表現する}
+
+
+
+\begin{thebibliography}{9}
+  \bibitem{Kingma Welling} Diederik P Kingma, Max Welling,
+    ``Auto-Encoding Variational Bayes '' https://arxiv.org/abs/1312.6114 2013.
+  \bibitem{susan} S. M. Smith and J. M. Brady,
+    ``SUSAN|A new approach to low level image processing,'' Int. J. Comput.
+    Vis., vol.23, no.1, pp.45-78, May 1997.
+\end{thebibliography}
+
+
+
+
+\end{document}
