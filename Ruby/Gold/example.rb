@@ -1,7 +1,13 @@
-def hoge (x:, y: 2, **params)
-  puts "#{x},#{y},#{params[:z]}"
-  puts params.class
-  puts params
-  puts x.class
+class Hoge
+  def initialize(a)
+    p "init"
+    p a
+  end
+  def second(b)
+    initialize(b)
+  end
 end
-hoge x: 1, z: 3
+first =Hoge.new(1)
+second = Hoge.new(2)
+#first.initialize(3)
+second.second(3)

@@ -9,6 +9,13 @@ Ruby Gold合格に向け，Rubyの文法を学習する.
 - Mathtodon改良(画像プログライン,Bot作成等)
 - 機械学習ライブラリ
 
+## 更新履歴
+| 日付     | 概要    |
+| :------------- | :------------- |
+| 20170503    | ブロック(3-10)についてまとめる    |
+| 20170504    | 問題1-11の解答/解説を作成 |
+| 20170505    | 継承(4-1,4-2)の概略を記述  |
+
 ## Ruby基本
 
 ## 3-10 ブロックとProc
@@ -111,8 +118,83 @@ end
 となる.
 
 
+## 4-1 クラス定義
+### 4-1-1 clsss式
+```ruby
+class <クラス名>
 
+end
+```
+でclassを定義できる.クラス名は、大文字で始める.(定数である必要があるので.)
+クラスは定数なので、変数に代入できる.ただし、クラス内に定義したメソッドはインスタンスに対するメソッドなので、変数に代入しても使えない.
+```ruby
+class ABC          
+  def hello        
+    p "hello world"
+  end              
+end                
+f=ABC              
+#f.hello  ⇒undefined methodになる.        
+a=f.new            
+a.hello
+```
+また、クラス定義の内部が評価されるのはclass式が初めて読み込まれたときなので,
+```ruby
+p 1
+class Hoge
+  p 2
+  def four
+    p 4
+  end
+end
+p 3
+Hoge.new.four
+```
+実行結果:1,2,3,4となる.
 
+### 4-1-2 インスタンスメソッドと初期化メソッド
+インスタンスメソッドはメソッドのこと.
+初期化はinitializeメソッドのこと.
+initializeメソッドはclassを初期化(new)したときに呼ばれる.
+```ruby
+class Hoge
+  def initialize(a)
+    p "init"
+    p a
+  end
+end
+first =Hoge.new(1)
+second = Hoge.new(2)
+first.initialize(3)
+```
+また,initializeはPrivateメソッド扱いのため、クラス外からアクセスできない.
+(インスタンスメソッドからinitializeにアクセス可能.)
+
+### 4-1-3 クラス継承
+```ruby
+class A < B
+end
+```
+で継承できる.
+superclassはA.superclassで取得できる.
+
+### 4-1-4 super
+class Aのmethod内で同名のsuperclassのメソッドを呼ぶ時は,superを実施すればよい.
+
+## 4-2 インスタンスメソッド
+### 4-2-1 クラスオブジェクト
+
+### 4-2-2 継承したクラスオブジェクト
+
+### 4-2-3 メソッドの探索経路
+
+### 4-2-4 継承チェーンとmethod_missing
+
+### 4-2-5 オープンクラス
+classは定義済みのものをもう一度定義できる.
+新しく定義された段階でメソッドは再度評価される.
+
+## 4-3 Mix-in
 
 ## ライブラリ
 
@@ -286,3 +368,88 @@ Hashを使った引数宣言ができる.実行時にkeyを宣言しないとエ
 引数は配列として受け取られる。
 1. オプション引数
 `**`を２つつけるとオプション引数になる。オプション引数はHashとして受け取られる。
+
+3つめの引数はHashなので、オプション変数を使えばよい。
+
+__参考__:
+Rubyでは文字列展開(""でくくられたStringオブジェクト)
+
+__問題10__:以下の実行結果になるように,`__X__`に記述する適切なコードを選びなさい.
+
+```ruby
+hi = __X__
+p hi.call("World")
+```
+実行結果:"Hello, World"
+
+1. `->{|x| puts "Hello, #{x}."}`
+1. `->{(x) puts "Hello, #{x}."}`
+1. `->(x){ puts "Hello, #{x}."}`
+1. `\(x) -> { puts "Hello, #{x}."}`
+
+__解説__:lambda式の文法として正しいのは,`->(x){ puts "Hello, #{x}."}`.ただし,最後に改行が追加されるため、どれも正解ではない。
+
+__問題11__:以下の実行結果になるように`__X__`,`__Y__`に記述する適切なコードを選びなさい.
+
+```ruby
+a, b = __X__ do
+  for x in 1..10
+    for y in 1..10
+      __Y__ if x + y = 10
+    end
+  end
+end
+puts a,b
+```
+実行結果
+```ruby
+1
+9
+```
+
+__解説__
+catch throwによる大域脱出では,
+```ruby
+catch "label"
+throw "label" a
+```
+と実施し,throwの箇所からcatchの場所まで移動し、復帰値はaになる.
+よって
+catch :exit
+throw :exit [x,y]
+を選べばよい.
+
+__問題12__
+以下の実行結果になるように,`__X__`に記述する適切なコードを選びなさい.
+```ruby
+class Super
+  def greet
+    "Hello"
+  end
+end
+class Sub < Super
+  def greet
+    __X__ + "World."
+  end
+end
+puts Sub.new.greet
+```
+実行結果 Hello World.
+
+1. super
+1. overide
+1. greet
+1. self
+
+__解説__:
+継承先のメソッドを実行するには,superを選択すればよい.
+
+
+
+
+## Ruby Program
+
+単因子論
+
+Programでみる線形代数
+微積分
