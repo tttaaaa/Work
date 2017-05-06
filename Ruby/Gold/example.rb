@@ -1,13 +1,20 @@
-class Hoge
-  def initialize(a)
-    p "init"
-    p a
-  end
-  def second(b)
-    initialize(b)
+require "optparse"
+require "time"
+
+OptionParser.accept(Time) do |s,|
+  begin
+    puts "Time.parse"
+    puts Time.parse(s) if s
+  rescue
+    raise OptionParser::InvalidArgument, s
   end
 end
-first =Hoge.new(1)
-second = Hoge.new(2)
-#first.initialize(3)
-second.second(3)
+
+opts = OptionParser.new
+
+opts.on("-t", "--time [TIME]", Time) do |time|
+  p time.class #=> Time
+end
+
+puts ARGV
+opts.parse!(ARGV)
