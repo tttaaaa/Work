@@ -1,20 +1,15 @@
-require "optparse"
-require "time"
-
-OptionParser.accept(Time) do |s,|
-  begin
-    puts "Time.parse"
-    puts Time.parse(s) if s
-  rescue
-    raise OptionParser::InvalidArgument, s
-  end
+class Foo
+ def foo
+  "foo"
+ end
 end
 
-opts = OptionParser.new
 
-opts.on("-t", "--time [TIME]", Time) do |time|
-  p time.class #=> Time
+class Bar < Foo
+ def foo
+  super + "bar"
+ end
+ alias bar foo
+ undef foo
 end
-
-puts ARGV
-opts.parse!(ARGV)
+puts Bar.new.bar
