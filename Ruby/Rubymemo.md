@@ -19,11 +19,45 @@ Ruby Gold合格に向け，Rubyの文法を学習する.
 | 20170504    | 問題1-11の解答/解説を作成 |
 | 20170505    | 継承(4-1,4-2)の概略を記述  |
 | 20170506    | ディレクトリ(5-8)を記述      |
-
+| 20170507    | 問題(1-60)を記載  |
 # Ruby基本
 1-4章ではRubyの基本的な文法を記述する.
-そのため、定義も含め使いかを記述する.
+そのため、定義も含め使いかたを記述する.
 5-6章ではライブラリについて記述するので,インターフェースベースで記述する.
+ライブラリ全てを記述してもしょうがないと判断した．
+もちろん全て覚えるべきだが，効率は悪いのでので，メソッドは本に書いてあるレベルとする．
+
+## 3-2 数値
+### 3-2-1 数値リテラル
+整数と浮動小数点列がリテラう構文でサポートされており，数字の列を記述すると,数値として解釈される.先頭に+.-も記述可能．
+指数関数はeで表現する．
+```ruby
++1
+-1
+3.0e2
+```
+
+数字を見やすくするために，アンダースコアをつけることがある．
+`100_100 `等.これは10000と解釈される.(Rubyインタープリタが_を無視するため.)
+
+__?文字列__  
+?の後に文字列を記述すると,指定した文字列のString表現が返却される.
+```ruby
+?r　#⇒ "r"
+```
+### 3-1-2
+
+### 3-8-3 while式とuntil式
+基本的な構文は以下.
+```ruby
+while 条件式 do
+  処理
+end
+```
+doは省略可能
+untilも同様.
+
+
 
 ## 3-10 ブロックとProc
 ### 3-10-1 ブロックの基本
@@ -38,8 +72,8 @@ def func x
   x + yield
 end
 p func(1){ 2 }
-```
 ⇒3  
+```
 ブロック外で定義された変数をブロック内で参照、更新できる.ブロック内で定義された変数はブロック外で参照できない.
 
 __例__:
@@ -51,17 +85,17 @@ func(1) do
   x =2
 end
 p x
-```
 ⇒undefined local variable or method for main:Object(NameError).
+```
 
 
 
 ### 3-10-2 ブロックのフォーマットと判定
-{} あるいは,do end
-で定める.その範囲内がブロックである.
-ブロックはメソッドの呼び出し直後につなげる.
+ブロックは{}あるいは,do end
+でくくられた範囲である.
+ブロックの記述場祖はメソッドの呼び出し直後となる.
 引数を与えることができ,引数は||でくくって与える.
-ブロックを実行するには,yieldを記述すればよい.ブロックには復帰値が存在し、blockの最終行の評価結果が返される.
+ブロックは,メソッド内のyieldが記載された箇所で実行される.(引数はyield(a)となる??)ブロックには復帰値が存在し、blockの最終行の評価結果が返される.
 nextでブロックを抜けた場合はnilを返す.
 またyieldを呼び出すメソッドにblockが与えられていない場合はLocalJumpErrorが発生する.
 メソッド内でブロックが実施された場合とそうでない場合を分ける時はblock_given?をもって判定すればよい.
@@ -72,7 +106,7 @@ Prcoオブジェクトではブロックを予め定義できる.
 初期値などに依存しない処理を繰り返したい時に有効なのだろうか.
 Rubyのメソッドはその時点での値を見るから?
 ブロックを実際に実行するにはProcobject.call(引数)を実行すればよい.
-Procオブジェクト a をブロックに変換するには&aにすればよい.
+Procオブジェクトaをブロックに変換するには&aにすればよい.
 逆にブロックをProcオブジェクトに変換する場合も&aで可能.(こっちはyieldを無理やりProc.callにしているだけな気がするのだが実用性はあるのか?)
 
 ### 3-10-4 lambda
@@ -90,7 +124,7 @@ lambdaは以下の書き方がある.
 ```
 
 ### 3-10-5 ブロックを受けるメソッド
-each等がある.例を記述する.
+rubyでデフォルトで用意されているメソッドではeach等がブロックを受ける.例を記述する.
 
 ```ruby
 [1,2,3].each do |value|
@@ -118,14 +152,13 @@ uptoメソッド
   p i
 end
 ```
-timesメソッドもある.
+timesメソッド
 ```ruby
 4.times do |i|
   p i
 end
 ```
 
-となる.
 
 
 ## 4-1 クラス定義
@@ -229,7 +262,7 @@ __コード例__:
 
 
 
-| 種類   | メソッド名      $\quad \quad \quad $  |
+| 種類   | メソッド名      $\quad$  |
 | :------------- | :------------- |
 | 特異メソッド     |  [[]](#kakko)  <br> [glob](#glob) <br> [chdir](#chdir) <br> [chroot](#chroot) <br> [delete](#delete) <br> [rmdir](#rmdir) <br> [unlink](#unlink) <br> [entries](#entries) <br> [exist?](#exist?) <br> [exists?](#exists?) <br> [foreach](#foreach) <br> [getwd](#getwd) <br> [pwd](#pwd) <br> [home](#home) <br> [mkdir](#mkdir) <br> [new](#new) <br> [open](#open) <br> |
 | インスタンスメソッド | [close](#close) <br> [each](#each) <br> [fileno](#fileno) <br> [inspect](#inspect) <br> [path](#path) <br> [to_path](#to_path) <br> [pos](#pos) <br> [tell](#tell) <br> [pos=](#pos=) <br> [seek](#seek) <br> [read](#read) <br> [rewind](#rewind)  <br>  |
@@ -395,6 +428,7 @@ Dir.foreach('.'){|f|
 `getwd -> String`
 
 __インターフェース__
+
 | 項目 | 概要     |
 | :------------- | :------------- |
 | 復帰値       | カレントディレクトリのフルパスの文字列       |
@@ -435,16 +469,284 @@ __インスタンスメソッド__
 #### <a name="close"> close
 #### <a name="each"> each
 #### <a name="fileno"> fileno
+self に関連づけられたファイル記述子を表す整数を返す。
+この整数はファイル数??
+
+本メソッドでは POSIX 2008 で定義されている dirfd() 関数を使用する。
+そのため、Windowsなどdirfd()関数が存在しないプラットフォームでは例外が発生する.
+
+
 #### <a name="inspect"> inspect
+
+self の情報を人間に読みやすい文字列にして返す.
+
 #### <a name="path"> path
+オープンしているディレクトリのパス名を文字列で返します.
+
 #### <a name="to_path"> to_path
+[path](#path)と同じ.
+
+#### <a name="pos"> pos
+ディレクトリストリームの現在の位置を整数で返す.
+
+[EXCEPTION] IOError:
+既に自身が close している場合に発生します。
+
+#### <a name="tell"> tell
+[poth](#poth)と同じ.
+#### <a name="pos="> pos=
+ディレクトリストリームの読み込み位置を pos に移動させます。 pos は Dir#tell で与えられた値でなければなりません。
+
+[PARAM] pos:
+変更したい位置を整数で与えます。
+[EXCEPTION] IOError:
+既に自身が close している場合に発生します。
+#### <a name="seek"> seek
+[poth=](#poth=)と同じ.
+#### <a name="read"> read
+`read -> String | nil`
+ディレクトリストリームから次の要素を読み出して返します。最後の要素 まで読み出していれば nil を返します。
+
+[EXCEPTION] Errno::EXXX:
+ディレクトリの読み出しに失敗した場合に発生します。
+[EXCEPTION] IOError:
+既に自身が close している場合に発生します。
+#### <a name="rewind"> rewind
+`rewind -> self`
+
+| 項目 | 概要     |
+| :------------- | :------------- |
+| 復帰値       | 正常終了時は0が返る.      |
+
+
+ディレクトリストリームの読み込み位置を先頭に移動する。
+ディレクトリストリームにはディレクトリ内にあるファイル、ディレクトリ一覧が格納されている.
+
+[EXCEPTION] IOError:
+既に自身が close している場合に発生する。
+
+```ruby
+d = Dir.new("testdir")
+d.read     #=> "."
+d.rewind   #=> #<Dir:0x401b3fb0>
+```
+
+## 5-8-3 IOクラス
+
+| 種類   | メソッド名      $\quad$  |
+| :------------- | :------------- |
+| 特異メソッド    | [binread](#binread) <br> [binwrite](#binwrite) <br> [copy_stream](#copy_stream) <br> [for_fd](#for_fd) <br> [new](#new) <br> [open](#open) <br> [foreach](#foreach) <br> [pipe](#pipe) <br> [popen](#popen) <br> [read](#read) <br> [readlines](#readlines) <br> [select](#select) <br> [sysopen](#sysopen) <br> [try_convert](#try_convert) <br> [write](#write) <br>
+| インスタンスメソッド |
+[<<](#<<) <br> [advise](#advise) <br> [autoclose=](#autoclose=) <br> [autoclose?](#autoclose?) <br> [binmode](#binmode) <br> [binmode?](#binmode?) <br> [bytes](#bytes) <br> [chars](#chars) <br> [clone](#clone) <br> [dup](#dup) <br> [close](#close) <br> [close_on_exec=](#close_on_exec=) <br> [close_on_exec?](#close_on_exec?) <br> [close_read](#close_read) <br> [close_write](#close_write) <br> [closed?](#closed?) <br> [codepoints](#codepoints) <br> [each](#each) <br> [each_line](#each_line) <br> [each_byte](#each_byte) <br> [each_char](#each_char) <br> [each_codepoint](#each_codepoint) <br> [eof](#eof) <br> [eof?](#eof?) <br> [external_encoding](#external_encoding) <br> [fcntl](#fcntl) <br> [fdatasync](#fdatasync) <br> [fileno](#fileno) <br> [to_i](#to_i) <br> [flush](#flush) <br> [fsync](#fsync) <br> [getbyte](#getbyte) <br> [getc](#getc) <br> [gets](#gets) <br> [internal_encoding](#internal_encoding) <br> [ioctl](#ioctl) <br> [isatty](#isatty) <br> [tty?](#tty?) <br> [lineno](#lineno) <br> [lineno=](#lineno=) <br> [lines](#lines) <br> [pid](#pid) <br> [pos](#pos) <br> [tell](#tell) <br> [pos=](#pos=) <br> [print](#print) <br> [printf](#printf) <br> [putc](#putc) <br> [puts](#puts) <br> [read](#read) <br> [read_nonblock](#read_nonblock) <br> [readbyte](#readbyte) <br> [readchar](#readchar) <br> [readline](#readline) <br> [readlines](#readlines) <br> [readpartial](#readpartial) <br> [reopen](#reopen) <br> [rewind](#rewind) <br> [seek](#seek) <br> [set_encoding](#set_encoding) <br> [stat](#stat) <br> [sync](#sync) <br> [sync=](#sync=) <br> [sysread](#sysread) <br> [sysseek](#sysseek) <br> [syswrite](#syswrite) <br> [to_io](#to_io) <br> [ungetbyte](#ungetbyte) <br> [ungetc](#ungetc) <br> [write](#write) <br> [write_nonblock](#write_nonblock) <br> |
+| 定数 | [SEEK_CUR](#SEEK_CUR) <br> [SEEK_DATA](#SEEK_DATA) <br> [SEEK_END](#SEEK_END) <br> [SEEK_HOLE](#SEEK_HOLE) <br> [SEEK_SET](#SEEK_SET) <br> |
+
+
+#### エンコーディング
+IO オブジェクトはエンコーディングを持ち,エンコーディングの影響を受けるメソッドと受けないメソッドがある。(影響ありなのはIOオブジェクトのサブクラスだけ?)
+影響を受けるメソッドでは、IO のエンコーディングに従い読み込まれた文字列のエンコーディングが決定されます。 また IO のエンコーディングを適切に設定することにより、読み込み時・書き込み時に文字列のエンコーディングを変換させることもできる.
+
+__エンコーディングの影響を受けるメソッドと受けないメソッド__
+
+IO の読み込みメソッドは テキスト読み込みメソッドとバイナリ読み込みメソッドの2種類存在する。
+テキスト読み込みメソッドは IO のエンコーディングの影響をうける。 以下がテキスト読み込みメソッドです。
+
+- IO.foreach
+- IO.readlines
+- IO#each_line
+- IO#lines
+- IO#gets
+- IO#getc
+- IO#ungetc
+- IO#read
+- IO#readchar
+- IO#readline
+- IO#readlines
+バイナリ読み込みメソッドはIOエンコーディングの影響を受けない。
+返す文字列のエンコーディングは常にASCII-8BITになる。
+以下がバイナリ読み込みメソッドです。
+
+- IO#read(size)
+- IO#read_nonblock
+- IO#readpartial
+- IO#sysread
+
+また書き込みメソッドIO#writeもIOのエンコーディングの影響を受けます。 IO のすべての書き込みメソッドは内部で IO#write を呼びますので、書き込みメソッドはすべて IO のエンコーディングの影響を受けます。
+シーク関連のメソッドはエンコーディングの影響を受けない。
+常に1バイトを単位として動作する.
+
+IOはファイル/ディレクトリ，入出力なので，それらを始めて取得するときに使うメソッドは特異メソッドである．逆に一度開いたのちに操作するメソッドはインスタンスメソッドとなる.
+
+__特異メソッド__
+
+#### <a name="binread"> binread
+#### <a name="binwrite"> binwrite
+#### <a name="copy_stream"> copy_stream
+#### <a name="for_fd"> for_fd
+#### <a name="new"> new
+#### <a name="open"> open
+#### <a name="foreach"> foreach
+#### <a name="pipe"> pipe
+#### <a name="popen"> popen
+#### <a name="read"> read
+#### <a name="readlines"> readlines
+#### <a name="select"> select
+#### <a name="sysopen"> sysopen
+#### <a name="try_convert"> try_convert
+#### <a name="write"> write
+
+__インスタンスメソッド__
+
+#### <a name="<<"> <<
+object を出力します。object が文字列でない時にはメソッ ド to_s を用いて文字列に変換します。復帰値がselfなので，
+以下のような << の連鎖を使うことができます。
+`STDOUT << 1 << " is a " << Fixnum << "\n"`
+
+#### <a name="advise"> advise
+#### <a name="autoclose="> autoclose=
+#### <a name="autoclose?"> autoclose?
+#### <a name="binmode"> binmode
+#### <a name="binmode?"> binmode?
+#### <a name="bytes"> bytes
+#### <a name="chars"> chars
+#### <a name="clone"> clone
+#### <a name="dup"> dup
+#### <a name="close"> close
+#### <a name="close_on_exec="> close_on_exec=
+#### <a name="close_on_exec?"> close_on_exec?
+#### <a name="close_read"> close_read
+#### <a name="close_write"> close_write
+#### <a name="closed?"> closed?
+#### <a name="codepoints"> codepoints
+#### <a name="each"> each
+IO の現在位置から 1 行ずつ文字列として読み込み、それを引数として 与えられたブロックを実行します。ブロックが与えられなかった場合は、自身から生成した Enumerator オブジェクトを返します。
+テキスト読み込みメソッドとして動作します。
+limit で最大読み込みバイト数を指定します。ただしマルチバイト文字が途中で 切れないように余分に読み込む場合があります。
+#### <a name="each_line"> each_line
+[each](#each)と同じ.
+#### <a name="each_byte"> each_byte
+#### <a name="each_char"> each_char
+#### <a name="each_codepoint"> each_codepoint
+#### <a name="eof"> eof
+#### <a name="eof?"> eof?
+#### <a name="external_encoding"> external_encoding
+#### <a name="fcntl"> fcntl
+#### <a name="fdatasync"> fdatasync
+#### <a name="fileno"> fileno
+#### <a name="to_i"> to_i
+#### <a name="flush"> flush
+#### <a name="fsync"> fsync
+#### <a name="getbyte"> getbyte
+#### <a name="getc"> getc
+#### <a name="gets"> gets
+```ruby
+gets(rs = $/) -> String | nil[permalink][rdoc]
+gets(limit) -> String | nil
+gets(rs, limit) -> String | nil
+```
+
+| 項目 | 概要     |
+| :------------- | :------------- |
+| rs            | 行の区切りを文字列で指定します。rs に nil を指定すると行区切りなしとみなします。 空文字列 "" を指定すると連続する改行を行の区切りとみなします(パラグラフモード)。|
+| limit | 最大の読み込みバイト数 |
+| 復帰値       | 読み込んだ文字列 or nil      |
+
+一行読み込んで、読み込みに成功した時にはその文字列を返す。
+EOF に到達した時には nil を返します。
+テキスト読み込みメソッドとして動作します。
+読み込んだ文字列を変数 $_ にセットします。 IO#readline との違いは EOF での振る舞いのみです。
+limit で最大の読み込みバイト数を指定します。ただし ファイルのエンコーディングがマルチバイトエンコーディングである場合には 読み込んだ文字列がマルチバイト文字の途中で切れないように 数バイト余分に読み込む場合があります。
+#### <a name="internal_encoding"> internal_encoding
+#### <a name="ioctl"> ioctl
+#### <a name="isatty"> isatty
+#### <a name="tty?"> tty?
+#### <a name="lineno"> lineno
+#### <a name="lineno="> lineno=
+#### <a name="lines"> lines
+このメソッドは obsolete です。代わりに IO#each_line を使用してください。
+#### <a name="pid"> pid
 #### <a name="pos"> pos
 #### <a name="tell"> tell
 #### <a name="pos="> pos=
-#### <a name="seek"> seek
+#### <a name="print"> print
+#### <a name="printf"> printf
+#### <a name="putc"> putc
+#### <a name="puts"> puts
 #### <a name="read"> read
-#### <a name="rewind"> rewind
+`read(length = nil, outbuf = "") -> String | nil`
 
+__インターフェース__
+
+| 項目 | 概要     |
+| :------------- | :------------- |
+| length            | 読み込むサイズを整数で指定します.nilが指定された場合、EOFまでの全てのデータを読み込んで、その文字列を返します。|
+| outbuf | 出力用のバッファを文字列 |
+| 復帰値       | 読み込んだ文字列 or nil      |
+
+__概要__
+
+length バイト読み込んで、その文字列を返す。
+引数length が指定された場合はバイナリ読み込みメソッド、そうでない場合はテキスト読み込みメソッドとして動作します。 既に EOF に達していれば nil を返します。 ただし、length に nil か 0 が指定されている場合は、空文字列 "" を返します。 例えば、open(空ファイル) {|f| f.read } は "" となります。
+
+__引数__
+
+outbuf:
+出力用のバッファを文字列で指定します。IO#read は読み込んだ データをその文字列オブジェクトに上書きして返します。指定し た文字列オブジェクトがあらかじめ length 長の領域であれば、 余計なメモリの割当てが行われません。指定した文字列の長さが length と異なる場合、その文字列は一旦 length 長に拡張(ある いは縮小)されたあと、実際に読み込んだデータのサイズになります。
+[EXCEPTION] IOError:
+自身が読み込み用にオープンされていなければ発生します。
+[EXCEPTION] Errno::EXXX:
+データの読み込みに失敗した場合に発生します。
+[EXCEPTION] ArgumentError:
+length が負の場合に発生します。
+第二引数を指定した read の呼び出しでデータが空であった場合 (read が nil を返す場合)、outbuf は空文字列になります。
+
+```ruby
+outbuf = "x" * 20;
+io = File.open("/dev/null")
+p io.read(10,outbuf)
+p outbuf
+=> nil
+```
+#### <a name="read_nonblock"> read_nonblock
+#### <a name="readbyte"> readbyte
+#### <a name="readchar"> readchar
+#### <a name="readline"> readline
+一行読み込んで、読み込みに成功した時にはその文字列を返します。 EOF に到達した時には EOFError が発生します。
+
+テキスト読み込みメソッドとして動作します。 読み込んだ文字列を変数 $_ にセットします。IO#gets との違いは EOF での振る舞いのみです。
+
+limit で最大読み込みバイト数を指定します。ただしマルチバイト文字が途中で 切れないように余分に読み込む場合があります。
+#### <a name="readlines"> readlines
+readlines(rs = $/) -> [String]
+readlines(limit) -> [String]
+readlines(rs = $/, limit) -> [String]
+データを全て読み込んで、その各行を要素としてもつ配列を返します。 既に EOF に達していれば空配列 [] を返します。
+
+テキスト読み込みメソッドとして動作します。
+
+limit で最大読み込みバイト数を指定します。ただしマルチバイト文字が途中で 切れないように余分に読み込む場合があります。
+#### <a name="readpartial"> readpartial
+#### <a name="reopen"> reopen
+#### <a name="rewind"> rewind
+#### <a name="seek"> seek
+#### <a name="set_encoding"> set_encoding
+#### <a name="stat"> stat
+#### <a name="sync"> sync
+#### <a name="sync="> sync=
+#### <a name="sysread"> sysread
+#### <a name="sysseek"> sysseek
+#### <a name="syswrite"> syswrite
+#### <a name="to_io"> to_io
+#### <a name="ungetbyte"> ungetbyte
+#### <a name="ungetc"> ungetc
+#### <a name="write"> write
+#### <a name="write_nonblock"> write_nonblock
+
+__定数__
+#### <a name="SEEK_CUR"> SEEK_CUR
+#### <a name="SEEK_DATA"> SEEK_DATA
+#### <a name="SEEK_END"> SEEK_END
+#### <a name="SEEK_HOLE"> SEEK_HOLE
+#### <a name="SEEK_SET"> SEEK_SET
 
 ## 6-2 テキスト
 ### 6-2-1 StringIO
@@ -2019,6 +2321,13 @@ Programでみる線形代数
 ひとまず,線形代数を定義するか...
 
 ベクトル空間
+
+- Matrixクラス
+  行列の演算
+  - A B=C
+  -
+
+整数に対して，ユークリッドの互除法を定義し，最大公約数を求めるか...
 
 
 

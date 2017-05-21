@@ -19,7 +19,7 @@
 \usepackage{tikz}
 \usepackage{tikz-cd}
 \usepackage{my-default}
-
+\usepackage{pdfpages}
 %複数行コメント
 %\usepackage{comment}
 
@@ -665,11 +665,13 @@ tbd
 
 \subsection{Injective Resolution及び，その同値変換}
 \label{sub:Injective Resolution及び，その同値変換}
-Cohomologyを具体的に構成しよう．
+Cohomologyを具体的に構成する.
 その構成手法の一つがInjettive Resolutionである.
-アーベル圏$\mathcal{A}$のobject $A$が
+アーベル圏$\mathcal{A}$のobject $A$がinjectiveであるとは…
+
 ただし，Homologyと同様に扱いという点があるため，
 Projective(Free) resoulutionをし，それのDualを取ることでInjective Resolutionを実現する.
+詳細はTorとExtについての扱いを説明する.
 
 \begin{dfn}
 アーベル群のなす圏$Ab$にいて,$\mathrm{Hom}(A, −)$の誘導する右導来関手を\textbf{Ext}という.
@@ -713,6 +715,7 @@ We simply write $\underline{Ext}(−, B)$ for $\underline{Ext}_1(−, B)$.
 \subsection{有限群のCohomology}
 \label{sub:有限群のCohomology}
 有限群の場合はTate CohomologyによってHomologyとCohomologyをひとつの方法で扱える．
+
 \subsubsection{Tate Cohomology}
 \label{subs:Tate Cohomology}
 
@@ -1028,5 +1031,13 @@ $v_M$を$M$の正規付値とすると$nv_M(x)=k$となるので,$k$は$n$で割
 - Artin L関数とHecke L関数
 - Poitou-Tate exact sequence
 - 岩澤理論の基本完全系列
+
+%vierport [viewport=llx lly urx ury]で指定した矩形領域を画像として扱う．(llx lly=0 0)は左下端を示している．
+%trim [trim=left bottom right top]で指定した領域を画像として扱う．
+%clip [clip]でviewportとtrimで指定した領域以外を切り取ります
+
+%\includegraphics[viewport=0 100 700 500,scale=.5,clip]{derivedfunctor__1117.pdf}
+\includepdf[pages=-]{derived.pdf}
+
 
 \end{document}

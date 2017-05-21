@@ -1,14 +1,6 @@
-
-[close](#close) <br> [each](#each) <br> [fileno](#fileno) <br> [inspect](#inspect) <br> [path](#path) <br> [to_path](#to_path) <br> [pos](#pos) <br> [tell](#tell) <br> [pos=](#pos=) <br> [seek](#seek) <br> [read](#read) <br> [rewind](#rewind) <br> 
-#### <a name="close"> close
-#### <a name="each"> each
-#### <a name="fileno"> fileno
-#### <a name="inspect"> inspect
-#### <a name="path"> path
-#### <a name="to_path"> to_path
-#### <a name="pos"> pos
-#### <a name="tell"> tell
-#### <a name="pos="> pos=
-#### <a name="seek"> seek
-#### <a name="read"> read
-#### <a name="rewind"> rewind
+[SEEK_CUR](#SEEK_CUR) <br> [SEEK_DATA](#SEEK_DATA) <br> [SEEK_END](#SEEK_END) <br> [SEEK_HOLE](#SEEK_HOLE) <br> [SEEK_SET](#SEEK_SET) <br> 
+#### <a name="SEEK_CUR"> SEEK_CUR
+#### <a name="SEEK_DATA"> SEEK_DATA
+#### <a name="SEEK_END"> SEEK_END
+#### <a name="SEEK_HOLE"> SEEK_HOLE
+#### <a name="SEEK_SET"> SEEK_SET

@@ -22,15 +22,32 @@
 # Atom Flight Manual:
 # https://atom.io/docs/latest/using-atom-basic-customization#cson
 '.source.gfm':
+  'inputtable':
+   'prefix':'itable'
+   'body':'| 項目 | 概要     |\n| :------------- | :------------- |\n| 復帰値       | $1      |'
+  'kaisetsu':
+   'prefix':'解説'
+   'body':'__解説__  \n$1'
+  'mondai':
+   'prefix':'問題'
+   'body':'__問題$1__  \n'
   'r2':
    'prefix':'r2'
    'body':'|||\n|-|-|\n|||'
   'r3':
    'prefix':'r3'
    'body':'||||\n|-|-|-|\n||||'
+  'ruby':
+   'prefix':'rb'
+   'body':'```ruby\n$1\n```'
+
 
 '.text.tex.latex':
 # tex symbol
+# 数式モードで書く一語の省略を定義する.
+  'itemitem':
+    'prefix':'-'
+    'body':'\\\\item '
   'affinebarK':
     'prefix':'afbk'
     'body':'\\\\mathbb{A}^n(\\\\bar{K})'
@@ -40,6 +57,12 @@
   'bar':
     'prefix':'ba'
     'body':'\\\\bar{$1}'
+  'batu':
+    'prefix':'bt'
+    'body':'\{\\\\times\}'
+  'claim':
+    'prefix':'clm'
+    'body':'\\\\begin{clm}\n $1 \n\\\\end{clm}'
   'displaystyle':
     'prefix':'dis'
     'body':'\\\\displaystyle'
@@ -49,6 +72,9 @@
   'epsilon':
     'prefix':'ep'
     'body':'\\\\epsilon'
+  'galos':
+    'prefix':'ga'
+    'body':'\\\\mathrm{Gal}($1)'
   'forall':
     'prefix':'fa'
     'body':'\\\\forall'
@@ -56,7 +82,7 @@
     'prefix':'mg'
     'body':'\\\\infty'
   'inverse':
-    'prefix':'iv'
+    'prefix':'inv'
     'body':'^{-1}'
   'item':
     'prefix':'/'
@@ -121,6 +147,9 @@
   'otimes':
     'prefix':'ot'
     'body':'\\\\otimes'
+  'overline':
+    'prefix':'ol'
+    'body':'\\\\overline{$1}'
   'mathfrakX':
     'prefix':'Xf'
     'body':'\\\\mathfrak{X}'
@@ -147,11 +176,21 @@
     'body':'\\\\supset'
   'tbd':
     'prefix':'tbd'
-    'body':'****************** \n あとで埋める \n ******************'  
+    'body':'******************\\\\\\\\\nあとで埋める \\\\\\\\\n******************'
+  'uptimes':
+    'prefix':'^t'
+    'body':'^{\\\\times}'
+  'varepsilon':
+    'prefix':'ve'
+    'body':'\\\\varepsilon'
   # tex shortcut word
+  # texで二語以上になるもののショートカットキーを定義する．
   'introduction':
     'prefix':'intr'
     'body':'\\\\section{Introduction}\n\\\\label{sec:Introduction}'
+  'corllary':
+    'prefix':'cor'
+    'body':'\\\\begin{cor}\n $1 \n\\\\end{cor}'
   'definition':
     'prefix':'dfn'
     'body':'\\\\begin{dfn}\n $1 \n\\\\end{dfn}'
@@ -179,9 +218,6 @@
   'proposition':
     'prefix':'prop'
     'body':'\\\\begin{prop}\n $1 \n\\\\end{prop}'
-  'beproof':
-    'prefix':'prf'
-    'body':'\\\\begin{proof}\n $1 \n\\\\end{proof}'
   'theorem':
     'prefix':'thm'
     'body':'\\\\begin{thm}\n $1 \n\\\\end{thm}'
@@ -201,21 +237,26 @@
     'prefix':'ydn'
     'body':'\\\\begin{yodan}\n $1 \n\\\\end{yodan}'
   # tex mathmatical term
+  # 数式に依存しない長い用語を省略するために定義する．
+  # 日本語から日本語は辞書に登録しておく．
   'abelian':
     'prefix':'ab'
     'body':'abelian'
   'algebra':
     'prefix':'alg'
     'body':'algebra'
-  'cuspform':
-    'prefix':'cpfm'
-    'body':'cusp form'
   'category':
     'prefix':'cat'
     'body':'category'
+  'cohomology':
+    'prefix':'coh'
+    'body':'cohomology'
   'complexmultiplication':
     'prefix':'cm'
     'body':'complex multiplication'
+  'cuspform':
+    'prefix':'cpfm'
+    'body':'cusp form'
   'doldol':
     'prefix':'dd'
     'body':'$$1$'
@@ -228,9 +269,24 @@
   'Jacobian':
     'prefix':'jn'
     'body':'Jacobian'
+  'loverk':
+    'prefix':'lk'
+    'body':'L/K'
+  'loverm':
+    'prefix':'lm'
+    'body':'L/M'
+  'luroverk':
+    'prefix':'lurk'
+    'body':'L^{ur}/K'
+  'luroverm':
+    'prefix':'lurm'
+    'body':'L^{ur}/M'
   'projective':
     'prefix':'prj'
     'body':'projective'
+  'moverk':
+    'prefix':'mk'
+    'body':'M/K'
   'modularfrom':
     'prefix':'mdfm'
     'body':'modular form'
@@ -240,6 +296,15 @@
   'subgroup':
     'prefix':'sgp'
     'body':'subgroup'
+  'unramifiedk':
+    'prefix':'uk'
+    'body':'K^{ur}'
+  'unramifiedl':
+    'prefix':'ul'
+    'body':'L^{ur}'
+  'unramifieds':
+    'prefix':'sl'
+    'body':'\Sigma^{ur}'
   'variety':
     'prefix':'var'
     'body':'variety'

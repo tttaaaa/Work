@@ -1,7 +1,7 @@
 require "optparse"
 
 #文字列入力の場合
-inputstring = "close each fileno inspect path to_path pos tell pos= seek read rewind"
+inputstring = "SEEK_CUR SEEK_DATA SEEK_END SEEK_HOLE SEEK_SET"
 
 linkinput = []
 linktarget = []
