@@ -1,0 +1,118 @@
+%===============
+%一行目に必ず必要
+%文章の形式を定義
+%===============
+\documentclass{ujarticle}
+%===============
+%パッケージの定義、必要か不明
+%===============
+%この下4つを加えることで、mathbbが機能した
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+%可換図式用パッケージ
+\usepackage{amscd}
+\usepackage[all]{xy}
+\usepackage{tikz-cd}
+%リンク用パッケージ
+\usepackage[dvipdfmx]{hyperref}
+%複数行コメント
+%\usepackage{comment}
+
+
+%===============
+%定理環境の設定
+%セクション毎
+%===============
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem{prop}[thm]{Propostion}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{ex}[thm]{Example}
+\newtheorem*{prob}{Problem}
+\newtheorem*{rem}{Remark}
+\newtheorem{prf}{Proof}
+
+\begin{document}
+
+\section{Introduction}
+\label{sec:Introduction}
+機械学習，及び統計の理論的な面について解説する.
+この解説は特に「ベイズ統計の理論と方法」を読んだ疑問に感じた事調べたことを中心に記述する.
+
+\begin{itemize}
+  \item t-SNEのアルゴリズム，及び実装
+  \item ベイズによる最適化
+  \item 確率論の基本
+  \item ガウス分布,分散,フィッシャー情報行列
+  \item 機械学習の基本
+  \item NNの基本
+  \item TDE
+  \item kernel法
+\end{itemize}
+
+
+\section{Bayes統計}
+\label{sec:Bayes統計}
+
+
+事前に以下の２つを仮定する.
+\begin{itemize}
+  \item 現実は「真の分布」と呼ばれる確率分布によって記述(モデル化)できる
+  \item ただし,我々は現象しか観測できないため,真の分布を知ることはできない.
+\end{itemize}
+これが正しいと考えた場合,観測した現象を基に真の分布を推測できる仮定し,推測する方法を研究する分野が
+統計的学習理論，あるいは統計的推測等といわれる.
+統計的学習理論にも様々な推測方法があるが,Bayes統計では以下を用いて真の分布を推測する.
+\begin{itemize}
+  \item 事前分布
+  \item 確率モデル
+\end{itemize}
+
+最初に数学的にベイズ統計を定式化する.
+$x_i \in \mathbb{R}^n$の列$\{ x_i \}_{i= 1,\dots ,d}$に対し,
+ある$\mathbb{R}^{nd}$上の確率測度$\mu$と$\mathbb{R}^{nd}\times [0,1]$上の確率測度$\mu_{\theta}$
+が与えられたとする.ここで,対応する確率分布関数を,それぞれ$p(x),p(x,\theta)$とする.
+この時
+この時,$\{ x_i \}_{i= 1,\dots d}$とが起きる確率が最大となる確率
+
+
+\begin{rem}
+この辺は定義が曖昧な部分もあり，ある人は何がベイズで何が頻度かはかなり人によるので（少なくとも互いにcomplementではない),
+「事後分布が出てきたらベイズ」と思っておくのがケンカになりにくいとまで言っていた.
+\end{rem}
+
+
+統計学の考え方,及びBayes統計とは何かを明確にし,Bayes統計の基本的な考え方を明示する.
+私は統計学とは「数学」を使って現実を分析あるいは予測する学問だと考えている.
+一般的にはデータに基づき現実を分析，予測すると考えてもいいかもしれない.
+だが，ここでは数学と敢えて記述する.それはデータには不正確さがあるのに対し,数学には不正確さがないためである.
+統計は現実の問題であり,ある意味「明確な」答えはない．
+だが,どこに問題があるかは明確にできるはずだと考えている.数学面には不明確な部分はない.
+例えばデータをモデル化する時の近似が問題なのか，モデル化したものを具体的に解く数学的手法が問題なのか,
+そもそも入力データが問題なのか等課題を明確にできるのではないかと予測している.
+
+ではBayes統計とは何かというと.
+現実に次起こるものを確立分布として表現し.
+その確率分布を事前分布を基に入力されたデータによって逐次改善して真の確率分布を得る方法のことである.
+もう少し具体的に説明しよう.
+
+
+
+
+\section{t-SNE}
+\label{sec:t-SNE}
+\subsection{定義}
+\label{sub:定義}
+距離に基づく確率分布
+
+\subsection{実行結果}
+\label{sub:実行結果}
+
+\section{NNの基本}
+\label{sec:NNの基本}
+
+
+
+\end{document}
