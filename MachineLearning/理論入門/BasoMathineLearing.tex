@@ -11,48 +11,107 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsfonts}
-%可換図式用パッケージ
-\usepackage{amscd}
-\usepackage[all]{xy}
-\usepackage{tikz-cd}
+\usepackage{my-default}
 %リンク用パッケージ
 \usepackage[dvipdfmx]{hyperref}
-%複数行コメント
-%\usepackage{comment}
+%tikz用パッケージ
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{my-default}
+\usepackage{pdfpages}
 
 
 %===============
 %定理環境の設定
 %セクション毎
 %===============
-\newtheorem{thm}{Theorem}[section]
-\newtheorem{dfn}[thm]{Definition}
-\newtheorem{prop}[thm]{Propostion}
-\newtheorem{lem}[thm]{Lemma}
-\newtheorem{ex}[thm]{Example}
-\newtheorem*{prob}{Problem}
-\newtheorem*{rem}{Remark}
-\newtheorem{prf}{Proof}
+
 
 \begin{document}
 
 \section{Introduction}
 \label{sec:Introduction}
 機械学習，及び統計の理論的な面について解説する.
-この解説は特に「ベイズ統計の理論と方法」を読んだ疑問に感じた事調べたことを中心に記述する.
 
 \begin{itemize}
+  \item 機械学習の基本
   \item t-SNEのアルゴリズム，及び実装
   \item ベイズによる最適化
   \item 確率論の基本
   \item ガウス分布,分散,フィッシャー情報行列
-  \item 機械学習の基本
   \item NNの基本
   \item TDE
   \item kernel法
 \end{itemize}
+入力しにくいが不可能ではない．
 
 
+\part{機械学習入門}
+この章では機械学習の定義と実際に使われる手法の例について記載する．
+
+機械学習とは，機械をデータを用いて訓練させて，訓練以外のデータに対しても適切に応答を返す仕組み全般に対する総称である．
+昔は機械には条件を明記し，手続きを記述していた．
+だが，5000兆通りの方法を全て記述していたらいくら時間があっても足りない．
+つまり，全ての条件や全てのデータを入手することは現実的に不可能であるという認識が機械学習を考える背景となっている．
+実際に現在の機械学習では，以下のプロセスによって機械学習をするシステムを実現している．
+\begin{enumerate}
+  \item 現象レベルでの問題設定
+  \item 入力，出力データの決定
+  \item 機械学習用モデル(判断基準)の設定
+  \item モデルを数学的に解決
+  \item 結果の検証
+\end{enumerate}
+これらを詳しく見る．
+
+\paragraph{現象レベルでの問題設定}
+自然現象のレベル間で問題を設定する．
+例えば，猫か否か分類したい．適切に会話したい等．
+ただ，このレベルでは機械へのインターフェースではないため，機械の入力へ落とし込む必要がある．
+
+\paragraph{入力，出力データの決定}
+機械へのインターフェースを設定する．
+
+\paragraph{機械学習用モデル(判断基準)の設定}
+
+\paragraph{モデルを数学的に解決}
+
+\paragraph{結果の検証}
+
+\subsection{教師あり学習}
+\label{sub:教師あり学習}
+教師あり学習とは入力データに，正解を含める手法のことを指す.
+この場合モデルとしては
+$f : \mathbb{R}^d \to \mathbb{R}$を
+$f|_{\mathcal{D}}$がわかっている前提で最も"よい"関数$f$を求める.
+
+その判断方法として様々なものがある.
+
+\subsection{線形回帰モデル}
+\label{sub:線形回帰モデル}
+この場合二乗誤差が最小となる1次関数を求める.
+
+結果について記述する．
+教師あり学習の基本的な手法についてまとめる。
+教師あり学習とは入力データと正解ラベルを用いて入力データに対し、もっとも正解ラベルを出力してくれるモデルを構成する手法である。
+数学的に定義する.
+$x_1,\dots,x_m$を$a_i \in \mathbb{R}^m$とし,
+$y_1, \dots,x_m$を$x_i \in \mathbb{R}$とする.
+
+機械学習で，数理モデルを作る時，モデルに出てこないパラメータは暗に不変だと推測している．
+
+
+\subsection{交差検証}
+\label{sub:交差検証}
+
+交差検証(Cross-validation)とは、統計学において標本データを分割し、その一部をまず解析して、
+残る部分でその解析のテストを行い、
+解析自身の妥当性の検証・確認に当てる手法を指す。データの解析
+（および導出された推定・統計的予測）がどれだけ本当に母集団に対処できるかを良い近似で検証・確認するための手法である。
+
+
+\part{Bayes}
+この解説は特に「ベイズ統計の理論と方法」を読んだ疑問に感じた事調べたことを中心に記述する.
 \section{Bayes統計}
 \label{sec:Bayes統計}
 
