@@ -1,0 +1,357 @@
+%===============
+%一行目に必ず必要
+%文章の形式を定義
+%===============
+\documentclass{ujarticle}
+%===============
+%パッケージの定義、必要か不明
+%===============
+%この下4つを加えることで、mathbbが機能した
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{my-default}
+%リンク用パッケージ
+\usepackage[dvipdfmx]{hyperref}
+%tikz用パッケージ
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{my-default}
+\usepackage{pdfpages}
+%複数行コメント
+%\usepackage{comment}
+
+%修論当時
+\newcommand\X{\mathfrak{X}}
+\newcommand\p{\mathfrak{p}}
+\newcommand\f{\mathfrak{f}}
+\newcommand\m{\mathfrak{m}}
+\newcommand\G{\mathrm{Gal}}
+\newcommand\iy{\infty}
+\def\F{F_{\infty}}
+\def\M{M_{\infty}}
+\def\bgn{\begin}
+\def\c{c_{F_{\iy}/M_{\iy}}}
+\def\n{\nu_{F_{\iy}/M_{\iy}}}
+
+\newcommand\bqy{\bgn{end{equation*}array*}}
+\newcommand\eqy{\end{end{equation*}array*}}
+\newcommand\mac{\mathcal}
+\newcommand\mf{\mathfrak}
+\newcommand\mr{\mathrm}
+\newcommand\mb{\mathbb}
+
+\newcommand\vp{\varprojlim}
+\newcommand\ot{\otimes}
+
+
+\renewenvironment{itemize}%
+{%
+   \begin{list}{\parbox{1zw}{$\bullet$}}% 見出し記号／直後の空白を調節
+   {%
+      \setlength{\topsep}{0zh}
+      \setlength{\itemindent}{0zw}
+      \setlength{\leftmargin}{2zw}%  左のインデント
+      \setlength{\rightmargin}{0zw}% 右のインデント
+      \setlength{\labelsep}{1zw}%    黒丸と説明文の間
+      \setlength{\labelwidth}{3zw}%  ラベルの幅
+      \setlength{\itemsep}{0em}%     項目ごとの改行幅
+      \setlength{\parsep}{0em}%      段落での改行幅
+      \setlength{\listparindent}{0zw}% 段落での一字下り
+   }
+}{%
+   \end{list}%
+}
+
+
+\renewenvironment{enumerate}
+{
+\begin{list}{(\arabic{enumi})}
+{
+\usecounter{enumi}
+\setlength{\topsep}{0zh}
+\setlength{\itemindent}{0zw}
+\setlength{\leftmargin}{2zw} % 左のインデント
+\setlength{\rightmargin}{0zw} % 右のインデント
+\setlength{\labelsep}{1zw} % 黒丸と説明文の間
+\setlength{\labelwidth}{3zw} % ラベルの幅
+\setlength{\itemsep}{0em} % 項目ごとの改行幅
+\setlength{\parsep}{0em} % 段落での改行幅
+\setlength{\listparindent}{1zw} % 段落での一字下り
+}
+}{
+\end{list}
+}
+
+
+
+%タイトルデータ
+\title{TROPICAL GEOMETRY for RIGID GEOMETRY}
+\author{test}
+\date{2017/07/28}
+%===============
+%定理環境の設定
+%セクション毎
+%===============
+
+
+%この論文紹介用定義
+\newcommand{\bh}[2]{B_{\mathcal{H}}(#1,#2)}
+\newcommand{\bpa}{B_{\Pi_1}(0,r)}
+\newcommand{\bpb}{B_{\Pi_2}(0,r)}
+\newcommand{\bpd}{B_{\Pi}(0,r)}
+\newcommand{\bp}[3]{B_{\Pi_{#3}}(#1,#2)}
+\newcommand{\gn}[4]{||\Gamma_{#1}||_{C^{1,1}(\bp{#2}{#3}{#4})}}
+\newcommand{\gnaaad}{||\Gamma_1||_{C^{1,1}(\bp{z_1}{r_1}{})}}
+\newcommand{\gnd}{||\Gamma||_{C^{1,1}(\bpd)}}
+\newcommand{\gdvt}{\mathcal{G}(d,V,\tau)}
+\newcommand{\Me}{M_{erm}}
+\newcommand{\Px}{\Pi_x}
+\newcommand{\Py}{\Pi_y}
+
+
+\begin{document}
+
+
+\section{Introduction}
+\label{sec:Introduction}
+トロピカル幾何は，代数幾何，微分幾何の類似や，数論、物理、統計、計算機等様々な幅の広い応用のある分野である．
+筆者は代数，幾何，及びそれらの計算(計算機による計算)をうまく繋げて生まれるものに興味がある．
+トロピカルはこれらのよい架け橋になることを期待し、勉強し始めた。
+この文章ではトロピカル幾何の入門として筆者が興味を持った代数的性質、特に非アルキメデス的な性質についてまとる．
+筆者はトロピカル幾何はまだ入門したばかりなので、新しく学ぶことがあれば，鋭意それを反映していくつもりである．
+
+
+\section{代数的な性質}
+\label{sec:代数的な性質}
+トロピカル演算，及びその代数的性質について述べる.
+\begin{dfn}
+ トロピカル半環とは、$\mathbb{R}$に 以下の構造をいれたものである。
+\begin{align*}
+  a + b &:= \mathrm{max}\{a,b\}, \\
+  a \cdot b &:= a + b
+\end{align*}
+\end{dfn}
+
+これにより、加法と乗法が定義できた.
+加法と乗法が定義できたので，それらの基本的な性質について確認する．
+\begin{lem}
+トロピカル半環では,以下が成り立つ.
+\begin{itemize}
+  \item 乗法についてassociativeである.つまり，任意のの$a,b,c \in \mathbb{R}$に対し，$a \cdot (b \cdot c) = (a \cdot b ) \cdot c$となる.加法についても同様.
+  \item distributiveである. $a(b + c) = ab +  ac$
+  \item $0$は乗法的な単位元である．
+\end{itemize}
+\end{lem}
+$- \infty$を$\mathbb{R}$に加えることで,加法的単位元を追加して考えられる.
+また，$a,b\in \mathbb{R}$に対し，$ \mathrm{max}\{ a,b\} \in \mathbb{R}$となるので，
+これらの逆元は存在しない．
+\begin{rem}
+ トロピカル半環は$-1$倍するこでminで考えることもできる零元を$\infty$として扱う場合はこちらで考えることが多い.
+\end{rem}
+\subsection{脱量子化}
+\label{sub:脱量子化}
+
+トロピカル半環が通常の$\mathbb{R}$の演算の「脱量子化」として見れる．(Maslov の脱量子化).
+具体的には,任意の$h > 0,s,y \in \mathbb{R}$に対し,
+\begin{align*}
+  x +_h y &:= h \log (e^{\frac{x}{h}} + e^{\frac{y}{h}}) \\
+  x ×_h y &:= h \log(e^{\frac{x}{h}} \cdot e^{\frac{y}{h}})
+\end{align*}
+と定める．乗法は定義から明らかに$h$に依存せず,加法だけが $h$に依存する.
+\begin{lem}
+  $h > 0$のとき，$(\mathbb{R}, +_h, ×_h)$ は$(\mathbb{R}>0, +, ·)$と半環として同型である.
+\end{lem}
+\begin{proof}
+$f:\mathbb{R} \to \mathbb{R}_{> 0}$を$f(x)=({e^{\frac{1}{h}}}^{x})$で定める.
+$t =e^{\frac{1}{h}}$とすると$f(x)=t^x$とかける.
+こうして計算してみると,$f(x +_h y) =f(x) +f(y)$がわかり，$f(xy) = f(x)f(y)$もわかる.
+指数関数なので,全単射は明らかにわかる.これより，同型が言えた.
+\end{proof}
+
+また，$m = \mathrm{max}\{x, y\}$とおくと，
+\begin{equation*}
+  h \log (e^{\frac{m}{h}}) \le x +_h y \le   h \log (2e^{\frac{m}{h}})
+\end{equation*}
+となり，
+\begin{equation*}
+    m \le x +_h y \le m + h \log 2
+\end{equation*}
+が成り立つ．よって,$h \to +0$ の極限をとると，
+$x +_h y = \mathrm{max\{x, y\}} = “ x + y ”$が成立するため,極限がトロピカル半環になる.
+
+\subsection{トロピカル多項式}
+\label{sub:トロピカル多項式}
+
+\begin{dfn}
+ トロピカル単項式 $ax_1^{j_1}\cdots x_n^{j_n}$とは$j_1x_1 + \cdots + j_nx_n +c$とかける式のことである.
+ トロピカル多項式$F=\sum c_j x^j$とは $ \mathrm{max}\{c_j + j\cdot x\}$で定められる式である.
+\end{dfn}
+$F$は$\mathbb{R}^n \to \mathbb{R}$を定める.
+
+\begin{rem}
+ここまででトロピカル幾何の基本的な定義を触れてきたが、トロピカル幾何には以下の問題意識や応用は具体的にお以下の4種類がある(と書かれていた。)
+\begin{enumerate}
+\item  (上のような折れ線の見方として) 扇 (fan) の退化
+\item  曲線の数え上げ
+\item  複素構造の極限
+\item 実代数曲線, アメーバの研究
+\end{enumerate}
+\end{rem}
+
+
+\section{非アルキメデストロピカル代数幾何}
+代数幾何を考えるためには図形つまり、多項式の零点集合を定義する必要がある.
+トロピカルの世界で多項式環に対して、どう零点を定義するかをみる。
+
+\begin{dfn}[Tropical hypersurfaces]
+$d$変数トロピカル多項式の零点集合$T(f)$を以下で定める.
+\begin{equation*}
+  T(f) = \{ \omega \in \mathbb{R}^d \mid f(\omega) \mbox{が}\omega\mbox{で微分できない} \}
+\end{equation*}
+これを\textbf{トロピカル超曲面}という.
+\end{dfn}
+これが零点集合らしいこと、代数多様体らしいことを示す.
+今回は特に非アルキメデスの場合だけ考える.
+以降では，$K$を完全体とし，$\overline{K}$を$K$の代数閉包，$\mathrm{Gal}(\overline{K}/K)$を絶対ガロア群とする．
+\begin{dfn}
+$V$がアフィン代数多様体とは以下を満たすことである．
+\begin{enumerate}
+  \item $V \subset \overline{K}^n$
+  \item $\overline{K}[X_1,\dots,X_n]$のある素イデアル$\mathfrak{p}$が存在し，
+           $V = \{ (x_1, \dots,x_n) \} \subset K^n \mid
+           \mbox{任意の} f \in \mathfrak{p} \mbox{に対し}f(x_1,\dots,x_n)=0)$
+\end{enumerate}
+\end{dfn}
+\begin{dfn}
+  $V$が$K$上定義されているとは，$\mathfrak{p}$の生成元$f_1,\dots,f_n$として，
+  $K$係数の多項式がとれること.また，$K$有理点$V(K)$を$V \cap K^n$で定める．
+\end{dfn}
+
+一般にイデアル$I$に対し，
+$V_I:=\{ (x_1,\dots,x_n)  \subset \overline{K}^n |
+\mbox{任意の}f \in I \mbox{に対し} f(x_1,\dots,x_n)=0$ \}
+と定める．また，$V \subset \overline{K}^n$に対し，
+$I_V:=\{ f \in \overline{K}[X_1,\dots,X_n] \mid \mbox{任意の}V
+\mbox{の元}(x_1.\dots,x_n)\mbox{に対し}f(x_1,\dots,x_n)=0 \} $とする.
+これらは$I_{V_I}=\sqrt{I}$となる．
+また、代数多様体として$\mathfrak{p}=(f)$を取るとき、超曲面といい.$X_f$と書く
+\begin{dfn}
+ $v : K \to \mathbb{R} \cup \{\infty\}$が以下を満たすとき非アルキメデス付値という.
+ \begin{itemize}
+   \item $v(x) = \infty \Leftrightarrow x = 0$
+   \item $v(xy) = v(x) + v(y)$
+   \item $v(x + y) \ge \min{v(x),v(y)}$
+ \end{itemize}
+\end{dfn}
+\begin{rem}
+ このとき$p >1$とし,$d(x,y) = p^{-v(x-y)}$とすると,距離の公理を満たす.
+\end{rem}
+以降$K$には非アルキメデス付値が定義され、その誘導する距離位相について完備とする.
+
+\begin{thm}
+完備付値体$K$の付値を$\nu_K$とする.
+有限次代数拡大$L$に対し付値は$\nu_L$に一意に延長でき、以下となる.
+\begin{equation*}
+  \nu_L(x)= \frac{1}{[L:K]} \nu_K(N_{L/K}(x))
+\end{equation*}
+\end{thm}
+また、これから$\overline{K}$にも付値が延長できることがわかる.
+
+\begin{dfn}
+ $X_f$を$\overline{K}$上の超曲面とする.
+ このとき$\mathcal{A}_f:= \overline{v(X_f(\overline{K}))}$とする.
+ これを非アルキメデス的アメーバという.
+\end{dfn}
+\begin{rem}
+  おそらくアメーバは超曲面に限らず一般的な代数多様体で定義できる.
+\end{rem}
+
+
+\begin{thm}
+$0 \neq f \in K[X_1,\dots,X_d]$が定める超曲面$X_f$に対し,$X_f$の定める非アルキメデス的アメーバ$\mathcal{A}_f$とトロピカル超曲面$T(f^t)$は一致する.
+(付値は非自明の仮定が必要?)
+\end{thm}
+一つずつ補題を用意して示す
+多項式$f$に対し、そのトロピカル化を$f^t$を以下で定める
+\begin{equation*}
+  f^t(u) := \min\{v(a_n) + u \cdot n\}
+\end{equation*}
+で定める.零点集合の定義は変わらない.
+\begin{lem}
+$T(f^t)$はclosed.
+\end{lem}
+\begin{proof}
+  $S = \cup (f^t -(a_{u_1}u_1x))^-1(0) \cap f^t -(a_{u_2}u_2x))^-1(0))$となる.
+  $\mathbb{R}$はハウスドルフなので、1点の逆像は閉.
+  $f^t$は連続で、有限和について閉じるので、$S$は閉集合.
+\end{proof}
+\begin{lem}
+ $\mathcal{A}_f \subset T(f^t)$
+\end{lem}
+\begin{proof}
+$T(f^t)$はclosedなので、$v(X_f(\overline{K})) \subset T(f^t)$を示せばよい.
+$u = (u_1,\cdots,u_d )\in v(X_f(\overline{K})) $とすると、定義から
+$v(z_i) = u_i$となる $ z_i \in \overline{K}$が取れ、$f(z_1,\cdots,z_d)=0$となる.
+$u$が零点集合でない、つまり,$ \# \{ u \mid v(a_uz^u) =\mathrm{min}\{v(a_uz^u)\} \} =1$
+とすると,$v(f) = \mathrm{min} \{v(a_uz^u) \} \neq \infty$となるので、矛盾する.
+よって$u \in S$となる.
+\end{proof}
+$\Gamma := v(\overline{K}^{\times})$とする.
+
+\begin{lem}
+ $v$が非自明な付値,つまり、$\# \Gamma >1$のとき,$\Gamma$は$\mathbb{R}$上稠密.
+\end{lem}
+\begin{proof}
+ $v$が非自明なので、$v(a) \neq 1$となる$a \in  \overline{K}^{\times}$が存在する.
+ $\overline{K}$は代数閉体なので、$a^{1/n} , a^m \in \overline{K}$として、取れ、
+ $\frac{m}{n}v(a) \in \Gamma$となる.となる$\mathbb{Q}$が$\mathbb{R}$上稠密なので,言えた.
+\end{proof}
+\begin{rem}
+ 同様にして$T(f^t) \cap \Gamma^d$は$S$上稠密.
+\end{rem}
+これより,$T(f^t) \cap \Gamma^d \subset \mathcal{A}_f$を示せば良い.
+
+\begin{lem}
+  $T(f^t) \cap \Gamma^d \subset \mathcal{A}_f \ 0 \in T(f^t) \Leftrightarrow 0 \in v(X_g(\overline{K}))$
+  に対し$0 \in T(g^t)$
+\end{lem}
+\begin{proof}
+  $u = (u_1,\cdots,u_d )\in T(f^t) \cap \Gamma^d$に対し，$ v(a_i ) = u_i $となる$a_i$が存在する.
+  $g(X_1,\cdots ,X_d):= f(a_1X_1,\cdots,a_dX_d)$とすると,$g^t (0,\cdots 0) = f^t(u_1,\cdots ,u_d)$となるので，$u \in X_f \cap \Gamma^d \Leftrightarrow 0 \in X_g$となる.
+  また，$u \in \mathcal{A}_f \Leftrightarrow (1,\cdots,1) \in V_g(\overline{K}) \Leftrightarrow  0 \in  v(V_g(\overline{K}))$となる.
+\end{proof}
+\begin{lem}
+  $0 \in T(f^t)$に対し,$ 0 \in \mathcal{A}_f$
+\end{lem}
+\begin{proof}
+  $0 \in T(f)$より,$f^t(0) = v(a_{u_1}) = v(a_{u_2})$となる$u_1,u_2$が存在する.
+  今$(u_1-u_2)\cdot b \neq$となる$b \in \mathbb{Z}^d$に対し,$f_b(t):= f(t^{b_1},\cdots t^{b_d})$とする.
+  この時$f_b(t)$のNewton Polygonには,$(u\cdot b ,v(a_u)),(v \cdot b, v(a_v))$が存在し，一直線で結ばれる.この時,Newton Polygonの性質から,$f_b(\alpha)=0$かつ$v(\alpha)=0$となるものが存在する.
+  よって$v(\alpha^{1/b_1},\cdots,\alpha^{1/b_d})= 0$となり,$V$に属することが言える.
+\end{proof}
+\begin{dfn}
+ $f(x) = a_0 + a_1 x + \cdots a_nx^n$に対し,
+ $\{ (0,v(a_0)),(1,v(a_1)),\cdots,(n,v(a_n)) \}$を取る.
+ これ全ての点が線の上部に位置するように点を結んで，下に凸となるように作った折れ線を$f(x)$のNewton Polygonという．
+\end{dfn}
+\begin{lem}
+$f(x) = a_0 + a_1 x + \cdots a_nx^n(a_0a_n \neq 0)$を体$K$上の多項式とする.
+今$(u,f(f)),(v,f(v))$がNewton Polygonの傾き$-m$の線分とすると，
+$f(x)$は$v-u$個の解$\alpha_1,\alpha_{v-u}$であって付値が$v(\alpha_1) =\cdots= v(\alpha_{v-u})=m$であるものが存在する.
+\end{lem}
+\begin{proof}
+ Neukirch II章命題6.3参考.
+\end{proof}
+
+\begin{thebibliography}{数字}
+%\begin{thebibliography}{数字}
+%thebibliography:参考文系の段落を表す
+%数字:開始の種類を表す．
+%bibitem:箇条書きのタイトルを表す．
+\bibitem{MMD}MANFRED EINSIEDLER, MIKHAIL KAPRANOV, AND DOUGLAS LIND. NON-ARCHIMEDEAN AMOEBAS
+AND TROPICAL VARIETIES,2005
+\end{thebibliography}
+\end{document}
